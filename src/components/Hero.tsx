@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, RefreshCw, Cpu, Globe } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import Link from 'next/link';
 
 export const Hero: React.FC = () => {
     return (
