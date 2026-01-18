@@ -86,7 +86,6 @@ export default function RootLayout({
       "latitude": 46.2857,
       "longitude": -119.2845
     },
-    "telephone": "+15095550123",
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": [
