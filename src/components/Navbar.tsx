@@ -59,10 +59,10 @@ export function Navbar() {
                         </Link>
                     ))}
                     <Button
-                        onClick={scrollToContact}
+                        asChild
                         className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-bold hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg shadow-purple-500/30 border-0"
                     >
-                        Get in Touch
+                        <Link href="/booking">Get in Touch</Link>
                     </Button>
                 </div>
 

@@ -83,7 +83,7 @@ export default function BookingPage() {
                                 {/* Embed Placeholder */}
                                 <div className="absolute inset-0 bg-white">
                                     <iframe
-                                        src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2x7p4zRU8_Y6kRU8_jFDgyirZ2xZZ6kRU8?gv=true"
+                                        src="https://calendar.app.google/jFDgyirZ2xZZ6kRU8"
                                         style={{ border: 0 }}
                                         width="100%"
                                         height="700"

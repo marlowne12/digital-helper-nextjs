@@ -38,8 +38,10 @@ export const Hero: React.FC = () => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                    <Button className="h-14 px-8 text-lg bg-white text-black font-bold rounded-full hover:bg-slate-200 transition-all hover:scale-105 shadow-lg shadow-white/10 group">
-                        Get a Modern Site <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    <Button asChild className="h-14 px-8 text-lg bg-white text-black font-bold rounded-full hover:bg-slate-200 transition-all hover:scale-105 shadow-lg shadow-white/10 group">
+                        <Link href="/booking" className="flex items-center">
+                            Get a Modern Site <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                        </Link>
                     </Button>
                     <Button variant="outline" className="h-14 px-8 text-lg glass text-white border-white/10 hover:bg-white/10 font-medium rounded-full backdrop-blur-sm">
                         <RefreshCw className="mr-2 h-5 w-5" /> View Transformations
