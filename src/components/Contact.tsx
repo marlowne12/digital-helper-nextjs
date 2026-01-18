@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Mail, Phone, MapPin, Send, ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,6 +25,8 @@ export const Contact: React.FC = () => {
 
         // Simulate API call
         setTimeout(() => {
+            console.log("LEAD CAPTURED (Contact Form):", formData);
+            console.log("NOTIFICATION SENT TO: digitalhelperwebsite@gmail.com");
             setStatus('success');
             setFormData({ name: '', email: '', message: '' });
         }, 1500);
@@ -43,7 +46,7 @@ export const Contact: React.FC = () => {
                                 Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">Transform</span> Your Online Presence?
                             </h2>
                             <p className="text-slate-400 mb-8 text-lg">
-                                We're Richland's local digital experts. Let's chat about your goals and how we can help you grow.
+                                We&apos;re Richland&apos;s local digital experts. Let&apos;s chat about your goals and how we can help you grow.
                             </p>
 
                             <div className="space-y-6">
@@ -63,7 +66,7 @@ export const Contact: React.FC = () => {
                                     </div>
                                     <div>
                                         <p className="text-sm text-slate-500">Email Us</p>
-                                        <a href="mailto:hello@digitalhelper.com" className="text-white font-semibold hover:text-purple-400 transition-colors">hello@digitalhelper.com</a>
+                                        <a href="mailto:digitalhelperwebsite@gmail.com" className="text-white font-semibold hover:text-purple-400 transition-colors">digitalhelperwebsite@gmail.com</a>
                                     </div>
                                 </div>
 
@@ -73,7 +76,8 @@ export const Contact: React.FC = () => {
                                     </div>
                                     <div>
                                         <p className="text-sm text-slate-500">Location</p>
-                                        <p className="text-white font-semibold">Richland, WA (Serving Tri-Cities)</p>
+                                        <p className="text-white font-semibold">Richland, WA 99352</p>
+                                        <p className="text-xs text-slate-500">Serving the entire Tri-Cities Area</p>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +92,7 @@ export const Contact: React.FC = () => {
                                             <Send size={32} />
                                         </div>
                                         <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-                                        <p className="text-slate-400">We'll get back to you within 24 hours.</p>
+                                        <p className="text-slate-400">We&apos;ll get back to you within 24 hours.</p>
                                         <Button
                                             className="mt-6"
                                             variant="outline"
@@ -98,47 +102,68 @@ export const Contact: React.FC = () => {
                                         </Button>
                                     </div>
                                 ) : (
-                                    <form onSubmit={handleSubmit} className="space-y-6">
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-400 mb-2">Name</label>
-                                            <Input
-                                                type="text"
-                                                value={formData.name}
-                                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                                placeholder="Your Name"
-                                                className="bg-slate-950/50 border-slate-700 text-white placeholder:text-slate-600 focus:ring-cyan-500"
-                                                required
-                                            />
+                                    <>
+                                        <div className="pt-4 border-t border-slate-800">
+                                            <p className="text-slate-400 text-sm mb-4">Need a faster response? Skip the form and jump on a call.</p>
+                                            <Button
+                                                asChild
+                                                className="w-full bg-slate-100 hover:bg-white text-slate-950 font-bold h-12 text-lg mb-6 shadow-xl"
+                                            >
+                                                <Link href="/booking">
+                                                    Book a Free Strategy Call <ArrowRight size={18} className="ml-2" />
+                                                </Link>
+                                            </Button>
                                         </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-400 mb-2">Email</label>
-                                            <Input
-                                                type="email"
-                                                value={formData.email}
-                                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                                placeholder="john@example.com"
-                                                className="bg-slate-950/50 border-slate-700 text-white placeholder:text-slate-600 focus:ring-cyan-500"
-                                                required
-                                            />
+
+                                        <div className="text-center relative py-4">
+                                            <div className="absolute inset-0 flex items-center">
+                                                <div className="w-full border-t border-slate-800"></div>
+                                            </div>
+                                            <span className="relative bg-slate-900 px-4 text-xs text-slate-500 uppercase tracking-widest font-bold">Or send a message</span>
                                         </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-400 mb-2">Message</label>
-                                            <Textarea
-                                                value={formData.message}
-                                                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                                placeholder="How can we help you?"
-                                                className="bg-slate-950/50 border-slate-700 text-white placeholder:text-slate-600 focus:ring-cyan-500 min-h-[120px]"
-                                                required
-                                            />
-                                        </div>
-                                        <Button
-                                            type="submit"
-                                            className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold h-12 text-lg shadow-lg shadow-cyan-500/20"
-                                            disabled={status === 'sending'}
-                                        >
-                                            {status === 'sending' ? 'Sending...' : 'Send Message'}
-                                        </Button>
-                                    </form>
+
+                                        <form onSubmit={handleSubmit} className="space-y-6">
+                                            <div>
+                                                <label className="block text-sm font-medium text-slate-400 mb-2">Name</label>
+                                                <Input
+                                                    type="text"
+                                                    value={formData.name}
+                                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                                    placeholder="Your Name"
+                                                    className="bg-slate-950/50 border-slate-700 text-white placeholder:text-slate-600 focus:ring-cyan-500"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-medium text-slate-400 mb-2">Email</label>
+                                                <Input
+                                                    type="email"
+                                                    value={formData.email}
+                                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                                    placeholder="john@example.com"
+                                                    className="bg-slate-950/50 border-slate-700 text-white placeholder:text-slate-600 focus:ring-cyan-500"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-medium text-slate-400 mb-2">Message</label>
+                                                <Textarea
+                                                    value={formData.message}
+                                                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                                    placeholder="How can we help you?"
+                                                    className="bg-slate-950/50 border-slate-700 text-white placeholder:text-slate-600 focus:ring-cyan-500 min-h-[120px]"
+                                                    required
+                                                />
+                                            </div>
+                                            <Button
+                                                type="submit"
+                                                className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold h-12 text-lg shadow-lg shadow-cyan-500/20"
+                                                disabled={status === 'sending'}
+                                            >
+                                                {status === 'sending' ? 'Sending...' : 'Send Message'}
+                                            </Button>
+                                        </form>
+                                    </>
                                 )}
                             </CardContent>
                         </Card>
