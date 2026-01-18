@@ -86,10 +86,7 @@ export default function RootLayout({
       "latitude": 46.2857,
       "longitude": -119.2845
     },
-    "sameAs": [
-      "https://maps.app.google/jFDgyirZ2xZZ6kRU8",
-      "https://maps.app.goo.gl/zqStKbjf2iUg21Lg8"
-    ],
+    "telephone": "+15095550123",
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": [
