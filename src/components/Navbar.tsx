@@ -38,6 +38,12 @@ const services = [
         description: "Workflows and chatbots"
     },
     {
+        title: "Reputation Management",
+        href: "/services/reputation-management",
+        icon: <Bot className="w-4 h-4" />, // Using Bot icon or maybe MessageSquare/Star if imported
+        description: "Audits & Review Control"
+    },
+    {
         title: "Lead Generation",
         href: "/services/lead-generation",
         icon: <Users className="w-4 h-4" />,
