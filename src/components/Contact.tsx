@@ -61,7 +61,7 @@ export function Contact() {
                             {/* Contact Methods */}
                             <div className="space-y-6">
                                 <a
-                                    href="tel:+15095550123"
+                                    href="tel:+15099875060"
                                     className="group flex items-center gap-5 p-5 rounded-2xl glass border border-white/5 hover:border-accent-purple/40 transition-all duration-300 hover:scale-[1.02]"
                                 >
                                     <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-purple/20 to-accent-purple/5 border border-accent-purple/20 flex items-center justify-center text-accent-purple group-hover:scale-110 transition-transform">
