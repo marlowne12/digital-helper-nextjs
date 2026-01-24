@@ -83,7 +83,7 @@ export function Hero() {
                 </motion.div>
 
                 {/* SEO H1 - Visually Hidden */}
-                <h1 className="sr-only">Digital Helper | Modern Web Design & AI Automation in Richland, WA</h1>
+                <h1 className="sr-only">Web Design Richland WA & Digital Marketing Tri Cities | Digital Helper</h1>
 
                 {/* MASSIVE Typography */}
                 <h2 className="font-display font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] leading-[0.85] tracking-tighter mb-8 mix-blend-screen select-none">
@@ -101,8 +101,8 @@ export function Hero() {
                         transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                         className="block text-stroke-sm md:text-stroke text-transparent relative"
                     >
-                        EMPIRE
-                        <span className="absolute inset-0 text-white opacity-10 blur-sm select-none">EMPIRE</span>
+                        HELPER
+                        <span className="absolute inset-0 text-white opacity-10 blur-sm select-none">HELPER</span>
                     </motion.span>
                 </h2>
 

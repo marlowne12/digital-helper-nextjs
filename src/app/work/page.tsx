@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import {
     ExternalLink,
@@ -86,10 +87,11 @@ export default function WorkPage() {
                             >
                                 <div className="glass rounded-[2.5rem] overflow-hidden border-white/5 group-hover:border-accent-purple/20 transition-all duration-500">
                                     <div className="aspect-video relative overflow-hidden">
-                                        <img
+                                        <Image
                                             src={work.image}
                                             alt={work.title}
-                                            className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
+                                            fill
+                                            className="object-cover opacity-60 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
                                         />
                                         <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest text-white">
                                             {work.type}

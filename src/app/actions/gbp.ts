@@ -72,15 +72,15 @@ export async function fetchGBPData(urlOrName: string): Promise<GBPProfile> {
             categories: place.types ? place.types.map((t: string) => t.replace(/_/g, ' ')) : [],
             description: place.editorialSummary?.text || "No description available.",
             isClaimed: true, // API doesn't explicitly expose this easily, defaulting to true for now
-            reviews: (place.reviews || []).map((r: any) => ({ // eslint-disable-line @typescript-eslint/no-explicit-any
-                id: r.name || Math.random().toString(), // review resource name
-                author: r.authorAttribution?.displayName || "Anonymous",
-                rating: r.rating,
-                time: r.relativePublishTimeDescription || "Recently",
-                text: r.text?.text || r.text || "",
-                response: r.authorReply?.text?.text || r.originalText?.text // Check for reply
+            reviews: (place.reviews || []).map((r: unknown) => ({
+                id: (r as { name?: string }).name || Math.random().toString(),
+                author: (r as { authorAttribution?: { displayName: string } }).authorAttribution?.displayName || "Anonymous",
+                rating: (r as { rating: number }).rating,
+                time: (r as { relativePublishTimeDescription: string }).relativePublishTimeDescription || "Recently",
+                text: (r as { text?: { text: string } }).text?.text || (r as { text?: string }).text || "",
+                response: (r as { authorReply?: { text: { text: string } } }).authorReply?.text?.text || (r as { originalText?: { text: string } }).originalText?.text
             })),
-            photos: (place.photos || []).map((p: any) => p.name) // eslint-disable-line @typescript-eslint/no-explicit-any
+            photos: (place.photos || []).map((p: unknown) => (p as { name: string }).name)
         };
 
     } catch (error) {

@@ -5,14 +5,14 @@ import * as cheerio from 'cheerio';
 import { z } from 'zod';
 
 const URLRequestSchema = z.object({
-  url: z.string().url().refine((url) => {
-    try {
-      const parsed = new URL(url);
-      return ['http:', 'https:'].includes(parsed.protocol);
-    } catch {
-      return false;
-    }
-  }, 'URL must be valid and use HTTP/HTTPS protocol')
+    url: z.string().url().refine((url) => {
+        try {
+            const parsed = new URL(url);
+            return ['http:', 'https:'].includes(parsed.protocol);
+        } catch {
+            return false;
+        }
+    }, 'URL must be valid and use HTTP/HTTPS protocol')
 });
 
 const SYSTEM_INSTRUCTION = `
@@ -86,19 +86,38 @@ export async function POST(req: NextRequest) {
             }
         });
 
-        const jsonResponse = JSON.parse(result.text || "{}");
+        let aiAnalysis = {};
+        try {
+            const text = result.text || "{}";
+            // Clean common LLM formatting artifacts if necessary
+            const cleanedText = text.replace(/```json/g, '').replace(/```/g, '').trim();
+            aiAnalysis = JSON.parse(cleanedText);
+        } catch (parseError) {
+            console.error("[SEO AI Parse Error]", parseError);
+            aiAnalysis = {
+                grade: "C",
+                score: 50,
+                summary: "Analysis completed but detailed report generation failed.",
+                quickWins: ["Review site structure manually", "Optimize images", "Improve page load speed"]
+            };
+        }
 
         return NextResponse.json({
             url: targetUrl,
             rawMetrics: analysisContext,
-            aiAnalysis: jsonResponse
+            aiAnalysis
         });
 
     } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
-        console.error("SEO Audit Error:", error.message);
+        const errorMessage = error.message || "Unknown error";
+        console.error("SEO Audit Error:", errorMessage);
+
+        const status = error.response?.status || 500;
+        const detail = error.code === 'ECONNABORTED' ? "Request timed out during website scan." : errorMessage;
+
         return NextResponse.json({
             error: "Failed to scan website.",
-            details: error.message
-        }, { status: 500 });
+            details: detail
+        }, { status });
     }
 }

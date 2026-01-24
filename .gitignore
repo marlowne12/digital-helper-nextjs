@@ -40,3 +40,13 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .env
+
+# build and lint artifacts
+build_log*.txt
+build_output.txt
+lint-results*.json
+lint-results*.txt
+lint_errors.txt
+lint_results_final.txt
+tsc_output*.txt
+lighthouse-report.json

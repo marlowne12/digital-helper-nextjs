@@ -9,33 +9,6 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { storeChatLead } from '@/app/actions/leads';
 import { trackChatInteraction } from '@/lib/analytics';
 
-interface ToolInvocation {
-  toolName: 'generateQuote' | 'scheduleCall' | 'analyzeWebsite';
-  result?: unknown;
-}
-
-interface ChatMessage {
-  id: string;
-  role: 'user' | 'assistant' | 'system';
-  content: string;
-  toolInvocations?: ToolInvocation[];
-}
-
-interface QuoteResult {
-  estimatedPrice: number;
-  currency: string;
-  message: string;
-}
-
-interface ScheduleResult {
-  bookingUrl: string;
-}
-
-interface AnalysisResult {
-  score: number;
-  issues: string[];
-  opportunity: string;
-}
 
 export const ChatWidget: React.FC = () => {
     const [isOpen, setIsOpen] = React.useState(false);

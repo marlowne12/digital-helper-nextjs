@@ -11,30 +11,30 @@ Reference document for AI assistants building UI components. Covers design token
 
 ```css
 /* Primary Colors */
---background: #0a0a0f;              /* Main background */
---background-secondary: #12121a;     /* Cards, sections */
---background-tertiary: #1a1a24;      /* Hover states */
+--color-background-primary: #0a0a0f;      /* Main background */
+--color-background-secondary: #0f1419;    /* Cards, sections */
+--color-background-tertiary: #161b22;     /* Hover states */
 
 /* Text */
---text-primary: #ffffff;             /* Headings, important */
---text-secondary: #a1a1aa;           /* Body text */
---text-muted: #71717a;               /* Captions, labels */
+--text-primary: #ffffff;                  /* Headings, important */
+--text-secondary: #a1a1aa;                /* Body text (zinc-400) */
+--text-muted: #71717a;                    /* Captions, labels */
 
-/* Accent (Purple-Blue Gradient) */
---accent-primary: #8b5cf6;           /* Purple */
---accent-secondary: #6366f1;         /* Indigo */
---accent-tertiary: #3b82f6;          /* Blue */
---accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #6366f1 50%, #3b82f6 100%);
+/* Accent (Teal-Cyan-Sky Gradient) */
+--color-accent-primary: #00d4aa;          /* Teal */
+--color-accent-secondary: #0ea5e9;        /* Sky */
+--color-accent-tertiary: #06b6d4;         /* Cyan */
+--accent-gradient: linear-gradient(135deg, #00d4aa 0%, #0ea5e9 50%, #06b6d4 100%);
 
 /* UI States */
 --success: #22c55e;
 --warning: #f59e0b;
 --error: #ef4444;
---info: #3b82f6;
+--info: #0ea5e9;
 
 /* Effects */
---glow-purple: rgba(139, 92, 246, 0.15);
---glow-blue: rgba(59, 130, 246, 0.15);
+--glow-teal: rgba(0, 212, 170, 0.15);
+--glow-cyan: rgba(6, 182, 212, 0.15);
 --card-border: rgba(255, 255, 255, 0.08);
 --card-bg: rgba(255, 255, 255, 0.03);
 ```
@@ -49,22 +49,22 @@ module.exports = {
       colors: {
         background: {
           DEFAULT: '#0a0a0f',
-          secondary: '#12121a',
-          tertiary: '#1a1a24',
+          secondary: '#0f1419',
+          tertiary: '#161b22',
         },
         accent: {
-          purple: '#8b5cf6',
-          indigo: '#6366f1',
-          blue: '#3b82f6',
+          teal: '#00d4aa',
+          sky: '#0ea5e9',
+          cyan: '#06b6d4',
         }
       },
       backgroundImage: {
-        'accent-gradient': 'linear-gradient(135deg, #8b5cf6 0%, #6366f1 50%, #3b82f6 100%)',
+        'accent-gradient': 'linear-gradient(135deg, #00d4aa 0%, #0ea5e9 50%, #06b6d4 100%)',
       },
       boxShadow: {
-        'glow-sm': '0 0 20px rgba(139, 92, 246, 0.15)',
-        'glow-md': '0 0 40px rgba(139, 92, 246, 0.2)',
-        'glow-lg': '0 0 60px rgba(139, 92, 246, 0.25)',
+        'glow-sm': '0 0 20px rgba(0, 212, 170, 0.15)',
+        'glow-md': '0 0 40px rgba(0, 212, 170, 0.2)',
+        'glow-lg': '0 0 60px rgba(0, 212, 170, 0.25)',
       }
     }
   }
@@ -77,7 +77,8 @@ module.exports = {
 
 ### Font Stack
 ```css
---font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+--font-display: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;       /* Headings */
+--font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;       /* Body text */
 --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 ```
 
@@ -117,7 +118,7 @@ module.exports = {
 <p className="text-lg text-zinc-300 leading-relaxed">
 
 // Gradient text
-<span className="bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400 bg-clip-text text-transparent">
+<span className="text-gradient">
 ```
 
 ---
@@ -179,7 +180,7 @@ module.exports = {
   transition-all duration-300
 ">
   {/* Optional glow effect on hover */}
-  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
   
   {/* Content */}
   <div className="relative z-10">
@@ -192,10 +193,10 @@ module.exports = {
 ### Service Card
 
 ```jsx
-<div className="group relative p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-purple-500/30 transition-all duration-300">
+<div className="group relative p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-accent-primary/30 transition-all duration-300">
   {/* Icon */}
-  <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4">
-    <Icon className="w-6 h-6 text-purple-400" />
+  <div className="w-12 h-12 rounded-xl bg-accent-primary/10 flex items-center justify-center mb-4">
+    <Icon className="w-6 h-6 text-accent-primary" />
   </div>
   
   {/* Content */}
@@ -203,7 +204,7 @@ module.exports = {
   <p className="text-zinc-400 mb-4">Modern, fast websites that convert visitors into customers.</p>
   
   {/* Link */}
-  <a href="/services/web-design" className="text-purple-400 hover:text-purple-300 font-medium inline-flex items-center gap-1">
+  <a href="/services/web-design" className="text-accent-primary hover:text-accent-secondary font-medium inline-flex items-center gap-1">
     Learn More
     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
   </a>
@@ -221,7 +222,7 @@ module.exports = {
   
   {/* Author */}
   <div className="flex items-center gap-4">
-    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-semibold">
+    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent-primary to-accent-tertiary flex items-center justify-center text-white font-semibold">
       SJ
     </div>
     <div>
@@ -237,7 +238,7 @@ module.exports = {
 ```jsx
 <div className={`
   relative p-8 rounded-2xl 
-  ${popular ? 'bg-gradient-to-b from-purple-500/10 to-transparent border-purple-500/30' : 'bg-white/[0.03] border-white/[0.08]'}
+  ${popular ? 'bg-gradient-to-b from-accent-primary/10 to-transparent border-accent-primary/30' : 'bg-white/[0.03] border-white/[0.08]'}
   border
 `}>
   {/* Popular badge */}
@@ -289,8 +290,8 @@ module.exports = {
       rounded-lg
       text-white
       placeholder:text-zinc-500
-      focus:border-purple-500/50 
-      focus:ring-2 focus:ring-purple-500/20
+      focus:border-accent-primary/50 
+      focus:ring-2 focus:ring-accent-primary/20
       outline-none
       transition-all
     "
@@ -303,7 +304,7 @@ module.exports = {
 
 ```jsx
 // Status badge
-<span className="px-3 py-1 text-xs font-medium rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">
+<span className="px-3 py-1 text-xs font-medium rounded-full bg-accent-primary/10 text-accent-primary border border-accent-primary/20">
   AI Powered
 </span>
 
@@ -322,7 +323,7 @@ module.exports = {
 ```jsx
 <section className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
   {/* Background gradient */}
-  <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-transparent to-transparent" />
+  <div className="absolute inset-0 bg-gradient-to-b from-accent-primary/5 via-transparent to-transparent" />
   
   {/* Grid pattern (optional) */}
   <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
@@ -338,7 +339,7 @@ module.exports = {
     {/* Headline */}
     <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
       Transform Your Business with{' '}
-      <span className="bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400 bg-clip-text text-transparent">
+      <span className="bg-gradient-to-r from-accent-primary via-indigo-400 to-blue-400 bg-clip-text text-transparent">
         Intelligent Automation
       </span>
     </h1>
@@ -389,7 +390,7 @@ module.exports = {
 ```jsx
 <section className="py-20 relative overflow-hidden">
   {/* Gradient background */}
-  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-indigo-500/10 to-blue-500/10" />
+  <div className="absolute inset-0 bg-gradient-to-r from-accent-primary/10 via-accent-secondary/10 to-accent-tertiary/10" />
   
   <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
     <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -439,8 +440,8 @@ const cardVariants = {
 ```css
 /* Glow pulse */
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.15); }
-  50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.25); }
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 170, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(0, 212, 170, 0.25); }
 }
 
 .animate-glow-pulse {

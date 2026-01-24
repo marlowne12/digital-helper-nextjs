@@ -12,7 +12,6 @@ import {
     Code2,
     ArrowUpRight
 } from 'lucide-react'
-import { SIZES } from '@/lib/constants'
 
 const services = [
     {

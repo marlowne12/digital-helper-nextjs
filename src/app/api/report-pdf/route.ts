@@ -1,16 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { renderToBuffer, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import React from 'react';
-import { z } from 'zod';
 
 const sanitizeFilename = (filename: string): string => {
-  return filename
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '') // Remove dangerous chars
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/-+/g, '-') // Remove consecutive hyphens
-    .replace(/^-+|-+$/g, '') // Remove leading/trailing hyphens
-    .substring(0, 50); // Limit length
+    return filename
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '') // Remove dangerous chars
+        .replace(/\s+/g, '-') // Replace spaces with hyphens
+        .replace(/-+/g, '-') // Remove consecutive hyphens
+        .replace(/^-+|-+$/g, '') // Remove leading/trailing hyphens
+        .substring(0, 50); // Limit length
 };
 
 // PDF Styles

@@ -81,7 +81,7 @@ export default function RootLayout({
     "@id": "https://digital-helper.com",
     "url": "https://digital-helper.com",
     "logo": "https://digital-helper.com/logo.png",
-    "telephone": "+1-509-987-5060",
+    "telephone": "(509) 876-8454",
     "priceRange": "$$",
     "potentialAction": {
       "@type": "ReserveAction",

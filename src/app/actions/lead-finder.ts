@@ -53,23 +53,34 @@ export async function findLeads(query: string, location: string): Promise<Lead[]
         if (!data.places) return [];
 
         // Score each lead
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const leads: Lead[] = data.places.map((place: any) => {
+        const leads: Lead[] = (data.places as unknown[]).map((place: unknown) => {
+            const p = place as {
+                name?: string;
+                photos?: { name: string }[];
+                displayName?: { text: string };
+                formattedAddress?: string;
+                rating?: number;
+                userRatingCount?: number;
+                websiteUri?: string;
+                nationalPhoneNumber?: string;
+                types?: string[];
+                editorialSummary?: { text: string };
+            };
             // Construct Photo URL if available
             let photoUrl = undefined;
-            if (place.photos && place.photos.length > 0) {
-                const photoName = place.photos[0].name;
+            if (p.photos && p.photos.length > 0) {
+                const photoName = p.photos[0].name;
                 photoUrl = `https://places.googleapis.com/v1/${photoName}/media?maxHeightPx=400&maxWidthPx=400&key=${GOOGLE_PLACES_API_KEY}`;
             }
 
             const profile: GBPProfile = {
-                name: place.displayName?.text || "Unknown Business",
-                address: place.formattedAddress || "",
-                rating: place.rating || 0,
-                totalReviews: place.userRatingCount || 0,
-                website: place.websiteUri,
-                phone: place.nationalPhoneNumber,
-                categories: place.types ? place.types.map((t: string) => t.replace(/_/g, ' ')) : [],
+                name: p.displayName?.text || "Unknown Business",
+                address: p.formattedAddress || "",
+                rating: p.rating || 0,
+                totalReviews: p.userRatingCount || 0,
+                website: p.websiteUri,
+                phone: p.nationalPhoneNumber,
+                categories: p.types ? p.types.map((t: string) => t.replace(/_/g, ' ')) : [],
                 isClaimed: true, // assumption
                 reviews: [],
                 description: "",
@@ -80,7 +91,7 @@ export async function findLeads(query: string, location: string): Promise<Lead[]
 
             return {
                 ...profile,
-                placeId: place.name, // "places/ID"
+                placeId: p.name || "", // "places/ID"
                 photoUrl,
                 ...scoring
             };

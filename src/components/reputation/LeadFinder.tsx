@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { Search, MapPin, Mail, ExternalLink, Loader2, AlertCircle, Check, Phone, Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -104,9 +105,13 @@ export default function LeadFinder({ onDeepAudit }: LeadFinderProps) {
 
                                 <div className="flex flex-col md:flex-row gap-6 items-start justify-between pl-4">
                                     {lead.photoUrl && (
-                                        <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden bg-zinc-800 border border-white/10 hidden md:block">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img src={lead.photoUrl} alt={lead.name} className="w-full h-full object-cover" />
+                                        <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden bg-zinc-800 border border-white/10 hidden md:block relative">
+                                            <Image
+                                                src={lead.photoUrl}
+                                                alt={lead.name}
+                                                fill
+                                                className="object-cover"
+                                            />
                                         </div>
                                     )}
                                     <div className="space-y-2 flex-1">

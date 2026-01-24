@@ -1,26 +1,75 @@
-'use client';
+"use client"
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { Star, TrendingUp, ShieldCheck, ArrowRight, MessageSquare, Search } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { ServicePageLayout } from '@/components/services/ServicePageLayout';
-import { StatisticCard } from '@/components/services/StatisticCard';
+import React from 'react'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import {
+    Star,
+    ShieldCheck,
+    ArrowRight,
+    MessageSquare,
+    Search,
+    XCircle,
+    CheckCircle2,
+    Workflow
+} from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import { ServicePageLayout } from '@/components/services/ServicePageLayout'
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
+
+const painPoints = [
+    {
+        title: "Review Stagnation",
+        desc: "Haven't seen a new review in months? Customers assume you've closed shop or your quality has dipped."
+    },
+    {
+        title: "The Silent Negative",
+        desc: "One bad review can scare away dozens of leads. Do you have a plan to handle feedback before it hurts your bottom line?"
+    },
+    {
+        title: "Response Delay",
+        desc: "In the Tri-Cities, speed is trust. If you take days to respond to reviews, customers move to the next business."
+    },
+    {
+        title: "Trust GAP",
+        desc: "Is your business quality better than your star rating? We help your online presence reflect your actual excellence."
+    }
+]
+
+const deliverables = [
+    "AI-Powered Review Monitoring (24/7)",
+    "Automated Review Generation System",
+    "Smart Sentiment Analysis & Reporting",
+    "Professional Review Response Drafting",
+    "Negative Feedback Interception System",
+    "Google Business Profile Review Integration"
+]
+
+const faqs = [
+    {
+        q: "Can you remove negative reviews?",
+        a: "While we cannot directly 'delete' reviews (Google's policy), we help you bury them with fresh, positive feedback and provide a professional framework for responding that builds trust with future readers."
+    },
+    {
+        q: "How do you 'automate' review requests?",
+        a: "We integrate with your CRM or POS system to automatically send review requests via SMS or email immediately after a successful service, when satisfaction is highest."
+    },
+    {
+        q: "Do I have to approve the AI responses?",
+        a: "Yes, you have full control. You can choose to have the AI draft responses for your approval, or set specific parameters for automatic replies to 5-star reviews."
+    },
+    {
+        q: "Is reputation management worth the monthly cost?",
+        a: "A 1-star increase in rating can boost revenue by 5-9%. Our system pays for itself by capturing leads that would otherwise walk away due to a lower rating."
+    }
+]
 
 export function ReputationManagementPageContent() {
-    const router = useRouter();
-    const [businessName, setBusinessName] = useState('');
-
-    const handleQuickAudit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (businessName.trim()) {
-            router.push(`/dashboard/reputation?q=${encodeURIComponent(businessName)}`);
-        }
-    };
-
     return (
         <ServicePageLayout
             breadcrumbs={[
@@ -28,165 +77,231 @@ export function ReputationManagementPageContent() {
                 { label: 'Reputation Management', href: '/services/reputation-management' }
             ]}
         >
-            {/* Hero Section */}
-            <div className="max-w-4xl mb-16 mx-auto lg:mx-0 lg:text-left text-center">
+            {/* 1. Hero Section */}
+            <div className="max-w-4xl mb-20">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-accent-cyan text-sm font-medium mb-6">
-                        AI-Powered Reputation Control
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-sm font-medium mb-6 uppercase tracking-wider">
+                        AI-Powered Trust Building
                     </span>
                     <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
                         Turn Reviews Into <br />
                         <span className="text-gradient">Revenue.</span>
                     </h1>
-                    <p className="text-xl text-zinc-400 max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">
-                        Your online reputation is your most valuable asset. Monitor, analyze, and improve your Google Business Profile with our AI-driven reputation engine.
+                    <p className="text-xl text-zinc-400 max-w-2xl mb-10 leading-relaxed">
+                        Your online reputation is your most valuable asset. We build systems that automatically monitor, analyze, and generate 5-star reviews to dominate your local market.
                     </p>
-
-                    {/* Quick Audit Input */}
-                    <form onSubmit={handleQuickAudit} className="max-w-md mx-auto lg:mx-0 relative group">
-                        <div className="absolute inset-0 bg-accent-gradient blur-xl opacity-20 group-hover:opacity-30 transition-opacity rounded-full"></div>
-                        <div className="relative flex gap-2 p-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full">
-                            <Input
-                                className="bg-transparent border-none text-white placeholder:text-zinc-500 focus-visible:ring-0 pl-6 h-12"
-                                placeholder="Enter your business name..."
-                                value={businessName}
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setBusinessName(e.target.value)}
-                            />
-                            <Button type="submit" size="icon" className="h-12 w-12 rounded-full bg-accent-cyan hover:bg-accent-cyan/90 text-black shrink-0">
-                                <ArrowRight className="w-5 h-5" />
-                            </Button>
-                        </div>
-                        <p className="text-sm text-zinc-500 mt-3">
-                            Get a comprehensive 360° audit in seconds.
-                        </p>
-                    </form>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                        <Button asChild className="btn-primary h-14 px-8 text-lg bg-amber-600 hover:bg-amber-500 shadow-[0_0_20px_rgba(245,158,11,0.3)] border-none text-white">
+                            <Link href="/contact">Start Your Free Audit</Link>
+                        </Button>
+                        <Button asChild variant="outline" className="btn-secondary h-14 px-8 text-lg border-white/10 hover:bg-white/5">
+                            <Link href="/pricing">View Packages</Link>
+                        </Button>
+                    </div>
                 </motion.div>
             </div>
 
-            {/* Statistics Section */}
-            <section className="mb-24">
-                <div className="grid md:grid-cols-2 gap-6">
-                    <StatisticCard
-                        value="93%"
-                        label="Consumer Trust"
-                        description="93% of customers will read reviews of local businesses to determine its quality."
-                        source="Qualtrics"
-                        delay={0.2}
-                    />
-                    <StatisticCard
-                        value="+9%"
-                        label="Revenue Boost"
-                        description="A one-star increase in Yelp rating leads to a 5-9% increase in revenue."
-                        source="Harvard Business School"
-                        delay={0.3}
-                    />
-                </div>
-            </section>
-
-            {/* Features Grid */}
-            <section className="mb-24">
-                <div className="grid md:grid-cols-3 gap-6">
-                    {[
-                        {
-                            icon: <Search className="w-6 h-6 text-accent-cyan" />,
-                            title: "Deep Dive Audits",
-                            description: "Our AI scans your entire digital footprint to identify missing keywords, inconsistent NAP data, and sentiment trends."
-                        },
-                        {
-                            icon: <MessageSquare className="w-6 h-6 text-accent-purple" />,
-                            title: "Smart Auto-Replies",
-                            description: "Never leave a review hanging. Generate professional, context-aware responses to both positive and negative feedback instantly."
-                        },
-                        {
-                            icon: <TrendingUp className="w-6 h-6 text-accent-indigo" />,
-                            title: "Competitor Benchmarking",
-                            description: "See how you stack up against the top 3 competitors in your area and get a roadmap to overtake them."
-                        }
-                    ].map((feature, index) => (
+            {/* 2. Pain Points Section */}
+            <section className="mb-32">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {painPoints.map((point, i) => (
                         <motion.div
-                            key={feature.title}
+                            key={i}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="glass p-8 group hover:border-accent-cyan/20 transition-all rounded-2xl"
+                            transition={{ delay: i * 0.1 }}
+                            className="bg-white/[0.02] border border-white/[0.05] p-6 rounded-2xl"
                         >
-                            <div className="w-12 h-12 rounded-xl bg-white/[0.03] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                {feature.icon}
-                            </div>
-                            <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
-                            <p className="text-zinc-400 text-sm leading-relaxed">
-                                {feature.description}
-                            </p>
+                            <XCircle className="w-8 h-8 text-red-500/50 mb-4" />
+                            <h3 className="text-lg font-bold text-white mb-2">{point.title}</h3>
+                            <p className="text-zinc-500 text-sm leading-relaxed">{point.desc}</p>
                         </motion.div>
                     ))}
                 </div>
             </section>
 
-            {/* Value Prop / Social Proof Section */}
-            <section className="mb-24">
-                <div className="glass p-1 rounded-[2.5rem] relative overflow-hidden">
-                    <div className="absolute inset-0 bg-accent-gradient opacity-10 blur-3xl" />
-                    <div className="relative z-10 p-12 md:p-20 grid lg:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                                Trust is the New <br />
-                                <span className="text-gradient">Currency.</span>
-                            </h2>
-                            <ul className="space-y-6">
-                                {[
-                                    "93% of customers read online reviews before buying.",
-                                    "A 1-star increase can boost revenue by 5-9%.",
-                                    "Responding to reviews improves local SEO rankings."
-                                ].map((item, i) => (
-                                    <li key={i} className="flex gap-4 items-center text-lg text-zinc-300">
-                                        <div className="h-8 w-8 rounded-full bg-accent-cyan/10 flex items-center justify-center text-accent-cyan">
-                                            <ShieldCheck className="w-5 h-5" />
-                                        </div>
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                            <Button asChild className="mt-10 btn-primary h-14 px-8 text-lg">
-                                <Link href="/dashboard/reputation">Start Your Free Audit</Link>
-                            </Button>
+            {/* 3. Solution Section */}
+            <section className="mb-32">
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">
+                            Trust Is The <span className="text-gradient">New Currency.</span>
+                        </h2>
+                        <p className="text-zinc-400 text-lg mb-8 leading-relaxed">
+                            93% of customers read online reviews before buying. We don&apos;t just manage reviews&mdash;we build an automated feedback loop that continuously strengthens your brand authority.
+                        </p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="bg-white/[0.03] p-4 rounded-xl border border-white/5">
+                                <span className="text-3xl font-bold text-white block mb-1">+9%</span>
+                                <span className="text-xs text-zinc-500 uppercase tracking-widest">Revenue Per Star Increase</span>
+                            </div>
+                            <div className="bg-white/[0.03] p-4 rounded-xl border border-white/5">
+                                <span className="text-3xl font-bold text-white block mb-1">24/7</span>
+                                <span className="text-xs text-zinc-500 uppercase tracking-widest">Active Monitoring</span>
+                            </div>
                         </div>
-                        {/* Visual representation of a 5-star review card */}
-                        <div className="bg-background-secondary/50 p-8 rounded-2xl border border-white/10 relative">
-                            <div className="flex justify-between items-start mb-6">
-                                <div className="flex gap-4">
-                                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500"></div>
-                                    <div>
-                                        <div className="h-4 w-32 bg-white/10 rounded mb-2"></div>
-                                        <div className="flex gap-1 text-yellow-500">
-                                            {[1, 2, 3, 4, 5].map(s => <Star key={s} className="w-4 h-4 fill-current" />)}
-                                        </div>
-                                    </div>
+                    </div>
+                    <div className="glass p-8 rounded-3xl border border-amber-500/20 bg-amber-500/5">
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center">
+                                    <MessageSquare className="w-5 h-5 text-amber-500" />
                                 </div>
-                                <span className="text-zinc-500 text-sm">2 days ago</span>
-                            </div>
-                            <div className="space-y-3">
-                                <div className="h-4 w-full bg-white/5 rounded"></div>
-                                <div className="h-4 w-5/6 bg-white/5 rounded"></div>
-                                <div className="h-4 w-4/6 bg-white/5 rounded"></div>
-                            </div>
-
-                            {/* AI Reply Simulation */}
-                            <div className="mt-6 ml-8 p-4 bg-accent-cyan/5 border border-accent-cyan/10 rounded-xl">
-                                <div className="flex items-center gap-2 mb-2 text-accent-cyan text-sm font-bold">
-                                    <MessageSquare className="w-4 h-4" /> Response from Owner
+                                <div>
+                                    <h4 className="text-white font-bold">Smart Auto-Replies</h4>
+                                    <p className="text-xs text-zinc-400">Contextual, professional responses to every review.</p>
                                 </div>
-                                <div className="h-3 w-full bg-accent-cyan/10 rounded mb-2"></div>
-                                <div className="h-3 w-4/5 bg-accent-cyan/10 rounded"></div>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-full bg-accent-primary/20 flex items-center justify-center">
+                                    <Star className="w-5 h-5 text-accent-primary" />
+                                </div>
+                                <div>
+                                    <h4 className="text-white font-bold">5-Star Engines</h4>
+                                    <p className="text-xs text-zinc-400">Capturing feedback when customer satisfaction is peak.</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-full bg-accent-secondary/20 flex items-center justify-center">
+                                    <ShieldCheck className="w-5 h-5 text-accent-secondary" />
+                                </div>
+                                <div>
+                                    <h4 className="text-white font-bold">Crisis Protection</h4>
+                                    <p className="text-xs text-zinc-400">Identifying and resolving issues before they go public.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
+            {/* 4. Process Section */}
+            <section className="mb-32">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl font-bold text-white mb-4">The Reputation Roadmap</h2>
+                    <p className="text-zinc-500">How we turn satisfied customers into vocal advocates.</p>
+                </div>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {[
+                        { title: 'Audit', icon: <Search />, desc: 'Sentiment scanning and GBP health check.' },
+                        { title: 'Connect', icon: <Workflow className="w-5 h-5" />, desc: 'Linking our system to your current customer flow.' },
+                        { title: 'Capture', icon: <Star />, desc: 'Automating review requests post-service.' },
+                        { title: 'Monitor', icon: <ShieldCheck />, desc: 'Ongoing protection and AI response handling.' }
+                    ].map((step, i) => (
+                        <div key={i} className="relative group">
+                            <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-amber-500 mb-6 transition-all group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-black">
+                                {step.icon}
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
+                            <p className="text-zinc-400 text-sm">{step.desc}</p>
+                            {i < 3 && <div className="hidden lg:block absolute top-7 left-20 w-full h-[1px] bg-white/5" />}
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* 5. Deliverables Section */}
+            <section className="mb-32">
+                <div className="glass p-12 rounded-[2rem] border-white/5 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/5 blur-[80px] -mr-32 -mt-32" />
+                    <h2 className="text-3xl font-bold text-white mb-10">What You Get</h2>
+                    <div className="grid md:grid-cols-2 gap-y-6 gap-x-12">
+                        {deliverables.map((item, i) => (
+                            <div key={i} className="flex items-center gap-4 text-zinc-300">
+                                <CheckCircle2 className="w-5 h-5 text-amber-500 flex-shrink-0" />
+                                <span className="font-medium">{item}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* 7. Pricing Preview */}
+            <section className="mb-32">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Investment Plans</h2>
+                    <p className="text-zinc-500">Protecting your brand as it scales in the Tri-Cities.</p>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div className="glass p-8 rounded-3xl border border-white/5 hover:border-white/10 transition-all flex flex-col">
+                        <h3 className="text-xl font-bold text-white mb-2">Essential Shield</h3>
+                        <div className="mb-6">
+                            <span className="text-3xl font-bold text-white">$249</span>
+                            <span className="text-zinc-500 text-sm">/month</span>
+                        </div>
+                        <ul className="space-y-3 mb-8 flex-grow">
+                            <li className="text-sm text-zinc-400 flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-zinc-600" /> Automated Review Requests</li>
+                            <li className="text-sm text-zinc-400 flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-zinc-600" /> Basic AI Response Drafting</li>
+                            <li className="text-sm text-zinc-400 flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-zinc-600" /> Weekly GBP Health Summary</li>
+                        </ul>
+                        <Button asChild variant="outline" className="w-full">
+                            <Link href="/contact">Get Started</Link>
+                        </Button>
+                    </div>
+                    <div className="glass p-8 rounded-3xl border border-amber-500/30 bg-amber-500/5 relative flex flex-col">
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-accent-gradient text-black font-bold text-xs rounded-full uppercase tracking-tighter">Growth</div>
+                        <h3 className="text-xl font-bold text-white mb-2">Domination Pro</h3>
+                        <div className="mb-6">
+                            <span className="text-3xl font-bold text-white">$497</span>
+                            <span className="text-zinc-500 text-sm">/month</span>
+                        </div>
+                        <ul className="space-y-3 mb-8 flex-grow">
+                            <li className="text-sm text-zinc-300 flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-amber-500" /> Real-time Sentiment War-Room</li>
+                            <li className="text-sm text-zinc-300 flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-amber-500" /> Competitor Benchmarking</li>
+                            <li className="text-sm text-zinc-300 flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-amber-500" /> Deep GMB SEO Signal Stacking</li>
+                        </ul>
+                        <Button asChild className="btn-primary border-none text-white bg-amber-600 shadow-[0_0_30px_rgba(245,158,11,0.3)] w-full">
+                            <Link href="/contact">Defend My Brand</Link>
+                        </Button>
+                    </div>
+                </div>
+            </section>
+
+            {/* 8. FAQ Section */}
+            <section className="mb-32">
+                <h2 className="text-3xl font-bold text-white mb-12 text-center">Reputation Questions</h2>
+                <div className="max-w-3xl mx-auto">
+                    <Accordion type="single" collapsible className="w-full space-y-4">
+                        {faqs.map((faq, i) => (
+                            <AccordionItem key={i} value={`faq-${i}`} className="border border-white/5 bg-white/[0.01] rounded-2xl px-6 py-2 overflow-hidden">
+                                <AccordionTrigger className="text-white hover:text-amber-500 text-left font-bold text-lg hover:no-underline">
+                                    {faq.q}
+                                </AccordionTrigger>
+                                <AccordionContent className="text-zinc-400 text-base leading-relaxed pt-2 pb-6">
+                                    {faq.a}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
+                </div>
+            </section>
+
+            {/* 9. Final CTA */}
+            <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="text-center bg-amber-500/5 border border-amber-500/10 p-16 rounded-[3rem] relative overflow-hidden"
+            >
+                <div className="absolute inset-0 bg-accent-gradient opacity-5" />
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 relative z-10">Stop Letting One Star Kill Your ROI.</h2>
+                <p className="text-zinc-400 mb-12 max-w-2xl mx-auto text-xl relative z-10 leading-relaxed">
+                    Most Richland businesses have amazing service but an average star rating. Let&apos;s fix that GAP today.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-6 justify-center relative z-10">
+                    <Button asChild className="btn-primary h-16 px-12 text-xl bg-amber-600 hover:bg-amber-500 shadow-[0_0_40px_rgba(245,158,11,0.4)] border-none text-white">
+                        <Link href="/contact" className="flex items-center gap-3">
+                            Get Your Reputation Audit
+                            <ArrowRight className="w-6 h-6" />
+                        </Link>
+                    </Button>
+                </div>
+            </motion.div>
         </ServicePageLayout>
-    );
+    )
 }
