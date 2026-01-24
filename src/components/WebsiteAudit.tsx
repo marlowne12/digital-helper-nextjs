@@ -4,10 +4,11 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Search, MapPin, ArrowRight, CheckCircle, AlertTriangle, Mail, Lock, Sparkles } from 'lucide-react'
-import { geminiService } from '@/services/geminiService'
+
 import { BusinessAuditResult } from '@/types'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { storeAuditLead } from '@/app/actions/leads'
 
 export function WebsiteAudit() {
     const [businessName, setBusinessName] = useState('')
@@ -24,8 +25,32 @@ export function WebsiteAudit() {
         setResult(null)
 
         try {
-            const data = await geminiService.analyzeBusinessWithMaps(businessName, location)
-            setResult(data)
+            const response = await fetch('/api/business-analysis', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ businessName, location })
+            });
+
+            if (!response.ok) throw new Error('Audit failed');
+
+            const data = await response.json();
+
+            // Map the API response to the expected format if needed, 
+            // but the API likely returns { analysis, mapLink, mapTitle } directly or close to it.
+            // Based on previous service code:
+            /*
+             return {
+                analysis: data.analysis,
+                mapLink: data.mapLink,
+                mapTitle: data.mapTitle
+            };
+            */
+
+            setResult({
+                analysis: data.analysis,
+                mapLink: data.mapLink,
+                mapTitle: data.mapTitle
+            });
             console.log("LEAD CAPTURED (Website Audit):", { businessName, location, auditResult: data })
         } catch (error) {
             console.error("Audit failed", error)
@@ -35,14 +60,34 @@ export function WebsiteAudit() {
         }
     }
 
-    const handleEmailSubmit = (e: React.FormEvent) => {
+    const handleEmailSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setCapturingEmail(true)
-        // Simulate lead storage
-        setTimeout(() => {
+
+        try {
+            // Store lead in backend
+            const response = await storeAuditLead({
+                email,
+                businessName,
+                location,
+                auditResult: result,
+            })
+
+            if (response.success) {
+                setEmailCaptured(true)
+                console.log('[Lead Stored]', response.leadId)
+            } else {
+                console.error('[Lead Storage Failed]', response.message)
+                // Still show results even if storage failed
+                setEmailCaptured(true)
+            }
+        } catch (error) {
+            console.error('[Lead Storage Error]', error)
+            // Still show results even if storage failed
             setEmailCaptured(true)
+        } finally {
             setCapturingEmail(false)
-        }, 1000)
+        }
     }
 
     return (
@@ -65,7 +110,7 @@ export function WebsiteAudit() {
                         Is Local SEO <span className="text-gradient">Ignoring You?</span>
                     </h2>
                     <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-                        Get an AI-powered breakdown of your Tri-Cities online presence. See exactly where you're losing leads to competitors in Richland.
+                        Get an AI-powered breakdown of your Tri-Cities online presence. See exactly where you&apos;re losing leads to competitors in Richland.
                     </p>
                 </div>
 
@@ -137,7 +182,7 @@ export function WebsiteAudit() {
                                             </div>
                                             <h3 className="text-3xl font-bold text-white mb-4">Report Ready for {businessName}</h3>
                                             <p className="text-zinc-400 mb-10 max-w-sm text-lg">
-                                                We've found <span className="text-white font-bold">critical issues</span> in your digital presence. Enter your email to unlock the full analysis.
+                                                We&apos;ve found <span className="text-white font-bold">critical issues</span> in your digital presence. Enter your email to unlock the full analysis.
                                             </p>
                                             <form onSubmit={handleEmailSubmit} className="w-full max-w-sm space-y-4">
                                                 <div className="relative group">
@@ -207,7 +252,7 @@ export function WebsiteAudit() {
                                                     <div>
                                                         <h4 className="text-xl font-bold text-white mb-2">Want to fix these issues?</h4>
                                                         <p className="text-zinc-400 text-sm">
-                                                            We help services in {location} dominate local search. Let's discuss a strategy to beat your competitors.
+                                                            We help services in {location} dominate local search. Let&apos;s discuss a strategy to beat your competitors.
                                                         </p>
                                                     </div>
                                                 </div>

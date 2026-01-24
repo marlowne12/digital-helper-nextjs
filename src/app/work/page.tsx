@@ -43,7 +43,13 @@ const works = [
 
 export default function WorkPage() {
     return (
-        <main className="min-h-screen pt-32 pb-20 bg-background-primary overflow-hidden">
+        <main className="min-h-screen pt-32 pb-20 bg-background-primary overflow-hidden relative">
+            {/* Animated Background */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-[20%] left-[5%] w-80 h-80 bg-accent-primary/5 rounded-full blur-[150px] animate-pulse" style={{ animationDuration: '7s' }} />
+                <div className="absolute bottom-[30%] right-[10%] w-96 h-96 bg-accent-secondary/5 rounded-full blur-[150px] animate-pulse" style={{ animationDuration: '9s', animationDelay: '2s' }} />
+            </div>
+
             <div className="container mx-auto px-6 relative z-10">
 
                 {/* Header */}
@@ -53,7 +59,7 @@ export default function WorkPage() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-accent-purple text-sm font-medium mb-6">
+                        <span className="inline-block px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-accent-primary text-sm font-medium mb-6">
                             Case Studies & Portfolio
                         </span>
                         <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
@@ -91,7 +97,7 @@ export default function WorkPage() {
                                     </div>
                                     <div className="p-8 space-y-4">
                                         <div className="flex justify-between items-start">
-                                            <h3 className="text-2xl font-bold text-white group-hover:text-accent-purple transition-colors">{work.title}</h3>
+                                            <h3 className="text-2xl font-bold text-white group-hover:text-accent-primary transition-colors">{work.title}</h3>
                                             <div className="w-10 h-10 rounded-full glass flex items-center justify-center opacity-40 group-hover:opacity-100 transition-opacity">
                                                 <ExternalLink size={18} className="text-white" />
                                             </div>

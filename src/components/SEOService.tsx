@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
-import { Search, TrendingUp, MapPin, Target, BarChart, Globe, Activity, CheckCircle2, Megaphone, Star, ShieldCheck, ChevronDown, DollarSign, Calendar, Zap } from 'lucide-react';
+import { Search, TrendingUp, MapPin, Target, BarChart, Globe, Activity, CheckCircle2, Megaphone, Star, ShieldCheck, ChevronDown } from 'lucide-react';
 
 export const SEOService: React.FC = () => {
     return (
@@ -25,7 +25,7 @@ export const SEOService: React.FC = () => {
                     <div className="absolute -inset-4 bg-gradient-to-r from-cyan-600/20 to-green-600/20 rounded-3xl blur-2xl group-hover:opacity-100 transition duration-500 opacity-0"></div>
                     <div className="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900 shadow-2xl">
                         <img
-                            src="/assets/seo_analytics.png"
+                            src="/assets/seo_analytics.webp"
                             alt="SEO Analytics Dashboard"
                             className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
                         />
@@ -35,7 +35,7 @@ export const SEOService: React.FC = () => {
                                 <TrendingUp size={24} />
                                 <span className="text-2xl">Proven Ranking Power</span>
                             </div>
-                            <p className="text-slate-300 text-sm md:text-base italic">"Our clients see an average of 145% increase in organic leads within the first 6 months."</p>
+                            <p className="text-slate-300 text-sm md:text-base italic">&quot;Our clients see an average of 145% increase in organic leads within the first 6 months.&quot;</p>
                         </div>
                     </div>
                 </div>
@@ -45,13 +45,13 @@ export const SEOService: React.FC = () => {
                         {
                             icon: <MapPin className="text-red-400" size={32} />,
                             title: "Maps Domination",
-                            desc: "We optimize your Google Business Profile to hit the 'Local Pack' top 3, driving immediate phone calls.",
+                            desc: "We optimize your Google Business Profile to hit the &apos;Local Pack&apos; top 3, driving immediate phone calls.",
                             color: "group-hover:border-red-500/30"
                         },
                         {
                             icon: <Target className="text-cyan-400" size={32} />,
                             title: "Precision Targeting",
-                            desc: "We target high-intent keywords like 'Best Web Design Richland' to find customers ready to buy.",
+                            desc: "We target high-intent keywords like &apos;Best Web Design Richland&apos; to find customers ready to buy.",
                             color: "group-hover:border-cyan-500/30"
                         },
                         {
@@ -75,7 +75,7 @@ export const SEOService: React.FC = () => {
 
                     <div className="lg:w-1/2 relative z-10">
                         <h2 className="text-3xl font-bold mb-6">The Multi-Channel Edge</h2>
-                        <p className="text-slate-400 mb-8 leading-relaxed">Local SEO isn't just about keywords anymore. It's about authority, reputation, and technical excellence.</p>
+                        <p className="text-slate-400 mb-8 leading-relaxed">Local SEO isn&apos;t just about keywords anymore. It&apos;s about authority, reputation, and technical excellence.</p>
                         <div className="space-y-4">
                             {[
                                 { icon: <Star className="text-yellow-400" />, text: "Automated Review Management" },
@@ -142,7 +142,7 @@ export const SEOService: React.FC = () => {
                             "Monthly Data-Driven Strategy",
                             "Dedicated Local Account Manager",
                             "Verified Google Partner"
-                        ].map((feature, i) => (
+                        ].map((feature) => (
                             <div key={feature} className="p-4 bg-slate-900/50 rounded-2xl border border-slate-800 flex items-center justify-center gap-3">
                                 <CheckCircle2 size={18} className="text-green-400 shrink-0" />
                                 <span className="text-sm font-semibold">{feature}</span>

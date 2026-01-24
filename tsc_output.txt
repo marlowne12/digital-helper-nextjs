@@ -1,0 +1,15 @@
+src/app/api/chat/route.ts(36,19): error TS2551: Property 'toDataStreamResponse' does not exist on type 'StreamTextResult<{ generateQuote: Tool<unknown, unknown>; scheduleCall: Tool<unknown, unknown>; analyzeWebsite: Tool<unknown, unknown>; }, Output<string, string, never>>'. Did you mean 'toTextStreamResponse'?
+src/app/api/pricing/route.ts(18,67): error TS2339: Property 'errors' does not exist on type 'ZodError<{ theme?: string | undefined; }>'.
+src/services/aiTools.ts(9,9): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type '({ serviceType, features }: { serviceType: any; features: any; }) => Promise<{ serviceType: any; features: any; estimatedPrice: number; currency: string; message: string; }>' is not assignable to type 'undefined'.
+src/services/aiTools.ts(9,27): error TS7031: Binding element 'serviceType' implicitly has an 'any' type.
+src/services/aiTools.ts(9,40): error TS7031: Binding element 'features' implicitly has an 'any' type.
+src/services/aiTools.ts(29,9): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type '({ intent }: { intent: any; }) => Promise<{ bookingUrl: string; message: string; }>' is not assignable to type 'undefined'.
+src/services/aiTools.ts(29,27): error TS7031: Binding element 'intent' implicitly has an 'any' type.
+src/services/aiTools.ts(39,9): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type '({ url }: { url: any; }) => Promise<{ url: any; score: number; issues: string[]; opportunity: string; message: string; }>' is not assignable to type 'undefined'.
+src/services/aiTools.ts(39,27): error TS7031: Binding element 'url' implicitly has an 'any' type.

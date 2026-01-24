@@ -1,6 +1,6 @@
 'use server';
 
-import { GBPProfile, Review } from '@/types/reputation';
+import { GBPProfile } from '@/types/reputation';
 
 const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 
@@ -72,7 +72,7 @@ export async function fetchGBPData(urlOrName: string): Promise<GBPProfile> {
             categories: place.types ? place.types.map((t: string) => t.replace(/_/g, ' ')) : [],
             description: place.editorialSummary?.text || "No description available.",
             isClaimed: true, // API doesn't explicitly expose this easily, defaulting to true for now
-            reviews: (place.reviews || []).map((r: any) => ({
+            reviews: (place.reviews || []).map((r: any) => ({ // eslint-disable-line @typescript-eslint/no-explicit-any
                 id: r.name || Math.random().toString(), // review resource name
                 author: r.authorAttribution?.displayName || "Anonymous",
                 rating: r.rating,
@@ -80,7 +80,7 @@ export async function fetchGBPData(urlOrName: string): Promise<GBPProfile> {
                 text: r.text?.text || r.text || "",
                 response: r.authorReply?.text?.text || r.originalText?.text // Check for reply
             })),
-            photos: (place.photos || []).map((p: any) => p.name) // Store photo resource names
+            photos: (place.photos || []).map((p: any) => p.name) // eslint-disable-line @typescript-eslint/no-explicit-any
         };
 
     } catch (error) {

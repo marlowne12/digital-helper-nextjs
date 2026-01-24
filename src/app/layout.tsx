@@ -1,14 +1,30 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Syne, DM_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { ChatWidget } from "@/components/ChatWidget";
 import { Contact } from "@/components/Contact";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
+import { Toaster } from "@/components/ui/toaster";
+import { ChatWidget } from "@/components/ChatWidget";
+import { ExitIntentPopup } from "@/components/ExitIntentPopup";
+import { SocialProofTicker } from "@/components/SocialProofTicker";
 import Script from "next/script";
 
-const inter = Inter({ subsets: ["latin"] });
+
+const syne = Syne({
+  subsets: ["latin"],
+  variable: "--font-syne",
+  weight: ["400", "500", "600", "700", "800"]
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+  weight: ["400", "500", "700"]
+});
 
 export const metadata: Metadata = {
   title: {
@@ -65,7 +81,7 @@ export default function RootLayout({
     "@id": "https://digital-helper.com",
     "url": "https://digital-helper.com",
     "logo": "https://digital-helper.com/logo.png",
-    "telephone": "+1-509-555-0123",
+    "telephone": "+1-509-987-5060",
     "priceRange": "$$",
     "potentialAction": {
       "@type": "ReserveAction",
@@ -107,7 +123,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
-      <body className={inter.className} suppressHydrationWarning>
+      <body className={`${dmSans.variable} ${syne.variable} font-sans`} suppressHydrationWarning>
         <Script
           id="json-ld"
           type="application/ld+json"
@@ -120,6 +136,11 @@ export default function RootLayout({
         </RevealOnScroll>
         <Footer />
         <ChatWidget />
+        <ExitIntentPopup />
+        <SocialProofTicker />
+        <Analytics />
+        <SpeedInsights />
+        <Toaster />
       </body>
     </html>
   );

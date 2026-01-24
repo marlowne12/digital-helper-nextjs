@@ -25,7 +25,7 @@ export const AIAgency: React.FC = () => {
                     <div className="absolute -inset-4 bg-gradient-to-r from-pink-600/20 to-violet-600/20 rounded-3xl blur-2xl group-hover:opacity-100 transition duration-500 opacity-0"></div>
                     <div className="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900 shadow-2xl">
                         <img
-                            src="/assets/ai_workflows.png"
+                            src="/assets/ai_workflows.webp"
                             alt="AI Automation Workflows"
                             className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
                         />
@@ -35,7 +35,7 @@ export const AIAgency: React.FC = () => {
                                 <Workflow size={24} />
                                 <span className="text-2xl">Intelligent Workflows</span>
                             </div>
-                            <p className="text-slate-300 text-sm md:text-base italic">"Our automation systems replace up to 40 hours of manual labor per week for local service businesses."</p>
+                            <p className="text-slate-300 text-sm md:text-base italic">&quot;Our automation systems replace up to 40 hours of manual labor per week for local service businesses.&quot;</p>
                         </div>
                     </div>
                 </div>

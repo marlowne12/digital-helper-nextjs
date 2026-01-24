@@ -1,0 +1,141 @@
+
+> digital-helper-nextjs@0.1.0 lint
+> eslint
+
+
+C:\Users\marz\Downloads\digital-helper-nextjs\next.config.ts
+  12:2  error  Parsing error: Property assignment expected
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\app\about\page.tsx
+   11:5    warning  'ArrowRight' is defined but never used                           @typescript-eslint/no-unused-vars
+   73:126  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+   73:147  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+   76:170  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+   79:60   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+   79:90   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  135:28   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\app\actions\gbp.ts
+   3:22  warning  'Review' is defined but never used        @typescript-eslint/no-unused-vars
+  75:52  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  83:50  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\app\api\business-analysis\route.ts
+  32:50  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  43:39  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\app\api\chat\route.ts
+  37:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\app\api\report-pdf\route.ts
+  270:67  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\app\api\seo-analysis\route.ts
+  87:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\app\blog\category\[category]\page.tsx
+  4:8  warning  'Image' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\app\blog\page.tsx
+   71:85   error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+   71:89   error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  167:107  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  167:111  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\app\error.tsx
+  47:84  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\app\work\page.tsx
+  89:41  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\AIAgency.tsx
+  27:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\ChatWidget.tsx
+   41:44   warning  'stop' is assigned a value but never used                                                                                                     @typescript-eslint/no-unused-vars
+   51:22   error    Unexpected any. Specify a different type                                                                                                      @typescript-eslint/no-explicit-any
+   54:8    warning  React Hook React.useEffect has missing dependencies: 'messages.length' and 'setMessages'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+   70:42   error    Unexpected any. Specify a different type                                                                                                      @typescript-eslint/no-explicit-any
+  112:48   error    Unexpected any. Specify a different type                                                                                                      @typescript-eslint/no-explicit-any
+  154:74   error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                               react/no-unescaped-entities
+  154:100  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                               react/no-unescaped-entities
+  194:45   error    Unexpected any. Specify a different type                                                                                                      @typescript-eslint/no-explicit-any
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\Pricing.tsx
+  13:12  warning  'error' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\ProblemAgitation.tsx
+  40:99   error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  40:140  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\ProposalGenerator.tsx
+  4:18  warning  'AnimatePresence' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\RecentWork.tsx
+  42:56  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\SEOService.tsx
+  27:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\Services.tsx
+  64:41  warning  'featured' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\SocialProofTicker.tsx
+  123:41  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\SocialProofTicker.tsx:123:41
+  121 |  */
+  122 | export function SocialProofBadge() {
+> 123 |     const [count] = useState(Math.floor(Math.random() * 50 + 120)) // 120-170
+      |                                         ^^^^^^^^^^^^^ Cannot call impure function
+  124 |
+  125 |     return (
+  126 |         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-purple/10 border border-accent-purple/20">  react-hooks/purity
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\Testimonials.tsx
+  59:28  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  59:62  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\WebDesign.tsx
+  114:75  error  Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\WebsiteAudit.tsx
+  113:110  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  185:51   error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  255:118  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\reputation\ActionCard.tsx
+  122:100  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  122:108  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\reputation\CompetitorComparison.tsx
+   8:18  warning  'AnimatePresence' is defined but never used                      @typescript-eslint/no-unused-vars
+  79:66  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\reputation\SingleAudit.tsx
+  40:8  warning  React Hook useEffect has a missing dependency: 'handleSearch'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\services\LeadGenerationPageContent.tsx
+    9:5   warning  'ArrowRight' is defined but never used                           @typescript-eslint/no-unused-vars
+  200:80  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\components\services\ServiceNavSidebar.tsx
+  13:5   warning  'ChevronRight' is defined but never used  @typescript-eslint/no-unused-vars
+  15:10  warning  'cn' is defined but never used            @typescript-eslint/no-unused-vars
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\hooks\use-toast.ts
+  16:7  warning  'actionTypes' is assigned a value but only used as a type  @typescript-eslint/no-unused-vars
+
+C:\Users\marz\Downloads\digital-helper-nextjs\src\services\aiTools.ts
+   17:9   error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+   38:9   error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+   39:27  warning  'intent' is defined but never used                                                                                   @typescript-eslint/no-unused-vars
+   49:9   error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+   65:9   error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+   95:9   error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  126:9   error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+✖ 63 problems (45 errors, 18 warnings)
+

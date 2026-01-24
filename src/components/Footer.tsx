@@ -16,12 +16,20 @@ const footerLinks = {
         { label: "Local SEO", href: "/services/seo" },
         { label: "AI Automation", href: "/services/ai-automation" },
         { label: "Lead Generation", href: "/services/lead-generation" },
+        { label: "Reputation Management", href: "/services/reputation-management" },
     ],
     company: [
         { label: "About Us", href: "/about" },
         { label: "Our Work", href: "/work" },
+        { label: "Blog", href: "/blog" },
         { label: "Pricing", href: "/pricing" },
         { label: "Contact", href: "/contact" },
+    ],
+    areas: [
+        { label: "Richland", href: "/areas/richland" },
+        { label: "Kennewick", href: "/areas/kennewick" },
+        { label: "Pasco", href: "/areas/pasco" },
+        { label: "West Richland", href: "/areas/west-richland" },
     ],
     legal: [
         { label: "Privacy Policy", href: "/privacy" },
@@ -36,7 +44,7 @@ export function Footer() {
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[300px] bg-accent-purple/5 blur-[100px] pointer-events-none" />
 
             <div className="container mx-auto px-6 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
                     {/* Brand Column */}
                     <div className="space-y-6">
                         <Link href="/" className="text-xl font-bold tracking-tighter flex items-center gap-2">
@@ -55,7 +63,7 @@ export function Footer() {
                         </div>
                     </div>
 
-                    {/* Links Columns */}
+                    {/* Services Column */}
                     <div>
                         <h4 className="text-white font-bold mb-6">Services</h4>
                         <ul className="space-y-4">
@@ -69,10 +77,25 @@ export function Footer() {
                         </ul>
                     </div>
 
+                    {/* Company Column */}
                     <div>
                         <h4 className="text-white font-bold mb-6">Company</h4>
                         <ul className="space-y-4">
                             {footerLinks.company.map((link) => (
+                                <li key={link.href}>
+                                    <Link href={link.href} className="text-zinc-400 hover:text-white transition-colors text-sm">
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Areas Served Column */}
+                    <div>
+                        <h4 className="text-white font-bold mb-6">Areas Served</h4>
+                        <ul className="space-y-4">
+                            {footerLinks.areas.map((link) => (
                                 <li key={link.href}>
                                     <Link href={link.href} className="text-zinc-400 hover:text-white transition-colors text-sm">
                                         {link.label}
@@ -92,8 +115,8 @@ export function Footer() {
                             </li>
                             <li className="flex gap-3 text-zinc-400 text-sm">
                                 <Phone className="w-5 h-5 text-accent-indigo shrink-0" />
-                                <a href="tel:+15095550123" className="hover:text-white transition-colors">
-                                    (509) 555-0123
+                                <a href="tel:+15099875060" className="hover:text-white transition-colors">
+                                    (509) 987-5060
                                 </a>
                             </li>
                             <li className="flex gap-3 text-zinc-400 text-sm">

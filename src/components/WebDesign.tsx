@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Layout, Smartphone, Zap, CheckCircle2, Globe, Clock, ShieldCheck, TrendingUp, Target, ChevronDown, Gauge, Lock, Code, Users, MessageSquare } from 'lucide-react';
+import Image from 'next/image';
 
 export const WebDesign: React.FC = () => {
     return (
@@ -32,10 +33,11 @@ export const WebDesign: React.FC = () => {
                 <div className="mb-24 relative group animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
                     <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-3xl blur-2xl group-hover:opacity-100 transition duration-500 opacity-0"></div>
                     <div className="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900 shadow-2xl">
-                        <img
-                            src="/assets/web_design_showcase.png"
+                        <Image
+                            src="/assets/web_design_showcase.webp"
                             alt="Web Design Showcase"
-                            className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+                            fill
+                            className="object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
                         <div className="absolute bottom-6 left-6 md:bottom-12 md:left-12 max-w-md">
@@ -109,7 +111,7 @@ export const WebDesign: React.FC = () => {
                                 </div>
                                 <div className="flex gap-4">
                                     <span className="text-slate-600 select-none">4</span>
-                                    <span className="ml-4 text-slate-500">{/* Trigger local business transformation */}</span>
+                                    <span className="ml-4 text-slate-500">{`// Trigger local business transformation`}</span>
                                 </div>
                                 <div className="flex gap-4">
                                     <span className="text-slate-600 select-none">5</span>
@@ -489,7 +491,7 @@ const FAQSection: React.FC = () => {
         },
         {
             q: "How much does the AI chatbot cost?",
-            a: "Our AI chatbot is optional and costs $197/month after launch. It's trained on your business, answers FAQs, qualifies leads, and books appointments 24/7. ROI typically pays for itself in 2-3 weeks."
+            a: "Our AI chatbot is optional and costs $197/month after launch. It&apos;s trained on your business, answers FAQs, qualifies leads, and books appointments 24/7. ROI typically pays for itself in 2-3 weeks."
         }
     ];
 

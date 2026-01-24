@@ -1,0 +1,25 @@
+{
+  "search_criteria": {
+    "location": "Chicago, IL",
+    "categories": ["restaurant", "cafe", "bakery"],
+    "search_radius": 25,
+    "filters": {
+      "max_review_count": 15,
+      "max_rating": 4.0,
+      "require_contact_info": true
+    }
+  },
+  "analysis_options": {
+    "perform_seo_audit": true,
+    "check_mobile_friendliness": true,
+    "analyze_page_speed": true,
+    "check_meta_tags": true
+  },
+  "output_options": {
+    "create_google_sheet": true,
+    "create_gmail_drafts": true,
+    "max_drafts": 10,
+    "email_template": "restaurant",
+    "minimum_lead_score": 50
+  }
+}

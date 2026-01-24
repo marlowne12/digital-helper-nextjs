@@ -3,87 +3,159 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react'
+import { Mail, Phone, MapPin, Calendar, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
+import { noiseTextureStyle } from '@/lib/utils'
+
+export const CONTACT_BENEFITS = [
+    "Free 30-min strategy call",
+    "No-obligation consultation",
+    "Custom growth roadmap"
+] as const;
 
 export function Contact() {
     return (
-        <section className="py-24 bg-background-primary relative overflow-hidden" id="contact">
-            <div className="container mx-auto px-6 relative z-10">
-                <div className="glass p-12 md:p-20 rounded-[3rem] border-white/[0.05] relative overflow-hidden">
-                    {/* Decorative Glow */}
-                    <div className="absolute -top-24 -right-24 w-96 h-96 bg-accent-purple/10 blur-[100px] rounded-full" />
+        <section className="py-32 bg-background-primary relative overflow-hidden" id="contact">
+            {/* Background Elements */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-purple/10 rounded-full blur-[150px]" />
+                <div className="absolute inset-0 opacity-[0.015]" style={{
+                    ...noiseTextureStyle,
+                    backgroundRepeat: 'repeat',
+                    backgroundSize: '128px 128px'
+                }} />
+            </div>
 
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
-                        <div className="space-y-8">
-                            <div className="space-y-4">
-                                <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-                                    Ready to <span className="text-gradient">Dominate</span> <br />
-                                    the Local Market?
+            <div className="container mx-auto px-6 lg:px-12 relative z-10">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="glass border-2 border-white/10 p-8 md:p-16 lg:p-20 rounded-3xl relative overflow-hidden backdrop-blur-2xl"
+                >
+                    {/* Decorative Elements */}
+                    <div className="absolute -top-32 -right-32 w-96 h-96 bg-accent-purple/20 blur-[120px] rounded-full animate-pulse" />
+                    <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-accent-blue/15 blur-[100px] rounded-full" />
+
+                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative">
+                        {/* Left Column - Info */}
+                        <div className="space-y-10">
+                            <div className="space-y-6">
+                                <div className="inline-block">
+                                    <div className="px-4 py-2 rounded-full bg-accent-purple/10 border border-accent-purple/20 text-accent-purple text-sm font-semibold backdrop-blur-sm inline-flex items-center gap-2">
+                                        <Sparkles className="w-4 h-4" />
+                                        Let&apos;s Work Together
+                                    </div>
+                                </div>
+                                <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                                    Ready to <br />
+                                    <span className="text-gradient">Dominate</span> <br />
+                                    Locally?
                                 </h2>
-                                <p className="text-zinc-400 text-lg max-w-md">
-                                    We're Richland's local digital experts. Let's chat about your goals and how we can help you scale.
+                                <p className="text-xl text-zinc-400 leading-relaxed max-w-lg">
+                                    We&apos;re Richland&apos;s local digital experts. Let&apos;s discuss your goals and build your digital growth strategy.
                                 </p>
                             </div>
 
-                            <div className="grid sm:grid-cols-2 gap-6">
-                                <div className="space-y-4">
-                                    <div className="flex items-center gap-3 text-zinc-400">
-                                        <div className="w-10 h-10 rounded-xl glass bg-white/[0.03] flex items-center justify-center text-accent-purple">
-                                            <Phone size={20} />
-                                        </div>
-                                        <span className="text-sm font-medium uppercase tracking-widest">Call Us</span>
+                            {/* Contact Methods */}
+                            <div className="space-y-6">
+                                <a
+                                    href="tel:+15095550123"
+                                    className="group flex items-center gap-5 p-5 rounded-2xl glass border border-white/5 hover:border-accent-purple/40 transition-all duration-300 hover:scale-[1.02]"
+                                >
+                                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-purple/20 to-accent-purple/5 border border-accent-purple/20 flex items-center justify-center text-accent-purple group-hover:scale-110 transition-transform">
+                                        <Phone size={24} />
                                     </div>
-                                    <a href="tel:+15095550123" className="text-xl font-bold text-white hover:text-accent-purple transition-colors">
-                                        (509) 555-0123
-                                    </a>
-                                </div>
-
-                                <div className="space-y-4">
-                                    <div className="flex items-center gap-3 text-zinc-400">
-                                        <div className="w-10 h-10 rounded-xl glass bg-white/[0.03] flex items-center justify-center text-accent-indigo">
-                                            <Mail size={20} />
+                                    <div>
+                                        <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Call Us</div>
+                                        <div className="text-2xl font-display font-bold text-white group-hover:text-accent-purple transition-colors">
+                                            (509) 987-5060
                                         </div>
-                                        <span className="text-sm font-medium uppercase tracking-widest">Email Us</span>
                                     </div>
-                                    <a href="mailto:digitalhelperwebsite@gmail.com" className="text-xl font-bold text-white hover:text-accent-indigo transition-colors break-all">
-                                        digitalhelperwebsite@gmail.com
-                                    </a>
-                                </div>
-                            </div>
+                                </a>
 
-                            <div className="flex items-center gap-4 p-4 glass rounded-2xl border-white/[0.03] bg-white/[0.01]">
-                                <MapPin className="text-accent-blue w-6 h-6 shrink-0" />
-                                <div className="text-sm">
-                                    <p className="text-white font-bold">Richland, WA 99352</p>
-                                    <p className="text-zinc-500">Serving the entire Tri-Cities Area</p>
+                                <a
+                                    href="mailto:digitalhelperwebsite@gmail.com"
+                                    className="group flex items-center gap-5 p-5 rounded-2xl glass border border-white/5 hover:border-accent-indigo/40 transition-all duration-300 hover:scale-[1.02]"
+                                >
+                                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-indigo/20 to-accent-indigo/5 border border-accent-indigo/20 flex items-center justify-center text-accent-indigo group-hover:scale-110 transition-transform">
+                                        <Mail size={24} />
+                                    </div>
+                                    <div className="min-w-0">
+                                        <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Email Us</div>
+                                        <div className="text-lg font-display font-bold text-white group-hover:text-accent-indigo transition-colors truncate">
+                                            digitalhelperwebsite@gmail.com
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <div className="flex items-center gap-4 p-5 glass rounded-2xl border border-white/5 bg-white/[0.02]">
+                                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-blue/20 to-accent-blue/5 border border-accent-blue/20 flex items-center justify-center text-accent-blue shrink-0">
+                                        <MapPin size={24} />
+                                    </div>
+                                    <div>
+                                        <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Location</div>
+                                        <p className="text-lg font-display font-bold text-white">Richland, WA 99352</p>
+                                        <p className="text-sm text-zinc-500 mt-0.5">Serving the entire Tri-Cities</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="space-y-8 lg:pl-12 lg:border-l border-white/[0.08]">
+                        {/* Right Column - CTA */}
+                        <div className="space-y-8 lg:pl-12 lg:border-l-2 border-white/10">
                             <div className="space-y-6">
-                                <h3 className="text-2xl font-bold text-white">Start Your Transformation</h3>
-                                <p className="text-zinc-400 leading-relaxed">
-                                    Skip the back-and-forth. Book a discovery call directly onto our calendar and get a clear roadmap for your digital growth.
+                                <h3 className="font-display text-3xl md:text-4xl font-bold text-white">
+                                    Start Your Digital Transformation
+                                </h3>
+                                <p className="text-lg text-zinc-400 leading-relaxed">
+                                    Skip the back-and-forth. Book a discovery call directly on our calendar and get a clear, actionable roadmap for growth.
                                 </p>
-                                <div className="flex flex-col gap-4">
-                                    <Button asChild className="btn-primary h-16 text-lg font-bold rounded-2xl group w-full">
+
+                                {/* Benefits List */}
+                                <div className="space-y-3 py-6">
+                                    {CONTACT_BENEFITS.map((benefit, i) => (
+                                        <motion.div
+                                            key={i}
+                                            initial={{ opacity: 0, x: -20 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: i * 0.1 }}
+                                            className="flex items-center gap-3"
+                                        >
+                                            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-accent-purple to-accent-blue flex items-center justify-center shrink-0">
+                                                <CheckCircle2 className="w-4 h-4 text-white" />
+                                            </div>
+                                            <span className="text-white font-semibold">{benefit}</span>
+                                        </motion.div>
+                                    ))}
+                                </div>
+
+                                {/* Primary CTA */}
+                                <div className="space-y-6">
+                                    <Button asChild className="w-full h-20 text-xl font-bold bg-gradient-to-r from-accent-purple via-accent-indigo to-accent-blue hover:opacity-90 transition-all duration-300 shadow-[0_0_40px_rgba(139,92,246,0.3)] hover:shadow-[0_0_60px_rgba(139,92,246,0.4)] rounded-2xl group relative overflow-hidden">
                                         <Link href="/contact" className="flex items-center justify-center gap-3">
+                                            <Calendar className="w-6 h-6" />
                                             Book Your Free Strategy Call
-                                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                            <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                                         </Link>
                                     </Button>
-                                    <div className="flex items-center justify-center gap-4 text-zinc-500 text-xs uppercase tracking-widest font-bold mt-2">
-                                        <div className="h-[1px] w-8 bg-zinc-800" />
-                                        <span>Always Free & No Pressure</span>
-                                        <div className="h-[1px] w-8 bg-zinc-800" />
+
+                                    {/* Trust Signals */}
+                                    <div className="flex items-center justify-center gap-4 text-zinc-500 text-xs uppercase tracking-widest font-bold">
+                                        <div className="h-px w-12 bg-gradient-to-r from-transparent to-zinc-700" />
+                                        <span className="flex items-center gap-2">
+                                            <CheckCircle2 className="w-4 h-4 text-accent-purple" />
+                                            100% Free & No Pressure
+                                        </span>
+                                        <div className="h-px w-12 bg-gradient-to-l from-transparent to-zinc-700" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     )

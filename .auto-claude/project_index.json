@@ -1,0 +1,79 @@
+{
+  "project_root": "C:\\Users\\marz\\Downloads\\digital-helper-nextjs",
+  "project_type": "single",
+  "services": {
+    "main": {
+      "name": "main",
+      "path": "C:\\Users\\marz\\Downloads\\digital-helper-nextjs",
+      "language": "TypeScript",
+      "framework": "Next.js",
+      "type": "frontend",
+      "package_manager": "npm",
+      "default_port": 3000,
+      "styling": "Tailwind CSS",
+      "dev_command": "npm run dev",
+      "key_directories": {
+        "src": {
+          "path": "src",
+          "purpose": "Source code"
+        }
+      },
+      "dependencies": [
+        "@ai-sdk/google",
+        "@google/genai",
+        "@radix-ui/react-accordion",
+        "@radix-ui/react-avatar",
+        "@radix-ui/react-dialog",
+        "@radix-ui/react-slot",
+        "ai",
+        "axios",
+        "cheerio",
+        "class-variance-authority",
+        "clsx",
+        "framer-motion",
+        "lucide-react",
+        "next",
+        "react",
+        "react-dom",
+        "tailwind-merge",
+        "tailwindcss-animate"
+      ],
+      "dev_dependencies": [
+        "@tailwindcss/postcss",
+        "@types/node",
+        "@types/react",
+        "@types/react-dom",
+        "eslint",
+        "eslint-config-next",
+        "tailwindcss",
+        "tw-animate-css",
+        "typescript"
+      ],
+      "environment": {
+        "variables": {
+          "GEMINI_API_KEY": {
+            "value": "<REDACTED>",
+            "source": ".env.local",
+            "type": "string",
+            "sensitive": true,
+            "required": false
+          },
+          "GOOGLE_PLACES_API_KEY": {
+            "value": "<REDACTED>",
+            "source": ".env.local",
+            "type": "string",
+            "sensitive": true,
+            "required": false
+          }
+        },
+        "required_count": 0,
+        "optional_count": 0,
+        "detected_count": 2
+      }
+    }
+  },
+  "infrastructure": {},
+  "conventions": {
+    "typescript": true
+  }
+}

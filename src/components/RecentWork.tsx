@@ -4,6 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, ExternalLink } from 'lucide-react'
+import Image from 'next/image'
 
 const projects = [
     {
@@ -38,7 +39,7 @@ export function RecentWork() {
             <div className="container mx-auto px-6 mb-12 flex flex-col md:flex-row justify-between items-end gap-6">
                 <div className="max-w-xl">
                     <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Our Transformations</h2>
-                    <p className="text-zinc-400">We don't just build websites; we build business growth engines.</p>
+                    <p className="text-zinc-400">We don&apos;t just build websites; we build business growth engines.</p>
                 </div>
                 <Link
                     href="/work"
@@ -59,10 +60,12 @@ export function RecentWork() {
                         transition={{ delay: index * 0.1 }}
                         className="min-w-[320px] md:min-w-[450px] aspect-[4/3] rounded-[2rem] overflow-hidden relative group snap-center glass"
                     >
-                        <img
+                        <Image
                             src={project.image}
                             alt={project.title}
-                            className="w-full h-full object-cover opacity-50 group-hover:opacity-80 transition-all duration-700 group-hover:scale-110"
+                            fill
+                            className="object-cover opacity-50 group-hover:opacity-80 transition-all duration-700 group-hover:scale-110"
+                            unoptimized={project.image.includes('picsum')}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-background-primary via-background-primary/20 to-transparent p-8 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                             <div className="space-y-2">

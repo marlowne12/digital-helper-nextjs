@@ -21,8 +21,9 @@ export default function ActionCard({ recommendation }: ActionCardProps) {
         setResult(null);
 
         try {
-            if (recommendation.type === 'reply_review') {
-                const { reviewId, author } = recommendation.context;
+            if (recommendation.type === 'reply_review' && recommendation.context) {
+                const reviewId = recommendation.context.reviewId as string;
+                const author = recommendation.context.author as string;
                 const drafts = await generateResponse(reviewId, author, 'negative');
                 setResult(drafts);
             } else if (recommendation.type === 'optimize_description') {
@@ -118,7 +119,7 @@ export default function ActionCard({ recommendation }: ActionCardProps) {
                             <div className="space-y-3">
                                 {result.map((draft, idx) => (
                                     <div key={idx} className="bg-white/[0.02] p-4 rounded-xl border border-white/5 hover:bg-white/[0.04] transition-colors relative group">
-                                        <p className="text-zinc-300 text-sm leading-relaxed pr-10">"{draft}"</p>
+                                        <p className="text-zinc-300 text-sm leading-relaxed pr-10">&quot;{draft}&quot;</p>
                                         <Button
                                             variant="ghost"
                                             size="icon"

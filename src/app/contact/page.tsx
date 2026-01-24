@@ -51,7 +51,7 @@ export default function ContactPage() {
                     <div className="space-y-12">
                         <div className="glass p-8">
                             <div className="flex items-center gap-3 mb-6">
-                                <Calendar className="w-6 h-6 text-accent-purple" />
+                                <Calendar className="w-6 h-6 text-accent-primary" />
                                 <h2 className="text-2xl font-bold text-white">Schedule a Strategy Call</h2>
                             </div>
                             <p className="text-zinc-400 mb-8 leading-relaxed">
@@ -73,12 +73,12 @@ export default function ContactPage() {
                         <div className="grid sm:grid-cols-2 gap-6">
                             {[
                                 { icon: <Mail className="w-5 h-5" />, label: "Email", value: "digitalhelperwebsite@gmail.com" },
-                                { icon: <Phone className="w-5 h-5" />, label: "Phone", value: "(509) 555-0123" },
+                                { icon: <Phone className="w-5 h-5" />, label: "Phone", value: "(509) 987-5060" },
                                 { icon: <MapPin className="w-5 h-5" />, label: "Location", value: "Richland, WA" },
                                 { icon: <Clock className="w-5 h-5" />, label: "Hours", value: "Mon-Fri: 9AM - 6PM" }
                             ].map((item, i) => (
                                 <div key={i} className="glass p-6 text-sm">
-                                    <div className="flex items-center gap-3 text-accent-purple mb-2">
+                                    <div className="flex items-center gap-3 text-accent-primary mb-2">
                                         {item.icon}
                                         <span className="font-semibold">{item.label}</span>
                                     </div>
@@ -92,7 +92,7 @@ export default function ContactPage() {
                     <div className="space-y-8">
                         <div className="glass p-10">
                             <div className="flex items-center gap-3 mb-8">
-                                <MessageSquare className="w-6 h-6 text-accent-indigo" />
+                                <MessageSquare className="w-6 h-6 text-accent-secondary" />
                                 <h2 className="text-2xl font-bold text-white">Send a Message</h2>
                             </div>
 
@@ -103,7 +103,7 @@ export default function ContactPage() {
                                         type="text"
                                         required
                                         placeholder="John Doe"
-                                        className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.08] rounded-xl text-white outline-none focus:border-accent-purple/50 transition-colors"
+                                        className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.08] rounded-xl text-white outline-none focus:border-accent-primary/50 transition-colors"
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -112,12 +112,12 @@ export default function ContactPage() {
                                         type="email"
                                         required
                                         placeholder="john@company.com"
-                                        className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.08] rounded-xl text-white outline-none focus:border-accent-purple/50 transition-colors"
+                                        className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.08] rounded-xl text-white outline-none focus:border-accent-primary/50 transition-colors"
                                     />
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-zinc-400">How can we help?</label>
-                                    <select className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.08] rounded-xl text-white outline-none focus:border-accent-purple/50 transition-colors appearance-none">
+                                    <select className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.08] rounded-xl text-white outline-none focus:border-accent-primary/50 transition-colors appearance-none">
                                         <option className="bg-slate-900">Web Design & Development</option>
                                         <option className="bg-slate-900">SEO & Local Search</option>
                                         <option className="bg-slate-900">AI Automation</option>
@@ -131,7 +131,7 @@ export default function ContactPage() {
                                         required
                                         rows={5}
                                         placeholder="Tell us about your project or goals..."
-                                        className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.08] rounded-xl text-white outline-none focus:border-accent-purple/50 transition-colors resize-none"
+                                        className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.08] rounded-xl text-white outline-none focus:border-accent-primary/50 transition-colors resize-none"
                                     ></textarea>
                                 </div>
 
@@ -145,7 +145,7 @@ export default function ContactPage() {
                             </form>
                         </div>
 
-                        <div className="glass p-8 text-center bg-accent-purple/5 border-accent-purple/10">
+                        <div className="glass p-8 text-center bg-accent-primary/5 border-accent-primary/10">
                             <h4 className="text-lg font-bold text-white mb-2">Need immediate help?</h4>
                             <p className="text-zinc-400 text-sm">
                                 Chat with our AI Assistant in the bottom right corner for instant answers to common questions.

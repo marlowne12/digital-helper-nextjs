@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://digitalhelpernexjs.vercel.app/sitemap.xml
+Sitemap: https://digital-helper.com/sitemap.xml

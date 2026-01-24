@@ -9,7 +9,8 @@ import {
     Bot,
     Users,
     ArrowRight,
-    CheckCircle2
+    CheckCircle2,
+    ShieldCheck
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
@@ -17,39 +18,46 @@ const services = [
     {
         title: "Web Design & Development",
         description: "Modern, lightning-fast websites built to convert visitors into customers. No more losing leads to a slow, outdated site.",
-        icon: <Globe className="w-8 h-8 text-accent-purple" />,
+        icon: <Globe className="w-8 h-8 text-accent-primary" />,
         href: "/services/web-design",
         features: ["Next.js Performance", "Mobile-First Design", "SEO Optimized"]
     },
     {
         title: "SEO & Local Search",
         description: "Dominate Google when Tri-Cities customers search for what you do. Local SEO that actually gets results.",
-        icon: <Search className="w-8 h-8 text-accent-indigo" />,
+        icon: <Search className="w-8 h-8 text-accent-secondary" />,
         href: "/services/seo",
         features: ["GBP Optimization", "Local Citations", "Keyword Strategy"]
     },
     {
         title: "AI Automation",
         description: "Chatbots, workflows, and voice AI that handle tasks while you sleep. Automate the work that's eating your time.",
-        icon: <Bot className="w-8 h-8 text-accent-blue" />,
+        icon: <Bot className="w-8 h-8 text-accent-tertiary" />,
         href: "/services/ai-automation",
         features: ["24/7 Chatbots", "n8n Workflows", "Voice AI Agents"]
     },
     {
         title: "Lead Generation",
         description: "Qualified leads delivered to your inbox. Pay-per-lead pricing means you only pay for results.",
-        icon: <Users className="w-8 h-8 text-purple-400" />,
+        icon: <Users className="w-8 h-8 text-sky-400" />,
         href: "/services/lead-generation",
         features: ["Targeted Prospecting", "Qualified Appointments", "Risk-Free Model"]
+    },
+    {
+        title: "Reputation Management",
+        description: "Monitor, analyze, and automate reviews. Build a fortress of trust around your brand.",
+        icon: <ShieldCheck className="w-8 h-8 text-accent-cyan" />,
+        href: "/services/reputation-management",
+        features: ["Review Monitoring", "AI Auto-Responses", "Competitor Analysis"]
     }
 ];
 
 export default function ServicesHubPage() {
     return (
-        <main className="min-h-screen pt-32 pb-20 overflow-hidden bg-background-primary">
+        <main className="min-h-screen pt-32 pb-20 overflow-hidden bg-background-primary relative">
             {/* Background Orbs */}
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-purple/10 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-blue/10 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-primary/10 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-secondary/10 rounded-full blur-[120px] pointer-events-none" />
 
             <div className="container mx-auto px-6 relative z-10">
                 {/* Hero Section */}
@@ -69,7 +77,7 @@ export default function ServicesHubPage() {
                 </div>
 
                 {/* Services Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
                     {services.map((service, index) => (
                         <motion.div
                             key={service.title}
@@ -77,13 +85,13 @@ export default function ServicesHubPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1, duration: 0.5 }}
-                            className="glass p-8 group hover:border-accent-purple/30 transition-all duration-300"
+                            className="glass p-8 group hover:border-accent-primary/30 transition-all duration-300 flex flex-col"
                         >
                             <div className="w-16 h-16 rounded-2xl bg-white/[0.03] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                                 {service.icon}
                             </div>
                             <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
-                            <p className="text-zinc-400 mb-8 leading-relaxed">
+                            <p className="text-zinc-400 mb-8 leading-relaxed flex-grow">
                                 {service.description}
                             </p>
 
@@ -98,7 +106,7 @@ export default function ServicesHubPage() {
 
                             <Link
                                 href={service.href}
-                                className="inline-flex items-center gap-2 text-accent-purple font-semibold hover:text-accent-indigo transition-colors"
+                                className="inline-flex items-center gap-2 text-accent-primary font-semibold hover:text-accent-secondary transition-colors mt-auto"
                             >
                                 Learn More <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </Link>
@@ -111,7 +119,7 @@ export default function ServicesHubPage() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="glass p-12 text-center max-w-4xl mx-auto"
+                    className="glass p-12 text-center max-w-4xl mx-auto rounded-[3rem]"
                 >
                     <h2 className="text-3xl font-bold text-white mb-6">Not sure what you need?</h2>
                     <p className="text-zinc-400 mb-10 text-lg">

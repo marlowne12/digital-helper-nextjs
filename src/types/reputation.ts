@@ -30,7 +30,7 @@ export interface Recommendation {
     impact: 'High' | 'Medium' | 'Low';
     status: 'pending' | 'completed';
     // Context data needed to execute the fix (e.g., review ID)
-    context?: any;
+    context?: Record<string, unknown>;
 }
 
 export interface SwotAnalysis {
@@ -40,9 +40,27 @@ export interface SwotAnalysis {
     threats: string[];
 }
 
+export interface WebsiteAnalysis {
+    title: string;
+    metaDescription: string;
+    h1: string;
+    isMobileFriendly: boolean;
+    loadTime: string;
+    ssl: boolean;
+    socials: {
+        facebook?: string;
+        instagram?: string;
+        linkedin?: string;
+        twitter?: string;
+    };
+    email?: string;
+    issues: string[];
+}
+
 export interface AuditResult {
     score: number; // 0-100
     summary: string;
     swot: SwotAnalysis;
     recommendations: Recommendation[];
+    websiteAnalysis?: WebsiteAnalysis;
 }

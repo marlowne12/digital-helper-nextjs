@@ -82,3 +82,16 @@ export interface PricingData {
     currency: string;
     disclaimer: string;
 }
+
+export interface BlogPost {
+    slug: string;
+    title: string;
+    excerpt: string;
+    content: string;
+    author: string;
+    publishedAt: string;
+    readingTime: string;
+    category: string;
+    image: string;
+    featured: boolean;
+}

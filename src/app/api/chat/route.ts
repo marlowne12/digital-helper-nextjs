@@ -1,73 +1,60 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { GoogleGenAI } from "@google/genai";
+import { google } from '@ai-sdk/google';
+import { streamText } from 'ai';
+import { aiTools } from '@/services/aiTools';
+import { z } from 'zod';
 
-const SYSTEM_INSTRUCTION = `
-You are the advanced AI representative for "Digital Helper", a web design agency in Richland, WA.
-Your specific mission is to help local businesses who have outdated, slow, or ugly websites.
+export const maxDuration = 30;
 
-About Digital Helper:
-- Location: Richland, Washington.
-- Core Value: We turn outdated "brochure" websites into modern, high-converting sales machines using AI and React.
-- Target Audience: Local business owners (plumbers, dentists, restaurants) with sites from the early 2010s or older.
-- Services: Complete Website Overhauls, Mobile Optimization, Google Business Profile Sync, AI Content Writing.
-- Contact: hello@digitalhelper.com
+const ChatMessageSchema = z.object({
+  role: z.enum(['user', 'assistant', 'system']),
+  content: z.string().min(1).max(5000)
+});
 
-Rules for your responses:
-1. If a user mentions their current site is old, explain the risks (security, lost mobile customers, poor Google ranking).
-2. Emphasize that "Digital Helper" handles the entire migration process.
-3. Keep answers punchy and professional.
-4. Always guide them to the "Free Audit" section or the contact form.
-5. If asked about price, mention packages start at $3,000 for a complete modernization.
-`;
+const ChatRequestSchema = z.object({
+  messages: z.array(ChatMessageSchema).min(1).max(50)
+});
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { history, message } = body;
+        const validatedData = ChatRequestSchema.parse(body);
+        const { messages } = validatedData;
 
-        if (!message) {
-            return NextResponse.json({ error: 'Message is required' }, { status: 400 });
-        }
+        const result = streamText({
+            model: google('gemini-1.5-flash'),
+            system: `You are advanced AI representative for "Digital Helper", a web design agency in Richland, WA.
+    Your mission is to help local businesses who have outdated, slow, or ugly websites.
 
-        const apiKey = process.env.GEMINI_API_KEY;
-        if (!apiKey) {
-            console.error("GEMINI_API_KEY is not set");
-            return NextResponse.json({ error: 'Server misconfiguration' }, { status: 500 });
-        }
+    About Digital Helper:
+    - Location: Richland, Washington.
+    - Core Value: We turn outdated "brochure" websites into modern, high-converting sales machines.
+    - Services: Website Overhauls (starts at $3k), SEO, Mobile Optimization, AI Content.
+    - Contact: hello@digitalhelper.com
 
-        // Initialize the Gemini client
-        const ai = new GoogleGenAI({ apiKey });
+    Tools available:
+    - generateQuote: Use when user asks for pricing/estimate. Ask for features if vaguely answering.
+    - scheduleCall: Use when user wants to book a meeting or talk to a human.
+    - analyzeWebsite: Use when user provides a URL to check.
 
-        const chat = ai.chats.create({
-            model: "gemini-1.5-pro", // Fallback to a generally available model if 3-pro-preview isn't available
-            config: {
-                systemInstruction: SYSTEM_INSTRUCTION,
-            },
-            history: history
-                .filter((h: any) => h.role !== 'system')
-                .map((h: any) => ({
-                    role: h.role,
-                    parts: [{ text: h.text }]
-                }))
+    Tone: Professional, punchy, helpful. Don't be too salesy, be expert.`,
+            messages,
+            tools: aiTools,
         });
 
-        // Use a more standard model name if 3-pro-preview fails, but trying to stick to intention.
-        // If 3-pro-preview is what the user had, they probably have access.
-        // Wait, the original code used 'gemini-3-pro-preview', let's use 'gemini-1.5-flash' or 'gemini-1.5-pro' for stability unless user insists.
-        // Actually, let's use "gemini-1.5-flash" for speed and cost as a default for chat.
-        // Adjusting model to "gemini-1.5-flash" to be safe, or "gemini-2.0-flash-exp" if available.
-        // Let's stick to "gemini-1.5-flash" for now as it's reliable.
-
-        const response = await chat.sendMessage({ message });
-
-        return NextResponse.json({
-            text: response.text || "I apologize, but I'm having trouble processing that right now."
-        });
-
+        return result.toTextStreamResponse();
     } catch (error) {
-        console.error("Gemini API Error:", error);
-        return NextResponse.json({
-            error: "System malfunction. Please try again later or contact us directly via email."
-        }, { status: 500 });
+        console.error('[Chat API Error]', error);
+
+        if (error instanceof z.ZodError) {
+            return new Response(
+                JSON.stringify({ error: 'Invalid request format', details: error.issues }),
+                { status: 400, headers: { 'Content-Type': 'application/json' } }
+            );
+        }
+
+        return new Response(
+            JSON.stringify({ error: 'Failed to process chat message' }),
+            { status: 500, headers: { 'Content-Type': 'application/json' } }
+        );
     }
 }

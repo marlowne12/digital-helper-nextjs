@@ -2,6 +2,18 @@ import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenAI } from "@google/genai";
 import axios from 'axios';
 import * as cheerio from 'cheerio';
+import { z } from 'zod';
+
+const URLRequestSchema = z.object({
+  url: z.string().url().refine((url) => {
+    try {
+      const parsed = new URL(url);
+      return ['http:', 'https:'].includes(parsed.protocol);
+    } catch {
+      return false;
+    }
+  }, 'URL must be valid and use HTTP/HTTPS protocol')
+});
 
 const SYSTEM_INSTRUCTION = `
 You are an expert SEO Auditor for "Digital Helper". 
@@ -23,11 +35,9 @@ Structure:
 
 export async function POST(req: NextRequest) {
     try {
-        const { url } = await req.json();
-
-        if (!url) {
-            return NextResponse.json({ error: 'URL is required' }, { status: 400 });
-        }
+        const body = await req.json();
+        const validatedData = URLRequestSchema.parse(body);
+        const { url } = validatedData;
 
         let targetUrl = url;
         if (!targetUrl.startsWith('http')) {
@@ -84,7 +94,7 @@ export async function POST(req: NextRequest) {
             aiAnalysis: jsonResponse
         });
 
-    } catch (error: any) {
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         console.error("SEO Audit Error:", error.message);
         return NextResponse.json({
             error: "Failed to scan website.",

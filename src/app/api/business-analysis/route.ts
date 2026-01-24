@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
                 }]
             }],
             config: {
-                tools: [{ googleSearch: {} }] as any
+                tools: [{ googleSearch: {} }] as any // eslint-disable-line @typescript-eslint/no-explicit-any
             }
         });
 
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
 
         // Extract grounding metadata if available
         // Note: In some versions of unified SDK, it's result.candidates[0].groundingMetadata
-        const candidates = (result as any).candidates;
+        const candidates = (result as any).candidates; // eslint-disable-line @typescript-eslint/no-explicit-any
         const groundingMetadata = candidates?.[0]?.groundingMetadata;
 
         if (groundingMetadata?.groundingChunks) {

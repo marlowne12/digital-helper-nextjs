@@ -8,17 +8,17 @@ const problems = [
     {
         icon: <XCircle className="w-10 h-10 text-red-500" />,
         title: "Old & Ugly",
-        description: "Your website looks like it's from 2010. Visitors judge your business by its digital cover."
+        description: "Your website looks like it&apos;s from 2010. Visitors judge your business by its digital cover."
     },
     {
         icon: <AlertTriangle className="w-10 h-10 text-yellow-500" />,
         title: "Slow & Frustrating",
-        description: "If it takes more than 3 seconds to load, 40% of people leave. You're losing customers before they even see your work."
+        description: "If it takes more than 3 seconds to load, 40% of people leave. You&apos;re losing customers before they even see your work."
     },
     {
         icon: <TrendingDown className="w-10 h-10 text-orange-500" />,
         title: "Silent & Invisible",
-        description: "Your site sits on page 4 of Google and doesn't generate calls. It's an expense, not an investment."
+        description: "Your site sits on page 4 of Google and doesn&apos;t generate calls. It&apos;s an expense, not an investment."
     }
 ]
 
@@ -37,7 +37,7 @@ export function ProblemAgitation() {
                         <span className="text-red-500">Bleeding You Money.</span>
                     </motion.h2>
                     <p className="text-zinc-400 text-lg">
-                        In the Tri-Cities, your competition is just a click away. If your site isn't fast, modern, and mobile-friendly, you're effectively handing them your leads.
+                        In the Tri-Cities, your competition is just a click away. If your site isn&apos;t fast, modern, and mobile-friendly, you&apos;re effectively handing them your leads.
                     </p>
                 </div>
 

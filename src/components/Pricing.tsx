@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 export function Pricing() {
     const [pricingTiers, setPricingTiers] = useState<PricingTier[]>([])
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState<string | null>(null)
+    const [, setError] = useState<string | null>(null)
 
     useEffect(() => {
         const fetchPricing = async () => {
@@ -85,8 +85,8 @@ export function Pricing() {
     return (
         <section className="py-24 bg-background-primary relative overflow-hidden">
             {/* Background Orbs */}
-            <div className="absolute top-1/2 left-0 w-96 h-96 bg-accent-purple/5 blur-[120px] rounded-full pointer-events-none" />
-            <div className="absolute top-1/2 right-0 w-96 h-96 bg-accent-blue/5 blur-[120px] rounded-full pointer-events-none" />
+            <div className="absolute top-1/2 left-0 w-96 h-96 bg-accent-primary/5 blur-[120px] rounded-full pointer-events-none" />
+            <div className="absolute top-1/2 right-0 w-96 h-96 bg-accent-secondary/5 blur-[120px] rounded-full pointer-events-none" />
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center max-w-2xl mx-auto mb-20">
@@ -94,7 +94,7 @@ export function Pricing() {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-purple/10 border border-accent-purple/20 text-accent-purple text-xs font-bold uppercase tracking-widest mb-6"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-primary/10 border border-accent-primary/20 text-accent-primary text-xs font-bold uppercase tracking-widest mb-6"
                     >
                         <Sparkles className="w-4 h-4" />
                         Pick Your Weapon
@@ -105,7 +105,7 @@ export function Pricing() {
 
                 {loading ? (
                     <div className="flex flex-col items-center justify-center py-24">
-                        <Loader2 className="w-12 h-12 text-accent-purple animate-spin mb-4" />
+                        <Loader2 className="w-12 h-12 text-accent-primary animate-spin mb-4" />
                         <p className="text-zinc-500 font-medium">Fetching the latest rates...</p>
                     </div>
                 ) : (
@@ -117,7 +117,7 @@ export function Pricing() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className={`glass p-10 rounded-[2.5rem] flex flex-col relative group transition-all duration-500 ${tier.highlighted ? 'border-accent-purple/30 shadow-glow-md' : 'hover:border-white/10'}`}
+                                className={`glass p-10 rounded-[2.5rem] flex flex-col relative group transition-all duration-500 ${tier.highlighted ? 'border-accent-primary/30 shadow-glow-md' : 'hover:border-white/10'}`}
                             >
                                 {tier.highlighted && (
                                     <div className="absolute top-0 right-10 -translate-y-1/2 bg-accent-gradient px-4 py-1 rounded-full text-white text-xs font-bold uppercase tracking-wider">
@@ -139,8 +139,8 @@ export function Pricing() {
                                 <ul className="space-y-4 mb-10 border-t border-white/[0.05] pt-8 flex-1">
                                     {tier.features.map((feature, i) => (
                                         <li key={i} className="flex gap-3 text-sm text-zinc-400">
-                                            <div className="w-5 h-5 rounded-full bg-accent-purple/20 flex items-center justify-center shrink-0 mt-0.5">
-                                                <Check className="w-3 h-3 text-accent-purple" />
+                                            <div className="w-5 h-5 rounded-full bg-accent-primary/20 flex items-center justify-center shrink-0 mt-0.5">
+                                                <Check className="w-3 h-3 text-accent-primary" />
                                             </div>
                                             {feature}
                                         </li>

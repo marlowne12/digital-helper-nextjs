@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Star, Quote } from 'lucide-react';
+import Image from 'next/image';
 
 const testimonials = [
     {
@@ -9,7 +10,7 @@ const testimonials = [
         author: "Sarah Jenkins",
         role: "Owner",
         company: "Tri-Cities Coffee Co.",
-        content: "Digital Helper completely transformed our online presence. Our mobile traffic has doubled, and customers love the new menu layout. Best investment we've made this year.",
+        content: "Digital Helper completely transformed our online presence. Our mobile traffic has doubled, and customers love the new menu layout. Best investment we&apos;ve made this year.",
         rating: 5,
         avatar: null
     },
@@ -18,7 +19,7 @@ const testimonials = [
         author: "Mike Peterson",
         role: "General Manager",
         company: "Richland Auto Repair",
-        content: "The AI chat feature is a game changer. It answers basic questions 24/7 and books appointments for us. I'm saving at least 10 hours a week on phone calls.",
+        content: "The AI chat feature is a game changer. It answers basic questions 24/7 and books appointments for us. I&apos;m saving at least 10 hours a week on phone calls.",
         rating: 5,
         avatar: null
     },
@@ -27,7 +28,7 @@ const testimonials = [
         author: "Lisa Chen",
         role: "Director",
         company: "Chen Real Estate Group",
-        content: "Our old site was slow and invisible on Google. After the redesign and SEO work, we're ranking #1 for our main keywords in Kennewick. The ROI has been incredible.",
+        content: "Our old site was slow and invisible on Google. After the redesign and SEO work, we&apos;re ranking #1 for our main keywords in Kennewick. The ROI has been incredible.",
         rating: 5,
         avatar: null
     }
@@ -55,7 +56,7 @@ export const Testimonials: React.FC = () => {
                     </h2>
 
                     <p className="text-slate-400 max-w-2xl mx-auto">
-                        Don't just take our word for it. Here's what our clients have to say about their experience.
+                        Don&apos;t just take our word for it. Here&apos;s what our clients have to say about their experience.
                     </p>
                 </div>
 
@@ -81,16 +82,18 @@ export const Testimonials: React.FC = () => {
 
                             {/* Content */}
                             <p className="text-slate-300 mb-6 leading-relaxed relative z-10">
-                                "{testimonial.content}"
+                                &quot;{testimonial.content}&quot;
                             </p>
 
                             {/* Author */}
                             <div className="flex items-center gap-4">
                                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center overflow-hidden">
                                     {testimonial.avatar ? (
-                                        <img
+                                        <Image
                                             src={testimonial.avatar}
                                             alt={testimonial.author}
+                                            width={48}
+                                            height={48}
                                             className="w-full h-full object-cover"
                                         />
                                     ) : (

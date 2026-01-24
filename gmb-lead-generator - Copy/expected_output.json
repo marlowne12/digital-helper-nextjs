@@ -1,0 +1,185 @@
+{
+  "workflow_summary": {
+    "total_businesses_found": 47,
+    "businesses_analyzed": 47,
+    "qualified_leads": 23,
+    "hot_leads": 8,
+    "warm_leads": 11,
+    "cold_leads": 4,
+    "poor_fit_leads": 24,
+    "execution_time_seconds": 125
+  },
+  "google_sheets_export": {
+    "spreadsheet_id": "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+    "sheet_name": "SEO Leads",
+    "rows_added": 23,
+    "url": "https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+    "columns": 25,
+    "success": true
+  },
+  "gmail_drafts": {
+    "drafts_created": 10,
+    "errors": 0,
+    "drafts": [
+      {
+        "id": "draft_example_restaurant_123456",
+        "recipient": "info@example-restaurant.com",
+        "business_name": "Example Italian Restaurant",
+        "subject": "Help Example Italian Restaurant attract more diners online",
+        "created_at": "2025-10-30T14:32:15.000Z",
+        "gmail_url": "https://mail.google.com/mail/u/0/#drafts"
+      }
+    ],
+    "success": true
+  },
+  "sample_leads": [
+    {
+      "business_info": {
+        "name": "Example Italian Restaurant",
+        "category": "restaurant",
+        "address": "456 Michigan Ave, Chicago, IL 60611",
+        "phone": "(312) 555-0198",
+        "email": "info@example-restaurant.com",
+        "website": "https://example-restaurant.com",
+        "gmb_url": "https://goo.gl/maps/exampleItalian123",
+        "discovered_date": "2025-10-30T14:30:00.000Z"
+      },
+      "gmb_analysis": {
+        "review_count": 12,
+        "average_rating": 3.8,
+        "profile_completeness": 65,
+        "missing_fields": ["Business hours", "Photos", "Services list"],
+        "verified": true
+      },
+      "seo_audit": {
+        "overall_score": 48,
+        "page_speed": {
+          "mobile_score": 42,
+          "desktop_score": 67,
+          "issues": ["Slow server response", "Unoptimized images"]
+        },
+        "meta_tags": {
+          "title_present": true,
+          "title_optimal": false,
+          "description_present": false,
+          "missing_tags": ["meta description", "Open Graph tags", "canonical URL"]
+        },
+        "mobile_friendly": {
+          "is_mobile_friendly": true,
+          "mobile_usability_score": 82,
+          "issues": ["Some tap targets too small"]
+        },
+        "on_page_seo": {
+          "h1_count": 1,
+          "images_with_alt": 6,
+          "total_images": 14,
+          "word_count": 620
+        }
+      },
+      "lead_scoring": {
+        "total_score": 78,
+        "tier": "warm",
+        "priority_level": 2,
+        "component_scores": {
+          "gmb_profile": 45,
+          "review_performance": 50,
+          "website_quality": 82,
+          "contact_availability": 100
+        },
+        "opportunities": [
+          "Incomplete GMB profile: missing Business hours, Photos, Services list",
+          "Below-average rating (3.8/5.0)",
+          "Poor mobile page speed (42/100)",
+          "Missing SEO elements: meta description, Open Graph tags"
+        ],
+        "recommended_action": "Schedule outreach - moderate SEO needs present"
+      },
+      "outreach_status": {
+        "email_draft_created": true,
+        "draft_id": "draft_example_restaurant_123456",
+        "status": "New",
+        "date_added": "2025-10-30"
+      }
+    },
+    {
+      "business_info": {
+        "name": "Downtown Cafe & Bakery",
+        "category": "cafe",
+        "address": "789 State St, Chicago, IL 60605",
+        "phone": "(312) 555-0276",
+        "email": "hello@downtowncafe.com",
+        "website": "https://downtowncafe.com",
+        "gmb_url": "https://goo.gl/maps/exampleCafe456",
+        "discovered_date": "2025-10-30T14:30:00.000Z"
+      },
+      "gmb_analysis": {
+        "review_count": 6,
+        "average_rating": 3.2,
+        "profile_completeness": 40,
+        "missing_fields": ["Business hours", "Photos", "Business description", "Services list"],
+        "verified": false
+      },
+      "seo_audit": {
+        "overall_score": 32,
+        "page_speed": {
+          "mobile_score": 28,
+          "desktop_score": 51,
+          "issues": ["Slow server response", "Unoptimized images", "Render-blocking resources"]
+        },
+        "meta_tags": {
+          "title_present": true,
+          "title_optimal": false,
+          "description_present": false,
+          "missing_tags": ["meta description", "Open Graph tags", "canonical URL", "viewport"]
+        },
+        "mobile_friendly": {
+          "is_mobile_friendly": false,
+          "mobile_usability_score": 45,
+          "issues": ["Text too small", "Tap targets too small", "Content wider than screen"]
+        },
+        "on_page_seo": {
+          "h1_count": 0,
+          "images_with_alt": 2,
+          "total_images": 18,
+          "word_count": 280
+        }
+      },
+      "lead_scoring": {
+        "total_score": 92,
+        "tier": "hot",
+        "priority_level": 1,
+        "component_scores": {
+          "gmb_profile": 70,
+          "review_performance": 85,
+          "website_quality": 98,
+          "contact_availability": 100
+        },
+        "opportunities": [
+          "Incomplete GMB profile: missing Business hours, Photos, Business description, Services list",
+          "Low review count (6 reviews)",
+          "Below-average rating (3.2/5.0)",
+          "Poor mobile page speed (28/100)",
+          "Website not mobile-friendly",
+          "Missing SEO elements: meta description, Open Graph tags",
+          "No H1 tag on homepage",
+          "Most images missing alt text"
+        ],
+        "recommended_action": "Priority outreach - 8 major opportunities identified"
+      },
+      "outreach_status": {
+        "email_draft_created": true,
+        "draft_id": "draft_downtown_cafe_123457",
+        "status": "New",
+        "date_added": "2025-10-30"
+      }
+    }
+  ],
+  "metrics": {
+    "average_lead_score": 68.5,
+    "average_seo_score": 51.2,
+    "average_gmb_completeness": 58.3,
+    "businesses_with_email": 38,
+    "businesses_without_website": 5,
+    "mobile_friendly_percentage": 67.4
+  }
+}
