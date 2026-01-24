@@ -1,4 +1,8 @@
-import { google } from '@ai-sdk/google';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
+
+const google = createGoogleGenerativeAI({
+    apiKey: process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+});
 import { streamText } from 'ai';
 import { aiTools } from '@/services/aiTools';
 import { z } from 'zod';
@@ -6,12 +10,12 @@ import { z } from 'zod';
 export const maxDuration = 30;
 
 const ChatMessageSchema = z.object({
-  role: z.enum(['user', 'assistant', 'system']),
-  content: z.string().min(1).max(5000)
+    role: z.enum(['user', 'assistant', 'system']),
+    content: z.string().min(1).max(5000)
 });
 
 const ChatRequestSchema = z.object({
-  messages: z.array(ChatMessageSchema).min(1).max(50)
+    messages: z.array(ChatMessageSchema).min(1).max(50)
 });
 
 export async function POST(req: Request) {

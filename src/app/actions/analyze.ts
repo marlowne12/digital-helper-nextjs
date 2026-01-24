@@ -1,7 +1,11 @@
 'use server';
 
 import { generateObject, generateText } from 'ai';
-import { google } from '@ai-sdk/google';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
+
+const google = createGoogleGenerativeAI({
+    apiKey: process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+});
 import { z } from 'zod';
 import * as cheerio from 'cheerio';
 import { AuditResult, GBPProfile, WebsiteAnalysis } from '@/types/reputation';
