@@ -1,5 +1,41 @@
 import { z } from 'zod';
 
+// Contact Form Schema
+export const contactFormSchema = z.object({
+    fullName: z.string().min(2, 'Name must be at least 2 characters'),
+    email: z.string().email('Please enter a valid email address'),
+    phone: z.string().optional(),
+    company: z.string().optional(),
+    service: z.enum([
+        'web-design',
+        'seo',
+        'ai-automation',
+        'lead-generation',
+        'reputation-management',
+        'custom'
+    ], { message: 'Please select a service' }),
+    budget: z.enum([
+        'under-1k',
+        '1k-3k',
+        '3k-5k',
+        '5k-10k',
+        'over-10k',
+        'not-sure'
+    ]).optional(),
+    timeline: z.enum([
+        'asap',
+        '1-2-weeks',
+        '1-month',
+        '2-3-months',
+        'flexible'
+    ]).optional(),
+    message: z.string().min(10, 'Please provide more details about your project'),
+    website: z.string().url().optional().or(z.literal('')),
+    honeypot: z.string().max(0, { message: 'Bot detected' }), // Anti-spam field
+});
+
+export type ContactFormData = z.infer<typeof contactFormSchema>;
+
 export const pricingRequestSchema = z.object({
     theme: z.string().optional(),
 });

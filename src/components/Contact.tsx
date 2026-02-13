@@ -61,7 +61,7 @@ export function Contact() {
                             {/* Contact Methods */}
                             <div className="space-y-6">
                                 <a
-                                    href="tel:+15099875060"
+                                    href="tel:+15098768454"
                                     className="group flex items-center gap-5 p-5 rounded-2xl glass border border-white/5 hover:border-accent-purple/40 transition-all duration-300 hover:scale-[1.02]"
                                 >
                                     <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-purple/20 to-accent-purple/5 border border-accent-purple/20 flex items-center justify-center text-accent-purple group-hover:scale-110 transition-transform">
@@ -70,13 +70,13 @@ export function Contact() {
                                     <div>
                                         <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Call Us</div>
                                         <div className="text-2xl font-display font-bold text-white group-hover:text-accent-purple transition-colors">
-                                            (509) 987-5060
+                                            (509) 876-8454
                                         </div>
                                     </div>
                                 </a>
 
                                 <a
-                                    href="mailto:digitalhelperwebsite@gmail.com"
+                                    href="mailto:business@digital-helper.com"
                                     className="group flex items-center gap-5 p-5 rounded-2xl glass border border-white/5 hover:border-accent-indigo/40 transition-all duration-300 hover:scale-[1.02]"
                                 >
                                     <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-indigo/20 to-accent-indigo/5 border border-accent-indigo/20 flex items-center justify-center text-accent-indigo group-hover:scale-110 transition-transform">
@@ -85,7 +85,7 @@ export function Contact() {
                                     <div className="min-w-0">
                                         <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Email Us</div>
                                         <div className="text-lg font-display font-bold text-white group-hover:text-accent-indigo transition-colors truncate">
-                                            digitalhelperwebsite@gmail.com
+                                            business@digital-helper.com
                                         </div>
                                     </div>
                                 </a>
