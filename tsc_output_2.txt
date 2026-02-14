@@ -1,0 +1,10 @@
+src/app/api/chat/route.ts(36,19): error TS2551: Property 'toDataStreamResponse' does not exist on type 'StreamTextResult<{ generateQuote: Tool<{ serviceType: "website" | "seo" | "automation" | "maintenance"; features: string[]; }, { serviceType: "website" | "seo" | "automation" | "maintenance"; features: string[]; estimatedPrice: number; currency: string; message: string; }>; scheduleCall: Tool<...>; analyzeWebsite: T...'. Did you mean 'toTextStreamResponse'?
+src/services/aiTools.ts(9,9): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type '({ serviceType, features }: z.infer<typeof generateQuoteSchema>) => Promise<{ serviceType: "website" | "seo" | "automation" | "maintenance"; features: string[]; estimatedPrice: number; currency: string; message: string; }>' is not assignable to type 'undefined'.
+src/services/aiTools.ts(29,9): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type '({ intent }: z.infer<typeof scheduleCallSchema>) => Promise<{ bookingUrl: string; message: string; }>' is not assignable to type 'undefined'.
+src/services/aiTools.ts(39,9): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type '({ url }: z.infer<typeof analyzeWebsiteSchema>) => Promise<{ url: string; score: number; issues: string[]; opportunity: string; message: string; }>' is not assignable to type 'undefined'.

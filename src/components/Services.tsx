@@ -1,101 +1,230 @@
 "use client"
 
-import React from 'react';
-import { Smartphone, Gauge, RefreshCw, MapPin, Search, PenTool, ArrowUpRight } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import React from 'react'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import {
+    Zap,
+    Smartphone,
+    Search,
+    MessageSquare,
+    TrendingUp,
+    Code2,
+    ArrowUpRight
+} from 'lucide-react'
 
-export const Services: React.FC = () => {
-    const services = [
-        {
-            title: 'Website Renovation',
-            desc: 'We take your existing content and rebuild it in a modern, high-speed framework.',
-            icon: <RefreshCw size={32} />,
-            color: 'text-cyan-400',
-            bg: 'bg-cyan-500/10',
-            border: 'hover:border-cyan-500/50'
+const services = [
+    {
+        icon: Code2,
+        title: "Next.js Web Design",
+        description: "Transform your outdated WordPress site into a lightning-fast Next.js powerhouse. Extreme performance meets stunning design.",
+        href: "/services/web-design",
+        color: "purple",
+        featured: true
+    },
+    {
+        icon: Search,
+        title: "Hyper-Local SEO",
+        description: "Dominate Tri-Cities search results. Be the first business people in Richland discover.",
+        href: "/services/seo",
+        color: "indigo",
+        featured: true
+    },
+    {
+        icon: MessageSquare,
+        title: "AI Automation",
+        description: "Intelligent chatbots and workflows that qualify leads, schedule calls, and work 24/7.",
+        href: "/services/ai-automation",
+        color: "blue",
+        featured: true
+    },
+    {
+        icon: Smartphone,
+        title: "Mobile-First Design",
+        description: "60%+ of customers browse on mobile. We optimize every pixel for mobile dominance.",
+        href: "/services/web-design",
+        color: "purple"
+    },
+    {
+        icon: TrendingUp,
+        title: "Lead Generation",
+        description: "Conversion-optimized systems that turn visitors into qualified leads and paying customers.",
+        href: "/services/lead-generation",
+        color: "indigo"
+    },
+    {
+        icon: Zap,
+        title: "Full-Service Support",
+        description: "From hosting to maintenance, we're your complete digital technology partner.",
+        href: "/contact",
+        color: "blue"
+    }
+]
+
+const getColorClasses = (color: string) => {
+    const colors = {
+        purple: {
+            icon: 'text-accent-purple',
+            gradient: 'from-accent-purple/20 to-accent-purple/5',
+            border: 'group-hover:border-accent-purple/40',
+            glow: 'group-hover:shadow-[0_0_40px_rgba(139,92,246,0.15)]'
         },
-        {
-            title: 'Mobile-First Design',
-            desc: 'Over 60% of local traffic is mobile. We ensure your site looks perfect on phones.',
-            icon: <Smartphone size={32} />,
-            color: 'text-violet-400',
-            bg: 'bg-violet-500/10',
-            border: 'hover:border-violet-500/50'
+        indigo: {
+            icon: 'text-accent-indigo',
+            gradient: 'from-accent-indigo/20 to-accent-indigo/5',
+            border: 'group-hover:border-accent-indigo/40',
+            glow: 'group-hover:shadow-[0_0_40px_rgba(99,102,241,0.15)]'
         },
-        {
-            title: 'Google Business Sync',
-            desc: 'We integrate your Google Maps reviews and hours directly into your website.',
-            icon: <MapPin size={32} />,
-            color: 'text-pink-400',
-            bg: 'bg-pink-500/10',
-            border: 'hover:border-pink-500/50'
-        },
-        {
-            title: 'Instant Speed Upgrade',
-            desc: 'Slow sites lose customers. Our React-based sites load near instantly.',
-            icon: <Gauge size={32} />,
-            color: 'text-yellow-400',
-            bg: 'bg-yellow-500/10',
-            border: 'hover:border-yellow-500/50'
-        },
-        {
-            title: 'Local SEO Booster',
-            desc: 'Structure your data so people in Richland and Tri-Cities find you first.',
-            icon: <Search size={32} />,
-            color: 'text-green-400',
-            bg: 'bg-green-500/10',
-            border: 'hover:border-green-500/50'
-        },
-        {
-            title: 'AI Content Refresh',
-            desc: 'We use AI to rewrite outdated text into persuasive, modern sales copy.',
-            icon: <PenTool size={32} />,
-            color: 'text-orange-400',
-            bg: 'bg-orange-500/10',
-            border: 'hover:border-orange-500/50'
+        blue: {
+            icon: 'text-accent-blue',
+            gradient: 'from-accent-blue/20 to-accent-blue/5',
+            border: 'group-hover:border-accent-blue/40',
+            glow: 'group-hover:shadow-[0_0_40px_rgba(59,130,246,0.15)]'
         }
-    ];
+    }
+    return colors[color as keyof typeof colors]
+}
 
+export function Services() {
     return (
-        <section className="py-24 bg-slate-950 relative overflow-hidden" id="services">
-            {/* Background Decor */}
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/20 via-slate-950 to-slate-950 pointer-events-none" />
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-soft-light"></div>
+        <section className="relative py-32 bg-background-primary overflow-hidden" id="services">
+            {/* Background Elements */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-accent-indigo/5 rounded-full blur-[120px]" />
+                <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent-purple/5 rounded-full blur-[100px]" />
+            </div>
 
-            <div className="container mx-auto px-6 relative z-10">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 mb-4">
-                        How We Help Local Business
-                    </h2>
-                    <p className="text-slate-400 max-w-2xl mx-auto">
-                        Stop losing customers to competitors with better websites. We fix the problems that matter.
-                    </p>
+            <div className="container mx-auto px-6 lg:px-12 relative z-10">
+                {/* Section Header */}
+                <div className="max-w-3xl mb-20">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <div className="inline-block mb-6">
+                            <div className="px-4 py-2 rounded-full bg-accent-purple/10 border border-accent-purple/20 text-accent-purple text-sm font-semibold backdrop-blur-sm">
+                                Core Services
+                            </div>
+                        </div>
+                        <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                            Digital Systems<br />
+                            <span className="text-gradient">Built for Growth</span>
+                        </h2>
+                        <p className="text-xl text-zinc-400 leading-relaxed">
+                            Cutting-edge technology and proven strategies, custom-engineered for local business domination.
+                        </p>
+                    </motion.div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {services.map((s, i) => (
-                        <Card
-                            key={i}
-                            className={`group bg-slate-900/40 border-slate-800 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 cursor-pointer relative overflow-hidden ${s.border}`}
-                        >
-                            <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-white/5 to-transparent pointer-events-none`}></div>
+                {/* Asymmetric Bento Grid Layout */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                    {services.map((service, index) => {
+                        const Icon = service.icon
+                        const colors = getColorClasses(service.color)
+                        const isFeatured = service.featured
 
-                            <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
-                                <div className={`p-4 rounded-2xl w-fit border border-slate-800 transition-colors duration-300 ${s.bg} ${s.color}`}>
-                                    {s.icon}
-                                </div>
-                                <ArrowUpRight className="text-slate-700 group-hover:text-white transition-colors h-6 w-6" />
-                            </CardHeader>
-                            <CardContent>
-                                <CardTitle className="text-xl font-semibold text-white mb-3 group-hover:text-white transition-colors">{s.title}</CardTitle>
-                                <p className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-300 transition-colors">
-                                    {s.desc}
-                                </p>
-                            </CardContent>
-                        </Card>
-                    ))}
+                        return (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{
+                                    delay: index * 0.08,
+                                    duration: 0.6,
+                                    ease: [0.22, 1, 0.36, 1]
+                                }}
+                                className={`${isFeatured ? 'lg:col-span-1 lg:row-span-1' : ''}`}
+                            >
+                                <Link href={service.href}>
+                                    <div className={`
+                                        group relative h-full glass p-8 lg:p-10 rounded-2xl
+                                        border-2 border-white/5 backdrop-blur-xl
+                                        transition-all duration-500 cursor-pointer
+                                        hover:scale-[1.02] hover:-translate-y-1
+                                        ${colors.border} ${colors.glow}
+                                        ${isFeatured ? 'bg-gradient-to-br ' + colors.gradient : ''}
+                                    `}>
+                                        {/* Hover gradient overlay */}
+                                        <div className={`
+                                            absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100
+                                            transition-opacity duration-500 -z-10
+                                            bg-gradient-to-br ${colors.gradient}
+                                        `} />
+
+                                        {/* Icon */}
+                                        <div className="relative mb-8">
+                                            <div className={`
+                                                w-16 h-16 rounded-2xl bg-white/[0.03]
+                                                flex items-center justify-center
+                                                group-hover:scale-110 group-hover:rotate-3
+                                                transition-all duration-500
+                                                border border-white/5
+                                            `}>
+                                                <Icon className={`w-8 h-8 ${colors.icon}`} />
+                                            </div>
+                                            {isFeatured && (
+                                                <div className="absolute -top-3 -right-3">
+                                                    <div className={`
+                                                        w-8 h-8 rounded-full bg-gradient-to-br ${colors.gradient}
+                                                        border-2 border-white/10 backdrop-blur-sm
+                                                        flex items-center justify-center
+                                                        animate-pulse
+                                                    `}>
+                                                        <Zap className="w-4 h-4 text-white fill-white" />
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {/* Content */}
+                                        <div className="relative">
+                                            <h3 className={`
+                                                font-display text-2xl lg:text-3xl font-bold text-white mb-4
+                                                group-hover:text-gradient transition-all duration-300
+                                                ${isFeatured ? 'text-3xl' : ''}
+                                            `}>
+                                                {service.title}
+                                            </h3>
+                                            <p className="text-zinc-400 leading-relaxed mb-6">
+                                                {service.description}
+                                            </p>
+
+                                            {/* CTA Link */}
+                                            <div className="flex items-center gap-2 text-sm font-semibold text-accent-purple group-hover:gap-3 transition-all duration-300">
+                                                <span>Learn more</span>
+                                                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                            </div>
+                                        </div>
+
+                                        {/* Corner accent */}
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                                    </div>
+                                </Link>
+                            </motion.div>
+                        )
+                    })}
                 </div>
+
+                {/* Bottom CTA */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.6, duration: 0.6 }}
+                    className="mt-16 text-center"
+                >
+                    <Link
+                        href="/services"
+                        className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white/[0.03] border-2 border-white/10 text-white font-semibold hover:bg-white/[0.08] hover:border-accent-purple/40 transition-all duration-300 group"
+                    >
+                        View All Services
+                        <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </Link>
+                </motion.div>
             </div>
         </section>
-    );
-};
+    )
+}

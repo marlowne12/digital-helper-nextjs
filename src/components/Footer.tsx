@@ -1,78 +1,128 @@
+"use client"
+
 import Link from "next/link"
+import {
+    MapPin,
+    Phone,
+    Mail,
+    Facebook,
+    Linkedin,
+    Instagram
+} from "lucide-react"
+
+const footerLinks = {
+    services: [
+        { label: "Web Design", href: "/services/web-design" },
+        { label: "Local SEO", href: "/services/seo" },
+        { label: "AI Automation", href: "/services/ai-automation" },
+        { label: "Lead Generation", href: "/services/lead-generation" },
+        { label: "Reputation Management", href: "/services/reputation-management" },
+    ],
+    company: [
+        { label: "About Us", href: "/about" },
+        { label: "Our Work", href: "/work" },
+        { label: "Blog", href: "/blog" },
+        { label: "Pricing", href: "/pricing" },
+        { label: "Contact", href: "/contact" },
+    ],
+    areas: [
+        { label: "Richland", href: "/areas/richland" },
+        { label: "Kennewick", href: "/areas/kennewick" },
+        { label: "Pasco", href: "/areas/pasco" },
+        { label: "West Richland", href: "/areas/west-richland" },
+    ],
+    legal: [
+        { label: "Privacy Policy", href: "/privacy" },
+        { label: "Terms of Service", href: "/terms" },
+    ]
+}
 
 export function Footer() {
     return (
-        <footer className="bg-slate-950 border-t border-slate-900 py-12 text-slate-500 text-sm">
-            <div className="container mx-auto px-6">
-                <div className="grid md:grid-cols-4 gap-8 mb-8">
-                    {/* Company Info - Service Area Business */}
-                    <div>
-                        <h3 className="text-white font-bold mb-4 text-lg">Digital Helper Agency</h3>
-                        <div className="space-y-2">
-                            <p className="text-slate-400">Serving Tri-Cities Area</p>
-                            <p>Richland, WA 99352</p>
-                            <p className="mt-3">
-                                <a href="tel:+15095550123" className="hover:text-cyan-400 transition-colors">
-                                    (509) 555-0123
+        <footer className="bg-background-primary border-t border-white/[0.08] pt-24 pb-12 overflow-hidden relative">
+            {/* Gradient Glow */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[300px] bg-accent-purple/5 blur-[100px] pointer-events-none" />
+
+            <div className="container mx-auto px-6 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+                    {/* Brand Column */}
+                    <div className="space-y-6">
+                        <Link href="/" className="text-xl font-bold tracking-tighter flex items-center gap-2">
+                            <div className="w-8 h-8 bg-accent-gradient rounded-lg" />
+                            <span className="text-white">DIGITAL HELPER</span>
+                        </Link>
+                        <p className="text-zinc-400 leading-relaxed text-sm">
+                            High-performance websites and AI automation for Tri-Cities local businesses. Build for speed, scale, and results.
+                        </p>
+                        <div className="flex gap-4">
+                            {[Facebook, Linkedin, Instagram].map((Icon, i) => (
+                                <a key={i} href="#" className="w-10 h-10 rounded-full glass flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 transition-all">
+                                    <Icon className="w-5 h-5" />
                                 </a>
-                            </p>
-                            <p>
-                                <a href="mailto:hello@digitalhelper.com" className="hover:text-cyan-400 transition-colors">
-                                    hello@digitalhelper.com
-                                </a>
-                            </p>
-                            <p className="mt-3">
-                                <a
-                                    href="https://maps.app.goo.gl/oywZxxYt9w3m1oCK9"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-cyan-400 hover:text-cyan-300 transition-colors text-sm"
-                                >
-                                    View Service Area →
-                                </a>
-                            </p>
+                            ))}
                         </div>
                     </div>
 
-                    {/* Services */}
+                    {/* Services Column */}
                     <div>
-                        <h4 className="text-white font-bold mb-4">Services</h4>
-                        <ul className="space-y-2">
-                            <li><Link href="/seo" className="hover:text-cyan-400 transition-colors">Local SEO</Link></li>
-                            <li><Link href="/web-design" className="hover:text-cyan-400 transition-colors">Web Design</Link></li>
-                            <li><Link href="/ai-agency" className="hover:text-cyan-400 transition-colors">AI Integration</Link></li>
-                            <li><Link href="/case-studies" className="hover:text-cyan-400 transition-colors">Case Studies</Link></li>
-                            <li><Link href="/pricing" className="hover:text-cyan-400 transition-colors">Pricing</Link></li>
+                        <h4 className="text-white font-bold mb-6">Services</h4>
+                        <ul className="space-y-4">
+                            {footerLinks.services.map((link) => (
+                                <li key={link.href}>
+                                    <Link href={link.href} className="text-zinc-400 hover:text-accent-purple transition-colors text-sm">
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
-                    {/* Areas Served */}
+                    {/* Company Column */}
                     <div>
-                        <h4 className="text-white font-bold mb-4">Areas Served</h4>
-                        <ul className="space-y-1">
-                            <li>Richland, WA</li>
-                            <li>Kennewick, WA</li>
-                            <li>Pasco, WA</li>
-                            <li>West Richland, WA</li>
-                            <li>Benton City, WA</li>
-                            <li>All Tri-Cities Area</li>
+                        <h4 className="text-white font-bold mb-6">Company</h4>
+                        <ul className="space-y-4">
+                            {footerLinks.company.map((link) => (
+                                <li key={link.href}>
+                                    <Link href={link.href} className="text-zinc-400 hover:text-white transition-colors text-sm">
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
-                    {/* Business Hours */}
+                    {/* Areas Served Column */}
                     <div>
-                        <h4 className="text-white font-bold mb-4">Business Hours</h4>
-                        <ul className="space-y-1">
-                            <li>Monday - Friday</li>
-                            <li>9:00 AM - 5:00 PM PST</li>
-                            <li className="pt-2">
-                                <a
-                                    href="https://maps.app.goo.gl/oywZxxYt9w3m1oCK9"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-cyan-400 hover:text-cyan-300 transition-colors inline-flex items-center gap-1"
-                                >
-                                    View on Google Maps →
+                        <h4 className="text-white font-bold mb-6">Areas Served</h4>
+                        <ul className="space-y-4">
+                            {footerLinks.areas.map((link) => (
+                                <li key={link.href}>
+                                    <Link href={link.href} className="text-zinc-400 hover:text-white transition-colors text-sm">
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Contact Column */}
+                    <div>
+                        <h4 className="text-white font-bold mb-6">Get in Touch</h4>
+                        <ul className="space-y-4">
+                            <li className="flex gap-3 text-zinc-400 text-sm">
+                                <MapPin className="w-5 h-5 text-accent-purple shrink-0" />
+                                <span>Richland, WA 99352 <br /> Tri-Cities Area</span>
+                            </li>
+                            <li className="flex gap-3 text-zinc-400 text-sm">
+                                <Phone className="w-5 h-5 text-accent-indigo shrink-0" />
+                                <a href="tel:+15099875060" className="hover:text-white transition-colors">
+                                    (509) 987-5060
+                                </a>
+                            </li>
+                            <li className="flex gap-3 text-zinc-400 text-sm">
+                                <Mail className="w-5 h-5 text-accent-blue shrink-0" />
+                                <a href="mailto:digitalhelperwebsite@gmail.com" className="hover:text-white transition-colors">
+                                    digitalhelperwebsite@gmail.com
                                 </a>
                             </li>
                         </ul>
@@ -80,12 +130,16 @@ export function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="text-center border-t border-slate-900 pt-8">
-                    <p>&copy; {new Date().getFullYear()} Digital Helper Agency. All rights reserved.</p>
-                    <div className="mt-4 flex justify-center gap-4">
-                        <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
-                        <a href="https://maps.app.goo.gl/oywZxxYt9w3m1oCK9" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Google Business Profile</a>
+                <div className="pt-12 border-t border-white/[0.08] flex flex-col md:flex-row justify-between items-center gap-6">
+                    <p className="text-zinc-500 text-xs">
+                        &copy; {new Date().getFullYear()} Digital Helper Agency. Richland, WA.
+                    </p>
+                    <div className="flex gap-8">
+                        {footerLinks.legal.map((link) => (
+                            <Link key={link.href} href={link.href} className="text-zinc-500 hover:text-white transition-colors text-xs">
+                                {link.label}
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </div>
