@@ -95,22 +95,33 @@ export const WebsiteAudit: React.FC = () => {
         email,
       }));
 
-      // TODO: Send email to backend API for storage and email delivery
       console.log('📧 Email captured:', email);
       console.log('📄 Sending audit report to:', email);
 
-      // In production, you would:
-      // await fetch('/api/send-audit-email', {
-      //   method: 'POST',
-      //   body: JSON.stringify({ email, auditResults: state.fullResults }),
-      // });
+      // Send email with audit results
+      const emailResponse = await fetch('/api/send-audit-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          auditResults: state.fullResults,
+          websiteUrl: state.url,
+        }),
+      });
+
+      if (emailResponse.ok) {
+        const emailData = await emailResponse.json();
+        console.log('✅ Email sent successfully:', emailData.messageId);
+      } else {
+        console.error('⚠️ Email failed to send, but continuing...');
+      }
 
       // Close email gate - results are already loaded, just unlock them
       setShowEmailGate(false);
 
     } catch (error) {
       console.error('Email submission failed:', error);
-      // Still close the gate - results are already there
+      // Still close the gate - results are already there (email is optional)
       setShowEmailGate(false);
     }
   };
