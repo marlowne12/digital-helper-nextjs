@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Layout, Smartphone, Zap, CheckCircle2, Globe, Clock, ShieldCheck, TrendingUp, Target, ChevronDown, Gauge, Lock, Code, Users, MessageSquare } from 'lucide-react';
 
 export const WebDesign: React.FC = () => {
@@ -32,10 +33,13 @@ export const WebDesign: React.FC = () => {
                 <div className="mb-24 relative group animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
                     <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-3xl blur-2xl group-hover:opacity-100 transition duration-500 opacity-0"></div>
                     <div className="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900 shadow-2xl">
-                        <img
+                        <Image
                             src="/assets/web_design_showcase.png"
-                            alt="Web Design Showcase"
+                            alt="Professional web design showcase for Richland and Tri-Cities businesses - mobile responsive layouts"
+                            width={1200}
+                            height={675}
                             className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+                            priority
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
                         <div className="absolute bottom-6 left-6 md:bottom-12 md:left-12 max-w-md">

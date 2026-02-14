@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
         const prompt = `Analyze this website data: ${JSON.stringify(analysisContext)}. System Instruction: ${SYSTEM_INSTRUCTION}`;
 
         const result = await ai.models.generateContent({
-            model: "gemini-1.5-flash",
+            model: "gemini-1.5-flash-latest",
             contents: [{ role: "user", parts: [{ text: prompt }] }],
             config: {
                 responseMimeType: "application/json"

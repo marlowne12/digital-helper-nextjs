@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Bot, Sparkles, Zap, Brain, MessageSquare, LineChart, Cpu, Workflow, CheckCircle2, ChevronDown, Wrench, Stethoscope, Scale, UtensilsCrossed, TrendingUp } from 'lucide-react';
 
 export const AIAgency: React.FC = () => {
@@ -24,10 +25,13 @@ export const AIAgency: React.FC = () => {
                 <div className="mb-24 relative group animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
                     <div className="absolute -inset-4 bg-gradient-to-r from-pink-600/20 to-violet-600/20 rounded-3xl blur-2xl group-hover:opacity-100 transition duration-500 opacity-0"></div>
                     <div className="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900 shadow-2xl">
-                        <img
+                        <Image
                             src="/assets/ai_workflows.png"
-                            alt="AI Automation Workflows"
+                            alt="AI automation workflows and chatbot integrations for Tri-Cities local businesses"
+                            width={1200}
+                            height={675}
                             className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+                            priority
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
                         <div className="absolute bottom-6 left-6 md:bottom-12 md:left-12 max-w-lg">

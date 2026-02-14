@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Search, TrendingUp, MapPin, Target, BarChart, Globe, Activity, CheckCircle2, Megaphone, Star, ShieldCheck, ChevronDown, DollarSign, Calendar, Zap } from 'lucide-react';
 
 export const SEOService: React.FC = () => {
@@ -24,10 +25,13 @@ export const SEOService: React.FC = () => {
                 <div className="mb-24 relative group animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
                     <div className="absolute -inset-4 bg-gradient-to-r from-cyan-600/20 to-green-600/20 rounded-3xl blur-2xl group-hover:opacity-100 transition duration-500 opacity-0"></div>
                     <div className="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900 shadow-2xl">
-                        <img
+                        <Image
                             src="/assets/seo_analytics.png"
-                            alt="SEO Analytics Dashboard"
+                            alt="Local SEO analytics dashboard showing Google ranking improvements for Tri-Cities businesses"
+                            width={1200}
+                            height={675}
                             className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+                            priority
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
                         <div className="absolute bottom-6 left-6 md:bottom-12 md:left-12 max-w-lg">

@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Sparkles, Loader2, Image as ImageIcon, Star, ArrowRight } from 'lucide-react';
 import { geminiService } from '@/services/geminiService';
 import { CaseStudy } from '@/types';
@@ -129,8 +130,9 @@ export const CaseStudies: React.FC = () => {
                         <div key={study.id} className="animate-fade-in-up bg-slate-900 rounded-3xl overflow-hidden border border-purple-500/30 shadow-2xl shadow-purple-900/10">
                             <div className="grid md:grid-cols-2">
                                 <div className="h-64 md:h-auto relative bg-slate-950">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
                                     {study.imageUrl ? (
-                                        <img src={study.imageUrl} alt={study.client} className="w-full h-full object-cover" />
+                                        <img src={study.imageUrl} alt={`AI-generated case study for ${study.client} - ${study.industry}`} className="w-full h-full object-cover" />
                                     ) : (
                                         <div className="w-full h-full flex items-center justify-center bg-slate-800 text-slate-500">No Image Generated</div>
                                     )}
@@ -176,7 +178,15 @@ export const CaseStudies: React.FC = () => {
                         <div key={study.id} className="group bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-slate-700 transition-colors">
                             <div className="grid md:grid-cols-2">
                                 <div className="h-64 md:h-auto relative overflow-hidden">
-                                    <img src={study.imageUrl} alt={study.client} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100" />
+                                    {study.imageUrl && (
+                                        <Image
+                                            src={study.imageUrl}
+                                            alt={`${study.client} - ${study.industry} website transformation by Digital Helper`}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                            className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
+                                        />
+                                    )}
                                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent md:bg-gradient-to-r"></div>
                                 </div>
                                 <div className="p-8 md:p-12 flex flex-col justify-center">

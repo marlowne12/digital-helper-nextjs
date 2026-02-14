@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
         const ai = new GoogleGenAI({ apiKey });
 
         const chat = ai.chats.create({
-            model: "gemini-1.5-pro", // Fallback to a generally available model if 3-pro-preview isn't available
+            model: "gemini-1.5-flash-latest",
             config: {
                 systemInstruction: SYSTEM_INSTRUCTION,
             },

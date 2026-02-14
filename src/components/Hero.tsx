@@ -1,12 +1,13 @@
 import React from 'react';
+import Link from 'next/link';
 import { ArrowRight, RefreshCw, Cpu, Globe } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 export const Hero: React.FC = () => {
     return (
-        <div className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-slate-950">
+        <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-slate-950" aria-label="Hero">
             {/* Dynamic Background */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
                 {/* Grid Pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
@@ -19,7 +20,7 @@ export const Hero: React.FC = () => {
             <div className="container mx-auto px-6 relative z-10 text-center">
                 {/* Badge */}
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/50 border border-slate-800 backdrop-blur-md text-cyan-400 text-sm mb-8 animate-fade-in-up">
-                    <span className="relative flex h-2 w-2">
+                    <span className="relative flex h-2 w-2" aria-hidden="true">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
                     </span>
@@ -27,7 +28,7 @@ export const Hero: React.FC = () => {
                 </div>
 
                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-8 leading-tight animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-                    Richland's Premier <br />
+                    Richland&apos;s Premier <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-violet-500 to-fuchsia-500 animate-shimmer bg-[size:200%_auto]">
                         Website Modernization
                     </span> Agency
@@ -38,16 +39,36 @@ export const Hero: React.FC = () => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                    <Button className="h-14 px-8 text-lg bg-white text-black font-bold rounded-full hover:bg-slate-200 transition-all hover:scale-105 shadow-lg shadow-white/10 group">
-                        Get a Modern Site <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    <Button asChild className="h-14 px-8 text-lg bg-white text-black font-bold rounded-full hover:bg-slate-200 transition-all hover:scale-105 shadow-lg shadow-white/10 group">
+                        <a href="#contact">
+                            Get a Modern Site <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                        </a>
                     </Button>
-                    <Button variant="outline" className="h-14 px-8 text-lg glass text-white border-white/10 hover:bg-white/10 font-medium rounded-full backdrop-blur-sm">
-                        <RefreshCw className="mr-2 h-5 w-5" /> View Transformations
+                    <Button asChild variant="outline" className="h-14 px-8 text-lg glass text-white border-white/10 hover:bg-white/10 font-medium rounded-full backdrop-blur-sm">
+                        <Link href="/case-studies">
+                            <RefreshCw className="mr-2 h-5 w-5" /> View Transformations
+                        </Link>
                     </Button>
                 </div>
 
+                {/* Stats Bar */}
+                <div className="mt-16 flex flex-wrap justify-center gap-8 md:gap-16 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+                    <div className="text-center">
+                        <div className="text-3xl md:text-4xl font-bold text-white">50+</div>
+                        <div className="text-sm text-slate-500 mt-1">Businesses Served</div>
+                    </div>
+                    <div className="text-center">
+                        <div className="text-3xl md:text-4xl font-bold text-white">4.9/5</div>
+                        <div className="text-sm text-slate-500 mt-1">Client Rating</div>
+                    </div>
+                    <div className="text-center">
+                        <div className="text-3xl md:text-4xl font-bold text-white">145%</div>
+                        <div className="text-sm text-slate-500 mt-1">Avg. Traffic Increase</div>
+                    </div>
+                </div>
+
                 {/* Floating Abstract Cards - Enhanced Visuals */}
-                <div className="mt-20 flex justify-center gap-6 opacity-90 select-none pointer-events-none animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+                <div className="mt-12 hidden md:flex justify-center gap-6 opacity-90 select-none pointer-events-none animate-fade-in-up" style={{ animationDelay: '0.5s' }} aria-hidden="true">
                     {/* Card 1: Old Tech */}
                     <div className="w-48 h-64 glass rounded-2xl rotate-[-6deg] translate-y-8 shadow-2xl flex flex-col p-4 animate-float" style={{ animationDelay: '0s' }}>
                         <div className="w-full h-2 bg-slate-700/50 rounded mb-2"></div>
@@ -63,9 +84,8 @@ export const Hero: React.FC = () => {
                         <div className="absolute -top-3 -right-3 bg-cyan-500 text-black text-[10px] font-bold px-3 py-1 rounded-full shadow-lg flex items-center gap-1">
                             <Cpu size={10} /> AI POWERED
                         </div>
-                        <div className="w-full h-32 bg-slate-950 rounded-lg mb-3 overflow-hidden border border-slate-700 relative group">
+                        <div className="w-full h-32 bg-slate-950 rounded-lg mb-3 overflow-hidden border border-slate-700 relative">
                             <div className="absolute inset-0 bg-cyan-500/20 animate-pulse"></div>
-                            {/* Using CSS gradient placeholder instead of image to avoid unoptimized warnings for now */}
                             <div className="w-full h-full bg-gradient-to-br from-slate-900 to-slate-800 opacity-60"></div>
                         </div>
                         <div className="w-full h-2 bg-cyan-900/50 rounded mb-2 overflow-hidden">
@@ -85,6 +105,6 @@ export const Hero: React.FC = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
