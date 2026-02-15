@@ -6,6 +6,8 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { Stats } from "@/components/Stats";
 import { FAQ } from "@/components/FAQ";
 import { RecentWork } from "@/components/RecentWork";
+import { ROICalculator } from "@/components/ROICalculator";
+import { Testimonials } from "@/components/Testimonials";
 
 export default function Home() {
   return (
@@ -16,6 +18,8 @@ export default function Home() {
       <Services />
       <HowItWorks />
       <Stats />
+      <ROICalculator />
+      <Testimonials />
       <RecentWork />
       <FAQ />
     </main>
