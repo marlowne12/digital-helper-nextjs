@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Sparkles, Loader2, Image as ImageIcon, Star, ArrowRight } from 'lucide-react';
-
+import { geminiService } from '@/services/geminiService';
 import { CaseStudy } from '@/types';
 
 export const CaseStudies: React.FC = () => {
@@ -39,21 +39,16 @@ export const CaseStudies: React.FC = () => {
 
         setIsGenerating(true);
         try {
-            const response = await fetch('/api/generate-case-study', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ industry: industryInput }),
-            });
+            // 1. Generate Text Content
+            const textData = await geminiService.generateCaseStudyText(industryInput);
 
-            if (!response.ok) throw new Error('Failed to generate');
-
-            const data = await response.json();
+            // 2. Generate Image
+            const imageUrl = await geminiService.generateCaseStudyImage(industryInput);
 
             const newStudy: CaseStudy = {
                 id: Date.now().toString(),
-                ...data, // client, industry, challenge, solution, results, imageUrl
+                ...textData,
+                imageUrl,
                 isAiGenerated: true
             };
 
@@ -94,7 +89,7 @@ export const CaseStudies: React.FC = () => {
                             </div>
                             <h3 className="text-2xl font-bold text-white mb-3">See Your Future Success</h3>
                             <p className="text-slate-300 mb-6">
-                                Not sure what we could do for your specific industry? Enter your business type (e.g., &quot;Bakery&quot;, &quot;Law Firm&quot;), and Gemini will generate a
+                                Not sure what we could do for your specific industry? Enter your business type (e.g., "Bakery", "Law Firm"), and Gemini will generate a
                                 <span className="text-purple-400 font-bold"> custom case study & website design</span> instantly.
                             </p>
                             <form onSubmit={handleGenerate} className="flex gap-2">
@@ -134,16 +129,10 @@ export const CaseStudies: React.FC = () => {
                     {generatedStudies.map((study) => (
                         <div key={study.id} className="animate-fade-in-up bg-slate-900 rounded-3xl overflow-hidden border border-purple-500/30 shadow-2xl shadow-purple-900/10">
                             <div className="grid md:grid-cols-2">
-                                <div className="h-64 md:h-auto relative bg-slate-950 min-h-[300px]">
+                                <div className="h-64 md:h-auto relative bg-slate-950">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
                                     {study.imageUrl ? (
-                                        <Image
-                                            src={study.imageUrl}
-                                            alt={study.client}
-                                            fill
-                                            className="object-cover"
-                                            sizes="(max-width: 768px) 100vw, 50vw"
-                                            unoptimized={study.imageUrl.includes('picsum') || study.imageUrl.startsWith('http')}
-                                        />
+                                        <img src={study.imageUrl} alt={`AI-generated case study for ${study.client} - ${study.industry}`} className="w-full h-full object-cover" />
                                     ) : (
                                         <div className="w-full h-full flex items-center justify-center bg-slate-800 text-slate-500">No Image Generated</div>
                                     )}
@@ -188,15 +177,16 @@ export const CaseStudies: React.FC = () => {
                     {staticStudies.map((study) => (
                         <div key={study.id} className="group bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-slate-700 transition-colors">
                             <div className="grid md:grid-cols-2">
-                                <div className="h-64 md:h-auto relative overflow-hidden min-h-[300px]">
-                                    <Image
-                                        src={study.imageUrl || '/placeholder-case-study.jpg'}
-                                        alt={study.client}
-                                        fill
-                                        className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
-                                        sizes="(max-width: 768px) 100vw, 50vw"
-                                        unoptimized
-                                    />
+                                <div className="h-64 md:h-auto relative overflow-hidden">
+                                    {study.imageUrl && (
+                                        <Image
+                                            src={study.imageUrl}
+                                            alt={`${study.client} - ${study.industry} website transformation by Digital Helper`}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                            className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
+                                        />
+                                    )}
                                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent md:bg-gradient-to-r"></div>
                                 </div>
                                 <div className="p-8 md:p-12 flex flex-col justify-center">

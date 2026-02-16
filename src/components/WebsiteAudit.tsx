@@ -1,278 +1,260 @@
 "use client"
 
-import React, { useState } from 'react'
-import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Search, MapPin, ArrowRight, CheckCircle, AlertTriangle, Mail, Lock, Sparkles } from 'lucide-react'
+import React, { useState } from 'react';
+import { Search, AlertTriangle, TrendingUp, Loader2 } from 'lucide-react';
+import { validateUrl, normalizeUrl } from '@/lib/validation';
+import { EmailGate } from '@/components/EmailGate';
+import { AuditResults } from '@/components/AuditResults';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent } from '@/components/ui/card';
+import type { AuditState, AuditResponse } from '@/types/audit.types';
 
-import { BusinessAuditResult } from '@/types'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { storeAuditLead } from '@/app/actions/leads'
+export const WebsiteAudit: React.FC = () => {
+  const [state, setState] = useState<AuditState>({
+    step: 'input',
+    url: '',
+    email: '',
+    quickPreview: null,
+    fullResults: null,
+    error: null,
+    isLoading: false,
+  });
 
-export function WebsiteAudit() {
-    const [businessName, setBusinessName] = useState('')
-    const [location, setLocation] = useState('Richland, WA')
-    const [email, setEmail] = useState('')
-    const [loading, setLoading] = useState(false)
-    const [result, setResult] = useState<BusinessAuditResult | null>(null)
-    const [emailCaptured, setEmailCaptured] = useState(false)
-    const [capturingEmail, setCapturingEmail] = useState(false)
+  const [showEmailGate, setShowEmailGate] = useState(false);
 
-    const handleAudit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        setLoading(true)
-        setResult(null)
+  const handleAuditSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setState(prev => ({ ...prev, error: null }));
 
-        try {
-            const response = await fetch('/api/business-analysis', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ businessName, location })
-            });
-
-            if (!response.ok) throw new Error('Audit failed');
-
-            const data = await response.json();
-
-            // Map the API response to the expected format if needed, 
-            // but the API likely returns { analysis, mapLink, mapTitle } directly or close to it.
-            // Based on previous service code:
-            /*
-             return {
-                analysis: data.analysis,
-                mapLink: data.mapLink,
-                mapTitle: data.mapTitle
-            };
-            */
-
-            setResult({
-                analysis: data.analysis,
-                mapLink: data.mapLink,
-                mapTitle: data.mapTitle
-            });
-            console.log("LEAD CAPTURED (Website Audit):", { businessName, location, auditResult: data })
-        } catch (error) {
-            console.error("Audit failed", error)
-            setResult({ analysis: "Could not complete audit. Please try again." })
-        } finally {
-            setLoading(false)
-        }
+    // Validate URL
+    const validation = validateUrl(state.url);
+    if (!validation.valid) {
+      setState(prev => ({
+        ...prev,
+        error: validation.error || 'Invalid URL',
+      }));
+      return;
     }
 
-    const handleEmailSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        setCapturingEmail(true)
+    // Set loading state
+    setState(prev => ({
+      ...prev,
+      step: 'loading',
+      isLoading: true,
+      error: null,
+    }));
 
-        try {
-            // Store lead in backend
-            const response = await storeAuditLead({
-                email,
-                businessName,
-                location,
-                auditResult: result,
-            })
+    try {
+      // Call API with email to get FULL results immediately
+      // But show them in LOCKED state until user provides email
+      const response = await fetch('/api/website-audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          url: normalizeUrl(state.url),
+          // Pass a dummy email to trigger full results from API
+          email: 'preview@digital-helper.com',
+        }),
+      });
 
-            if (response.success) {
-                setEmailCaptured(true)
-                console.log('[Lead Stored]', response.leadId)
-            } else {
-                console.error('[Lead Storage Failed]', response.message)
-                // Still show results even if storage failed
-                setEmailCaptured(true)
-            }
-        } catch (error) {
-            console.error('[Lead Storage Error]', error)
-            // Still show results even if storage failed
-            setEmailCaptured(true)
-        } finally {
-            setCapturingEmail(false)
-        }
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to analyze website');
+      }
+
+      const data: AuditResponse = await response.json();
+
+      // Show FULL results immediately, but in LOCKED state
+      setState(prev => ({
+        ...prev,
+        step: 'results',
+        isLoading: false,
+        quickPreview: data.quickPreview,
+        fullResults: data.fullResults || null,
+      }));
+
+      // Don't auto-open email gate - let them see locked results first
+
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Failed to analyze website. Please try again.';
+      setState(prev => ({
+        ...prev,
+        step: 'input',
+        isLoading: false,
+        error: message,
+      }));
     }
+  };
 
-    return (
-        <section className="py-24 bg-background-secondary relative overflow-hidden" id="audit">
-            {/* Ambient Background */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.05)_0%,transparent_70%)] pointer-events-none" />
+  const handleEmailSubmit = async (email: string) => {
+    try {
+      // Save the email
+      setState(prev => ({
+        ...prev,
+        email,
+      }));
 
-            <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-4xl mx-auto text-center mb-16">
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-purple/10 border border-accent-purple/20 text-accent-purple text-xs font-bold uppercase tracking-widest mb-8"
-                    >
-                        <Sparkles className="w-4 h-4" />
-                        Free Competition Analysis
-                    </motion.div>
-                    <h2 className="text-3xl md:text-6xl font-bold text-white mb-6">
-                        Is Local SEO <span className="text-gradient">Ignoring You?</span>
-                    </h2>
-                    <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-                        Get an AI-powered breakdown of your Tri-Cities online presence. See exactly where you&apos;re losing leads to competitors in Richland.
-                    </p>
+      console.log('📧 Email captured:', email);
+      console.log('📄 Sending audit report to:', email);
+
+      // Send email with audit results
+      const emailResponse = await fetch('/api/send-audit-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          auditResults: state.fullResults,
+          websiteUrl: state.url,
+        }),
+      });
+
+      if (emailResponse.ok) {
+        const emailData = await emailResponse.json();
+        console.log('✅ Email sent successfully:', emailData.messageId);
+      } else {
+        console.error('⚠️ Email failed to send, but continuing...');
+      }
+
+      // Close email gate - results are already loaded, just unlock them
+      setShowEmailGate(false);
+
+    } catch (error) {
+      console.error('Email submission failed:', error);
+      // Still close the gate - results are already there (email is optional)
+      setShowEmailGate(false);
+    }
+  };
+
+  const handleContactClick = () => {
+    window.location.href = '/contact';
+  };
+
+  const handleNewAudit = () => {
+    setState({
+      step: 'input',
+      url: '',
+      email: '',
+      quickPreview: null,
+      fullResults: null,
+      error: null,
+      isLoading: false,
+    });
+    setShowEmailGate(false);
+  };
+
+  return (
+    <section className="py-24 bg-slate-900 relative">
+      <div className="container mx-auto px-6">
+        {/* Header */}
+        <div className="max-w-4xl mx-auto text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-bold mb-6 tracking-wide uppercase border border-cyan-500/20">
+            <Search size={12} /> Free Website Analysis
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+            Is Your Website{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+              Costing You Customers?
+            </span>
+          </h2>
+          <p className="text-slate-400 text-lg">
+            Get an instant SEO audit and discover what's holding your site back from ranking on Google.
+          </p>
+        </div>
+
+        {/* Input Form - Only show when in input or loading state */}
+        {(state.step === 'input' || state.step === 'loading') && (
+          <Card className="max-w-2xl mx-auto bg-slate-950/50 border-slate-800 backdrop-blur-sm p-2 mb-12 shadow-2xl shadow-cyan-900/10">
+            <CardContent className="p-4">
+              <form onSubmit={handleAuditSubmit} className="flex flex-col md:flex-row gap-4">
+                <div className="flex-1 relative">
+                  <Search
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"
+                    size={20}
+                  />
+                  <Input
+                    type="text"
+                    placeholder="https://yourbusiness.com"
+                    className="w-full pl-12 h-14 bg-slate-900/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-cyan-500 focus:ring-cyan-500/20"
+                    value={state.url}
+                    onChange={(e) => setState(prev => ({ ...prev, url: e.target.value }))}
+                    disabled={state.isLoading}
+                    required
+                  />
+                  {state.error && (
+                    <p className="text-red-400 text-xs mt-2 ml-2">{state.error}</p>
+                  )}
                 </div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="max-w-3xl mx-auto"
+                <Button
+                  type="submit"
+                  disabled={state.isLoading || !state.url.trim()}
+                  className="h-14 px-8 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-base shadow-lg shadow-cyan-500/20 border-0"
                 >
-                    <div className="glass p-2 rounded-[2rem] shadow-glow-lg border-white/[0.05]">
-                        <form onSubmit={handleAudit} className="flex flex-col md:flex-row gap-3">
-                            <div className="flex-1 relative group">
-                                <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-zinc-500 group-focus-within:text-accent-purple transition-colors" size={20} />
-                                <Input
-                                    type="text"
-                                    placeholder="Business Name (e.g. Richland HVAC)"
-                                    className="w-full pl-14 h-16 bg-white/[0.03] border-transparent text-white placeholder:text-zinc-600 focus:bg-white/[0.05] transition-all rounded-2xl"
-                                    value={businessName}
-                                    onChange={(e) => setBusinessName(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <div className="md:w-1/3 relative group">
-                                <MapPin className="absolute left-5 top-1/2 -translate-y-1/2 text-zinc-500 group-focus-within:text-accent-indigo transition-colors" size={20} />
-                                <Input
-                                    type="text"
-                                    placeholder="Location"
-                                    className="w-full pl-14 h-16 bg-white/[0.03] border-transparent text-white placeholder:text-zinc-600 focus:bg-white/[0.05] transition-all rounded-2xl"
-                                    value={location}
-                                    onChange={(e) => setLocation(e.target.value)}
-                                />
-                            </div>
-                            <Button
-                                type="submit"
-                                disabled={loading}
-                                className="h-16 px-10 btn-primary text-lg font-bold rounded-2xl shrink-0 group"
-                            >
-                                {loading ? (
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-5 h-5 border-3 border-white/30 border-t-white rounded-full animate-spin" />
-                                        Thinking...
-                                    </div>
-                                ) : (
-                                    <span className="flex items-center gap-2">
-                                        Audit Now
-                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                    </span>
-                                )}
-                            </Button>
-                        </form>
+                  {state.isLoading ? (
+                    <div className="flex items-center gap-2">
+                      <Loader2 size={18} className="animate-spin" />
+                      Analyzing...
                     </div>
-                </motion.div>
+                  ) : (
+                    'Analyze My Website'
+                  )}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        )}
 
-                {/* Results Section */}
-                <AnimatePresence>
-                    {result && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 40 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="max-w-4xl mx-auto mt-12"
-                        >
-                            <div className="glass rounded-[2.5rem] overflow-hidden border-accent-purple/20">
-                                <div className="h-2 bg-accent-gradient" />
-                                <div className="p-8 md:p-12">
-                                    {!emailCaptured ? (
-                                        <div className="flex flex-col items-center py-12 text-center">
-                                            <div className="w-20 h-20 bg-accent-purple/10 text-accent-purple rounded-3xl flex items-center justify-center mb-8 rotate-3">
-                                                <Lock size={40} />
-                                            </div>
-                                            <h3 className="text-3xl font-bold text-white mb-4">Report Ready for {businessName}</h3>
-                                            <p className="text-zinc-400 mb-10 max-w-sm text-lg">
-                                                We&apos;ve found <span className="text-white font-bold">critical issues</span> in your digital presence. Enter your email to unlock the full analysis.
-                                            </p>
-                                            <form onSubmit={handleEmailSubmit} className="w-full max-w-sm space-y-4">
-                                                <div className="relative group">
-                                                    <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-zinc-500 group-focus-within:text-accent-blue transition-colors" size={20} />
-                                                    <Input
-                                                        type="email"
-                                                        placeholder="work@email.com"
-                                                        className="w-full pl-14 h-16 bg-white/[0.03] border-transparent text-white placeholder:text-zinc-600 focus:bg-white/[0.05] transition-all rounded-2xl"
-                                                        value={email}
-                                                        onChange={(e) => setEmail(e.target.value)}
-                                                        required
-                                                    />
-                                                </div>
-                                                <Button
-                                                    type="submit"
-                                                    disabled={capturingEmail}
-                                                    className="w-full h-16 btn-primary text-lg font-bold rounded-2xl shadow-glow-md"
-                                                >
-                                                    {capturingEmail ? "Unlocking Analysis..." : "View Free Report"}
-                                                </Button>
-                                                <p className="text-xs text-zinc-500">
-                                                    No spam. Just local growth insights for {location}.
-                                                </p>
-                                            </form>
-                                        </div>
-                                    ) : (
-                                        <div className="space-y-8">
-                                            <div className="flex items-center gap-4">
-                                                <div className="p-4 bg-green-500/10 rounded-2xl text-green-400">
-                                                    <CheckCircle size={28} />
-                                                </div>
-                                                <div>
-                                                    <h3 className="text-2xl font-bold text-white">Analysis Complete</h3>
-                                                    <p className="text-zinc-500">Insights for {businessName}</p>
-                                                </div>
-                                            </div>
+        {/* Loading State - Progress Messages */}
+        {state.step === 'loading' && (
+          <div className="max-w-2xl mx-auto text-center">
+            <Card className="bg-slate-800/50 border-slate-700">
+              <CardContent className="p-8">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="w-16 h-16 border-4 border-slate-700 border-t-cyan-400 rounded-full animate-spin"></div>
+                  <div className="space-y-2">
+                    <p className="text-white font-medium">Scanning your website...</p>
+                    <p className="text-slate-400 text-sm">Analyzing SEO metrics...</p>
+                    <p className="text-slate-500 text-xs">Grading performance...</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
-                                            <div className="prose prose-invert max-w-none">
-                                                <div className="text-zinc-300 leading-relaxed whitespace-pre-wrap glass p-8 rounded-3xl border-white/[0.05]">
-                                                    {result.analysis}
-                                                </div>
-                                            </div>
+        {/* Full Results - Show AuditResults Component (Locked until email provided) */}
+        {state.step === 'results' && state.fullResults && (
+          <div className="max-w-5xl mx-auto">
+            <AuditResults
+              results={state.fullResults}
+              onCtaClick={handleContactClick}
+              locked={!state.email}
+              onUnlockClick={() => setShowEmailGate(true)}
+            />
 
-                                            {result.mapLink && (
-                                                <div className="flex items-center justify-between p-6 glass rounded-2xl border-white/[0.05]">
-                                                    <span className="text-zinc-400 flex items-center gap-2">
-                                                        <MapPin className="w-5 h-5 text-accent-purple" />
-                                                        Google Maps Listing Found
-                                                    </span>
-                                                    <a
-                                                        href={result.mapLink}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="text-white hover:text-accent-purple font-bold flex items-center gap-2 transition-colors"
-                                                    >
-                                                        {result.mapTitle || "View Listing"}
-                                                        <ArrowRight className="w-4 h-4" />
-                                                    </a>
-                                                </div>
-                                            )}
-
-                                            <div className="p-8 bg-accent-purple/5 border border-accent-purple/20 rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8">
-                                                <div className="flex gap-5 items-start">
-                                                    <div className="p-3 bg-accent-purple/20 rounded-xl text-accent-purple shrink-0">
-                                                        <AlertTriangle size={24} />
-                                                    </div>
-                                                    <div>
-                                                        <h4 className="text-xl font-bold text-white mb-2">Want to fix these issues?</h4>
-                                                        <p className="text-zinc-400 text-sm">
-                                                            We help services in {location} dominate local search. Let&apos;s discuss a strategy to beat your competitors.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <Button
-                                                    asChild
-                                                    className="btn-primary h-14 px-8 text-md font-bold rounded-xl shrink-0 whitespace-nowrap"
-                                                >
-                                                    <Link href="/contact" className="flex items-center gap-2">
-                                                        Book Consult <ArrowRight size={18} />
-                                                    </Link>
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+            {/* New Audit Button */}
+            <div className="text-center mt-8">
+              <Button
+                onClick={handleNewAudit}
+                variant="outline"
+                className="h-11 px-6 border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white"
+              >
+                Analyze Another Website
+              </Button>
             </div>
-        </section>
-    )
-}
+          </div>
+        )}
+      </div>
+
+      {/* Email Gate Modal */}
+      <EmailGate
+        isOpen={showEmailGate}
+        onSubmit={handleEmailSubmit}
+        onClose={() => setShowEmailGate(false)}
+        title="Get Your Full SEO Report"
+        description="Enter your email to unlock the complete audit with detailed recommendations and quick wins."
+        ctaText="Unlock Full Report"
+      />
+    </section>
+  );
+};
