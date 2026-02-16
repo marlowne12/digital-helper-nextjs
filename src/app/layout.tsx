@@ -3,10 +3,12 @@ import { Syne, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { ChatWidget } from "@/components/ChatWidget";
+import { LazyChat } from "@/components/LazyChat";
 import { Contact } from "@/components/Contact";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { LocalBusinessSchema, WebSiteSchema } from "@/components/StructuredData";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -91,6 +93,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`dark scroll-smooth ${syne.variable} ${dmSans.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Preconnect to external origins for faster resource loading */}
+        <link rel="preconnect" href="https://picsum.photos" />
+        <link rel="dns-prefetch" href="https://picsum.photos" />
+        <link rel="preconnect" href="https://generativelanguage.googleapis.com" />
+      </head>
       <body className={dmSans.className} suppressHydrationWarning>
         <LocalBusinessSchema />
         <WebSiteSchema />
@@ -100,7 +108,9 @@ export default function RootLayout({
           <Contact />
         </RevealOnScroll>
         <Footer />
-        <ChatWidget />
+        <LazyChat />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
