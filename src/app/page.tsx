@@ -1,4 +1,5 @@
 import { Hero } from "@/components/Hero";
+import { HeroAI } from "@/components/HeroAI";
 import { TrustBar } from "@/components/TrustBar";
 import { ProblemAgitation } from "@/components/ProblemAgitation";
 import { WebsiteAudit } from "@/components/WebsiteAudit";
@@ -10,11 +11,32 @@ import { Testimonials } from "@/components/Testimonials";
 import { RecentWork } from "@/components/RecentWork";
 import { FAQ } from "@/components/FAQ";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
+import { ABTest } from "@/components/ABTestProvider";
+import { AlwaysOnBanner } from "@/components/AlwaysOnBanner";
 
+/**
+ * Homepage with A/B tested Hero variants
+ * 
+ * Experiment: hero-variant
+ * - original: Website modernization messaging
+ * - ai-focused: AI automation messaging (aligned with social launch)
+ * 
+ * Sprint 7: Social Alignment
+ */
 export default function Home() {
   return (
     <>
-      <Hero />
+      {/* 24/7 AI Banner - reinforces social messaging */}
+      <AlwaysOnBanner />
+
+      {/* A/B Test: Hero variants */}
+      <ABTest 
+        experiment="hero-variant"
+        variants={{
+          'original': <Hero />,
+          'ai-focused': <HeroAI />,
+        }}
+      />
 
       <TrustBar />
 
@@ -39,7 +61,9 @@ export default function Home() {
       </RevealOnScroll>
 
       <RevealOnScroll>
-        <ROICalculator />
+        <div id="roi-calculator">
+          <ROICalculator />
+        </div>
       </RevealOnScroll>
 
       <RevealOnScroll>

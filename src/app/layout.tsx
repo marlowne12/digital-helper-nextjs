@@ -7,6 +7,7 @@ import { LazyChat } from "@/components/LazyChat";
 import { Contact } from "@/components/Contact";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { LocalBusinessSchema, WebSiteSchema } from "@/components/StructuredData";
+import { ABTestProvider } from "@/components/ABTestProvider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -100,15 +101,17 @@ export default function RootLayout({
         <link rel="preconnect" href="https://generativelanguage.googleapis.com" />
       </head>
       <body className={dmSans.className} suppressHydrationWarning>
-        <LocalBusinessSchema />
-        <WebSiteSchema />
-        <Navbar />
-        <main>{children}</main>
-        <RevealOnScroll>
-          <Contact />
-        </RevealOnScroll>
-        <Footer />
-        <LazyChat />
+        <ABTestProvider>
+          <LocalBusinessSchema />
+          <WebSiteSchema />
+          <Navbar />
+          <main>{children}</main>
+          <RevealOnScroll>
+            <Contact />
+          </RevealOnScroll>
+          <Footer />
+          <LazyChat />
+        </ABTestProvider>
         <Analytics />
         <SpeedInsights />
       </body>

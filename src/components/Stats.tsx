@@ -4,10 +4,10 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const stats = [
-    { value: "95+", label: "Lighthouse Score", sub: "Performance" },
-    { value: "<2s", label: "Load Time", sub: "Speed" },
-    { value: "320%", label: "Lead Increase", sub: "Results" },
-    { value: "24/7", label: "AI Support", sub: "Automation" }
+    { value: "78%", label: "First Responder Wins", sub: "Speed to Lead" },
+    { value: "14s", label: "AI Response Time", sub: "vs 4hr Average" },
+    { value: "320%", label: "Lead Increase", sub: "Client Results" },
+    { value: "24/7", label: "Always On", sub: "Even at 3am" }
 ]
 
 export function Stats() {
