@@ -13,6 +13,8 @@ import { FAQ } from "@/components/FAQ";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { ABTest } from "@/components/ABTestProvider";
 import { AlwaysOnBanner } from "@/components/AlwaysOnBanner";
+import { LeadMagnet } from "@/components/LeadMagnet";
+import { FloatingLeadMagnet } from "@/components/FloatingLeadMagnet";
 
 /**
  * Homepage with A/B tested Hero variants
@@ -77,6 +79,14 @@ export default function Home() {
       <RevealOnScroll>
         <FAQ />
       </RevealOnScroll>
+
+      {/* Lead Magnet Section - before footer */}
+      <RevealOnScroll>
+        <LeadMagnet />
+      </RevealOnScroll>
+
+      {/* Floating Lead Magnet CTA */}
+      <FloatingLeadMagnet />
     </>
   );
 }
