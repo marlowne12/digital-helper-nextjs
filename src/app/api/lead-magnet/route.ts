@@ -20,23 +20,26 @@ interface LeadMagnetRequest {
   source?: string
 }
 
+// Dynamic PDF URLs - served from /api/downloads/[slug]
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://digital-helper.com'
+
 const LEAD_MAGNET_CONTENT = {
   guide: {
     subject: '🚀 Your 24/7 Lead Machine Guide is Here!',
     title: 'The 24/7 Lead Machine',
-    downloadUrl: 'https://digital-helper.com/downloads/24-7-lead-machine-guide.pdf',
+    downloadUrl: `${BASE_URL}/api/downloads/24-7-lead-machine-guide.pdf`,
     preview: 'How AI captures leads while you sleep',
   },
   checklist: {
     subject: '✅ Your AI Readiness Checklist is Here!',
     title: 'AI Readiness Checklist',
-    downloadUrl: 'https://digital-helper.com/downloads/ai-readiness-checklist.pdf',
+    downloadUrl: `${BASE_URL}/api/downloads/ai-readiness-checklist.pdf`,
     preview: 'Is your business ready for 24/7 AI?',
   },
   audit: {
     subject: '⏱️ Your Response Time Audit is Ready!',
     title: 'Response Time Audit',
-    downloadUrl: 'https://digital-helper.com/downloads/response-time-audit.pdf',
+    downloadUrl: `${BASE_URL}/api/downloads/response-time-audit.pdf`,
     preview: 'How fast are you losing leads?',
   },
 }

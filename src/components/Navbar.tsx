@@ -56,8 +56,8 @@ const mainLinks = [
     { href: "/seo-research", label: "Keyword Research" },
     { href: "/work", label: "Work" },
     { href: "/blog", label: "Blog" },
+    { href: "/resources", label: "Resources" },
     { href: "/pricing", label: "Pricing" },
-    { href: "/about", label: "About" },
 ]
 
 export function Navbar() {
