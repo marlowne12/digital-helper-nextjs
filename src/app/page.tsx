@@ -15,6 +15,9 @@ import { ABTest } from "@/components/ABTestProvider";
 import { AlwaysOnBanner } from "@/components/AlwaysOnBanner";
 import { LeadMagnet } from "@/components/LeadMagnet";
 import { FloatingLeadMagnet } from "@/components/FloatingLeadMagnet";
+import { LiveSocialProof } from "@/components/LiveSocialProof";
+import { SocialProofToast } from "@/components/SocialProofToast";
+import { CompetitorComparison } from "@/components/CompetitorComparison";
 
 /**
  * Homepage with A/B tested Hero variants
@@ -24,6 +27,7 @@ import { FloatingLeadMagnet } from "@/components/FloatingLeadMagnet";
  * - ai-focused: AI automation messaging (aligned with social launch)
  * 
  * Sprint 7: Social Alignment
+ * Sprint 10: Live Social Proof + Competitor Comparison
  */
 export default function Home() {
   return (
@@ -42,6 +46,9 @@ export default function Home() {
 
       <TrustBar />
 
+      {/* Live Social Proof - creates urgency */}
+      <LiveSocialProof />
+
       <RevealOnScroll>
         <ProblemAgitation />
       </RevealOnScroll>
@@ -56,6 +63,11 @@ export default function Home() {
 
       <RevealOnScroll>
         <HowItWorks />
+      </RevealOnScroll>
+
+      {/* Competitor Comparison - why us */}
+      <RevealOnScroll>
+        <CompetitorComparison />
       </RevealOnScroll>
 
       <RevealOnScroll>
@@ -87,6 +99,9 @@ export default function Home() {
 
       {/* Floating Lead Magnet CTA */}
       <FloatingLeadMagnet />
+
+      {/* Social Proof Toast Notifications */}
+      <SocialProofToast />
     </>
   );
 }
