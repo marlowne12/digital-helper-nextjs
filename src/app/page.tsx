@@ -7,7 +7,7 @@ import { Services } from "@/components/Services";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Stats } from "@/components/Stats";
 import { ROICalculator } from "@/components/ROICalculator";
-import { Testimonials } from "@/components/Testimonials";
+import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 import { RecentWork } from "@/components/RecentWork";
 import { FAQ } from "@/components/FAQ";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
@@ -18,6 +18,7 @@ import { FloatingLeadMagnet } from "@/components/FloatingLeadMagnet";
 import { LiveSocialProof } from "@/components/LiveSocialProof";
 import { SocialProofToast } from "@/components/SocialProofToast";
 import { CompetitorComparison } from "@/components/CompetitorComparison";
+import { StickyCTA, FloatingCTAButton } from "@/components/StickyCTA";
 
 /**
  * Homepage with A/B tested Hero variants
@@ -80,9 +81,8 @@ export default function Home() {
         </div>
       </RevealOnScroll>
 
-      <RevealOnScroll>
-        <Testimonials />
-      </RevealOnScroll>
+      {/* Testimonials Carousel - Social Proof */}
+      <TestimonialsCarousel />
 
       <RevealOnScroll>
         <RecentWork />
@@ -102,6 +102,10 @@ export default function Home() {
 
       {/* Social Proof Toast Notifications */}
       <SocialProofToast />
+
+      {/* Sticky CTAs - Mobile bar + Desktop floating button */}
+      <StickyCTA />
+      <FloatingCTAButton />
     </>
   );
 }
