@@ -53,8 +53,8 @@ const services = [
 ]
 
 const mainLinks = [
-    { href: "/seo-research", label: "Keyword Research" },
-    { href: "/work", label: "Work" },
+    { href: "/case-studies", label: "Case Studies" },
+    { href: "/seo-research", label: "Tools" },
     { href: "/blog", label: "Blog" },
     { href: "/resources", label: "Resources" },
     { href: "/pricing", label: "Pricing" },

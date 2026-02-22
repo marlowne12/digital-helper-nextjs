@@ -1,11 +1,14 @@
 /**
- * Gemini AI Service for Case Study Generation
+ * Gemini AI Service - Client-side API wrapper
  * 
- * This is a stub service - in production, connect to Gemini API
- * Set GEMINI_API_KEY environment variable to enable
+ * Sprint 12: Now calls /api/case-study endpoint instead of direct Gemini API
+ * The server-side endpoint handles AI generation via OpenRouter
+ * 
+ * @deprecated Direct usage deprecated - use /api/case-study endpoint instead
+ *             Kept for backwards compatibility and utility functions
  */
 
-interface CaseStudyText {
+export interface CaseStudyText {
     client: string;
     industry: string;
     challenge: string;
@@ -13,57 +16,74 @@ interface CaseStudyText {
     results: string[];
 }
 
-// Sample generated content for demo purposes
-const sampleResponses: Record<string, CaseStudyText> = {
-    default: {
-        client: "Local Business Example",
-        industry: "Professional Services",
-        challenge: "Their outdated website wasn't bringing in any leads. Customers couldn't find their services online, and competitors were ranking higher.",
-        solution: "We built a modern, fast-loading website with clear calls-to-action, integrated booking, and local SEO optimization.",
-        results: [
-            "300% increase in website leads",
-            "First page Google ranking",
-            "45% reduction in bounce rate"
-        ]
-    }
-};
+export interface CaseStudyData extends CaseStudyText {
+    imageUrl: string;
+}
 
-export const geminiService = {
-    /**
-     * Generate case study text content
-     * In production: calls Gemini API to generate custom content
-     */
-    async generateCaseStudyText(industry: string): Promise<CaseStudyText> {
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 1500));
+export interface GenerationResult {
+    success: boolean;
+    data?: CaseStudyData;
+    error?: string;
+}
+
+/**
+ * Generate a complete case study via the API
+ * Calls /api/case-study which uses OpenRouter for AI generation
+ */
+export async function generateCaseStudy(industry: string): Promise<GenerationResult> {
+    try {
+        const response = await fetch('/api/case-study', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ industry })
+        });
+
+        const result = await response.json();
         
-        // In production, this would call the Gemini API
-        // For now, return customized sample content
+        if (!result.success) {
+            return {
+                success: false,
+                error: result.error || 'Generation failed'
+            };
+        }
+
         return {
-            client: `${industry} Success Story`,
-            industry: industry,
-            challenge: `This ${industry.toLowerCase()} business was struggling with an outdated online presence. Their website was slow, not mobile-friendly, and they weren't appearing in local search results.`,
-            solution: `We designed a custom website optimized for ${industry.toLowerCase()} businesses, with integrated booking, customer reviews, and local SEO targeting their service area.`,
-            results: [
-                `200% increase in ${industry.toLowerCase()} inquiries`,
-                `Top 3 Google ranking for local searches`,
-                `Mobile traffic up 400%`
-            ]
+            success: true,
+            data: result.data
         };
+    } catch (error) {
+        return {
+            success: false,
+            error: error instanceof Error ? error.message : 'Network error'
+        };
+    }
+}
+
+/**
+ * @deprecated Use generateCaseStudy() instead
+ * Legacy API - maintained for backwards compatibility
+ */
+export const geminiService = {
+    async generateCaseStudyText(industry: string): Promise<CaseStudyText> {
+        const result = await generateCaseStudy(industry);
+        if (!result.success || !result.data) {
+            throw new Error(result.error || 'Generation failed');
+        }
+        const { imageUrl, ...text } = result.data;
+        return text;
     },
 
-    /**
-     * Generate case study image
-     * In production: calls Imagen/DALL-E to generate custom imagery
-     */
     async generateCaseStudyImage(industry: string): Promise<string> {
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Return a placeholder image - in production, this would generate AI imagery
-        const seed = industry.toLowerCase().replace(/\s+/g, '-');
-        return `https://picsum.photos/seed/${seed}/800/600`;
+        const result = await generateCaseStudy(industry);
+        if (!result.success || !result.data) {
+            // Fallback to placeholder
+            const seed = industry.toLowerCase().replace(/\s+/g, '-');
+            return `https://picsum.photos/seed/${seed}/800/600`;
+        }
+        return result.data.imageUrl;
     }
 };
 
-export type { CaseStudyText };
+export type { CaseStudyData as CaseStudy };
