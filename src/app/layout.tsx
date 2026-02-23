@@ -8,6 +8,7 @@ import { Contact } from "@/components/Contact";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { LocalBusinessSchema, WebSiteSchema } from "@/components/StructuredData";
 import { ABTestProvider } from "@/components/ABTestProvider";
+import { ExitIntentPopup } from "@/components/ExitIntentPopup";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -111,6 +112,7 @@ export default function RootLayout({
           </RevealOnScroll>
           <Footer />
           <LazyChat />
+          <ExitIntentPopup />
         </ABTestProvider>
         <Analytics />
         <SpeedInsights />
