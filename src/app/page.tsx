@@ -4,6 +4,7 @@ import { TrustBar } from "@/components/TrustBar";
 import { ProblemAgitation } from "@/components/ProblemAgitation";
 import { WebsiteAudit } from "@/components/WebsiteAudit";
 import { Services } from "@/components/Services";
+import { ServiceCardsEnhanced } from "@/components/ServiceCardsEnhanced";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Stats } from "@/components/Stats";
 import { ROICalculator } from "@/components/ROICalculator";
@@ -21,14 +22,15 @@ import { CompetitorComparison } from "@/components/CompetitorComparison";
 import { StickyCTA, FloatingCTAButton } from "@/components/StickyCTA";
 
 /**
- * Homepage with A/B tested Hero variants
+ * Homepage with A/B tested variants
  * 
- * Experiment: hero-variant
- * - original: Website modernization messaging
- * - ai-focused: AI automation messaging (aligned with social launch)
+ * Experiments:
+ * - hero-variant: original vs ai-focused messaging
+ * - services-variant: original vs enhanced conversion-focused cards
  * 
  * Sprint 7: Social Alignment
  * Sprint 10: Live Social Proof + Competitor Comparison
+ * Sprint 14: Service Cards Redesign
  */
 export default function Home() {
   return (
@@ -58,8 +60,15 @@ export default function Home() {
         <WebsiteAudit />
       </RevealOnScroll>
 
+      {/* A/B Test: Services variants */}
       <RevealOnScroll>
-        <Services />
+        <ABTest 
+          experiment="services-variant"
+          variants={{
+            'original': <Services />,
+            'enhanced': <ServiceCardsEnhanced />,
+          }}
+        />
       </RevealOnScroll>
 
       <RevealOnScroll>

@@ -27,6 +27,11 @@ export const EXPERIMENTS: Record<string, ExperimentConfig> = {
         variants: ['original', 'ai-focused'],
         weights: [0.5, 0.5], // 50/50 split
     },
+    'services-variant': {
+        name: 'services-variant',
+        variants: ['original', 'enhanced'],
+        weights: [0.5, 0.5], // 50/50 split - test enhanced cards
+    },
     // Add more experiments here as needed
 };
 
