@@ -16,83 +16,20 @@ interface StickyCTAProps {
     ctaLink?: string
 }
 
+/**
+ * StickyCTA - Mobile sticky bar
+ * NOTE: Disabled on mobile in favor of MobileBottomNav component
+ * Kept for desktop reference only
+ */
 export function StickyCTA({
     showAfter = 800,
     phone = "(509) 876-8454",
     ctaText = "Get Your Free Audit",
     ctaLink = "/contact"
 }: StickyCTAProps) {
-    const [isVisible, setIsVisible] = useState(false)
-    const [isDismissed, setIsDismissed] = useState(false)
-
-    useEffect(() => {
-        // Check if user has dismissed in this session
-        const dismissed = sessionStorage.getItem('stickyCTADismissed')
-        if (dismissed === 'true') {
-            setIsDismissed(true)
-            return
-        }
-
-        const handleScroll = () => {
-            // Don't show if user is near bottom (footer area)
-            const nearBottom = window.scrollY + window.innerHeight > document.body.scrollHeight - 400
-            setIsVisible(window.scrollY > showAfter && !nearBottom)
-        }
-
-        window.addEventListener('scroll', handleScroll, { passive: true })
-        return () => window.removeEventListener('scroll', handleScroll)
-    }, [showAfter])
-
-    const handleDismiss = () => {
-        setIsDismissed(true)
-        sessionStorage.setItem('stickyCTADismissed', 'true')
-    }
-
-    if (isDismissed) return null
-
-    return (
-        <AnimatePresence>
-            {isVisible && (
-                <motion.div
-                    initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: 100, opacity: 0 }}
-                    transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                    className="fixed bottom-0 left-0 right-0 z-40 md:hidden"
-                >
-                    {/* Mobile Sticky Bar */}
-                    <div className="bg-slate-900/95 backdrop-blur-xl border-t border-purple-500/20 px-4 py-3 shadow-[0_-8px_30px_rgba(0,0,0,0.5)]">
-                        <div className="flex items-center justify-between gap-3">
-                            {/* Quick Message */}
-                            <div className="flex items-center gap-2 text-sm">
-                                <Zap className="w-4 h-4 text-yellow-400 animate-pulse" />
-                                <span className="text-zinc-300 hidden xs:inline">Get started today</span>
-                            </div>
-
-                            {/* Action Buttons */}
-                            <div className="flex items-center gap-2">
-                                <a
-                                    href={`tel:${phone.replace(/[^0-9]/g, '')}`}
-                                    className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/10 text-white text-sm font-medium hover:bg-white/20 transition-colors"
-                                >
-                                    <Phone className="w-4 h-4" />
-                                    <span className="hidden sm:inline">Call</span>
-                                </a>
-                                
-                                <Link
-                                    href={ctaLink}
-                                    className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-bold shadow-lg shadow-purple-500/25 hover:shadow-xl hover:shadow-purple-500/30 transition-all"
-                                >
-                                    <Calendar className="w-4 h-4" />
-                                    <span>{ctaText}</span>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                </motion.div>
-            )}
-        </AnimatePresence>
-    )
+    // Mobile functionality now handled by MobileBottomNav component
+    // This component is retained for potential future desktop use
+    return null
 }
 
 /**

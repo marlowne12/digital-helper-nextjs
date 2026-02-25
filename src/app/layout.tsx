@@ -9,6 +9,9 @@ import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { LocalBusinessSchema, WebSiteSchema } from "@/components/StructuredData";
 import { ABTestProvider } from "@/components/ABTestProvider";
 import { ExitIntentPopup } from "@/components/ExitIntentPopup";
+import { MobileBottomNav } from "@/components/MobileBottomNav";
+import { MobileScrollOptimizer } from "@/components/MobileScrollOptimizer";
+import { MobileCallButton } from "@/components/MobileCallButton";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -103,6 +106,7 @@ export default function RootLayout({
       </head>
       <body className={dmSans.className} suppressHydrationWarning>
         <ABTestProvider>
+          <MobileScrollOptimizer />
           <LocalBusinessSchema />
           <WebSiteSchema />
           <Navbar />
@@ -113,6 +117,8 @@ export default function RootLayout({
           <Footer />
           <LazyChat />
           <ExitIntentPopup />
+          <MobileBottomNav />
+          <MobileCallButton />
         </ABTestProvider>
         <Analytics />
         <SpeedInsights />

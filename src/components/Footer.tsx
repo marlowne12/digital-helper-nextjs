@@ -39,7 +39,7 @@ const footerLinks = {
 
 export function Footer() {
     return (
-        <footer className="bg-background-primary border-t border-white/[0.08] pt-24 pb-12 overflow-hidden relative">
+        <footer className="bg-background-primary border-t border-white/[0.08] pt-24 pb-24 md:pb-12 overflow-hidden relative">
             {/* Gradient Glow */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[300px] bg-accent-purple/5 blur-[100px] pointer-events-none" />
 

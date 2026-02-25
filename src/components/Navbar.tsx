@@ -11,12 +11,11 @@ import {
     Search,
     Bot,
     Users,
-    X,
     Star
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+import { MobileMenu } from "@/components/MobileMenu"
 import { cn } from "@/lib/utils"
 
 const services = [
@@ -54,7 +53,7 @@ const services = [
 
 const mainLinks = [
     { href: "/case-studies", label: "Case Studies" },
-    { href: "/seo-research", label: "Tools" },
+    { href: "/tools", label: "Tools" },
     { href: "/blog", label: "Blog" },
     { href: "/resources", label: "Resources" },
     { href: "/pricing", label: "Pricing" },
@@ -184,56 +183,17 @@ export function Navbar() {
                     </Button>
 
                     {/* Mobile Toggle */}
-                    <span className="md:hidden">
-                        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                            <SheetTrigger asChild>
-                                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-full h-10 w-10">
-                                    {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-                                </Button>
-                            </SheetTrigger>
-                            <SheetContent side="top" className="h-screen bg-background-primary/98 backdrop-blur-xl border-none w-full">
-                                <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
-                                <div className="flex flex-col items-center justify-center h-full gap-8">
-                                    <div className="flex flex-col items-center gap-6 w-full max-w-xs">
-                                        <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Services</div>
-                                        {services.map((service, i) => (
-                                            <motion.div
-                                                key={service.href}
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: i * 0.05 }}
-                                                className="w-full"
-                                            >
-                                                <Link
-                                                    href={service.href}
-                                                    onClick={() => setIsOpen(false)}
-                                                    className="flex items-center gap-4 p-4 rounded-xl bg-white/[0.03] border border-white/5 w-full"
-                                                >
-                                                    {service.icon}
-                                                    <span className="text-lg font-bold text-white">{service.title}</span>
-                                                </Link>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-                                    <div className="flex gap-4">
-                                        {mainLinks.map((link) => (
-                                            <Link
-                                                key={link.href}
-                                                href={link.href}
-                                                onClick={() => setIsOpen(false)}
-                                                className="text-2xl font-bold text-zinc-400 hover:text-white"
-                                            >
-                                                {link.label}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                    <Button asChild className="w-full max-w-xs h-14 text-lg font-bold rounded-full bg-white text-black">
-                                        <Link href="/contact" onClick={() => setIsOpen(false)}>Book a Call</Link>
-                                    </Button>
-                                </div>
-                            </SheetContent>
-                        </Sheet>
-                    </span>
+                    <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="md:hidden text-white hover:bg-white/10 rounded-full h-10 w-10"
+                        onClick={() => setIsOpen(true)}
+                    >
+                        <Menu className="h-5 w-5" />
+                    </Button>
+                    
+                    {/* Mobile Menu */}
+                    <MobileMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
                 </div>
             </motion.div>
         </motion.nav>
