@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { motion, HTMLMotionProps } from "framer-motion"
+import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 interface TouchCardProps {
@@ -57,9 +57,7 @@ export function TouchCard({
             style={style}
             className={cn(
                 "relative select-none touch-manipulation",
-                // Minimum touch target
                 "min-h-[48px]",
-                // Visual press feedback
                 haptic && isPressed && "ring-2 ring-white/10 ring-inset",
                 className
             )}
@@ -71,9 +69,7 @@ export function TouchCard({
 
 interface TouchButtonProps {
     children: React.ReactNode
-    /** Button variant */
     variant?: "primary" | "secondary" | "ghost"
-    /** Button size - all sizes meet 48px minimum */
     size?: "sm" | "md" | "lg"
     className?: string
     disabled?: boolean
@@ -108,11 +104,11 @@ export function TouchButton({
 
     return (
         <motion.button
+            type={type}
             whileTap={disabled ? {} : { scale: 0.96 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
             disabled={disabled}
             onClick={onClick}
-            type={type}
             className={cn(
                 "relative inline-flex items-center justify-center font-semibold rounded-xl",
                 "select-none touch-manipulation",
@@ -132,7 +128,6 @@ interface TouchLinkProps {
     children: React.ReactNode
     href: string
     className?: string
-    /** External link */
     external?: boolean
 }
 
@@ -145,16 +140,13 @@ export function TouchLink({
     className,
     external = false
 }: TouchLinkProps) {
-    const externalProps = external ? {
-        target: "_blank" as const,
-        rel: "noopener noreferrer"
-    } : {}
-
     return (
         <motion.a
             href={href}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            target={external ? "_blank" : undefined}
+            rel={external ? "noopener noreferrer" : undefined}
             className={cn(
                 "inline-flex items-center justify-center",
                 "min-h-[48px] min-w-[48px]",
@@ -162,23 +154,21 @@ export function TouchLink({
                 "active:opacity-80",
                 className
             )}
-            {...externalProps}
         >
             {children}
         </motion.a>
     )
 }
 
+interface TouchRippleProps {
+    children: React.ReactNode
+    className?: string
+}
+
 /**
  * TouchRipple - Visual ripple effect container for touch interactions
  */
-export function TouchRipple({
-    children,
-    className
-}: {
-    children: React.ReactNode
-    className?: string
-}) {
+export function TouchRipple({ children, className }: TouchRippleProps) {
     const [ripples, setRipples] = React.useState<Array<{ x: number; y: number; id: number }>>([])
     const containerRef = React.useRef<HTMLDivElement>(null)
 
@@ -196,7 +186,6 @@ export function TouchRipple({
         const id = Date.now()
         setRipples(prev => [...prev, { x, y, id }])
 
-        // Remove ripple after animation
         setTimeout(() => {
             setRipples(prev => prev.filter(r => r.id !== id))
         }, 600)
