@@ -7,7 +7,6 @@ import { CaseStudiesV2 } from "@/components/v2/CaseStudiesV2";
 import { PricingTeaserV2 } from "@/components/v2/PricingTeaserV2";
 import { FAQV2 } from "@/components/v2/FAQV2";
 import { CTAV2 } from "@/components/v2/CTAV2";
-import { SocialProofToast } from "@/components/SocialProofToast";
 
 /**
  * Redesign V2 Preview — visit /redesign to preview
@@ -25,7 +24,6 @@ export default function RedesignPreview() {
       <PricingTeaserV2 />
       <FAQV2 />
       <CTAV2 />
-      <SocialProofToast />
     </>
   );
 }

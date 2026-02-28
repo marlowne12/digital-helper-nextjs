@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { Syne, DM_Sans } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { NavbarV2 } from "@/components/v2/NavbarV2";
+import { FooterV2 } from "@/components/v2/FooterV2";
 import { LazyChat } from "@/components/LazyChat";
-import { Contact } from "@/components/Contact";
-import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { LocalBusinessSchema, WebSiteSchema } from "@/components/StructuredData";
 import { ABTestProvider } from "@/components/ABTestProvider";
 import { ExitIntentPopup } from "@/components/ExitIntentPopup";
@@ -109,12 +107,9 @@ export default function RootLayout({
           <MobileScrollOptimizer />
           <LocalBusinessSchema />
           <WebSiteSchema />
-          <Navbar />
+          <NavbarV2 />
           <main>{children}</main>
-          <RevealOnScroll>
-            <Contact />
-          </RevealOnScroll>
-          <Footer />
+          <FooterV2 />
           <LazyChat />
           <ExitIntentPopup />
           <MobileBottomNav />
