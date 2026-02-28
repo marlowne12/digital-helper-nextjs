@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
 
         // Use standard stable model
         const textResponse = await ai.models.generateContent({
-            model: "gemini-1.5-flash-latest",
+            model: "gemini-1.5-flash",
             contents: { parts: [{ text: prompt }] },
             config: {
                 responseMimeType: "application/json",

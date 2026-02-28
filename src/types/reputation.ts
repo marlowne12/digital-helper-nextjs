@@ -64,3 +64,40 @@ export interface AuditResult {
     recommendations: Recommendation[];
     websiteAnalysis?: WebsiteAnalysis;
 }
+
+// Lead Scraper Types
+export interface SocialMediaLinks {
+    facebook?: string;
+    instagram?: string;
+    twitter?: string;
+    linkedin?: string;
+    youtube?: string;
+    tiktok?: string;
+}
+
+export interface EnrichedLead {
+    placeId: string;
+    name: string;
+    address: string;
+    phone?: string;
+    website?: string;
+    rating: number;
+    totalReviews: number;
+    categories: string[];
+    gbpProfileUrl: string;
+    contactEmail?: string;
+    socialMedia?: SocialMediaLinks;
+    sslStatus: 'secure' | 'insecure' | 'none';
+    websiteExists: boolean;
+    leadScore: number;
+    tier: 'hot' | 'warm' | 'cold' | 'poor_fit';
+    opportunities: string[];
+    photoUrl?: string;
+}
+
+export interface LeadScraperFilters {
+    noWebsite: boolean;
+    noSSL: boolean;
+    lowReviews: boolean;
+    poorRating: boolean;
+}

@@ -32,3 +32,21 @@ export const getPortfolioSchema = z.object({
 export const comparePlansSchema = z.object({
     serviceType: serviceTypeSchema,
 });
+
+export const leadScraperSchema = z.object({
+    apiKey: z.string().min(1, 'API Key is required'),
+    query: z.string().min(1, 'Query is required'),
+    location: z.string().min(1, 'Location is required'),
+    maxResults: z.number().int().min(1).max(60).default(20),
+    filters: z.object({
+        noWebsite: z.boolean().default(false),
+        noSSL: z.boolean().default(false),
+        lowReviews: z.boolean().default(false),
+        poorRating: z.boolean().default(false),
+    }).default({
+        noWebsite: false,
+        noSSL: false,
+        lowReviews: false,
+        poorRating: false,
+    }),
+});

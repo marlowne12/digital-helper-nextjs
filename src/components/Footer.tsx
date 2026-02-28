@@ -26,10 +26,10 @@ const footerLinks = {
         { label: "Contact", href: "/contact" },
     ],
     areas: [
-        { label: "Richland", href: "/areas/richland" },
-        { label: "Kennewick", href: "/areas/kennewick" },
-        { label: "Pasco", href: "/areas/pasco" },
-        { label: "West Richland", href: "/areas/west-richland" },
+        { label: "Richland", href: "/locations/richland" },
+        { label: "Kennewick", href: "/locations/kennewick" },
+        { label: "Pasco", href: "/locations/pasco" },
+        { label: "West Richland", href: "/locations/west-richland" },
     ],
     legal: [
         { label: "Privacy Policy", href: "/privacy" },

@@ -1,6 +1,7 @@
 'use server';
 
 import { trackLeadCapture } from '@/lib/analytics';
+import { createLead, isSupabaseConfigured, type LeadData as DBLeadData } from '@/lib/database';
 
 export interface LeadData {
     email: string;
@@ -20,15 +21,10 @@ interface LeadResponse {
 /**
  * Store a lead in the system
  *
- * Current implementation:
- * - Logs to console (for development)
- * - Sends notification email (when RESEND_API_KEY is configured)
- * - Can be extended to store in database/CRM
- *
- * To integrate with a database:
- * - Prisma: await prisma.lead.create({ data: leadData })
- * - Vercel KV: await kv.set(`lead:${leadId}`, JSON.stringify(leadData))
- * - Supabase: await supabase.from('leads').insert(leadData)
+ * Stores lead in:
+ * 1. Supabase database (if configured)
+ * 2. Console log (for debugging)
+ * 3. Email notification (when RESEND_API_KEY is configured)
  */
 export async function storeLead(data: LeadData): Promise<LeadResponse> {
     try {
@@ -54,19 +50,35 @@ export async function storeLead(data: LeadData): Promise<LeadResponse> {
             await sendLeadNotification(lead);
         }
 
-        // TODO: Store in database
-        // Option 1: Vercel KV (simple key-value)
-        // if (process.env.KV_REST_API_URL) {
-        //     const { kv } = await import('@vercel/kv');
-        //     await kv.set(`lead:${leadId}`, JSON.stringify(lead));
-        //     await kv.lpush('leads:all', leadId);
-        // }
+        // Store in Supabase database if configured
+        if (isSupabaseConfigured()) {
+            const dbData: DBLeadData = {
+                email: data.email,
+                businessName: data.businessName,
+                location: data.location,
+                source: data.source,
+                metadata: data.metadata,
+                auditResult: data.auditResult,
+            };
 
-        // Option 2: Prisma/Database
-        // await prisma.lead.create({ data: lead });
-
-        // Option 3: External CRM (HubSpot, Salesforce, etc.)
-        // await pushToCRM(lead);
+            const result = await createLead(dbData);
+            
+            if (result.success && result.id) {
+                return {
+                    success: true,
+                    message: 'Lead captured successfully',
+                    leadId: result.id,
+                };
+            } else {
+                console.warn('[Lead Storage] Database storage failed, falling back to log only:', result.error);
+                // Still return success since we logged it
+                return {
+                    success: true,
+                    message: 'Lead captured (database unavailable)',
+                    leadId,
+                };
+            }
+        }
 
         return {
             success: true,

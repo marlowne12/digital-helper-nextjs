@@ -1,221 +1,162 @@
 "use client"
 
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Clock } from 'lucide-react';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent } from "@/components/ui/card";
+import React from 'react'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { Mail, Phone, MapPin, Calendar, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import { noiseTextureStyle } from '@/lib/utils'
 
-export const Contact: React.FC = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        service: '',
-        budget: '',
-        message: ''
-    });
-    const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+export const CONTACT_BENEFITS = [
+    "Free 30-min strategy call",
+    "No-obligation consultation",
+    "Custom growth roadmap"
+] as const;
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setStatus('sending');
-
-        try {
-            // In production, replace with actual API endpoint
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            setStatus('success');
-            setFormData({ name: '', email: '', phone: '', service: '', budget: '', message: '' });
-        } catch {
-            setStatus('error');
-        }
-    };
-
+export function Contact() {
     return (
-        <section className="py-24 bg-slate-950 relative overflow-hidden" id="contact" aria-label="Contact Us">
-            {/* Background Decor */}
-            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none" aria-hidden="true"></div>
+        <section className="py-32 bg-background-primary relative overflow-hidden" id="contact">
+            {/* Background Elements */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-purple/10 rounded-full blur-[150px]" />
+                <div className="absolute inset-0 opacity-[0.015]" style={{
+                    ...noiseTextureStyle,
+                    backgroundRepeat: 'repeat',
+                    backgroundSize: '128px 128px'
+                }} />
+            </div>
 
-            <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-5xl mx-auto">
-                    <div className="grid md:grid-cols-2 gap-12 items-start">
-                        {/* Contact Info */}
-                        <div>
-                            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                                Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">Transform</span> Your Online Presence?
-                            </h2>
-                            <p className="text-slate-400 mb-8 text-lg">
-                                We&apos;re Richland&apos;s local digital experts. Let&apos;s chat about your goals and how we can help you grow.
-                            </p>
+            <div className="container mx-auto px-6 lg:px-12 relative z-10">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="glass border-2 border-white/10 p-8 md:p-16 lg:p-20 rounded-3xl relative overflow-hidden backdrop-blur-2xl"
+                >
+                    {/* Decorative Elements */}
+                    <div className="absolute -top-32 -right-32 w-96 h-96 bg-accent-purple/20 blur-[120px] rounded-full animate-pulse" />
+                    <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-accent-blue/15 blur-[100px] rounded-full" />
 
+                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative">
+                        {/* Left Column - Info */}
+                        <div className="space-y-10">
                             <div className="space-y-6">
-                                <a href="tel:+15095550123" className="flex items-center gap-4 group">
-                                    <div className="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
-                                        <Phone size={20} />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-slate-500">Call Us</p>
-                                        <span className="text-white font-semibold group-hover:text-cyan-400 transition-colors">(509) 555-0123</span>
-                                    </div>
-                                </a>
-
-                                <a href="mailto:hello@digitalhelper.com" className="flex items-center gap-4 group">
-                                    <div className="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
-                                        <Mail size={20} />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-slate-500">Email Us</p>
-                                        <span className="text-white font-semibold group-hover:text-purple-400 transition-colors">hello@digitalhelper.com</span>
-                                    </div>
-                                </a>
-
-                                <div className="flex items-center gap-4 group">
-                                    <div className="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-pink-400 group-hover:scale-110 transition-transform">
-                                        <MapPin size={20} />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-slate-500">Location</p>
-                                        <p className="text-white font-semibold">Richland, WA (Serving Tri-Cities)</p>
+                                <div className="inline-block">
+                                    <div className="px-4 py-2 rounded-full bg-accent-purple/10 border border-accent-purple/20 text-accent-purple text-sm font-semibold backdrop-blur-sm inline-flex items-center gap-2">
+                                        <Sparkles className="w-4 h-4" />
+                                        Let&apos;s Work Together
                                     </div>
                                 </div>
+                                <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                                    Ready to <br />
+                                    <span className="text-gradient">Dominate</span> <br />
+                                    Locally?
+                                </h2>
+                                <p className="text-xl text-zinc-400 leading-relaxed max-w-lg">
+                                    We&apos;re Richland&apos;s local digital experts. Let&apos;s discuss your goals and build your digital growth strategy.
+                                </p>
+                            </div>
 
-                                <div className="flex items-center gap-4 group">
-                                    <div className="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform">
-                                        <Clock size={20} />
+                            {/* Contact Methods */}
+                            <div className="space-y-6">
+                                <a
+                                    href="tel:+15099875060"
+                                    className="group flex items-center gap-5 p-5 rounded-2xl glass border border-white/5 hover:border-accent-purple/40 transition-all duration-300 hover:scale-[1.02]"
+                                >
+                                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-purple/20 to-accent-purple/5 border border-accent-purple/20 flex items-center justify-center text-accent-purple group-hover:scale-110 transition-transform">
+                                        <Phone size={24} />
                                     </div>
                                     <div>
-                                        <p className="text-sm text-slate-500">Response Time</p>
-                                        <p className="text-white font-semibold">Within 24 hours</p>
+                                        <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Call Us</div>
+                                        <div className="text-2xl font-display font-bold text-white group-hover:text-accent-purple transition-colors">
+                                            (509) 987-5060
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a
+                                    href="mailto:digitalhelperwebsite@gmail.com"
+                                    className="group flex items-center gap-5 p-5 rounded-2xl glass border border-white/5 hover:border-accent-indigo/40 transition-all duration-300 hover:scale-[1.02]"
+                                >
+                                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-indigo/20 to-accent-indigo/5 border border-accent-indigo/20 flex items-center justify-center text-accent-indigo group-hover:scale-110 transition-transform">
+                                        <Mail size={24} />
+                                    </div>
+                                    <div className="min-w-0">
+                                        <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Email Us</div>
+                                        <div className="text-lg font-display font-bold text-white group-hover:text-accent-indigo transition-colors truncate">
+                                            digitalhelperwebsite@gmail.com
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <div className="flex items-center gap-4 p-5 glass rounded-2xl border border-white/5 bg-white/[0.02]">
+                                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-blue/20 to-accent-blue/5 border border-accent-blue/20 flex items-center justify-center text-accent-blue shrink-0">
+                                        <MapPin size={24} />
+                                    </div>
+                                    <div>
+                                        <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Location</div>
+                                        <p className="text-lg font-display font-bold text-white">Richland, WA 99352</p>
+                                        <p className="text-sm text-zinc-500 mt-0.5">Serving the entire Tri-Cities</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Contact Form */}
-                        <Card className="bg-slate-900/80 border-slate-800 backdrop-blur-md shadow-2xl">
-                            <CardContent className="p-8">
-                                {status === 'success' ? (
-                                    <div className="text-center py-12 animate-fade-in-up">
-                                        <div className="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                                            <Send size={32} />
-                                        </div>
-                                        <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-                                        <p className="text-slate-400">We&apos;ll get back to you within 24 hours.</p>
-                                        <Button
-                                            className="mt-6"
-                                            variant="outline"
-                                            onClick={() => setStatus('idle')}
+                        {/* Right Column - CTA */}
+                        <div className="space-y-8 lg:pl-12 lg:border-l-2 border-white/10">
+                            <div className="space-y-6">
+                                <h3 className="font-display text-3xl md:text-4xl font-bold text-white">
+                                    Start Your Digital Transformation
+                                </h3>
+                                <p className="text-lg text-zinc-400 leading-relaxed">
+                                    Skip the back-and-forth. Book a discovery call directly on our calendar and get a clear, actionable roadmap for growth.
+                                </p>
+
+                                {/* Benefits List */}
+                                <div className="space-y-3 py-6">
+                                    {CONTACT_BENEFITS.map((benefit, i) => (
+                                        <motion.div
+                                            key={i}
+                                            initial={{ opacity: 0, x: -20 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: i * 0.1 }}
+                                            className="flex items-center gap-3"
                                         >
-                                            Send Another
-                                        </Button>
+                                            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-accent-purple to-accent-blue flex items-center justify-center shrink-0">
+                                                <CheckCircle2 className="w-4 h-4 text-white" />
+                                            </div>
+                                            <span className="text-white font-semibold">{benefit}</span>
+                                        </motion.div>
+                                    ))}
+                                </div>
+
+                                {/* Primary CTA */}
+                                <div className="space-y-6">
+                                    <Button asChild className="w-full h-20 text-xl font-bold bg-gradient-to-r from-accent-purple via-accent-indigo to-accent-blue hover:opacity-90 transition-all duration-300 shadow-[0_0_40px_rgba(139,92,246,0.3)] hover:shadow-[0_0_60px_rgba(139,92,246,0.4)] rounded-2xl group relative overflow-hidden">
+                                        <Link href="/contact" className="flex items-center justify-center gap-3">
+                                            <Calendar className="w-6 h-6" />
+                                            Book Your Free Strategy Call
+                                            <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                                        </Link>
+                                    </Button>
+
+                                    {/* Trust Signals */}
+                                    <div className="flex items-center justify-center gap-4 text-zinc-500 text-xs uppercase tracking-widest font-bold">
+                                        <div className="h-px w-12 bg-gradient-to-r from-transparent to-zinc-700" />
+                                        <span className="flex items-center gap-2">
+                                            <CheckCircle2 className="w-4 h-4 text-accent-purple" />
+                                            100% Free & No Pressure
+                                        </span>
+                                        <div className="h-px w-12 bg-gradient-to-l from-transparent to-zinc-700" />
                                     </div>
-                                ) : (
-                                    <form onSubmit={handleSubmit} className="space-y-5">
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                            <div>
-                                                <label htmlFor="contact-name" className="block text-sm font-medium text-slate-400 mb-2">Name *</label>
-                                                <Input
-                                                    id="contact-name"
-                                                    type="text"
-                                                    value={formData.name}
-                                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                                    placeholder="Your Name"
-                                                    className="bg-slate-950/50 border-slate-700 text-white placeholder:text-slate-600 focus:ring-cyan-500"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label htmlFor="contact-email" className="block text-sm font-medium text-slate-400 mb-2">Email *</label>
-                                                <Input
-                                                    id="contact-email"
-                                                    type="email"
-                                                    value={formData.email}
-                                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                                    placeholder="john@example.com"
-                                                    className="bg-slate-950/50 border-slate-700 text-white placeholder:text-slate-600 focus:ring-cyan-500"
-                                                    required
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="contact-phone" className="block text-sm font-medium text-slate-400 mb-2">Phone</label>
-                                            <Input
-                                                id="contact-phone"
-                                                type="tel"
-                                                value={formData.phone}
-                                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                                placeholder="(509) 555-0000"
-                                                className="bg-slate-950/50 border-slate-700 text-white placeholder:text-slate-600 focus:ring-cyan-500"
-                                            />
-                                        </div>
-
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                            <div>
-                                                <label htmlFor="contact-service" className="block text-sm font-medium text-slate-400 mb-2">Service Interested In</label>
-                                                <select
-                                                    id="contact-service"
-                                                    value={formData.service}
-                                                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                                                    className="w-full h-10 rounded-md bg-slate-950/50 border border-slate-700 text-white px-3 text-sm focus:ring-cyan-500 focus:ring-1 focus:outline-none"
-                                                >
-                                                    <option value="">Select a service</option>
-                                                    <option value="web-design">Web Design</option>
-                                                    <option value="seo">Local SEO</option>
-                                                    <option value="ai-automation">AI Automation</option>
-                                                    <option value="full-package">Full Package</option>
-                                                    <option value="other">Other</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label htmlFor="contact-budget" className="block text-sm font-medium text-slate-400 mb-2">Project Budget</label>
-                                                <select
-                                                    id="contact-budget"
-                                                    value={formData.budget}
-                                                    onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                                                    className="w-full h-10 rounded-md bg-slate-950/50 border border-slate-700 text-white px-3 text-sm focus:ring-cyan-500 focus:ring-1 focus:outline-none"
-                                                >
-                                                    <option value="">Select budget range</option>
-                                                    <option value="under-2k">Under $2,000</option>
-                                                    <option value="2k-5k">$2,000 - $5,000</option>
-                                                    <option value="5k-10k">$5,000 - $10,000</option>
-                                                    <option value="10k+">$10,000+</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="contact-message" className="block text-sm font-medium text-slate-400 mb-2">Tell us about your project *</label>
-                                            <Textarea
-                                                id="contact-message"
-                                                value={formData.message}
-                                                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                                placeholder="What are your goals? What problems are you facing?"
-                                                className="bg-slate-950/50 border-slate-700 text-white placeholder:text-slate-600 focus:ring-cyan-500 min-h-[100px]"
-                                                required
-                                            />
-                                        </div>
-
-                                        {status === 'error' && (
-                                            <p className="text-red-400 text-sm">Something went wrong. Please try again or email us directly.</p>
-                                        )}
-
-                                        <Button
-                                            type="submit"
-                                            className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold h-12 text-lg shadow-lg shadow-cyan-500/20"
-                                            disabled={status === 'sending'}
-                                        >
-                                            {status === 'sending' ? 'Sending...' : 'Get Your Free Consultation'}
-                                        </Button>
-                                        <p className="text-xs text-slate-500 text-center">No commitment required. We respond within 24 hours.</p>
-                                    </form>
-                                )}
-                            </CardContent>
-                        </Card>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
-    );
-};
+    )
+}

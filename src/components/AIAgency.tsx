@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { Bot, Sparkles, Zap, Brain, MessageSquare, LineChart, Cpu, Workflow, CheckCircle2, ChevronDown, Wrench, Stethoscope, Scale, UtensilsCrossed, TrendingUp } from 'lucide-react';
+import Image from 'next/image';
 
 export const AIAgency: React.FC = () => {
     return (
@@ -26,12 +26,10 @@ export const AIAgency: React.FC = () => {
                     <div className="absolute -inset-4 bg-gradient-to-r from-pink-600/20 to-violet-600/20 rounded-3xl blur-2xl group-hover:opacity-100 transition duration-500 opacity-0"></div>
                     <div className="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900 shadow-2xl">
                         <Image
-                            src="/assets/ai_workflows.png"
-                            alt="AI automation workflows and chatbot integrations for Tri-Cities local businesses"
-                            width={1200}
-                            height={675}
-                            className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
-                            priority
+                            src="/assets/ai_workflows.webp"
+                            alt="AI Automation Workflows"
+                            fill
+                            className="object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
                         <div className="absolute bottom-6 left-6 md:bottom-12 md:left-12 max-w-lg">
@@ -39,7 +37,7 @@ export const AIAgency: React.FC = () => {
                                 <Workflow size={24} />
                                 <span className="text-2xl">Intelligent Workflows</span>
                             </div>
-                            <p className="text-slate-300 text-sm md:text-base italic">"Our automation systems replace up to 40 hours of manual labor per week for local service businesses."</p>
+                            <p className="text-slate-300 text-sm md:text-base italic">&quot;Our automation systems replace up to 40 hours of manual labor per week for local service businesses.&quot;</p>
                         </div>
                     </div>
                 </div>
