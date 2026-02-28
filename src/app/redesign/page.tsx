@@ -4,12 +4,14 @@ import { ProblemV2 } from "@/components/v2/ProblemV2";
 import { ServicesV2 } from "@/components/v2/ServicesV2";
 import { HowItWorksV2 } from "@/components/v2/HowItWorksV2";
 import { CaseStudiesV2 } from "@/components/v2/CaseStudiesV2";
+import { PricingTeaserV2 } from "@/components/v2/PricingTeaserV2";
+import { FAQV2 } from "@/components/v2/FAQV2";
 import { CTAV2 } from "@/components/v2/CTAV2";
 import { SocialProofToast } from "@/components/SocialProofToast";
 
 /**
  * Redesign V2 Preview — visit /redesign to preview
- * Deploy: swap src/app/page.tsx with this content when ready
+ * Deploy: replace src/app/page.tsx content with this when ready
  */
 export default function RedesignPreview() {
   return (
@@ -20,6 +22,8 @@ export default function RedesignPreview() {
       <ServicesV2 />
       <HowItWorksV2 />
       <CaseStudiesV2 />
+      <PricingTeaserV2 />
+      <FAQV2 />
       <CTAV2 />
       <SocialProofToast />
     </>
