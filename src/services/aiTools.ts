@@ -35,26 +35,49 @@ export const aiTools = {
     scheduleCall: tool({
         description: 'Get a booking link for a consultation call',
         parameters: scheduleCallSchema,
-        // @ts-expect-error: Tool type inference mismatch with Zod
+                // @ts-expect-error: Tool type inference mismatch with Zod
         execute: async ({ intent: _intent }: z.infer<typeof scheduleCallSchema>) => { // eslint-disable-line @typescript-eslint/no-unused-vars
+            // TODO: Replace NEXT_PUBLIC_CALENDLY_URL with real booking link in .env
+            const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || null
             return {
-                bookingUrl: 'https://calendly.com/digitalhelper/consultation',
-                message: "I've generated a booking link for you. Please choose a time that works best."
+                message: calendlyUrl
+                    ? 'Book your call here: ' + calendlyUrl
+                    : 'To schedule a call, please contact us directly at hello@digital-helper.com',
+                url: calendlyUrl,
             }
         }
     }),
     analyzeWebsite: tool({
         description: 'Analyze a provided website URL for improvements',
         parameters: analyzeWebsiteSchema,
-        // @ts-expect-error: Tool type inference mismatch with Zod
+                // @ts-expect-error: Tool type inference mismatch with Zod
         execute: async ({ url }: z.infer<typeof analyzeWebsiteSchema>) => {
-            // Mock analysis for now
-            return {
-                url,
-                score: 45,
-                issues: ['Mobile responsiveness issues detected', 'Slow page load times (LCP > 2.5s)', 'Missing meta descriptions'],
-                opportunity: 'High - modernizing this site could double your conversion rate.',
-                message: `I've taken a quick look at ${url}. It scores about 45/100. The main issues are load speed and mobile responsiveness. We could fix these to improve your Google ranking significantly.`
+            try {
+                const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+                const response = await fetch(baseUrl + '/api/seo-analysis', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url }),
+                })
+
+                if (!response.ok) throw new Error('API returned ' + response.status)
+
+                const data = await response.json()
+                return {
+                    url,
+                    score: data.overallScore ?? data.score ?? 0,
+                    issues: data.quickWins ?? data.issues ?? [],
+                    opportunity: data.summary ?? 'Analysis complete.',
+                    disclaimer: undefined,
+                }
+            } catch (error) {
+                return {
+                    url,
+                    score: null,
+                    issues: [],
+                    opportunity: null,
+                    disclaimer: 'Live analysis unavailable. Contact us for a free manual audit.',
+                }
             }
         }
     }),
