@@ -65,6 +65,17 @@ export const WebsiteAudit: React.FC = () => {
 
       const data: AuditResponse = await response.json();
 
+      // Guard: if the API returned no usable results, surface an error
+      if (!data.fullResults && !data.quickPreview) {
+        setState(prev => ({
+          ...prev,
+          step: 'input',
+          isLoading: false,
+          error: 'We could not complete the audit. Please check the URL and try again, or contact us directly.',
+        }));
+        return;
+      }
+
       // Show FULL results immediately, but in LOCKED state
       setState(prev => ({
         ...prev,
@@ -76,13 +87,12 @@ export const WebsiteAudit: React.FC = () => {
 
       // Don't auto-open email gate - let them see locked results first
 
-    } catch (error) {
-      const message = error instanceof Error ? error.message : 'Failed to analyze website. Please try again.';
+    } catch (err) {
       setState(prev => ({
         ...prev,
         step: 'input',
         isLoading: false,
-        error: message,
+        error: 'We could not complete the audit. Please check the URL and try again, or contact us directly.',
       }));
     }
   };
@@ -164,6 +174,12 @@ export const WebsiteAudit: React.FC = () => {
 
         {/* Input Form - Only show when in input or loading state */}
         {(state.step === 'input' || state.step === 'loading') && (
+          <>
+          {state.step === 'input' && state.error && (
+            <div className="max-w-2xl mx-auto rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 mb-4">
+              <p className="text-red-400 text-sm">{state.error}</p>
+            </div>
+          )}
           <Card className="max-w-2xl mx-auto bg-slate-950/50 border-slate-800 backdrop-blur-sm p-2 mb-12 shadow-2xl shadow-cyan-900/10">
             <CardContent className="p-4">
               <form onSubmit={handleAuditSubmit} className="flex flex-col md:flex-row gap-4">
@@ -202,6 +218,7 @@ export const WebsiteAudit: React.FC = () => {
               </form>
             </CardContent>
           </Card>
+          </>
         )}
 
         {/* Loading State - Progress Messages */}
@@ -215,6 +232,43 @@ export const WebsiteAudit: React.FC = () => {
                     <p className="text-white font-medium">Scanning your website...</p>
                     <p className="text-slate-400 text-sm">Analyzing SEO metrics...</p>
                     <p className="text-slate-500 text-xs">Grading performance...</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Error State - Shown when API call fails or returns no data */}
+        {state.step === 'error' && (
+          <div className="max-w-2xl mx-auto text-center">
+            <Card className="bg-slate-800/50 border-red-800/40">
+              <CardContent className="p-8">
+                <div className="flex flex-col items-center gap-4">
+                  <AlertTriangle size={40} className="text-red-400" />
+                  <div className="space-y-2">
+                    <p className="text-white font-semibold text-lg">Analysis Failed</p>
+                    <p className="text-slate-300 text-sm">
+                      Unable to complete analysis. Please try again or contact us for a manual audit.
+                    </p>
+                    {state.error && (
+                      <p className="text-red-400 text-xs mt-1">{state.error}</p>
+                    )}
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-3 mt-2">
+                    <Button
+                      onClick={handleNewAudit}
+                      className="h-11 px-6 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold border-0"
+                    >
+                      Try Again
+                    </Button>
+                    <Button
+                      onClick={handleContactClick}
+                      variant="outline"
+                      className="h-11 px-6 border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white"
+                    >
+                      Request Manual Audit
+                    </Button>
                   </div>
                 </div>
               </CardContent>
