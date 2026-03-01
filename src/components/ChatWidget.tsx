@@ -143,14 +143,20 @@ export const ChatWidget: React.FC = () => {
                         <div className="flex items-center gap-2 text-indigo-300 font-semibold mb-1">
                             <Calendar size={14} /> Schedule a Call
                         </div>
-                        <a
-                            href={tool.result.bookingUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block mt-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-md text-xs font-medium transition-colors"
-                        >
-                            Book Time via Calendly
-                        </a>
+                        {tool.result.url ? (
+                            <a
+                                href={tool.result.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-block mt-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-md text-xs font-medium transition-colors"
+                            >
+                                Book Time via Calendly
+                            </a>
+                        ) : (
+                            <p className="mt-1 text-zinc-400 text-xs">
+                                {tool.result.message || 'Contact us at hello@digital-helper.com to schedule a call.'}
+                            </p>
+                        )}
                     </div>
                 );
             }
@@ -158,14 +164,25 @@ export const ChatWidget: React.FC = () => {
                 return (
                     <div key={idx} className="mt-2 p-3 bg-orange-900/40 border border-orange-500/30 rounded-lg text-sm">
                         <div className="flex items-center gap-2 text-orange-300 font-semibold mb-1">
-                            <FileSearch size={14} /> Site Analysis: {tool.result.score}/100
+                            <FileSearch size={14} /> Site Analysis
                         </div>
-                        <ul className="list-disc list-inside text-white/80 space-y-1 mb-2">
-                            {tool.result.issues.map((issue: string, i: number) => (
-                                <li key={i}>{issue}</li>
-                            ))}
-                        </ul>
-                        <p className="text-orange-200/80 italic text-xs">&quot;{tool.result.opportunity}&quot;</p>
+                        {tool.result.disclaimer ? (
+                            <p className="text-orange-300 text-xs">{tool.result.disclaimer}</p>
+                        ) : (
+                            <>
+                                <p className="text-orange-300 text-xs font-medium mb-1">
+                                    Score: {tool.result.score}/100
+                                </p>
+                                <ul className="list-disc list-inside text-white/80 space-y-1 mb-2">
+                                    {tool.result.issues?.map((issue: string, i: number) => (
+                                        <li key={i}>{issue}</li>
+                                    ))}
+                                </ul>
+                                {tool.result.opportunity && (
+                                    <p className="text-orange-200/80 italic text-xs">&quot;{tool.result.opportunity}&quot;</p>
+                                )}
+                            </>
+                        )}
                     </div>
                 );
             }
