@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Pricing } from '@/components/Pricing';
+import { PricingV2 } from '@/components/v2/PricingV2';
 import { BreadcrumbSchema } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default function PricingPage() {
                     { name: "Pricing", url: "https://digital-helper.com/pricing" },
                 ]}
             />
-            <Pricing />
+            <PricingV2 />
         </>
     );
 }
