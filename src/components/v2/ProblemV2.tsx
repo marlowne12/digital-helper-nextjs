@@ -37,7 +37,7 @@ export function ProblemV2() {
           className="max-w-2xl mb-16"
         >
           <p className="text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-3">The Problem</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight" style={{ fontFamily: "var(--font-heading)" }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight" style={{ fontFamily: "var(--font-heading)" }}>
             You&apos;re losing jobs every night{" "}
             <span className="text-zinc-500">you&apos;re not available.</span>
           </h2>

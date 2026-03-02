@@ -118,14 +118,14 @@ export function NavbarV2() {
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center justify-center px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25"
+              className="hidden md:inline-flex items-center justify-center px-5 py-2 min-h-[44px] rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25"
             >
               Book a Demo
             </Link>
 
             <button
               onClick={() => setMobileOpen((v) => !v)}
-              className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-white/10 text-zinc-400 hover:text-white hover:bg-white/5 transition-colors duration-200"
+              className="md:hidden w-11 h-11 flex items-center justify-center rounded-lg border border-white/10 text-zinc-400 hover:text-white hover:bg-white/5 transition-colors duration-200"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -164,7 +164,7 @@ export function NavbarV2() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
-                    className="block px-3 py-2 rounded-lg text-sm text-zinc-400 hover:text-white hover:bg-white/5 transition-colors duration-150"
+                    className="block px-3 py-3 min-h-[44px] rounded-lg text-sm text-zinc-400 hover:text-white hover:bg-white/5 transition-colors duration-150"
                   >
                     {item.label}
                   </Link>
@@ -177,7 +177,7 @@ export function NavbarV2() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="block px-3 py-2 rounded-lg text-sm text-zinc-400 hover:text-white hover:bg-white/5 transition-colors duration-150"
+                    className="block px-3 py-3 min-h-[44px] rounded-lg text-sm text-zinc-400 hover:text-white hover:bg-white/5 transition-colors duration-150"
                   >
                     {link.label}
                   </Link>
@@ -188,7 +188,7 @@ export function NavbarV2() {
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center w-full px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition-all duration-200"
+                  className="flex items-center justify-center w-full px-5 py-3 min-h-[44px] rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition-all duration-200"
                 >
                   Book a Demo
                 </Link>

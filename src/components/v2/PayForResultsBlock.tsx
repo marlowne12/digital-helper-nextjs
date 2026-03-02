@@ -24,7 +24,7 @@ export function PayForResultsBlock({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="relative rounded-3xl border border-indigo-500/20 bg-white/5 backdrop-blur-sm overflow-hidden p-10 lg:p-14"
+        className="relative rounded-3xl border border-indigo-500/20 bg-white/5 backdrop-blur-sm overflow-hidden p-6 sm:p-10 lg:p-14"
       >
         {/* Background glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-indigo-600/15 blur-3xl rounded-full pointer-events-none" />
@@ -73,7 +73,7 @@ export function PayForResultsBlock({
           <div className="flex flex-col sm:flex-row lg:flex-col gap-4 lg:min-w-[220px]">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/30 group"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 min-h-[44px] rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/30 group"
             >
               {ctaLabel}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -82,7 +82,7 @@ export function PayForResultsBlock({
               href="https://calendly.com/marlowne12/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/[0.08] text-white font-semibold text-sm transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 min-h-[44px] rounded-xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/[0.08] text-white font-semibold text-sm transition-all duration-200"
             >
               Book a Call &mdash; Zero Risk
             </Link>

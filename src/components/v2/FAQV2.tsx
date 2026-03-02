@@ -57,7 +57,7 @@ export function FAQV2() {
           className="mb-12"
         >
           <p className="text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-3">FAQ</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>
             Everything you need to know.
             <br />
             <span className="text-zinc-500">Common questions.</span>
@@ -120,7 +120,7 @@ export function FAQV2() {
 
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 group"
+                  className="inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 min-h-[44px] rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 group"
                 >
                   Book a free 30-min call
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

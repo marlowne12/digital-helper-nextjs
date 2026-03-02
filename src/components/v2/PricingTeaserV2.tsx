@@ -82,7 +82,7 @@ export function PricingTeaserV2() {
           className="text-center max-w-3xl mx-auto mb-14"
         >
           <p className="text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-3">Pricing</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: "var(--font-heading)" }}>
             Simple, transparent pricing.
           </h2>
           <p className="text-zinc-400 text-lg">No hidden fees. No long-term contracts.</p>
@@ -97,7 +97,7 @@ export function PricingTeaserV2() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className={`relative flex flex-col p-7 rounded-2xl border transition-all duration-300 ${
+              className={`relative flex flex-col p-5 sm:p-7 rounded-2xl border transition-all duration-300 ${
                 tier.featured
                   ? "border-indigo-500/50 bg-gradient-to-b from-indigo-500/10 via-indigo-500/5 to-transparent shadow-xl shadow-indigo-500/10"
                   : "border-white/8 bg-white/[0.03] hover:border-white/[0.12] hover:bg-white/[0.05]"
@@ -148,7 +148,7 @@ export function PricingTeaserV2() {
               {/* CTA */}
               <Link
                 href={tier.href}
-                className={`inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 group ${
+                className={`inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm transition-all duration-200 group ${
                   tier.featured
                     ? "bg-indigo-600 hover:bg-indigo-500 text-white hover:shadow-lg hover:shadow-indigo-500/25"
                     : "border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/8 text-white"

@@ -70,7 +70,7 @@ export function ServicesV2() {
         >
           <div>
             <p className="text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-3">Services</p>
-            <h2 className="text-4xl lg:text-5xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>
               Everything your business needs.<br />
               <span className="text-zinc-500">Nothing you don&apos;t.</span>
             </h2>
@@ -91,7 +91,7 @@ export function ServicesV2() {
           transition={{ duration: 0.5 }}
           className="mb-6"
         >
-          <Link href={featured.href} className="group block relative p-8 rounded-2xl border border-indigo-500/30 bg-gradient-to-br from-indigo-500/10 via-violet-500/5 to-transparent hover:border-indigo-500/50 transition-all duration-300">
+          <Link href={featured.href} className="group block relative p-6 sm:p-8 rounded-2xl border border-indigo-500/30 bg-gradient-to-br from-indigo-500/10 via-violet-500/5 to-transparent hover:border-indigo-500/50 transition-all duration-300">
             <div className="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-indigo-600 text-white text-xs font-semibold">
               Featured
             </div>

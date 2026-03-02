@@ -12,6 +12,7 @@ import {
   Zap,
   Shield,
   Bot,
+  BadgeCheck,
 } from "lucide-react";
 import {
   Accordion,
@@ -154,6 +155,9 @@ export function PricingV2() {
       {/* ── Hero ── */}
       <HeroSection />
 
+      {/* ── Pay-For-Results ── */}
+      <PayForResultsSection />
+
       {/* ── Pricing Cards ── */}
       <CardsSection tiers={tiers} loading={loading} />
 
@@ -192,7 +196,7 @@ function HeroSection() {
 
           {/* Headline */}
           <h1
-            className="text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Invest once.{" "}
@@ -206,6 +210,56 @@ function HeroSection() {
             No hidden fees. No retainer traps. Straightforward packages for
             Tri-Cities businesses ready to dominate their market.
           </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────
+// Pay-For-Results Banner
+// ─────────────────────────────────────────────
+
+const PAY_FOR_RESULTS_PILLS = [
+  "No upfront cost",
+  "Pay for results only",
+  "30-day guarantee",
+];
+
+function PayForResultsSection() {
+  return (
+    <section className="pb-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="relative rounded-2xl border border-indigo-500/20 bg-white/5 backdrop-blur-sm p-8 lg:p-10 text-center overflow-hidden"
+        >
+          {/* glow */}
+          <div className="absolute inset-0 bg-indigo-600/5 blur-3xl pointer-events-none" />
+          <div className="relative z-10">
+            <p className="text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-3">
+              Zero-Risk Model
+            </p>
+            <p className="text-white text-xl font-semibold mb-2">
+              We only get paid when you get results.
+            </p>
+            <p className="text-zinc-400 text-base mb-6">
+              No setup fees. No long-term contracts. 30-day guarantee.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {PAY_FOR_RESULTS_PILLS.map((pill) => (
+                <div
+                  key={pill}
+                  className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl px-4 py-2"
+                >
+                  <BadgeCheck className="w-4 h-4 text-indigo-400 flex-shrink-0" />
+                  <span className="text-sm text-zinc-300 font-medium">{pill}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
@@ -286,7 +340,7 @@ function PricingCard({ tier, index }: { tier: PricingTier; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className={`relative flex flex-col p-7 rounded-2xl border transition-all duration-300 ${
+      className={`relative flex flex-col p-5 sm:p-7 rounded-2xl border transition-all duration-300 ${
         featured
           ? "border-indigo-500/50 bg-gradient-to-b from-indigo-500/10 via-indigo-500/5 to-transparent shadow-xl shadow-indigo-500/10"
           : "border-white/[0.08] bg-white/[0.03] hover:border-white/[0.14] hover:bg-white/[0.05]"
@@ -347,7 +401,7 @@ function PricingCard({ tier, index }: { tier: PricingTier; index: number }) {
       {/* CTA */}
       <Link
         href="/contact"
-        className={`inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 group ${
+        className={`inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm transition-all duration-200 group ${
           featured
             ? "bg-indigo-600 hover:bg-indigo-500 text-white hover:shadow-lg hover:shadow-indigo-500/25"
             : "border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/[0.08] text-white"
@@ -380,7 +434,7 @@ function FAQSection() {
             FAQ
           </p>
           <h2
-            className="text-4xl lg:text-5xl font-bold text-white"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Common questions.{" "}
@@ -444,7 +498,7 @@ function FAQSection() {
                 </p>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 group"
+                  className="inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 min-h-[44px] rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 group"
                 >
                   Book a free 30-min call
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -474,7 +528,7 @@ function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative rounded-3xl border border-indigo-500/20 bg-gradient-to-br from-indigo-500/10 via-violet-500/5 to-transparent overflow-hidden p-12 text-center"
+          className="relative rounded-3xl border border-indigo-500/20 bg-gradient-to-br from-indigo-500/10 via-violet-500/5 to-transparent overflow-hidden p-8 sm:p-12 text-center"
         >
           {/* Background glow */}
           <div className="absolute inset-0 bg-indigo-600/5 blur-3xl" />
@@ -484,7 +538,7 @@ function CTASection() {
               Ready to start?
             </p>
             <h2
-              className="text-4xl lg:text-5xl font-bold text-white mb-4"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               Your competitors aren&apos;t waiting.
@@ -497,14 +551,14 @@ function CTASection() {
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-base transition-all duration-200 hover:shadow-xl hover:shadow-indigo-500/25 group"
+                className="inline-flex items-center gap-2 px-8 py-4 min-h-[44px] rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-base transition-all duration-200 hover:shadow-xl hover:shadow-indigo-500/25 group"
               >
                 Book your free call
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <Link
                 href="/services"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/[0.08] text-white font-semibold text-base transition-all duration-200"
+                className="inline-flex items-center gap-2 px-8 py-4 min-h-[44px] rounded-xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/[0.08] text-white font-semibold text-base transition-all duration-200"
               >
                 Browse services
               </Link>

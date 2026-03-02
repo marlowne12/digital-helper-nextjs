@@ -37,7 +37,7 @@ export function HowItWorksV2() {
           className="text-center max-w-2xl mx-auto mb-16"
         >
           <p className="text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-3">How It Works</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>
             Simple. Fast. Done.
           </h2>
         </motion.div>

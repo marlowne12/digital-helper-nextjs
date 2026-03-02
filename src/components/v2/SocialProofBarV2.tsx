@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 
 const PROOF = [
-  { metric: "+42%", label: "more calls", client: "Richland HVAC Pros" },
-  { metric: "12hrs", label: "saved per week", client: "Tri-Cities Law Firm" },
-  { metric: "5k+", label: "new monthly visitors", client: "Modern Cafe Richland" },
-  { metric: "Top 3", label: "Google Maps ranking", client: "TC Real Estate" },
+  { metric: "+42%", label: "more booked calls", client: "HVAC client example" },
+  { metric: "12hrs", label: "saved per week", client: "Professional services example" },
+  { metric: "5k+", label: "new monthly visitors", client: "Local restaurant example" },
+  { metric: "Top 3", label: "Google Maps ranking", client: "Real estate client example" },
 ];
 
 export function SocialProofBarV2() {
@@ -22,13 +22,13 @@ export function SocialProofBarV2() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-0 lg:divide-x lg:divide-white/8">
           {PROOF.map((item, i) => (
             <div key={i} className="flex flex-col items-center text-center lg:px-8 py-1">
-              <div className="flex items-baseline gap-1.5 mb-0.5">
-                <span className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>
+              <div className="flex flex-wrap items-baseline justify-center gap-x-1.5 gap-y-0.5 mb-0.5">
+                <span className="text-xl sm:text-2xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>
                   {item.metric}
                 </span>
-                <span className="text-sm text-zinc-400">{item.label}</span>
+                <span className="text-xs sm:text-sm text-zinc-400">{item.label}</span>
               </div>
-              <span className="text-xs text-zinc-600">{item.client}</span>
+              <span className="text-xs text-zinc-600 italic">{item.client}</span>
             </div>
           ))}
         </div>

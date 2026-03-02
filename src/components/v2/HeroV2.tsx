@@ -57,7 +57,7 @@ export function HeroV2() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-white mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-white mb-6"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               Your Business.{" "}
@@ -86,14 +86,14 @@ export function HeroV2() {
             >
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-base transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 group"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[44px] rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-base transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 group"
               >
                 Book a Free Demo
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <Link
                 href="/work"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/8 text-white font-semibold text-base transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[44px] rounded-xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/8 text-white font-semibold text-base transition-all duration-200"
               >
                 See Case Studies
               </Link>
