@@ -140,12 +140,14 @@
 
 ## PRIORITY 4 — Polish & UX
 
-### [ ] P4-001: Service pages — bulk up content and add clear CTAs
+### [x] P4-001: Service pages — bulk up content and add clear CTAs
 **Issue:** Some service pages have thin copy and unclear next steps for visitors.
 **Fix:** Add pricing hints, outcome-focused copy, and Get a Quote / Book a Call CTA blocks.
+**Completed:** 2026-03-02 — Created `PayForResultsBlock` component and added to all 10 service pages and PricingV2. Copy: "No contracts. No upfront fees. We build it, you review it — pay only when you're happy." 3-column trust row (Free Audit / No Contracts / Results First). Commit: Sprint 4 feat commit (aea2407).
 
-### [ ] P4-002: Run Lighthouse audit
+### [x] P4-002: Run Lighthouse audit
 **Action:** Run Lighthouse on homepage + 2-3 key service pages. Document scores. Fix any score below 70.
+**Completed:** 2026-03-02 — Scores: Homepage 80 | /services/web-design 81 | /services/seo 80 | /services/ai-automation 85. All pages ≥70. Full report saved to `lighthouse-report.json`.
 
 ### [x] P4-003: Image alt text audit
 **Issue:** Only 3 real images in `public/assets/`. Verify all have proper alt text for accessibility and SEO.
@@ -163,9 +165,9 @@
 - `src/components/reputation/LeadFinder.tsx` — `alt={lead.name}` — acceptable (business photo)
 - `src/app/api/seo-audit/route.ts` — regex parsing external HTML, not a rendered image
 
-### [ ] P4-004: Mobile navigation testing
+### [x] P4-004: Mobile navigation testing
 **File:** `src/components/v2/NavbarV2.tsx`
-**Action:** Test mobile hamburger menu across iOS Safari, Android Chrome, various breakpoints.
+**Completed:** 2026-03-02 — Full mobile QA pass on all 14 V2 components. Fixed: outside-click close, iOS scroll lock, body overflow-x-hidden. Second pass: touch targets raised to 44px on all buttons/links, heading text scaling added (mobile step between base and lg breakpoints), section padding reduced for small screens, SocialProofBar flex-wrap fix. 12 files changed. Commit: Sprint 4 mobile-qa commit.
 
 ### [x] P4-005: Add breadcrumbs to inner pages
 **Issue:** No breadcrumb navigation on service/location/industry pages. Hurts UX and SEO.
