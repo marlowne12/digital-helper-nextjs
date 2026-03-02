@@ -54,19 +54,21 @@ export async function storeLead(data: LeadData): Promise<LeadResponse> {
             await sendLeadNotification(lead);
         }
 
-        // TODO: Store in database
-        // Option 1: Vercel KV (simple key-value)
-        // if (process.env.KV_REST_API_URL) {
-        //     const { kv } = await import('@vercel/kv');
-        //     await kv.set(`lead:${leadId}`, JSON.stringify(lead));
-        //     await kv.lpush('leads:all', leadId);
-        // }
-
-        // Option 2: Prisma/Database
-        // await prisma.lead.create({ data: lead });
-
-        // Option 3: External CRM (HubSpot, Salesforce, etc.)
-        // await pushToCRM(lead);
+        // Persist to Vercel KV when configured (durable across deployments).
+        // Requires KV_REST_API_URL + KV_REST_API_TOKEN — set automatically by
+        // Vercel when a KV store is linked. Fails silently to protect the caller.
+        if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
+            try {
+                const { kv } = await import('@vercel/kv');
+                const kvKey = `lead:${Date.now()}:${Math.random().toString(36).slice(2)}`;
+                await kv.set(kvKey, { ...lead, timestamp: new Date().toISOString() });
+                // Sorted set ordered by score (epoch ms) for newest-first retrieval
+                await kv.zadd('leads:all', { score: Date.now(), member: kvKey });
+                console.log(`[leads] Stored in KV as ${kvKey}`);
+            } catch (kvError) {
+                console.error('[leads] KV storage failed (non-fatal):', kvError);
+            }
+        }
 
         return {
             success: true,
@@ -167,6 +169,9 @@ function generateLeadId(): string {
 async function sendLeadNotification(lead: Record<string, unknown>): Promise<void> {
     try {
         // Using Resend for email notifications
+        // Use RESEND_FROM_EMAIL env var so this works before the domain is verified
+        // (defaults to onboarding@resend.dev — same safe default as contact/route.ts)
+        const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
         const response = await fetch('https://api.resend.com/emails', {
             method: 'POST',
             headers: {
@@ -174,8 +179,8 @@ async function sendLeadNotification(lead: Record<string, unknown>): Promise<void
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                from: 'Digital Helper <leads@digital-helper.com>',
-                to: process.env.LEAD_NOTIFICATION_EMAIL || 'leads@digital-helper.com',
+                from: `Digital Helper <${fromEmail}>`,
+                to: process.env.LEAD_NOTIFICATION_EMAIL || 'business@digital-helper.com',
                 subject: `New Lead: ${lead.source} - ${lead.email}`,
                 html: `
                     <h2>New Lead Captured</h2>

@@ -1,0 +1,179 @@
+{
+  "meta": {
+    "scanDate": "2026-02-28",
+    "scanType": "deep",
+    "branch": "redesign-v2",
+    "tool": "BMAD document-project v6.0.4",
+    "projectRoot": "digital-helper-nextjs"
+  },
+  "project": {
+    "name": "digital-helper-nextjs",
+    "type": "web",
+    "subtype": "nextjs-marketing-site",
+    "business": "Digital Helper — AI Marketing Agency",
+    "domain": "digital-helper.com",
+    "location": "Richland, WA"
+  },
+  "techStack": {
+    "framework": "Next.js",
+    "frameworkVersion": "16.1.3",
+    "react": "19.2.3",
+    "typescript": "5.x",
+    "tailwind": "4.x",
+    "tailwindConfig": false,
+    "framerMotion": "12.x",
+    "shadcnUi": true,
+    "ai": ["@google/genai", "@ai-sdk/google ^3", "ai ^6"],
+    "aiModels": ["gemini-2.0-flash", "gemini-1.5-flash-latest"],
+    "testing": "vitest",
+    "testingVersion": "4.0.18",
+    "zod": "4.3.6",
+    "deployment": "Vercel",
+    "animation": "framer-motion"
+  },
+  "design": {
+    "theme": "dark-only",
+    "themeForced": true,
+    "darkClass": "hardcoded-on-html",
+    "primaryColor": "indigo-600",
+    "accentColor": "violet-600",
+    "backgroundColor": "#0a0a0f",
+    "fontHeading": "Syne",
+    "fontBody": "DM Sans",
+    "cssFramework": "tailwindv4-at-theme",
+    "glassMorphism": true
+  },
+  "routes": {
+    "totalPages": 44,
+    "apiRoutes": 14,
+    "serverActions": 7,
+    "dynamicRoutes": 3,
+    "programmaticSections": {
+      "locations": 4,
+      "industries": 5,
+      "services": 9
+    }
+  },
+  "components": {
+    "v2Active": 11,
+    "legacyV1": 35,
+    "shadcnPrimitives": 13,
+    "featureComponents": 24,
+    "domainComponents": 26,
+    "total": 109
+  },
+  "abTesting": {
+    "provider": "ABTestProvider",
+    "experiments": [
+      {
+        "name": "hero-variant",
+        "variants": ["original", "ai-focused"],
+        "split": "50/50"
+      },
+      {
+        "name": "services-variant",
+        "variants": ["original", "enhanced"],
+        "split": "50/50"
+      }
+    ]
+  },
+  "assets": {
+    "images": 3,
+    "imageFormats": ["png", "webp"],
+    "imageDebt": "critical",
+    "note": "Only 3 real images in public/assets/. Most sections lack custom photography."
+  },
+  "issues": {
+    "critical": [
+      {
+        "id": "CRIT-001",
+        "title": "No API authentication",
+        "description": "All 14 API routes are publicly accessible with no rate limiting or auth. AI endpoints can be abused.",
+        "file": "src/app/api/*/route.ts",
+        "priority": "high"
+      },
+      {
+        "id": "CRIT-002",
+        "title": "Contact form uses filesystem storage",
+        "description": "Saves to data/leads/contact-submissions.json. Vercel has an ephemeral filesystem — data is lost on each deployment.",
+        "file": "src/app/api/contact/route.ts",
+        "priority": "high"
+      }
+    ],
+    "moderate": [
+      {
+        "id": "MOD-001",
+        "title": "Duplicate routes",
+        "description": "/case-studies and /work/case-studies; /web-design and /services/web-design appear to overlap.",
+        "priority": "medium"
+      },
+      {
+        "id": "MOD-002",
+        "title": "Deprecated geminiService.ts still present",
+        "description": "src/services/geminiService.ts is marked deprecated but still exists in codebase.",
+        "file": "src/services/geminiService.ts",
+        "priority": "medium"
+      },
+      {
+        "id": "MOD-003",
+        "title": "Mixed AI SDK usage",
+        "description": "Some routes use @google/genai directly, others use @ai-sdk/google. Should standardize.",
+        "priority": "medium"
+      },
+      {
+        "id": "MOD-004",
+        "title": "V1 components not cleaned up",
+        "description": "V2 redesign is live on homepage but 35 V1 components still exist alongside V2 components.",
+        "priority": "medium"
+      },
+      {
+        "id": "MOD-005",
+        "title": "Inner pages not redesigned",
+        "description": "All service pages, blog, about, contact, pricing still use V1 styling.",
+        "priority": "medium"
+      }
+    ],
+    "minor": [
+      {
+        "id": "MIN-001",
+        "title": "Very limited image assets",
+        "description": "Only 3 real images available in public/assets/",
+        "priority": "low"
+      },
+      {
+        "id": "MIN-002",
+        "title": "Low test coverage",
+        "description": "Only 2 test files exist (validators.test.ts, pricingService.test.ts). No component tests.",
+        "priority": "low"
+      },
+      {
+        "id": "MIN-003",
+        "title": "No schema markup on most pages",
+        "description": "StructuredData component exists but not widely implemented across service/location pages.",
+        "priority": "low"
+      }
+    ]
+  },
+  "redesignStatus": {
+    "homepage": "complete",
+    "navbar": "complete",
+    "footer": "complete",
+    "servicePages": "not-started",
+    "blog": "not-started",
+    "about": "not-started",
+    "contact": "not-started",
+    "pricing": "not-started",
+    "locations": "not-started",
+    "industries": "not-started"
+  },
+  "nextSteps": [
+    "Create Product Brief (bmad-bmm-create-product-brief) for comprehensive redesign plan",
+    "Create PRD (bmad-bmm-create-prd) with prioritized improvement list",
+    "Migrate contact form storage from filesystem to Vercel KV or external CRM",
+    "Add API rate limiting to AI endpoints",
+    "Redesign service pages with V2 system",
+    "Source/create more image assets",
+    "Implement schema markup (LocalBusiness, Service, HowTo) across all pages",
+    "Run Lighthouse audit and address performance gaps"
+  ]
+}

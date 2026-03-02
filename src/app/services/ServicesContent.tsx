@@ -1,187 +1,476 @@
 "use client";
 
-import React from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import Link from "next/link";
 import {
-    Phone,
-    ArrowRight,
-    Zap,
-    CheckCircle2,
-    Shield,
-    Clock,
-    Star,
-    Users
-} from 'lucide-react';
-import { ServiceCardsEnhanced } from "@/components/ServiceCardsEnhanced";
-import { ServiceProcessTimeline } from "@/components/ServiceProcessTimeline";
-import { ServicePricingTeaser } from "@/components/ServicePricingTeaser";
+  Globe,
+  Search,
+  Bot,
+  Users,
+  ShieldCheck,
+  ArrowRight,
+  CheckCircle,
+  Zap,
+  Clock,
+  Shield,
+  Star,
+  Phone,
+  TrendingUp,
+} from "lucide-react";
 
-/**
- * Services Page Content
- * 
- * Sprint 14: Complete redesign with:
- * - Enhanced conversion-focused service cards
- * - Process timeline (how we work)
- * - Pricing teaser
- * - Trust signals
- */
+// ─────────────────────────────────────────────
+// Service data
+// ─────────────────────────────────────────────
 
-const stats = [
-    { value: "50+", label: "Businesses Served", icon: Users },
-    { value: "347%", label: "Avg Lead Increase", icon: Zap },
-    { value: "14s", label: "Avg Response Time", icon: Clock },
-    { value: "4.9/5", label: "Client Rating", icon: Star },
+const SERVICES = [
+  {
+    icon: Globe,
+    label: "Web Design",
+    title: "High-Performance Websites",
+    description:
+      "Your site loads in under 1 second. Mobile-first, SEO-ready, built to turn visitors into booked calls.",
+    href: "/services/web-design",
+    stats: [
+      { value: "0.8s", label: "Avg Load Time" },
+      { value: "400%", label: "More Mobile Calls" },
+    ],
+    features: [
+      "Next.js / React Architecture",
+      "Core Web Vitals Optimized",
+      "Mobile-First Design",
+      "Built-in SEO Foundation",
+      "Click-to-Call CTAs",
+    ],
+    priceHint: "From $1,999",
+    featured: false,
+  },
+  {
+    icon: Search,
+    label: "Local SEO",
+    title: "Hyper-Local SEO",
+    description:
+      "Rank #1 in Tri-Cities Google Maps and organic search. Your competitors won't know what hit them.",
+    href: "/services/seo",
+    stats: [
+      { value: "312%", label: "Organic Traffic" },
+      { value: "45", label: "New Leads/Month" },
+    ],
+    features: [
+      "Google Business Profile",
+      "Local Citation Building",
+      "Review Generation",
+      "Keyword Content Strategy",
+      "Monthly Ranking Reports",
+    ],
+    priceHint: "From $799/mo",
+    featured: false,
+  },
+  {
+    icon: Bot,
+    label: "AI Automation",
+    title: "AI Systems",
+    description:
+      "24/7 AI receptionist, automated lead scoring, missed-call text-back. Your business never sleeps.",
+    href: "/services/ai-automation",
+    stats: [
+      { value: "24/7", label: "AI Coverage" },
+      { value: "89%", label: "Lead Capture Rate" },
+    ],
+    features: [
+      "AI Chat Receptionist",
+      "Missed Call Text-Back",
+      "Automated Lead Scoring",
+      "CRM & Email Workflows",
+      "Weekly Growth Reports",
+    ],
+    priceHint: "From $997/mo",
+    featured: true,
+  },
+  {
+    icon: Users,
+    label: "Lead Generation",
+    title: "Lead Generation",
+    description:
+      "Multi-channel campaigns that fill your pipeline with qualified Tri-Cities prospects every month.",
+    href: "/services/lead-generation",
+    stats: [
+      { value: "More", label: "Qualified leads" },
+      { value: "60d", label: "To Full Pipeline" },
+    ],
+    features: [
+      "Google Ads Management",
+      "Facebook / Instagram Ads",
+      "Landing Page Optimization",
+      "Lead Magnet Creation",
+      "Pipeline Tracking Dashboard",
+    ],
+    priceHint: "From $1,200/mo",
+    featured: false,
+  },
+  {
+    icon: ShieldCheck,
+    label: "Reputation",
+    title: "Reputation Management",
+    description:
+      "Build a 5-star presence on Google, Yelp, and Facebook. Turn happy clients into your best sales reps.",
+    href: "/services/reputation-management",
+    stats: [
+      { value: "4.9★", label: "Avg Client Rating" },
+      { value: "3×", label: "More Reviews/Month" },
+    ],
+    features: [
+      "Review Request Automation",
+      "Response Management",
+      "Negative Review Strategy",
+      "Multi-Platform Monitoring",
+      "Monthly Reputation Report",
+    ],
+    priceHint: "From $499/mo",
+    featured: false,
+  },
 ];
 
+const STATS = [
+  { value: "Local", label: "Tri-Cities focused", icon: Users },
+  { value: "Fast", label: "10-day avg launch", icon: TrendingUp },
+  { value: "4.9/5", label: "Target client rating", icon: Star },
+  { value: "10 days", label: "Avg launch time", icon: Clock },
+];
+
+const TRUST = [
+  { icon: Shield, text: "No long-term contracts" },
+  { icon: CheckCircle, text: "Results in 30 days or we fix it" },
+  { icon: Zap, text: "Live within 10 business days" },
+  { icon: Phone, text: "Real humans answer" },
+];
+
+// ─────────────────────────────────────────────
+// Main component
+// ─────────────────────────────────────────────
+
 export function ServicesContent() {
-    return (
-        <main className="min-h-screen pt-24 lg:pt-32 overflow-hidden bg-background-primary relative">
-            {/* Background Effects */}
-            <div className="absolute inset-0 z-0">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-primary/10 rounded-full blur-[120px] pointer-events-none" />
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-secondary/10 rounded-full blur-[120px] pointer-events-none" />
+  return (
+    <div className="bg-[#0a0a0f]">
+      <HeroSection />
+      <StatsBar />
+      <ServicesGrid />
+      <TrustSection />
+      <CTASection />
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────
+// Hero
+// ─────────────────────────────────────────────
+
+function HeroSection() {
+  return (
+    <section className="relative pt-28 pb-16 overflow-hidden">
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-600/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-20 right-1/4 w-[400px] h-[400px] bg-violet-600/8 blur-[100px] rounded-full pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-semibold uppercase tracking-widest mb-6">
+            <Zap className="w-3.5 h-3.5" />
+            Growth Services
+          </div>
+
+          <h1
+            className="text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            Services that{" "}
+            <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-indigo-300 bg-clip-text text-transparent">
+              actually work.
+            </span>
+          </h1>
+
+          <p className="text-zinc-400 text-lg leading-relaxed mb-8">
+            No fluff. No vanity metrics. Every service is designed to solve a
+            specific problem costing you money — and deliver measurable results
+            in 30 days or less.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 group"
+            >
+              Book a free strategy call
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+            <Link
+              href="#services"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/[0.08] text-white font-semibold transition-all duration-200"
+            >
+              Explore services
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────
+// Stats bar
+// ─────────────────────────────────────────────
+
+function StatsBar() {
+  return (
+    <section className="border-y border-white/5 bg-white/[0.02]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {STATS.map(({ value, label, icon: Icon }, i) => (
+            <motion.div
+              key={label}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              className="flex items-center gap-3"
+            >
+              <div className="w-9 h-9 rounded-lg bg-indigo-600/15 border border-indigo-500/20 flex items-center justify-center flex-shrink-0">
+                <Icon className="w-4 h-4 text-indigo-400" />
+              </div>
+              <div>
+                <p
+                  className="text-xl font-bold text-white leading-none"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  {value}
+                </p>
+                <p className="text-xs text-zinc-500 mt-0.5">{label}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────
+// Services grid
+// ─────────────────────────────────────────────
+
+function ServicesGrid() {
+  return (
+    <section id="services" className="py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-12"
+        >
+          <p className="text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-3">
+            What we do
+          </p>
+          <h2
+            className="text-4xl lg:text-5xl font-bold text-white"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            Pick your growth lever.
+          </h2>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {SERVICES.map((svc, i) => (
+            <ServiceCard key={svc.href} svc={svc} index={i} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ServiceCard({
+  svc,
+  index,
+}: {
+  svc: (typeof SERVICES)[0];
+  index: number;
+}) {
+  const Icon = svc.icon;
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
+      className={`relative flex flex-col p-7 rounded-2xl border transition-all duration-300 group ${
+        svc.featured
+          ? "border-indigo-500/50 bg-gradient-to-b from-indigo-500/10 via-indigo-500/5 to-transparent"
+          : "border-white/[0.08] bg-white/[0.03] hover:border-white/[0.14] hover:bg-white/[0.05]"
+      }`}
+    >
+      {svc.featured && (
+        <div className="absolute -top-3 left-6">
+          <span className="inline-flex items-center px-3 py-1 rounded-full bg-indigo-600 text-white text-xs font-semibold shadow-lg shadow-indigo-600/30">
+            Most Popular
+          </span>
+        </div>
+      )}
+
+      <div className="flex items-center gap-3 mb-5">
+        <div
+          className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+            svc.featured
+              ? "bg-indigo-600/25 border border-indigo-500/30"
+              : "bg-white/5 border border-white/10"
+          }`}
+        >
+          <Icon
+            className={`w-5 h-5 ${svc.featured ? "text-indigo-400" : "text-zinc-400"}`}
+          />
+        </div>
+        <span
+          className={`text-xs font-semibold uppercase tracking-widest ${
+            svc.featured ? "text-indigo-400" : "text-zinc-500"
+          }`}
+        >
+          {svc.label}
+        </span>
+      </div>
+
+      <h3
+        className="text-xl font-bold text-white mb-2"
+        style={{ fontFamily: "var(--font-heading)" }}
+      >
+        {svc.title}
+      </h3>
+      <p className="text-sm text-zinc-400 leading-relaxed mb-5">
+        {svc.description}
+      </p>
+
+      <div className="flex gap-6 mb-5">
+        {svc.stats.map((s) => (
+          <div key={s.label}>
+            <p
+              className={`text-lg font-bold ${svc.featured ? "text-indigo-300" : "text-white"}`}
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {s.value}
+            </p>
+            <p className="text-xs text-zinc-600">{s.label}</p>
+          </div>
+        ))}
+      </div>
+
+      <div
+        className={`h-px w-full mb-5 ${svc.featured ? "bg-indigo-500/20" : "bg-white/[0.06]"}`}
+      />
+
+      <ul className="space-y-2.5 flex-1 mb-6">
+        {svc.features.map((f) => (
+          <li key={f} className="flex items-start gap-2.5">
+            <CheckCircle
+              className={`w-4 h-4 flex-shrink-0 mt-0.5 ${
+                svc.featured ? "text-indigo-400" : "text-zinc-600"
+              }`}
+            />
+            <span className="text-sm text-zinc-300">{f}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="flex items-center justify-between">
+        <span className="text-xs text-zinc-500">{svc.priceHint}</span>
+        <Link
+          href={svc.href}
+          className={`inline-flex items-center gap-1.5 text-sm font-semibold transition-all duration-200 ${
+            svc.featured
+              ? "text-indigo-300 hover:text-indigo-200"
+              : "text-zinc-400 hover:text-white"
+          }`}
+        >
+          Learn more
+          <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
+      </div>
+    </motion.div>
+  );
+}
+
+// ─────────────────────────────────────────────
+// Trust signals
+// ─────────────────────────────────────────────
+
+function TrustSection() {
+  return (
+    <section className="border-t border-white/5 py-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-14">
+          {TRUST.map(({ icon: Icon, text }) => (
+            <div key={text} className="flex items-center gap-2 text-zinc-500 text-sm">
+              <Icon className="w-4 h-4 text-indigo-500/70" />
+              {text}
             </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
-            {/* Hero Section */}
-            <section className="relative z-10 py-16 lg:py-20">
-                <div className="container mx-auto px-6 lg:px-12">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-semibold mb-6">
-                                <Zap className="w-4 h-4" />
-                                Growth Services
-                            </div>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                                Services That{' '}
-                                <span className="text-gradient">Actually Work</span>
-                            </h1>
-                            <p className="text-lg lg:text-xl text-zinc-400 mb-8 leading-relaxed max-w-3xl mx-auto">
-                                No fluff. No vanity metrics. Every service is designed to solve a specific problem 
-                                that's costing you money — and deliver measurable results in 30 days or less.
-                            </p>
-                            
-                            {/* CTA Buttons */}
-                            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-                                <Link
-                                    href="/contact"
-                                    className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold hover:scale-105 transition-all duration-300 shadow-lg shadow-purple-500/25"
-                                >
-                                    <Phone className="w-5 h-5" />
-                                    Book Free Strategy Call
-                                </Link>
-                                <Link
-                                    href="#services-enhanced"
-                                    className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white/[0.03] border border-white/10 text-white font-semibold hover:bg-white/[0.08] transition-all duration-300"
-                                >
-                                    Explore Services
-                                    <ArrowRight className="w-4 h-4" />
-                                </Link>
-                            </div>
+// ─────────────────────────────────────────────
+// Bottom CTA
+// ─────────────────────────────────────────────
 
-                            {/* Quick Stats */}
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl bg-white/[0.02] border border-white/5 max-w-3xl mx-auto">
-                                {stats.map((stat, idx) => {
-                                    const Icon = stat.icon;
-                                    return (
-                                        <div key={idx} className="text-center">
-                                            <div className="flex items-center justify-center gap-2 mb-1">
-                                                <Icon className="w-4 h-4 text-purple-400" />
-                                                <span className="text-2xl lg:text-3xl font-bold text-white">{stat.value}</span>
-                                            </div>
-                                            <div className="text-xs lg:text-sm text-zinc-500">{stat.label}</div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Trust Signals Bar */}
-            <section className="relative z-10 py-8 bg-white/[0.02] border-y border-white/5">
-                <div className="container mx-auto px-6 lg:px-12">
-                    <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-16 text-sm text-zinc-400">
-                        <div className="flex items-center gap-2">
-                            <Shield className="w-4 h-4 text-green-500" />
-                            30-Day Money Back Guarantee
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <CheckCircle2 className="w-4 h-4 text-green-500" />
-                            No Long-Term Contracts
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Clock className="w-4 h-4 text-green-500" />
-                            Results in 30 Days or Free
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Phone className="w-4 h-4 text-green-500" />
-                            Real Humans Answer
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Enhanced Service Cards */}
-            <ServiceCardsEnhanced />
-
-            {/* Process Timeline */}
-            <ServiceProcessTimeline />
-
-            {/* Pricing Teaser */}
-            <ServicePricingTeaser />
-
-            {/* Final CTA */}
-            <section className="relative z-10 py-24 lg:py-32">
-                <div className="container mx-auto px-6 lg:px-12">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        className="max-w-4xl mx-auto"
-                    >
-                        <div className="relative p-10 lg:p-16 rounded-3xl overflow-hidden">
-                            {/* Gradient Background */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-blue-500/10 to-cyan-500/20 z-0" />
-                            <div className="absolute inset-0 backdrop-blur-xl z-0" />
-                            <div className="absolute inset-0 border border-white/10 rounded-3xl z-0" />
-                            
-                            <div className="relative z-10 text-center">
-                                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-                                    Ready to Stop Losing Leads?
-                                </h2>
-                                <p className="text-lg text-zinc-300 mb-8 max-w-2xl mx-auto">
-                                    Let's talk about your business. No sales pitch, no pressure — just a conversation 
-                                    about where you are and where you want to go.
-                                </p>
-                                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                                    <Link
-                                        href="/contact"
-                                        className="inline-flex items-center gap-2 px-10 py-4 rounded-xl bg-white text-zinc-900 font-bold hover:bg-zinc-100 transition-all duration-300 shadow-xl"
-                                    >
-                                        <Phone className="w-5 h-5" />
-                                        Book Your Free Call
-                                    </Link>
-                                    <Link
-                                        href="tel:5098768454"
-                                        className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white/10 text-white font-semibold hover:bg-white/20 transition-all duration-300"
-                                    >
-                                        Or Call: (509) 876-8454
-                                    </Link>
-                                </div>
-                                <p className="mt-6 text-sm text-zinc-500">
-                                    Most calls take 15 minutes. No commitment required.
-                                </p>
-                            </div>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-        </main>
-    );
+function CTASection() {
+  return (
+    <section className="py-24 border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="relative rounded-3xl border border-indigo-500/20 bg-gradient-to-br from-indigo-500/10 via-violet-500/5 to-transparent overflow-hidden p-12 text-center"
+        >
+          <div className="absolute inset-0 bg-indigo-600/5 blur-3xl pointer-events-none" />
+          <div className="relative z-10">
+            <p className="text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-4">
+              Ready to start?
+            </p>
+            <h2
+              className="text-4xl lg:text-5xl font-bold text-white mb-4"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              Stop losing leads to competitors.
+            </h2>
+            <p className="text-zinc-400 text-lg max-w-xl mx-auto mb-10">
+              Most clients are live within 10 business days. Book a free call and
+              we&apos;ll build your custom growth plan — no pitch, no pressure.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-all duration-200 hover:shadow-xl hover:shadow-indigo-500/25 group"
+              >
+                Book your free call
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+              <Link
+                href="tel:5098768454"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/[0.08] text-white font-semibold transition-all duration-200"
+              >
+                <Phone className="w-4 h-4" />
+                (509) 876-8454
+              </Link>
+            </div>
+            <p className="mt-6 text-xs text-zinc-600">15-minute call. No commitment.</p>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
 }

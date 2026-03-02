@@ -104,7 +104,7 @@ export function HeroV2() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex items-center gap-6"
+              className="flex flex-wrap items-center gap-6"
             >
               {STATS.map((stat, i) => (
                 <div key={i} className="flex flex-col">

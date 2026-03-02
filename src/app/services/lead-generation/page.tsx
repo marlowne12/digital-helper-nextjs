@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { LeadGenerationPageContent } from "@/components/services/LeadGenerationPageContent"
+import { ServiceSchema, FAQPageSchema, BreadcrumbSchema } from "@/components/StructuredData"
 
 export const metadata: Metadata = {
     title: "Lead Generation Services | Qualified Leads Delivered to Your Inbox",
@@ -29,6 +30,42 @@ export const metadata: Metadata = {
     },
 }
 
+const leadGenFaqs = [
+    {
+        q: "How does the pay-per-lead model work?",
+        a: "You only pay for leads that meet our agreed-upon qualification criteria. No monthly retainers, no management fees—just results.",
+    },
+    {
+        q: "What defines a 'qualified' lead?",
+        a: "We work with you to define specific filters (location, budget, service type). If a lead doesn't match your criteria, you don't pay for it.",
+    },
+    {
+        q: "Do you use cold calling?",
+        a: "We focus on digital prospecting and AI-driven outreach. Our systems find prospects when they are showing intent or matching your ideal customer profile.",
+    },
+    {
+        q: "Can I scale the lead flow up or down?",
+        a: "Absolutely. Our systems are built to be flexible. If you have too many leads, we can pause or narrow the filters. If you need more, we can broaden the reach.",
+    },
+]
+
 export default function LeadGenerationPage() {
-    return <LeadGenerationPageContent />
+    return (
+        <>
+            <ServiceSchema
+                name="Lead Generation Services"
+                description="Pay-per-lead model with zero risk. We find, qualify, and deliver leads directly to you using automated prospecting systems. Predictable pipeline, predictable growth for Tri-Cities businesses."
+                url="https://digital-helper.com/services/lead-generation"
+            />
+            <FAQPageSchema faqs={leadGenFaqs} />
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://digital-helper.com" },
+                    { name: "Services", url: "https://digital-helper.com/services" },
+                    { name: "Lead Generation", url: "https://digital-helper.com/services/lead-generation" },
+                ]}
+            />
+            <LeadGenerationPageContent />
+        </>
+    )
 }

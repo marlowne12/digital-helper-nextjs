@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -23,6 +23,18 @@ const SERVICES_DROPDOWN = [
 export function NavbarV2() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesHovered, setServicesHovered] = useState(false);
+
+  // iOS scroll lock — prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   return (
     <header className="sticky top-0 z-50 bg-[#0a0a0f]/90 backdrop-blur-md border-b border-white/[0.08]">
@@ -121,6 +133,15 @@ export function NavbarV2() {
           </div>
         </div>
       </div>
+
+      {/* Outside-click overlay — closes mobile menu when tapping outside */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/50 md:hidden"
+          onClick={() => setMobileOpen(false)}
+          aria-hidden="true"
+        />
+      )}
 
       {/* Mobile menu */}
       <AnimatePresence>
