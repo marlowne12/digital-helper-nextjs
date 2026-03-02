@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
     return (
-        <main className="min-h-screen pt-32 pb-20 bg-background-primary">
+        <main className="min-h-screen pt-32 pb-20 bg-[#0a0a0f]">
             <article className="container mx-auto px-6 max-w-3xl">
 
                 <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">
@@ -34,19 +34,19 @@ export default function PrivacyPage() {
                         </p>
                         <ul className="space-y-2 text-zinc-400">
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>Name, email address, and phone number when you contact us</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>Business information when you use our audit tools</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>Website URLs for analysis purposes</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>Payment information when purchasing services</span>
                             </li>
                         </ul>
@@ -66,23 +66,23 @@ export default function PrivacyPage() {
                         </p>
                         <ul className="space-y-2 text-zinc-400">
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>Provide, operate, and maintain our services</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>Process and complete transactions</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>Communicate with you about updates and offers</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>Improve our website and services</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>Comply with legal obligations</span>
                             </li>
                         </ul>

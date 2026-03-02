@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
     return (
-        <main className="min-h-screen pt-32 pb-20 bg-background-primary">
+        <main className="min-h-screen pt-32 pb-20 bg-[#0a0a0f]">
             <article className="container mx-auto px-6 max-w-3xl">
 
                 <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">
@@ -41,15 +41,15 @@ export default function TermsPage() {
                         </p>
                         <ul className="space-y-2 text-zinc-400">
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>We retain rights to use work in our portfolio</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>Pre-existing frameworks and tools remain our property</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>Third-party assets are subject to their respective licenses</span>
                             </li>
                         </ul>
@@ -76,19 +76,19 @@ export default function TermsPage() {
                         </p>
                         <ul className="space-y-2 text-zinc-400">
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>Providing accurate and complete information</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>Timely feedback and approvals</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>Maintaining backup copies of provided materials</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                                 <span>Ensuring they have rights to provided content</span>
                             </li>
                         </ul>
