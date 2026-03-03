@@ -128,9 +128,9 @@ export function ContactForm() {
         text-white outline-none 
         transition-all duration-200
         placeholder:text-zinc-500
-        ${fieldErrors[fieldName] 
-            ? 'border-red-500/50 focus:border-red-500' 
-            : 'border-white/[0.08] focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/20'
+        ${fieldErrors[fieldName]
+            ? 'border-red-500/50 focus:border-red-500'
+            : 'border-white/[0.08] focus:border-indigo-500/50 focus:ring-2 focus:ring-indigo-500/20'
         }
     `;
 
@@ -147,7 +147,7 @@ export function ContactForm() {
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="glass p-10 text-center"
+                className="rounded-2xl border border-white/10 bg-white/5 p-10 text-center"
             >
                 <motion.div
                     initial={{ scale: 0 }}
@@ -165,13 +165,13 @@ export function ContactForm() {
                     Check your email for a confirmation.
                 </p>
                 <div className="space-y-4">
-                    <div className="p-4 rounded-xl bg-accent-primary/10 border border-accent-primary/20">
+                    <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20">
                         <p className="text-sm text-zinc-300">
                             <strong className="text-white">What happens next?</strong>
                             <br />
                             Our team will review your inquiry and prepare a personalized response. 
                             For urgent matters, call us at{' '}
-                            <a href="tel:+15098768454" className="text-accent-primary hover:underline">
+                            <a href="tel:+15098768454" className="text-indigo-400 hover:underline">
                                 (509) 876-8454
                             </a>
                         </p>
@@ -309,7 +309,7 @@ export function ContactForm() {
             <button
                 type="button"
                 onClick={() => setShowAdvanced(!showAdvanced)}
-                className="text-sm text-accent-primary hover:text-accent-primary/80 transition-colors flex items-center gap-2"
+                className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-2"
             >
                 {showAdvanced ? '− Hide' : '+ Show'} budget & timeline options
             </button>
@@ -435,7 +435,7 @@ export function ContactForm() {
             <Button
                 type="submit"
                 disabled={formState === 'submitting'}
-                className="btn-primary w-full h-14 text-lg group"
+                className="w-full h-14 text-lg group bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl transition-colors"
             >
                 {formState === 'submitting' ? (
                     <>
@@ -452,7 +452,7 @@ export function ContactForm() {
 
             <p className="text-xs text-zinc-500 text-center">
                 By submitting this form, you agree to our{' '}
-                <a href="/privacy" className="text-accent-primary hover:underline">Privacy Policy</a>.
+                <a href="/privacy" className="text-indigo-400 hover:underline">Privacy Policy</a>.
                 We&apos;ll never share your information.
             </p>
         </form>

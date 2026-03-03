@@ -3,6 +3,7 @@ import { GoogleGenAI } from "@google/genai";
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { z } from 'zod';
+import { checkRateLimit } from '@/lib/ratelimit';
 
 const URLRequestSchema = z.object({
     url: z.string().url().refine((url) => {
@@ -34,6 +35,17 @@ Structure:
 `;
 
 export async function POST(req: NextRequest) {
+    // Rate limiting — 10 requests per 10 seconds per IP
+    try {
+        const ip = req.headers.get('x-forwarded-for') ?? 'anonymous';
+        const { success } = await checkRateLimit(ip);
+        if (!success) {
+            return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+        }
+    } catch (rateLimitError) {
+        console.error('[seo-analysis] Rate limit check error (skipping):', rateLimitError);
+    }
+
     try {
         const body = await req.json();
         const validatedData = URLRequestSchema.parse(body);

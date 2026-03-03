@@ -118,40 +118,40 @@ export const CaseStudies: React.FC = () => {
 
                 {/* Header with Stats */}
                 <div className="text-center max-w-4xl mx-auto mb-16">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-primary/10 border border-accent-primary/20 text-accent-primary text-sm font-medium mb-6">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium mb-6">
                         <Trophy size={16} />
-                        50+ Local Businesses Transformed
+                        Built for Tri-Cities Businesses
                     </div>
                     <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                        Real Results for <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">Local Businesses</span>
+                        What We Can Build <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-indigo-600">For Your Business</span>
                     </h1>
                     <p className="text-slate-400 text-lg mb-8">
-                        See how Digital Helper transforms outdated websites into 24/7 lead generation machines.
+                        These are example projects showing what&apos;s possible — the same approach, tailored for your business.
                     </p>
-                    
-                    {/* Quick Stats */}
+
+                    {/* Capability Highlights */}
                     <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
                         <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                            <div className="flex items-center justify-center gap-2 text-green-400 mb-1">
+                            <div className="flex items-center justify-center gap-2 text-indigo-400 mb-1">
                                 <TrendingUp size={18} />
-                                <span className="text-2xl font-bold">347%</span>
+                                <span className="text-2xl font-bold">Fast</span>
                             </div>
-                            <p className="text-xs text-slate-500">Avg. Lead Increase</p>
+                            <p className="text-xs text-slate-500">10-day avg launch</p>
                         </div>
                         <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                             <div className="flex items-center justify-center gap-2 text-cyan-400 mb-1">
                                 <Clock size={18} />
-                                <span className="text-2xl font-bold">14s</span>
+                                <span className="text-2xl font-bold">24/7</span>
                             </div>
-                            <p className="text-xs text-slate-500">Avg. Response Time</p>
+                            <p className="text-xs text-slate-500">AI lead capture</p>
                         </div>
                         <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                             <div className="flex items-center justify-center gap-2 text-amber-400 mb-1">
                                 <Star size={18} fill="currentColor" />
-                                <span className="text-2xl font-bold">4.9</span>
+                                <span className="text-2xl font-bold">Local</span>
                             </div>
-                            <p className="text-xs text-slate-500">Client Satisfaction</p>
+                            <p className="text-xs text-slate-500">Tri-Cities focused</p>
                         </div>
                     </div>
                 </div>
@@ -251,10 +251,10 @@ export const CaseStudies: React.FC = () => {
                 <div className="mt-24 text-center">
                     <div className="bg-gradient-to-r from-accent-primary/10 to-cyan-500/10 border border-accent-primary/20 rounded-3xl p-8 md:p-12">
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                            Ready to Be Our Next Success Story?
+                            Ready to Be Our First Success Story?
                         </h2>
                         <p className="text-slate-400 mb-8 max-w-2xl mx-auto">
-                            Join 50+ local businesses that have transformed their online presence with Digital Helper. 
+                            We&apos;re a new agency in the Tri-Cities — which means you get agency-quality work with founder-level attention.
                             Get a free website audit and see exactly how we can help your business grow.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -312,10 +312,14 @@ const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ study, isGenerated, index
                     )}
                     <div className={`absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent ${isReversed ? 'md:bg-gradient-to-l' : 'md:bg-gradient-to-r'}`}></div>
                     
-                    {/* AI Generated Badge */}
-                    {isGenerated && (
+                    {/* Badge */}
+                    {isGenerated ? (
                         <div className="absolute top-4 left-4 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
                             <Sparkles size={10} /> AI Generated
+                        </div>
+                    ) : (
+                        <div className="absolute top-4 left-4 bg-white/10 border border-white/20 text-white/60 text-xs font-medium px-3 py-1 rounded-full backdrop-blur-sm">
+                            Example Project
                         </div>
                     )}
                 </div>

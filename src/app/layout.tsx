@@ -102,7 +102,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://picsum.photos" />
         <link rel="preconnect" href="https://generativelanguage.googleapis.com" />
       </head>
-      <body className={dmSans.className} suppressHydrationWarning>
+      <body className={`${dmSans.className} overflow-x-hidden`} suppressHydrationWarning>
         <ABTestProvider>
           <MobileScrollOptimizer />
           <LocalBusinessSchema />

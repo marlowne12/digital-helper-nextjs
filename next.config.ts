@@ -50,6 +50,24 @@ const nextConfig: NextConfig = {
   // Powered by header (disable for security)
   poweredByHeader: false,
 
+  // 301 redirects for duplicate routes (TD-003)
+  // Canonical: /case-studies (has richer structured data)
+  // Canonical: /services/web-design (V2 component, correct hierarchy)
+  async redirects() {
+    return [
+      {
+        source: '/work/case-studies',
+        destination: '/case-studies',
+        permanent: true,
+      },
+      {
+        source: '/web-design',
+        destination: '/services/web-design',
+        permanent: true,
+      },
+    ];
+  },
+
   // Headers for security and caching
   async headers() {
     return [

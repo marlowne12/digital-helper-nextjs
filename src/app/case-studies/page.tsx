@@ -3,7 +3,7 @@ import { CaseStudies } from '@/components/CaseStudies';
 
 export const metadata: Metadata = {
     title: 'Case Studies | Digital Helper - Real Results for Local Businesses',
-    description: 'See how Digital Helper transforms local businesses with AI-powered websites, automation, and lead generation. 50+ success stories from Tri-Cities businesses.',
+    description: 'See how Digital Helper transforms local businesses with AI-powered websites, automation, and lead generation. Example projects from our Tri-Cities agency.',
     keywords: [
         'case studies',
         'web design results',
@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     ],
     openGraph: {
         title: 'Case Studies | Real Results for Local Businesses',
-        description: 'See how 50+ local businesses transformed their online presence with Digital Helper. AI-powered websites, automation, and lead generation that delivers results.',
+        description: 'See example projects from Digital Helper — AI-powered websites, automation, and lead generation that delivers results for Tri-Cities local businesses.',
         type: 'website',
         images: ['/og-case-studies.jpg']
     },
     twitter: {
         card: 'summary_large_image',
         title: 'Case Studies | Digital Helper',
-        description: 'Real results: 347% avg lead increase, 14s response time. See how we transform local businesses.'
+        description: 'Example projects: AI-powered websites, 24/7 lead capture, local SEO. See what we build for Tri-Cities businesses.'
     }
 };
 

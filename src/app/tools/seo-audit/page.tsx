@@ -363,8 +363,7 @@ export default function SEOAuditPage() {
                         <div className="mt-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-8 text-center text-white">
                             <h3 className="text-2xl font-bold mb-4">Want Us to Fix These Issues?</h3>
                             <p className="text-purple-100 mb-6 max-w-2xl mx-auto">
-                                Our team can implement all these fixes and more. Most local businesses see a 
-                                347% increase in leads after we optimize their website.
+                                Our team can implement all these fixes and more. A faster, better-optimized site means more visitors find you — and more of them become leads.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <Link

@@ -20,22 +20,6 @@ export const ChatWidget: React.FC = () => {
     const [emailCaptured, setEmailCaptured] = useState(false);
     const [capturingEmail, setCapturingEmail] = useState(false);
     const [userMessageCount, setUserMessageCount] = useState(0);
-    const [hasAutoOpened, setHasAutoOpened] = useState(false);
-
-    // Auto-open chat after a delay (only once)
-    useEffect(() => {
-        if (hasAutoOpened) return;
-
-        const dismissed = localStorage.getItem('chat-dismissed');
-        if (dismissed) return;
-
-        const timer = setTimeout(() => {
-            setIsOpen(true);
-            setHasAutoOpened(true);
-            trackChatInteraction('opened');
-        }, 1500);
-        return () => clearTimeout(timer);
-    }, [hasAutoOpened]);
 
     // Show email capture after 3+ user messages
     useEffect(() => {
