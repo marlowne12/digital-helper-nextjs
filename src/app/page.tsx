@@ -1,69 +1,27 @@
-import Script from "next/script";
-import { Hero } from "@/components/Hero";
-import { Services } from "@/components/Services";
-import { WebsiteAudit } from "@/components/WebsiteAudit";
-import { ProblemAgitation } from "@/components/ProblemAgitation";
-import { HowItWorks } from "@/components/HowItWorks";
-import { Stats } from "@/components/Stats";
-import { FAQ } from "@/components/FAQ";
-import { RecentWork } from "@/components/RecentWork";
-
-// FAQ Schema for rich results
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Why Next.js instead of WordPress?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "WordPress sites are often bloated and slow. Next.js is a modern framework that generates lightning-fast static pages, resulting in better user experience and higher Google rankings."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How does AI automation work?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We build custom systems (chatbots, internal workflows) that handle repetitive tasks like lead qualification, scheduling, and customer support, saving you hours every week."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you only work with Tri-Cities businesses?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "While we specialize in Richland, Kennewick, and Pasco, we help service-based businesses across Pacific Northwest who want to modernize their operations."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is 'Pay Per Lead' generation?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Instead of paying for ads and hoping they work, we build systems yourself and you only pay for verified, qualified leads that land in your inbox."
-      }
-    }
-  ]
-};
+import { HeroV2 } from "@/components/v2/HeroV2";
+import { SocialProofBarV2 } from "@/components/v2/SocialProofBarV2";
+import { ProblemV2 } from "@/components/v2/ProblemV2";
+import { ServicesV2 } from "@/components/v2/ServicesV2";
+import { HowItWorksV2 } from "@/components/v2/HowItWorksV2";
+import { CaseStudiesV2 } from "@/components/v2/CaseStudiesV2";
+import { PricingTeaserV2 } from "@/components/v2/PricingTeaserV2";
+import { FAQV2 } from "@/components/v2/FAQV2";
+import { CTAV2 } from "@/components/v2/CTAV2";
+import { SocialProofToast } from "@/components/SocialProofToast";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background-primary">
-      <Script
-        id="faq-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <Hero />
-      <ProblemAgitation />
-      <WebsiteAudit />
-      <Services />
-      <HowItWorks />
-      <Stats />
-      <RecentWork />
-      <FAQ />
-    </main>
+    <>
+      <HeroV2 />
+      <SocialProofBarV2 />
+      <ProblemV2 />
+      <ServicesV2 />
+      <HowItWorksV2 />
+      <CaseStudiesV2 />
+      <PricingTeaserV2 />
+      <FAQV2 />
+      <CTAV2 />
+      <SocialProofToast />
+    </>
   );
 }

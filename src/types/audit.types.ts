@@ -57,7 +57,7 @@ export interface AuditErrorResponse {
 
 // --- Component State ---
 
-export type AuditStep = 'input' | 'loading' | 'results';
+export type AuditStep = 'input' | 'loading' | 'results' | 'error';
 
 export interface AuditState {
   step: AuditStep;

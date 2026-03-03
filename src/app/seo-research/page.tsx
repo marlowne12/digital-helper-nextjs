@@ -62,25 +62,25 @@ const problemSolvingKeywords: Keyword[] = [
 const categories: Category[] = [
   {
     title: 'High-Priority Primary Keywords',
-    icon: <Target className="w-6 h-6 text-accent-primary" />,
+    icon: <Target className="w-6 h-6 text-indigo-400" />,
     keywords: primaryKeywords,
     description: 'Your bread-and-butter keywords with high commercial intent targeting Richland, Kennewick, and Pasco directly.'
   },
   {
     title: 'AI Automation Keywords (HIGH GROWTH)',
-    icon: <TrendingUp className="w-6 h-6 text-accent-tertiary" />,
+    icon: <TrendingUp className="w-6 h-6 text-violet-400" />,
     keywords: aiAutomationKeywords,
     description: '64% of small businesses planning to adopt chatbots. Average $8 ROI for every $1 invested in chatbots.'
   },
   {
     title: '"Near Me" & Local Discovery',
-    icon: <Search className="w-6 h-6 text-accent-secondary" />,
+    icon: <Search className="w-6 h-6 text-cyan-400" />,
     keywords: nearMeKeywords,
     description: '76% of "near me" mobile searches lead to store visit within 24 hours. 84% of local searches happen on mobile devices.'
   },
   {
     title: 'Problem-Solving Keywords',
-    icon: <Lightbulb className="w-6 h-6 text-accent-indigo" />,
+    icon: <Lightbulb className="w-6 h-6 text-indigo-300" />,
     keywords: problemSolvingKeywords,
     description: 'What local business owners are actually searching for when they encounter problems with their online presence.'
   },
@@ -148,8 +148,8 @@ export default function SEOResearchPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background-primary py-12">
-      <div className="container mx-auto px-6 max-w-7xl">
+    <div className="min-h-screen bg-[#0a0a0f] py-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -159,10 +159,11 @@ export default function SEOResearchPage() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="font-display font-black text-[4rem] md:text-[6rem] lg:text-[7rem] text-white mb-4"
+              className="font-black text-[4rem] md:text-[6rem] lg:text-[7rem] text-white mb-4"
+              style={{ fontFamily: "var(--font-heading)" }}
             >
-              Tri-Cities
-              <span className="text-gradient">Keyword Research</span>
+              Tri-Cities{" "}
+              <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-indigo-300 bg-clip-text text-transparent">Keyword Research</span>
             </motion.h1>
             <p className="text-zinc-300 text-lg max-w-3xl mx-auto">
               Comprehensive keyword research and SEO strategy for Richland, Kennewick, and Pasco businesses.
@@ -178,7 +179,7 @@ export default function SEOResearchPage() {
                 placeholder="Search keywords, categories, or insights..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 h-14 bg-white/5 border-white/10 text-white placeholder:text-zinc-500 focus:bg-white/[0.08] focus:border-accent-primary/50 rounded-xl text-lg transition-all"
+                className="w-full pl-12 pr-4 h-14 bg-white/5 border border-white/10 text-white placeholder:text-zinc-500 focus:bg-white/[0.08] focus:border-indigo-500/50 rounded-xl text-lg transition-all outline-none"
               />
             </div>
           </div>
@@ -193,7 +194,7 @@ export default function SEOResearchPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.1, duration: 0.5 }}
-                  className="glass rounded-2xl overflow-hidden"
+                  className="bg-white/[0.03] border border-white/[0.08] rounded-2xl overflow-hidden"
                 >
                   <button
                     onClick={() => toggleCategory(category.title)}
@@ -266,9 +267,9 @@ export default function SEOResearchPage() {
             })}
           </div>
 
-          <div className="mt-12 glass p-8 rounded-2xl">
+          <div className="mt-12 bg-white/[0.03] border border-white/[0.08] p-8 rounded-2xl">
             <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-              <Star className="w-6 h-6 text-accent-primary" />
+              <Star className="w-6 h-6 text-indigo-400" />
               Top 10 Keywords to Target First
             </h2>
             <div className="grid gap-4">
@@ -299,9 +300,9 @@ export default function SEOResearchPage() {
         </motion.div>
 
         {copiedKeyword && (
-          <div className="fixed bottom-4 right-4 z-50 glass px-4 py-2 rounded-lg text-white flex items-center gap-2 animate-in-up">
+          <div className="fixed bottom-4 right-4 z-50 bg-white/[0.03] border border-white/[0.08] backdrop-blur-md px-4 py-2 rounded-lg text-white flex items-center gap-2">
             <CheckCircle className="w-5 h-5 text-green-400" />
-            <span className="text-sm">Copied: <span className="font-mono text-accent-primary">{copiedKeyword}</span></span>
+            <span className="text-sm">Copied: <span className="font-mono text-indigo-400">{copiedKeyword}</span></span>
           </div>
         )}
       </div>

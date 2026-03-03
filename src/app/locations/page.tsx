@@ -1,28 +1,21 @@
 import type { Metadata } from "next";
-import LocationsPageContent from "./LocationsPageContent";
+import { LocationsContent } from "./LocationsContent";
 
 export const metadata: Metadata = {
-  title: "Service Areas | Web Design Tri-Cities WA",
-  description:
-    "Web design and SEO services for businesses throughout the Tri-Cities WA region. Serving Richland, Kennewick, Pasco, and West Richland with local expertise.",
-  keywords: [
-    "web design richland wa",
-    "web design kennewick wa",
-    "web design pasco wa",
-    "seo west richland",
-    "tri-cities web development",
-  ],
-  alternates: {
-    canonical: "/locations",
-  },
-  openGraph: {
-    title: "Service Areas | Tri-Cities Web Design & SEO",
-    description:
-      "Local web design and SEO for Richland, Kennewick, Pasco & West Richland businesses.",
-    url: "https://digital-helper.com/locations",
-  },
+    title: "Service Areas | Richland, Kennewick, Pasco & West Richland",
+    description: "Digital Helper serves businesses across the Tri-Cities: Richland, Kennewick, Pasco & West Richland. Local web design, SEO, and AI automation experts.",
+    keywords: ["tri-cities web design", "richland digital marketing", "kennewick seo", "pasco web developer", "west richland marketing"],
+    alternates: {
+        canonical: "/locations",
+    },
+    openGraph: {
+        title: "Tri-Cities Service Areas | Digital Helper",
+        description: "Serving Richland, Kennewick, Pasco & West Richland with web design, SEO, and AI automation services.",
+        url: "https://digital-helper.com/locations",
+        images: ["/og-image.png"],
+    },
 };
 
 export default function LocationsPage() {
-  return <LocationsPageContent />;
+    return <LocationsContent />;
 }

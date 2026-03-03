@@ -128,3 +128,29 @@ Legacy routes are redirected in `next.config.ts` (e.g., `/seo` → `/services/se
 - Use React `useState` and `useEffect` for local component state
 - For global UI state (like modals or sidebars), consider using a Context Provider or a lightweight library like `zustand` if complexity increases
 - Navigation state is handled by Next.js router or simple local state in layout components
+
+---
+
+## Recent Updates (2026-02-03)
+
+### GEO Optimization (AI Visibility)
+Enhanced LocalBusiness schema in `layout.tsx` for better AI parsing:
+- Added `description` with official tagline
+- Added `email` (business@digital-helper.com)
+- Added `founder` (Marlon McGuire)
+- Added `areaServed` with all 4 Tri-Cities (Richland, Kennewick, Pasco, West Richland)
+- Added `hasOfferCatalog` with all 5 services as structured Service schema
+
+### Hero Tagline
+Updated Hero component to use official tagline: "We build systems that work while you sleep"
+
+### AntiGravity Kit
+Installed ag-kit v2.0 with:
+- 20 specialist agents
+- 36 skills (including ui-ux-pro-max)
+- 11 workflows (including /orchestrate)
+
+Use `/orchestrate` for multi-agent tasks, `/ui-ux-pro-max` for design system work.
+
+### Task Tracking
+See `docs/WEBSITE-IMPROVEMENTS.md` for current improvement sprint.

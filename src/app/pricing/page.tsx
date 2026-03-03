@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import { Pricing } from '@/components/Pricing';
+import { PricingV2 } from '@/components/v2/PricingV2';
+import { BreadcrumbSchema } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
     title: "Pricing Packages | Digital Helper Agency",
@@ -11,5 +12,15 @@ export const metadata: Metadata = {
 };
 
 export default function PricingPage() {
-    return <Pricing />;
+    return (
+        <>
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://digital-helper.com" },
+                    { name: "Pricing", url: "https://digital-helper.com/pricing" },
+                ]}
+            />
+            <PricingV2 />
+        </>
+    );
 }

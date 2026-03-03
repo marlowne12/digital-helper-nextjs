@@ -3,16 +3,17 @@ import { Syne, DM_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
-import { Contact } from "@/components/Contact";
-import { RevealOnScroll } from "@/components/RevealOnScroll";
-import { Toaster } from "@/components/ui/toaster";
-import { ChatWidget } from "@/components/ChatWidget";
+import { NavbarV2 } from "@/components/v2/NavbarV2";
+import { FooterV2 } from "@/components/v2/FooterV2";
+import { LazyChat } from "@/components/LazyChat";
+import { LocalBusinessSchema, WebSiteSchema } from "@/components/StructuredData";
+import { ABTestProvider } from "@/components/ABTestProvider";
 import { ExitIntentPopup } from "@/components/ExitIntentPopup";
-import { SocialProofTicker } from "@/components/SocialProofTicker";
-import Script from "next/script";
-
+import { MobileBottomNav } from "@/components/MobileBottomNav";
+import { MobileScrollOptimizer } from "@/components/MobileScrollOptimizer";
+import { MobileCallButton } from "@/components/MobileCallButton";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -185,25 +186,28 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
-      <body className={`${dmSans.variable} ${syne.variable} font-sans`} suppressHydrationWarning>
-        <Script
-          id="json-ld"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <Navbar />
-        {children}
-        <RevealOnScroll>
-          <Contact />
-        </RevealOnScroll>
-        <Footer />
-        <ChatWidget />
-        <ExitIntentPopup />
-        <SocialProofTicker />
+    <html lang="en" className={`dark scroll-smooth ${syne.variable} ${dmSans.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Preconnect to external origins for faster resource loading */}
+        <link rel="preconnect" href="https://picsum.photos" />
+        <link rel="dns-prefetch" href="https://picsum.photos" />
+        <link rel="preconnect" href="https://generativelanguage.googleapis.com" />
+      </head>
+      <body className={`${dmSans.className} overflow-x-hidden`} suppressHydrationWarning>
+        <ABTestProvider>
+          <MobileScrollOptimizer />
+          <LocalBusinessSchema />
+          <WebSiteSchema />
+          <NavbarV2 />
+          <main>{children}</main>
+          <FooterV2 />
+          <LazyChat />
+          <ExitIntentPopup />
+          <MobileBottomNav />
+          <MobileCallButton />
+        </ABTestProvider>
         <Analytics />
         <SpeedInsights />
-        <Toaster />
       </body>
     </html>
   );

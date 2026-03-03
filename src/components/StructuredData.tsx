@@ -184,3 +184,97 @@ export function BreadcrumbSchema({
     />
   )
 }
+
+export function LocalBusinessCitySchema({
+  city,
+  description,
+  url,
+}: {
+  city: string
+  description: string
+  url: string
+}) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: 'Digital Helper Agency',
+    description,
+    url,
+    telephone: '+15099875060',
+    email: 'business@digital-helper.com',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: city,
+      addressRegion: 'WA',
+      addressCountry: 'US',
+    },
+    areaServed: { '@type': 'City', name: `${city}, WA` },
+    provider: {
+      '@type': 'ProfessionalService',
+      name: 'Digital Helper Agency',
+      url: 'https://digital-helper.com',
+    },
+  }
+
+  const json = JSON.stringify(schema)
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: json }}
+    />
+  )
+}
+
+export function IndustryServiceSchema({
+  industry,
+  description,
+  url,
+  audience,
+}: {
+  industry: string
+  description: string
+  url: string
+  audience: string
+}) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `Digital Marketing & Web Design for ${industry}`,
+    description,
+    url,
+    audience: {
+      '@type': 'Audience',
+      audienceType: audience,
+    },
+    provider: {
+      '@type': 'ProfessionalService',
+      name: 'Digital Helper Agency',
+      url: 'https://digital-helper.com',
+      telephone: '+15099875060',
+      email: 'business@digital-helper.com',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Richland',
+        addressRegion: 'WA',
+        postalCode: '99352',
+        addressCountry: 'US',
+      },
+      areaServed: [
+        { '@type': 'City', name: 'Richland, WA' },
+        { '@type': 'City', name: 'Kennewick, WA' },
+        { '@type': 'City', name: 'Pasco, WA' },
+        { '@type': 'City', name: 'West Richland, WA' },
+      ],
+    },
+  }
+
+  const json = JSON.stringify(schema)
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: json }}
+    />
+  )
+}

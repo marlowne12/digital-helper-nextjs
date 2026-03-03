@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { getAllPosts, getAllCategories, getFeaturedPosts, searchPosts } from '@/lib/blog';
 import { ArrowRight, Calendar, Clock, Tag, XCircle } from 'lucide-react';
 import SearchBar from '@/components/blog/SearchBar';
+import { BreadcrumbV2 } from '@/components/v2/BreadcrumbV2';
 
 export const metadata: Metadata = {
     title: 'Blog | Digital Helper',
@@ -23,30 +24,51 @@ export default async function BlogPage({ searchParams }: Props) {
     const isSearching = !!q;
 
     return (
-        <main className="min-h-screen pt-32 pb-20 bg-background-primary">
-            <div className="container mx-auto px-6">
+        <main className="min-h-screen bg-[#0a0a0f] overflow-hidden">
+            {/* Background glows */}
+            <div className="fixed inset-0 pointer-events-none">
+                <div className="absolute top-[-10%] left-[15%] w-[600px] h-[600px] rounded-full bg-indigo-600/8 blur-[120px]" />
+                <div className="absolute bottom-[10%] right-[5%] w-[400px] h-[400px] rounded-full bg-violet-600/6 blur-[100px]" />
+                <div
+                    className="absolute inset-0 opacity-[0.025]"
+                    style={{
+                        backgroundImage:
+                            "linear-gradient(rgba(99,102,241,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.4) 1px, transparent 1px)",
+                        backgroundSize: "60px 60px",
+                    }}
+                />
+            </div>
+
+            <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-20">
+
+                {/* Breadcrumb */}
+                <BreadcrumbV2 items={[{ label: 'Blog', href: '/blog' }]} />
 
                 {/* Hero */}
-                <div className="max-w-4xl mb-12">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-accent-purple text-sm font-medium mb-6">
-                        Insights & Resources
-                    </span>
-                    <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-                        The Digital Helper <span className="text-gradient">Blog</span>
+                <div className="max-w-4xl mb-14">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-sm font-medium mb-6">
+                        Insights &amp; Resources
+                    </div>
+                    <h1 className="text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight text-white mb-5">
+                        The Digital Helper{" "}
+                        <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-indigo-300 bg-clip-text text-transparent">
+                            Blog
+                        </span>
                     </h1>
-                    <p className="text-xl text-zinc-400 leading-relaxed">
-                        Actionable tips on web design, local SEO, AI automation, and growing your business in Richland, Kennewick, and Pasco.
+                    <p className="text-xl text-zinc-400 leading-relaxed max-w-2xl">
+                        Actionable tips on web design, local SEO, AI automation, and growing
+                        your business in Richland, Kennewick, and Pasco.
                     </p>
                 </div>
 
                 {/* Filters & Search */}
-                <div className="flex flex-col md:flex-row gap-8 mb-12 items-start justify-between">
-                    <div className="flex flex-wrap gap-3 flex-1">
+                <div className="flex flex-col md:flex-row gap-6 mb-12 items-start justify-between">
+                    <div className="flex flex-wrap gap-2 flex-1">
                         <Link
                             href="/blog"
-                            className={`px-4 py-2 rounded-full border text-sm font-medium transition-colors ${!isSearching
-                                ? 'bg-accent-purple/10 border-accent-purple/20 text-accent-purple hover:bg-accent-purple/20'
-                                : 'bg-white/[0.03] border-white/[0.08] text-zinc-400 hover:bg-white/[0.06]'
+                            className={`px-4 py-2 rounded-full border text-sm font-medium transition-all duration-200 ${!isSearching
+                                ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-300'
+                                : 'border-white/10 bg-white/5 text-zinc-400 hover:bg-white/8 hover:border-white/15'
                                 }`}
                         >
                             All Posts
@@ -55,7 +77,7 @@ export default async function BlogPage({ searchParams }: Props) {
                             <Link
                                 key={category}
                                 href={`/blog/category/${encodeURIComponent(category)}`}
-                                className="px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.08] text-zinc-400 text-sm font-medium hover:bg-white/[0.06] transition-colors"
+                                className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-zinc-400 text-sm font-medium hover:bg-white/8 hover:border-white/15 transition-all duration-200"
                             >
                                 {category}
                             </Link>
@@ -64,33 +86,39 @@ export default async function BlogPage({ searchParams }: Props) {
                     <SearchBar />
                 </div>
 
-                {/* Search Results Header */}
+                {/* Search results header */}
                 {isSearching && (
-                    <div className="mb-8 flex items-center gap-4">
+                    <div className="mb-10 flex items-center gap-4">
                         <h2 className="text-2xl font-bold text-white">
-                            Search results for <span className="text-accent-purple">&quot;{q}&quot;</span>
+                            Results for{" "}
+                            <span className="text-indigo-400">&quot;{q}&quot;</span>
                         </h2>
-                        <Link href="/blog" className="text-zinc-500 hover:text-white flex items-center gap-1 text-sm">
-                            <XCircle className="w-4 h-4" /> Clear Search
+                        <Link
+                            href="/blog"
+                            className="text-zinc-500 hover:text-white flex items-center gap-1 text-sm transition-colors"
+                        >
+                            <XCircle className="w-4 h-4" /> Clear
                         </Link>
                     </div>
                 )}
 
-                {/* Featured Posts (Hidden when searching) */}
+                {/* Featured posts */}
                 {featuredPosts.length > 0 && (
                     <section className="mb-16">
-                        <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
-                            <span className="w-8 h-8 rounded-lg bg-accent-purple/20 flex items-center justify-center text-accent-purple text-sm">★</span>
+                        <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <span className="w-7 h-7 rounded-lg bg-indigo-500/15 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-sm">
+                                ★
+                            </span>
                             Featured
                         </h2>
-                        <div className="grid md:grid-cols-2 gap-8">
+                        <div className="grid md:grid-cols-2 gap-6">
                             {featuredPosts.map(post => (
                                 <Link
                                     key={post.slug}
                                     href={`/blog/${post.slug}`}
-                                    className="group glass p-1 rounded-2xl overflow-hidden hover:border-accent-purple/30 transition-all"
+                                    className="group rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden hover:border-indigo-500/30 hover:bg-white/8 transition-all duration-300"
                                 >
-                                    <div className="aspect-video bg-gradient-to-br from-accent-purple/20 to-accent-blue/20 rounded-xl mb-4 relative overflow-hidden">
+                                    <div className="aspect-video bg-gradient-to-br from-indigo-600/20 to-violet-600/20 relative overflow-hidden">
                                         {post.image ? (
                                             <Image
                                                 src={post.image}
@@ -101,12 +129,12 @@ export default async function BlogPage({ searchParams }: Props) {
                                             />
                                         ) : (
                                             <div className="absolute inset-0 flex items-center justify-center">
-                                                <span className="text-6xl opacity-50">📝</span>
+                                                <span className="text-6xl opacity-30">📝</span>
                                             </div>
                                         )}
                                     </div>
                                     <div className="p-6">
-                                        <div className="flex items-center gap-4 text-sm text-zinc-500 mb-3">
+                                        <div className="flex items-center gap-4 text-xs text-zinc-500 mb-3">
                                             <span className="flex items-center gap-1">
                                                 <Tag className="w-3 h-3" /> {post.category}
                                             </span>
@@ -114,14 +142,15 @@ export default async function BlogPage({ searchParams }: Props) {
                                                 <Clock className="w-3 h-3" /> {post.readingTime}
                                             </span>
                                         </div>
-                                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent-purple transition-colors">
+                                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-indigo-300 transition-colors leading-snug">
                                             {post.title}
                                         </h3>
                                         <p className="text-zinc-400 text-sm leading-relaxed mb-4">
                                             {post.excerpt}
                                         </p>
-                                        <span className="text-accent-purple font-medium text-sm flex items-center gap-1">
-                                            Read More <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                        <span className="text-indigo-400 font-medium text-sm flex items-center gap-1">
+                                            Read More{" "}
+                                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                         </span>
                                     </div>
                                 </Link>
@@ -130,25 +159,34 @@ export default async function BlogPage({ searchParams }: Props) {
                     </section>
                 )}
 
-                {/* All Posts Grid */}
+                {/* All posts grid */}
                 <section>
-                    {!isSearching && <h2 className="text-2xl font-bold text-white mb-8">All Posts</h2>}
+                    {!isSearching && (
+                        <h2 className="text-xl font-bold text-white mb-6">All Posts</h2>
+                    )}
 
                     {allPosts.length > 0 ? (
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
                             {allPosts.map(post => (
                                 <Link
                                     key={post.slug}
                                     href={`/blog/${post.slug}`}
-                                    className="group glass p-6 rounded-2xl hover:border-accent-purple/30 transition-all"
+                                    className="group rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 hover:border-indigo-500/30 hover:bg-white/8 transition-all duration-300"
                                 >
                                     <div className="flex items-center gap-3 text-xs text-zinc-500 mb-4">
-                                        <span className="px-2 py-1 rounded bg-white/[0.05]">{post.category}</span>
+                                        <span className="px-2 py-1 rounded-full bg-white/5 border border-white/8">
+                                            {post.category}
+                                        </span>
                                         <span className="flex items-center gap-1">
-                                            <Calendar className="w-3 h-3" /> {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                                            <Calendar className="w-3 h-3" />{" "}
+                                            {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                                                month: 'short',
+                                                day: 'numeric',
+                                                year: 'numeric',
+                                            })}
                                         </span>
                                     </div>
-                                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-accent-purple transition-colors leading-snug">
+                                    <h3 className="text-base font-bold text-white mb-2 group-hover:text-indigo-300 transition-colors leading-snug">
                                         {post.title}
                                     </h3>
                                     <p className="text-zinc-500 text-sm leading-relaxed line-clamp-2">
@@ -156,16 +194,21 @@ export default async function BlogPage({ searchParams }: Props) {
                                     </p>
                                     <div className="mt-4 pt-4 border-t border-white/[0.05] flex items-center justify-between">
                                         <span className="text-xs text-zinc-600">{post.readingTime}</span>
-                                        <ArrowRight className="w-4 h-4 text-zinc-600 group-hover:text-accent-purple group-hover:translate-x-1 transition-all" />
+                                        <ArrowRight className="w-4 h-4 text-zinc-600 group-hover:text-indigo-400 group-hover:translate-x-1 transition-all" />
                                     </div>
                                 </Link>
                             ))}
                         </div>
                     ) : (
-                        <div className="text-center py-20 bg-white/5 rounded-2xl border border-white/10">
+                        <div className="text-center py-20 rounded-2xl border border-white/10 bg-white/5">
                             <h3 className="text-xl font-bold text-white mb-2">No articles found</h3>
-                            <p className="text-zinc-400 mb-6">We couldn&apos;t find any articles matching &quot;{q}&quot;.</p>
-                            <Link href="/blog" className="px-6 py-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors inline-block">
+                            <p className="text-zinc-400 mb-6">
+                                We couldn&apos;t find any articles matching &quot;{q}&quot;.
+                            </p>
+                            <Link
+                                href="/blog"
+                                className="inline-block px-6 py-2.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white text-sm transition-all"
+                            >
                                 View all posts
                             </Link>
                         </div>

@@ -53,7 +53,7 @@ export default async function BlogPostPage({ params }: Props) {
                 if (line.startsWith('- ')) {
                     return (
                         <li key={i} className="text-zinc-300 ml-4 mb-2 flex items-start gap-2">
-                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-purple flex-shrink-0" />
+                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0" />
                             <span>{line.replace('- ', '')}</span>
                         </li>
                     );
@@ -64,7 +64,7 @@ export default async function BlogPostPage({ params }: Props) {
                     if (match) {
                         return (
                             <li key={i} className="text-zinc-300 ml-4 mb-2 flex items-start gap-3">
-                                <span className="w-6 h-6 rounded-full bg-accent-purple/10 text-accent-purple text-xs font-bold flex items-center justify-center flex-shrink-0">
+                                <span className="w-6 h-6 rounded-full bg-indigo-600/10 text-indigo-400 text-xs font-bold flex items-center justify-center flex-shrink-0">
                                     {match[1]}
                                 </span>
                                 <span>{match[2]}</span>
@@ -90,7 +90,7 @@ export default async function BlogPostPage({ params }: Props) {
                         return (
                             <p key={i} className="text-zinc-400 mb-4 leading-relaxed">
                                 {before}
-                                <Link href={linkMatch[2]} className="text-accent-purple hover:underline">{linkMatch[1]}</Link>
+                                <Link href={linkMatch[2]} className="text-indigo-400 hover:underline">{linkMatch[1]}</Link>
                                 {after}
                             </p>
                         );
@@ -111,7 +111,7 @@ export default async function BlogPostPage({ params }: Props) {
     };
 
     return (
-        <main className="min-h-screen pt-32 pb-20 bg-background-primary">
+        <main className="min-h-screen pt-32 pb-20 bg-[#0a0a0f]">
             <article className="container mx-auto px-6 max-w-3xl">
 
                 {/* Back Link */}
@@ -122,7 +122,7 @@ export default async function BlogPostPage({ params }: Props) {
                 {/* Header */}
                 <header className="mb-12">
                     <div className="flex items-center gap-4 text-sm text-zinc-500 mb-6">
-                        <span className="px-3 py-1 rounded-full bg-accent-purple/10 border border-accent-purple/20 text-accent-purple font-medium flex items-center gap-1">
+                        <span className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 font-medium flex items-center gap-1">
                             <Tag className="w-3 h-3" /> {post.category}
                         </span>
                         <span className="flex items-center gap-1">
@@ -175,15 +175,13 @@ export default async function BlogPostPage({ params }: Props) {
                                 <Share2 className="w-5 h-5" />
                             </Button>
                         </div>
-                        <Button asChild className="btn-primary">
-                            <Link href="/contact">Get a Free Consultation</Link>
-                        </Button>
+                        <Link href="/contact" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-colors">Get a Free Consultation</Link>
                     </div>
                 </footer>
 
                 {/* Author */}
-                <div className="mt-12 glass p-6 rounded-2xl flex items-center gap-6">
-                    <div className="w-16 h-16 rounded-full bg-accent-gradient flex items-center justify-center text-white font-bold text-xl">
+                <div className="mt-12 bg-white/[0.03] border border-white/[0.08] p-6 rounded-2xl flex items-center gap-6">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 flex items-center justify-center text-white font-bold text-xl">
                         DH
                     </div>
                     <div>
@@ -203,18 +201,18 @@ export default async function BlogPostPage({ params }: Props) {
                                 <Link
                                     key={related.slug}
                                     href={`/blog/${related.slug}`}
-                                    className="group glass p-6 rounded-2xl hover:border-accent-purple/30 transition-all block"
+                                    className="group bg-white/[0.03] border border-white/[0.08] p-6 rounded-2xl hover:border-indigo-500/30 transition-all block"
                                 >
                                     <div className="flex items-center gap-2 text-xs text-zinc-500 mb-3">
                                         <Tag className="w-3 h-3" /> {related.category}
                                     </div>
-                                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-accent-purple transition-colors">
+                                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors">
                                         {related.title}
                                     </h3>
                                     <p className="text-zinc-500 text-sm line-clamp-2 mb-4">
                                         {related.excerpt}
                                     </p>
-                                    <span className="text-accent-purple text-sm font-medium flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                    <span className="text-indigo-400 text-sm font-medium flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                                         Read Article <ArrowRight className="w-4 h-4" />
                                     </span>
                                 </Link>

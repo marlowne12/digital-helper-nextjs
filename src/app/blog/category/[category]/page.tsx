@@ -30,7 +30,7 @@ export default async function CategoryPage({ params }: Props) {
     const posts = getPostsByCategory(decodedCategory);
 
     return (
-        <main className="min-h-screen pt-32 pb-20 bg-background-primary">
+        <main className="min-h-screen pt-32 pb-20 bg-[#0a0a0f]">
             <div className="container mx-auto px-6">
 
                 {/* Header */}
@@ -38,7 +38,7 @@ export default async function CategoryPage({ params }: Props) {
                     <Link href="/blog" className="inline-flex items-center gap-2 text-zinc-500 hover:text-white mb-6 transition-colors">
                         <ArrowLeft className="w-4 h-4" /> Back to Blog
                     </Link>
-                    <span className="block text-accent-purple font-medium mb-2">Category Archive</span>
+                    <span className="block text-indigo-400 font-medium mb-2">Category Archive</span>
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                         {decodedCategory}
                     </h1>
@@ -58,7 +58,7 @@ export default async function CategoryPage({ params }: Props) {
                             <Link
                                 key={post.slug}
                                 href={`/blog/${post.slug}`}
-                                className="group glass p-6 rounded-2xl hover:border-accent-purple/30 transition-all"
+                                className="group bg-white/[0.03] border border-white/[0.08] p-6 rounded-2xl hover:border-indigo-500/30 transition-all"
                             >
                                 <div className="flex items-center gap-3 text-xs text-zinc-500 mb-4">
                                     <span className="px-2 py-1 rounded bg-white/[0.05]">{post.category}</span>
@@ -66,7 +66,7 @@ export default async function CategoryPage({ params }: Props) {
                                         <Calendar className="w-3 h-3" /> {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                                     </span>
                                 </div>
-                                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-accent-purple transition-colors leading-snug">
+                                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors leading-snug">
                                     {post.title}
                                 </h3>
                                 <p className="text-zinc-500 text-sm leading-relaxed line-clamp-2">
@@ -74,7 +74,7 @@ export default async function CategoryPage({ params }: Props) {
                                 </p>
                                 <div className="mt-4 pt-4 border-t border-white/[0.05] flex items-center justify-between">
                                     <span className="text-xs text-zinc-600">{post.readingTime}</span>
-                                    <ArrowRight className="w-4 h-4 text-zinc-600 group-hover:text-accent-purple group-hover:translate-x-1 transition-all" />
+                                    <ArrowRight className="w-4 h-4 text-zinc-600 group-hover:text-indigo-400 group-hover:translate-x-1 transition-all" />
                                 </div>
                             </Link>
                         ))}
@@ -82,7 +82,7 @@ export default async function CategoryPage({ params }: Props) {
                 ) : (
                     <div className="text-center py-20 bg-white/5 rounded-2xl border border-white/10">
                         <p className="text-zinc-400">No posts found in this category.</p>
-                        <Link href="/blog" className="text-accent-purple hover:underline mt-4 inline-block">View all posts</Link>
+                        <Link href="/blog" className="text-indigo-400 hover:underline mt-4 inline-block">View all posts</Link>
                     </div>
                 )}
             </div>

@@ -2,7 +2,19 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import type { AuditFullResult } from '@/types/audit.types';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy initialization to avoid build-time errors when API key is missing
+let resendClient: Resend | null = null;
+
+function getResendClient(): Resend {
+  if (!resendClient) {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      throw new Error('RESEND_API_KEY environment variable is not configured');
+    }
+    resendClient = new Resend(apiKey);
+  }
+  return resendClient;
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -19,6 +31,7 @@ export async function POST(req: NextRequest) {
     const emailHtml = generateAuditEmailHtml(auditResults, websiteUrl);
 
     // Send email using Resend
+    const resend = getResendClient();
     const data = await resend.emails.send({
       from: 'Digital Helper <business@digital-helper.com>',
       to: [email],
@@ -29,9 +42,14 @@ export async function POST(req: NextRequest) {
 
     console.log('✅ Email sent successfully:', data);
 
+    // Handle Resend v3+ response structure
+    if (data.error) {
+      throw new Error(data.error.message || 'Email sending failed');
+    }
+
     return NextResponse.json({
       success: true,
-      messageId: data.id,
+      messageId: data.data?.id ?? 'sent',
       message: 'Audit report sent to your email',
     });
 
