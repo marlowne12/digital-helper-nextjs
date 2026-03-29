@@ -5,12 +5,36 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Build & Development Commands
 
 ```bash
-npm run dev      # Start development server (http://localhost:3000)
-npm run build    # Production build
-npm run start    # Start production server
-npm run lint     # Run ESLint
-npx tsc --noEmit # Type check without emitting files
+npm run dev          # Start development server (http://localhost:3000)
+npm run build        # Production build
+npm run start        # Start production server
+npm run lint         # Run ESLint
+npx tsc --noEmit     # Type check without emitting files
+npm run test         # Run Vitest unit tests
+npm run test:watch   # Vitest watch mode
+npm run test:coverage
 ```
+
+## Branch Strategy
+
+| Branch | Purpose |
+|--------|---------|
+| `master` | Production — auto-deploys via Vercel. Merge via PR only. |
+| `feature/<description>` | New features |
+| `fix/<description>` | Bug fixes |
+| `<agent-key>/<description>` | Agent-authored branches (e.g. `cto/add-ci`) |
+
+**CI checks** (GitHub Actions) run on all PRs and pushes to master: lint → type-check → test → build. All must pass before merging.
+
+## Commit Convention
+
+```
+<type>(<scope>): <description>
+
+Co-Authored-By: Paperclip <noreply@paperclip.ing>  # when Paperclip agents commit
+```
+
+Types: `feat`, `fix`, `refactor`, `test`, `docs`, `chore`, `ci`
 
 ## Architecture Overview
 
