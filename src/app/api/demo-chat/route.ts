@@ -91,7 +91,7 @@ export async function POST(req: Request) {
         model: google('gemini-1.5-flash'),
         system: buildSystemPrompt(businessContext),
         messages,
-        maxTokens: 512,
+        maxOutputTokens: 512,
     });
 
     return result.toTextStreamResponse();
