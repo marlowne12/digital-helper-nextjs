@@ -112,7 +112,7 @@ export default function ResourcesPage() {
                     </p>
 
                     <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                      What's Inside
+                      What&apos;s Inside
                     </h3>
                     <ul className="mb-6 space-y-2">
                       {resource.highlights.map((highlight, i) => (

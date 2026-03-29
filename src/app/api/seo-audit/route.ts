@@ -246,7 +246,8 @@ async function saveLead(url: string, email?: string) {
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
-        let { url, email } = body;
+        let { url } = body;
+        const { email } = body;
 
         if (!url || typeof url !== 'string') {
             return NextResponse.json(

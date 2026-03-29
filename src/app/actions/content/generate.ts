@@ -445,10 +445,12 @@ async function generateAllVariants(
         })
     );
 
+    const getReason = (r: PromiseSettledResult<GeneratedContent>): GeneratedContent =>
+        r.status === 'rejected' ? (r.reason as GeneratedContent) : r.value;
     const variants: Record<VariantStyle, GeneratedContent> = {
-        'seo-focused': results[0].status === 'fulfilled' ? results[0].value : (results as any)[0].reason,
-        'story-driven': results[1].status === 'fulfilled' ? results[1].value : (results as any)[1].reason,
-        'problem-solution': results[2].status === 'fulfilled' ? results[2].value : (results as any)[2].reason,
+        'seo-focused': results[0].status === 'fulfilled' ? results[0].value : getReason(results[0]),
+        'story-driven': results[1].status === 'fulfilled' ? results[1].value : getReason(results[1]),
+        'problem-solution': results[2].status === 'fulfilled' ? results[2].value : getReason(results[2]),
     };
 
     return variants;
