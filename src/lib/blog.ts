@@ -3,6 +3,82 @@ import { BlogPost } from '@/types';
 // Blog post data - can be migrated to MDX or CMS later
 export const blogPosts: BlogPost[] = [
     {
+        slug: '5-signs-your-tri-cities-business-needs-a-website-upgrade',
+        title: '5 Signs Your Tri-Cities Business Needs a Website Upgrade in 2025',
+        excerpt: 'Is your Tri-Cities website costing you customers? Here are 5 signs your small business website needs a modern upgrade — and what to do about it.',
+        content: `
+## Is Your Website Hurting Your Business?
+
+If your Tri-Cities business has a website, that's a start. But having a website and having a website that actually works for your business are two very different things. In a competitive market like Kennewick, Richland, and Pasco, an outdated website isn't just forgettable — it's actively costing you customers.
+
+Here are five clear signs it's time for a website upgrade.
+
+## 1. Your Site Is Not Mobile-Friendly
+
+More than 60% of all web searches now happen on mobile devices. If your website doesn't adapt to different screen sizes — meaning customers have to pinch and zoom just to read your phone number — you're losing them immediately.
+
+Google also uses mobile-friendliness as a direct ranking factor. A site that doesn't work on phones doesn't just frustrate visitors; it gets buried in search results. For small businesses in the Tri-Cities area competing for local customers, this is a serious disadvantage.
+
+**How to check:** Open your website on your phone right now. Is the text readable without zooming in? Can you tap the buttons easily? Does everything fit on the screen without scrolling sideways?
+
+If the answer to any of those is "no," your customers are noticing too. And they're leaving.
+
+A proper web design built for 2025 is mobile-first by default — meaning it's designed for phones first and scales up to desktop, not the other way around.
+
+## 2. You Have No Way for Customers to Book Online
+
+Think about the last time you searched for a restaurant, a hair salon, or a contractor. Did you call to make a reservation or appointment? Probably not — you clicked a button and booked online.
+
+Your Tri-Cities customers expect the same experience. If visitors have to call during business hours just to get on your schedule, many of them won't bother. They'll move on to a competitor who makes it easy.
+
+Online booking tools are no longer a luxury — they're a basic expectation for any service business in Washington State. A website upgrade can integrate booking directly into your site, capturing customers at the exact moment they're ready to commit, even at 11 PM on a Sunday night.
+
+The businesses that win in local markets are the ones that make it easiest to say yes.
+
+## 3. Your Competitors Are Showing Up on Google and You're Not
+
+Search for your service plus "Kennewick WA" or "Tri-Cities WA." Where does your website appear? If you're not on the first page — ideally in the top three results — your potential customers simply aren't finding you.
+
+Outdated websites often have technical SEO problems baked in: slow load times, missing meta descriptions, no structured data, duplicate content, or thin pages that Google doesn't trust. These issues push you down in rankings while your competitors (even the ones with worse services) capture all the traffic.
+
+A website upgrade addresses these technical issues directly and gives you a clean foundation to build local SEO authority in Kennewick and across the Tri-Cities. Good web design and strong SEO aren't separate disciplines — they work together, and a modern rebuild typically produces ranking improvements within 60-90 days.
+
+## 4. Your Site Takes More Than 3 Seconds to Load
+
+This one is painful but true: **53% of mobile visitors abandon a site that takes more than 3 seconds to load.** Three seconds. That's all the time you have.
+
+Slow websites are typically caused by oversized images, bloated code, cheap shared hosting, or too many plugins running on every page. These are all extremely common with older WordPress sites built with heavy themes. The result is a site that frustrates visitors and gets penalized by Google at the same time.
+
+Google measures your page speed and factors it directly into your search rankings. A slow site ranks lower, loads poorly for visitors, and converts fewer of them into customers. It's a triple penalty that compounds over time.
+
+Modern websites built on frameworks like Next.js serve pages in milliseconds by pre-rendering content and delivering it from edge networks close to your visitors. We regularly see clients score 90+ on Google PageSpeed after a rebuild. This isn't just faster — it's a fundamentally different approach that pays dividends in rankings and conversions.
+
+## 5. You Have No Way to Capture Leads Automatically
+
+What happens when someone visits your small business website at 10 PM? They're interested, but you're closed. Do they leave their information, or do they just disappear?
+
+Most small business websites in the Tri-Cities area do nothing. Visitors browse, find no easy way to take the next step, and leave. Maybe they come back, maybe they don't.
+
+A properly built website captures leads around the clock: contact forms that notify you instantly via text or email, AI chatbots that answer questions and engage visitors 24/7, lead magnets that trade useful resources for an email address, and clear calls-to-action that guide every visitor toward booking or calling.
+
+Every day without these tools is a day of lost leads — real people in Kennewick and across the Tri-Cities who wanted to work with you but couldn't figure out how to get started.
+
+## What to Do Next
+
+If you recognized your business in two or more of these signs, you're leaving money on the table. A website upgrade isn't an expense — it's an investment that pays back in more customers, more bookings, and more consistent revenue.
+
+At Digital Helper, we build modern websites for Tri-Cities businesses that are fast, mobile-first, SEO-optimized, and built to convert visitors into paying customers. We understand the local market in Richland, Kennewick, and Pasco — and what it actually takes to compete here.
+
+[Book your free website consultation](/booking) and we'll show you exactly what's holding your current site back and what a new one could do for your business.
+        `,
+        author: 'Digital Helper',
+        publishedAt: '2026-03-30',
+        readingTime: '6 min read',
+        category: 'Web Design',
+        image: '/blog/website-upgrade-tricities.jpg',
+        featured: true
+    },
+    {
         slug: 'local-seo-guide-tri-cities',
         title: 'The Complete Local SEO Guide for Tri-Cities Businesses',
         excerpt: 'Learn how to dominate Google Maps and local search results in Richland, Kennewick, and Pasco.',
