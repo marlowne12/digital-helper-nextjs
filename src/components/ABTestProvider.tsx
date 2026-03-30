@@ -66,21 +66,16 @@ interface ABTestProviderProps {
 }
 
 export function ABTestProvider({ children }: ABTestProviderProps) {
-    const [assignments, setAssignments] = useState<Record<string, string>>({});
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    // Load assignments from localStorage on mount
-    useEffect(() => {
+    const [assignments, setAssignments] = useState<Record<string, string>>(() => {
+        if (typeof window === 'undefined') return {};
         try {
             const stored = localStorage.getItem('ab-test-assignments');
-            if (stored) {
-                setAssignments(JSON.parse(stored));
-            }
-        } catch (e) {
-            console.warn('Failed to load A/B test assignments:', e);
+            return stored ? (JSON.parse(stored) as Record<string, string>) : {};
+        } catch {
+            return {};
         }
-        setIsLoaded(true);
-    }, []);
+    });
+    const [isLoaded, setIsLoaded] = useState(() => typeof window !== 'undefined');
 
     // Persist assignments to localStorage
     useEffect(() => {

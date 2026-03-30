@@ -13,6 +13,9 @@ export const metadata: Metadata = {
         'Tri-Cities web design',
         'small business transformation'
     ],
+    alternates: {
+        canonical: '/case-studies',
+    },
     openGraph: {
         title: 'Case Studies | Real Results for Local Businesses',
         description: 'See example projects from Digital Helper — AI-powered websites, automation, and lead generation that delivers results for Tri-Cities local businesses.',

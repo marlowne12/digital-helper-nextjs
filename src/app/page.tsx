@@ -5,6 +5,7 @@ import { ServicesV2 } from "@/components/v2/ServicesV2";
 import { HowItWorksV2 } from "@/components/v2/HowItWorksV2";
 import { CaseStudiesV2 } from "@/components/v2/CaseStudiesV2";
 import { PricingTeaserV2 } from "@/components/v2/PricingTeaserV2";
+import { QuickLeadCaptureV2 } from "@/components/v2/QuickLeadCaptureV2";
 import { FAQV2 } from "@/components/v2/FAQV2";
 import { CTAV2 } from "@/components/v2/CTAV2";
 import { SocialProofToast } from "@/components/SocialProofToast";
@@ -19,6 +20,7 @@ export default function Home() {
       <HowItWorksV2 />
       <CaseStudiesV2 />
       <PricingTeaserV2 />
+      <QuickLeadCaptureV2 />
       <FAQV2 />
       <CTAV2 />
       <SocialProofToast />

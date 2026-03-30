@@ -105,13 +105,12 @@ export function SocialProofToast({
     position = "bottom-left"
 }: SocialProofToastProps) {
     const [currentToast, setCurrentToast] = useState<ToastNotification | null>(null);
-    const [dismissed, setDismissed] = useState(false);
+    const [dismissed, setDismissed] = useState(() => {
+        if (typeof window === 'undefined') return false;
+        return sessionStorage.getItem('socialProofDismissed') === 'true';
+    });
     const [notificationIndex, setNotificationIndex] = useState(0);
-    const [isClient, setIsClient] = useState(false);
-
-    useEffect(() => {
-        setIsClient(true);
-    }, []);
+    const [isClient] = useState(() => typeof window !== 'undefined');
 
     const showNextToast = useCallback(() => {
         if (dismissed) return;
@@ -161,15 +160,6 @@ export function SocialProofToast({
         }
     };
 
-    // Check if previously dismissed this session
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const wasDismissed = sessionStorage.getItem('socialProofDismissed');
-            if (wasDismissed) {
-                setDismissed(true);
-            }
-        }
-    }, []);
 
     if (!isClient || dismissed) return null;
 

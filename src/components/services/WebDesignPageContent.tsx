@@ -82,7 +82,7 @@ export function WebDesignPageContent() {
                 {/* Breadcrumb */}
                 <BreadcrumbV2 items={[
                     { label: 'Services', href: '/services' },
-                    { label: 'Web Design', href: '/services/web-design' },
+                    { label: 'Web Design', href: '/web-design' },
                 ]} />
 
                 {/* 1. Hero Section */}
@@ -92,17 +92,17 @@ export function WebDesignPageContent() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-indigo-600/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium mb-6 uppercase tracking-wider">
+                        {/* Primary H1 keyword phrase for SEO */}
+                        <h1 className="inline-block px-4 py-1.5 rounded-full bg-indigo-600/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium mb-6 uppercase tracking-wider">
                             High-Performance Web Design
-                        </span>
-                        <h1
+                        </h1>
+                        <h2
                             className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight"
                             style={{ fontFamily: 'var(--font-heading)' }}
                         >
                             Websites That Work <br />
                             <span className="text-indigo-300">While You Sleep.</span>
-                        </h1>
-                        <h2 className="sr-only">Web Design Richland WA & Next.js Development</h2>
+                        </h2>
                         <p className="text-xl text-zinc-400 max-w-2xl mb-10 leading-relaxed">
                             Most Richland business sites are slow, outdated, and ignored by Google. We build modern, blazing-fast digital foundations that turn visitors into loyal customers.
                         </p>

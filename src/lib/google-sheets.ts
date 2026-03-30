@@ -10,6 +10,7 @@
  * - GOOGLE_SHEETS_SPREADSHEET_ID: The Google Sheets spreadsheet ID
  */
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { GoogleAuth } from 'google-auth-library';
 import { sheets } from '@googleapis/sheets';
 import type {
