@@ -50,9 +50,8 @@ const nextConfig: NextConfig = {
   // Powered by header (disable for security)
   poweredByHeader: false,
 
-  // 301 redirects for duplicate routes (TD-003)
-  // Canonical: /case-studies (has richer structured data)
-  // Canonical: /services/web-design (V2 component, correct hierarchy)
+  // 301 redirects for duplicate routes
+  // Canonical URLs match sitemap: /web-design, /seo, /ai-agency
   async redirects() {
     return [
       {
@@ -61,8 +60,18 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/web-design',
-        destination: '/services/web-design',
+        source: '/services/web-design',
+        destination: '/web-design',
+        permanent: true,
+      },
+      {
+        source: '/services/seo',
+        destination: '/seo',
+        permanent: true,
+      },
+      {
+        source: '/services/ai-automation',
+        destination: '/ai-agency',
         permanent: true,
       },
     ];

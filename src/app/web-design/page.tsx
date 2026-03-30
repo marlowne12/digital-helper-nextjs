@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { WebDesign } from '@/components/WebDesign';
+import { WebDesignPageContent } from '@/components/services/WebDesignPageContent';
 import { FAQPageSchema, ServiceSchema, BreadcrumbSchema } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
@@ -51,7 +51,7 @@ export default function WebDesignPage() {
                     { name: "Web Design", url: "https://digital-helper.com/web-design" },
                 ]}
             />
-            <WebDesign />
+            <WebDesignPageContent />
         </>
     );
 }

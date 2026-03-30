@@ -13,9 +13,9 @@ const NAV_LINKS = [
 ];
 
 const SERVICES_DROPDOWN = [
-  { label: "AI Chatbot System", href: "/services/ai-automation" },
-  { label: "Web Design", href: "/services/web-design" },
-  { label: "Local SEO", href: "/services/seo" },
+  { label: "AI Chatbot System", href: "/ai-agency" },
+  { label: "Web Design", href: "/web-design" },
+  { label: "Local SEO", href: "/seo" },
   { label: "Lead Generation", href: "/services/lead-generation" },
   { label: "Reputation Management", href: "/services/reputation-management" },
 ];

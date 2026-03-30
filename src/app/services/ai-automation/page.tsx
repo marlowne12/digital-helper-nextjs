@@ -26,7 +26,7 @@ export const metadata: Metadata = {
         images: ["/og-ai-automation.png"],
     },
     alternates: {
-        canonical: "/services/ai-automation",
+        canonical: "/ai-agency",
     },
 }
 

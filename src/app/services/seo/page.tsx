@@ -26,7 +26,7 @@ export const metadata: Metadata = {
         images: ["/og-seo.png"],
     },
     alternates: {
-        canonical: "/services/seo",
+        canonical: "/seo",
     },
 }
 

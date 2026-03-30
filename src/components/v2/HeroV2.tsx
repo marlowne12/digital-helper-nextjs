@@ -38,8 +38,8 @@ export function HeroV2() {
 
           {/* Left — Copy */}
           <div>
-            {/* Badge */}
-            <motion.div
+            {/* Badge — primary H1 keyword phrase for SEO */}
+            <motion.h1
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
@@ -50,10 +50,10 @@ export function HeroV2() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-400" />
               </span>
               AI Automation for Service Businesses
-            </motion.div>
+            </motion.h1>
 
             {/* Headline */}
-            <motion.h1
+            <motion.h2
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -64,7 +64,7 @@ export function HeroV2() {
               <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-indigo-300 bg-clip-text text-transparent">
                 Running on Autopilot.
               </span>
-            </motion.h1>
+            </motion.h2>
 
             {/* Sub */}
             <motion.p
