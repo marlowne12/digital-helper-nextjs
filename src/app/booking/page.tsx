@@ -1,10 +1,13 @@
 import { Metadata } from 'next';
 import { Clock, Video, CheckCircle, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { CalendlyWidget } from '@/components/CalendlyWidget';
+
+const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/marlowne12/30min';
 
 export const metadata: Metadata = {
     title: 'Book a Free Consultation | Digital Helper',
-    description: 'Schedule a free 15-minute strategy call with Digital Helper to discuss your web design, SEO, and automation goals.',
+    description: 'Schedule a free 30-minute consultation with Digital Helper to discuss your web design, SEO, and automation goals.',
 };
 
 export default function BookingPage() {
@@ -30,7 +33,7 @@ export default function BookingPage() {
                             Let&apos;s Build Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Digital System</span>
                         </h1>
                         <p className="text-xl text-slate-400 max-w-2xl">
-                            Schedule a free 15-minute strategy call to discuss your project. No hype, no jargon—just a clear plan for your business growth.
+                            Schedule a free 30-minute consultation to discuss your project. No hype, no jargon—just a clear plan for your business growth.
                         </p>
                     </div>
 
@@ -63,7 +66,7 @@ export default function BookingPage() {
                                 <div className="space-y-4 text-sm">
                                     <div className="flex justify-between">
                                         <span className="text-slate-500">Duration</span>
-                                        <span className="text-white font-medium">15 Minutes</span>
+                                        <span className="text-white font-medium">30 Minutes</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span className="text-slate-500">Location</span>
@@ -79,21 +82,11 @@ export default function BookingPage() {
 
                         {/* Right Booking Widget */}
                         <div className="lg:col-span-2">
-                            <div className="bg-white rounded-3xl overflow-hidden shadow-2xl shadow-cyan-500/10 min-h-[600px] relative">
-                                {/* Embed Placeholder */}
-                                <div className="absolute inset-0 bg-white">
-                                    <iframe
-                                        src="https://calendar.app.google/jFDgyirZ2xZZ6kRU8"
-                                        style={{ border: 0 }}
-                                        width="100%"
-                                        height="700"
-                                        frameBorder="0"
-                                        className="w-full h-full min-h-[700px] rounded-2xl"
-                                    ></iframe>
-                                </div>
+                            <div className="bg-white rounded-3xl overflow-hidden shadow-2xl shadow-cyan-500/10">
+                                <CalendlyWidget url={CALENDLY_URL} height={700} />
                             </div>
                             <p className="text-center text-slate-500 text-xs mt-6">
-                                Not a fan of video calls? <Link href="/#contact" className="underline hover:text-white">Email us instead.</Link>
+                                Not a fan of video calls? <Link href="/contact" className="underline hover:text-white">Email us instead.</Link>
                             </p>
                         </div>
                     </div>

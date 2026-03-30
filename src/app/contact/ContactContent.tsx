@@ -13,6 +13,7 @@ import {
     CheckCircle2,
 } from 'lucide-react';
 import { ContactForm } from "@/components/ContactForm";
+import { CalendlyWidget } from "@/components/CalendlyWidget";
 
 export const CONTACT_INFO = {
     email: 'business@digital-helper.com',
@@ -21,7 +22,7 @@ export const CONTACT_INFO = {
     location: 'Richland, WA 99354',
     serviceArea: 'Serving Kennewick, Pasco, West Richland & the Tri-Cities',
     hours: 'Mon-Fri: 9AM - 6PM PST',
-    calendarUrl: 'https://calendar.app.google/jFDgyirZ2xZZ6kRU8',
+    calendlyUrl: process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/marlowne12/30min',
 } as const;
 
 const TRUST_SIGNALS = [
@@ -111,7 +112,7 @@ export function ContactContent() {
                     {/* Left — Booking & Info */}
                     <div className="space-y-8">
 
-                        {/* Calendar embed */}
+                        {/* Calendly embed */}
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -123,23 +124,16 @@ export function ContactContent() {
                                     <Calendar className="w-5 h-5 text-indigo-400" />
                                 </div>
                                 <div>
-                                    <h2 className="text-xl font-bold text-white">Schedule a Strategy Call</h2>
-                                    <p className="text-sm text-zinc-500">15 min · Free · No obligation</p>
+                                    <h2 className="text-xl font-bold text-white">Schedule a Free Consultation</h2>
+                                    <p className="text-sm text-zinc-500">30 min · Free · No obligation</p>
                                 </div>
                             </div>
                             <p className="text-zinc-400 text-sm leading-relaxed mb-6">
-                                Book a 15-minute call to discuss your goals. No sales pitch,
+                                Book a 30-minute call to discuss your goals. No sales pitch,
                                 just a clear plan for your success.
                             </p>
-                            <div className="bg-white rounded-xl overflow-hidden aspect-[4/5] sm:aspect-video lg:aspect-square">
-                                <iframe
-                                    src={CONTACT_INFO.calendarUrl}
-                                    style={{ border: 0 }}
-                                    width="100%"
-                                    height="100%"
-                                    frameBorder="0"
-                                    title="Schedule a call with Digital Helper"
-                                />
+                            <div className="bg-white rounded-xl overflow-hidden">
+                                <CalendlyWidget url={CONTACT_INFO.calendlyUrl} height={600} />
                             </div>
                         </motion.div>
 
