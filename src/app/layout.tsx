@@ -12,6 +12,7 @@ import { ExitIntentPopup } from "@/components/ExitIntentPopup";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { MobileScrollOptimizer } from "@/components/MobileScrollOptimizer";
 import { MobileCallButton } from "@/components/MobileCallButton";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -206,6 +207,7 @@ export default function RootLayout({
         </ABTestProvider>
         <Analytics />
         <SpeedInsights />
+        <GoogleAnalytics />
       </body>
     </html>
   );
