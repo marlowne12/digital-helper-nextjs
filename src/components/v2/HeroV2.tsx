@@ -85,10 +85,10 @@ export function HeroV2() {
               className="flex flex-col sm:flex-row gap-3 mb-10"
             >
               <Link
-                href="/contact"
+                href="/booking"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[44px] rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-base transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 group"
               >
-                Book a Free Demo
+                Book a Free Consultation
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <Link
