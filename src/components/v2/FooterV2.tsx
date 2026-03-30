@@ -19,6 +19,13 @@ const COMPANY_LINKS = [
   { label: "Contact", href: "/contact" },
 ];
 
+const AREAS_LINKS = [
+  { label: "Richland, WA", href: "/richland-wa" },
+  { label: "Kennewick, WA", href: "/kennewick-wa" },
+  { label: "Pasco, WA", href: "/pasco-wa" },
+  { label: "West Richland", href: "/locations/west-richland" },
+];
+
 const SOCIAL_LINKS = [
   { label: "Facebook", href: "https://facebook.com/digitalhelperagency", icon: Facebook },
   { label: "LinkedIn", href: "https://linkedin.com/company/digital-helper", icon: Linkedin },
@@ -96,6 +103,21 @@ export function FooterV2() {
             </p>
             <ul className="space-y-2.5">
               {COMPANY_LINKS.map(({ label, href }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="text-sm text-zinc-500 hover:text-zinc-200 transition-colors duration-150"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-4 mt-6">
+              Areas Served
+            </p>
+            <ul className="space-y-2.5">
+              {AREAS_LINKS.map(({ label, href }) => (
                 <li key={href}>
                   <Link
                     href={href}
