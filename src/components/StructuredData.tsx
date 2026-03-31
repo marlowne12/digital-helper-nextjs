@@ -2,12 +2,13 @@ export function LocalBusinessSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    name: 'Digital Helper Agency',
+    '@id': 'https://digital-helper.com',
+    name: 'Digital Helper',
     description:
       'Digital Helper transforms outdated local business websites into modern, high-converting sites. Web design, SEO, and AI automation for Tri-Cities businesses.',
     url: 'https://digital-helper.com',
-    telephone: '+15095550123',
-    email: 'hello@digitalhelper.com',
+    telephone: '+15098768454',
+    email: 'digitalhelperwebsite@gmail.com',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Richland',
@@ -31,15 +32,19 @@ export function LocalBusinessSchema() {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
       opens: '09:00',
-      closes: '17:00',
+      closes: '18:00',
     },
     priceRange: '$$',
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.9',
       reviewCount: '50',
+      bestRating: '5',
     },
-    sameAs: ['https://maps.app.goo.gl/oywZxxYt9w3m1oCK9'],
+    sameAs: [
+      'https://maps.app.goo.gl/oywZxxYt9w3m1oCK9',
+      'https://calendar.app.google/jFDgyirZ2xZZ6kRU8',
+    ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Digital Services',
@@ -71,6 +76,24 @@ export function LocalBusinessSchema() {
               'AI chatbots, workflow automation, and lead generation for local businesses',
           },
         },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Lead Generation',
+            description:
+              'Pay-per-lead systems that deliver qualified prospects for local businesses',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Reputation Management',
+            description:
+              'Review monitoring, AI auto-responses, and 5-star review generation',
+          },
+        },
       ],
     },
   }
@@ -87,11 +110,14 @@ export function WebSiteSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Digital Helper Agency',
+    name: 'Digital Helper',
     url: 'https://digital-helper.com',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://digital-helper.com/?q={search_term_string}',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://digital-helper.com/?q={search_term_string}',
+      },
       'query-input': 'required name=search_term_string',
     },
   }
@@ -143,7 +169,7 @@ export function ServiceSchema({
     url,
     provider: {
       '@type': 'ProfessionalService',
-      name: 'Digital Helper Agency',
+      name: 'Digital Helper',
       url: 'https://digital-helper.com',
       areaServed: [
         { '@type': 'City', name: 'Richland, WA' },
@@ -197,10 +223,10 @@ export function LocalBusinessCitySchema({
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    name: 'Digital Helper Agency',
+    name: 'Digital Helper',
     description,
     url,
-    telephone: '+15099875060',
+    telephone: '+15098768454',
     email: 'business@digital-helper.com',
     address: {
       '@type': 'PostalAddress',
@@ -211,7 +237,7 @@ export function LocalBusinessCitySchema({
     areaServed: { '@type': 'City', name: `${city}, WA` },
     provider: {
       '@type': 'ProfessionalService',
-      name: 'Digital Helper Agency',
+      name: 'Digital Helper',
       url: 'https://digital-helper.com',
     },
   }
@@ -249,9 +275,9 @@ export function IndustryServiceSchema({
     },
     provider: {
       '@type': 'ProfessionalService',
-      name: 'Digital Helper Agency',
+      name: 'Digital Helper',
       url: 'https://digital-helper.com',
-      telephone: '+15099875060',
+      telephone: '+15098768454',
       email: 'business@digital-helper.com',
       address: {
         '@type': 'PostalAddress',
