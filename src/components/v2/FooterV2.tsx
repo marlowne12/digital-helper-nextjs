@@ -17,6 +17,7 @@ const COMPANY_LINKS = [
   { label: "Blog", href: "/blog" },
   { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/contact" },
+  { label: "Free Website Audit", href: "/audit" },
 ];
 
 const SOCIAL_LINKS = [

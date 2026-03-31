@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: "Work", href: "/work" },
   { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
+  { label: "Free Audit", href: "/audit" },
 ];
 
 const SERVICES_DROPDOWN = [
@@ -103,15 +104,25 @@ export function NavbarV2() {
             </div>
 
             {/* Other links */}
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="px-4 py-2 rounded-lg text-sm text-zinc-400 hover:text-white transition-colors duration-200"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) =>
+              link.href === "/audit" ? (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="px-4 py-2 rounded-lg text-sm text-indigo-400 hover:text-indigo-300 font-medium transition-colors duration-200"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="px-4 py-2 rounded-lg text-sm text-zinc-400 hover:text-white transition-colors duration-200"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </nav>
 
           {/* Desktop CTA + Mobile Toggle */}
