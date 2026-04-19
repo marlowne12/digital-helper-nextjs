@@ -101,8 +101,7 @@ export function ContactForm() {
         }
 
         try {
-            const response = await fetch('/api/contact', {
-                method: 'POST',
+                       const response = await fetch(\'/api/notion-leads\', {              method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             });
