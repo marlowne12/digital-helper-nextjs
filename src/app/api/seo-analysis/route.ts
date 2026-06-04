@@ -3,7 +3,8 @@ import { GoogleGenAI } from "@google/genai";
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { z } from 'zod';
-import { checkRateLimit } from '@/lib/ratelimit';
+import { withRateLimit } from '@/lib/api-middleware';
+import { rateLimits } from '@/lib/rate-limit';
 
 const URLRequestSchema = z.object({
     url: z.string().url().refine((url) => {
@@ -17,7 +18,7 @@ const URLRequestSchema = z.object({
 });
 
 const SYSTEM_INSTRUCTION = `
-You are an expert SEO Auditor for "Digital Helper".
+You are an expert SEO Auditor for "Digital Helper". 
 Your task is to analyze raw website metadata and metrics and provide a professional, graded assessment.
 
 Output Format: JSON only.
@@ -35,102 +36,92 @@ Structure:
 `;
 
 export async function POST(req: NextRequest) {
-    // Rate limiting — 10 requests per 10 seconds per IP
-    try {
-        const ip = req.headers.get('x-forwarded-for') ?? 'anonymous';
-        const { success } = await checkRateLimit(ip);
-        if (!success) {
-            return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
-        }
-    } catch (rateLimitError) {
-        console.error('[seo-analysis] Rate limit check error (skipping):', rateLimitError);
-    }
-
-    try {
-        const body = await req.json();
-        const validatedData = URLRequestSchema.parse(body);
-        const { url } = validatedData;
-
-        let targetUrl = url;
-        if (!targetUrl.startsWith('http')) {
-            targetUrl = 'https://' + targetUrl;
-        }
-
-        const startTime = Date.now();
-        const response = await axios.get(targetUrl, {
-            timeout: 10000,
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (compatible; DigitalHelperBot/1.0; +http://digital-helper.com)'
-            },
-            validateStatus: (status) => status < 500
-        });
-
-        const endTime = Date.now();
-        const $ = cheerio.load(response.data);
-
-        const analysisContext = {
-            url: targetUrl,
-            statusCode: response.status,
-            loadTimeMs: endTime - startTime,
-            metrics: {
-                title: { content: $('title').text().trim() },
-                description: { content: $('meta[name="description"]').attr('content') || '' },
-                headers: { h1Count: $('h1').length },
-                mobile: { hasViewportCtx: !!$('meta[name="viewport"]').attr('content') },
-                images: { total: $('img').length, withAlt: $('img[alt]').length },
-                links: { total: $('a').length }
-            }
-        };
-
-        const apiKey = process.env.GEMINI_API_KEY;
-        if (!apiKey) {
-            return NextResponse.json({ error: "Configuration Error" }, { status: 500 });
-        }
-
-        const ai = new GoogleGenAI({ apiKey });
-        const prompt = `Analyze this website data: ${JSON.stringify(analysisContext)}. System Instruction: ${SYSTEM_INSTRUCTION}`;
-
-        const result = await ai.models.generateContent({
-            model: "gemini-1.5-flash",
-            contents: [{ role: "user", parts: [{ text: prompt }] }],
-            config: {
-                responseMimeType: "application/json"
-            }
-        });
-
-        let aiAnalysis = {};
+    return withRateLimit(req, rateLimits.seoAnalysis, async () => {
         try {
-            const text = result.text || "{}";
-            const cleanedText = text.replace(/```json/g, '').replace(/```/g, '').trim();
-            aiAnalysis = JSON.parse(cleanedText);
-        } catch (parseError) {
-            console.error("[SEO AI Parse Error]", parseError);
-            aiAnalysis = {
-                grade: "C",
-                score: 50,
-                summary: "Analysis completed but detailed report generation failed.",
-                quickWins: ["Review site structure manually", "Optimize images", "Improve page load speed"]
+            const body = await req.json();
+            const validatedData = URLRequestSchema.parse(body);
+            const { url } = validatedData;
+
+            let targetUrl = url;
+            if (!targetUrl.startsWith('http')) {
+                targetUrl = 'https://' + targetUrl;
+            }
+
+            const startTime = Date.now();
+            const response = await axios.get(targetUrl, {
+                timeout: 10000,
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (compatible; DigitalHelperBot/1.0; +http://digital-helper.com)'
+                },
+                validateStatus: (status) => status < 500
+            });
+
+            const endTime = Date.now();
+            const $ = cheerio.load(response.data);
+
+            const analysisContext = {
+                url: targetUrl,
+                statusCode: response.status,
+                loadTimeMs: endTime - startTime,
+                metrics: {
+                    title: { content: $('title').text().trim() },
+                    description: { content: $('meta[name="description"]').attr('content') || '' },
+                    headers: { h1Count: $('h1').length },
+                    mobile: { hasViewportCtx: !!$('meta[name="viewport"]').attr('content') },
+                    images: { total: $('img').length, withAlt: $('img[alt]').length },
+                    links: { total: $('a').length }
+                }
             };
+
+            const apiKey = process.env.GEMINI_API_KEY;
+            if (!apiKey) {
+                return NextResponse.json({ error: "Configuration Error" }, { status: 500 });
+            }
+
+            const ai = new GoogleGenAI({ apiKey });
+            const prompt = `Analyze this website data: ${JSON.stringify(analysisContext)}. System Instruction: ${SYSTEM_INSTRUCTION}`;
+
+            const result = await ai.models.generateContent({
+                model: "gemini-1.5-flash",
+                contents: [{ role: "user", parts: [{ text: prompt }] }],
+                config: {
+                    responseMimeType: "application/json"
+                }
+            });
+
+            let aiAnalysis = {};
+            try {
+                const text = result.text || "{}";
+                // Clean common LLM formatting artifacts if necessary
+                const cleanedText = text.replace(/```json/g, '').replace(/```/g, '').trim();
+                aiAnalysis = JSON.parse(cleanedText);
+            } catch (parseError) {
+                console.error("[SEO AI Parse Error]", parseError);
+                aiAnalysis = {
+                    grade: "C",
+                    score: 50,
+                    summary: "Analysis completed but detailed report generation failed.",
+                    quickWins: ["Review site structure manually", "Optimize images", "Improve page load speed"]
+                };
+            }
+
+            return NextResponse.json({
+                url: targetUrl,
+                rawMetrics: analysisContext,
+                aiAnalysis
+            });
+
+        } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+            const errorMessage = error.message || "Unknown error";
+            console.error("SEO Audit Error:", errorMessage);
+
+            const status = error.response?.status || 500;
+            const detail = error.code === 'ECONNABORTED' ? "Request timed out during website scan." : errorMessage;
+
+            return NextResponse.json({
+                error: "Failed to scan website.",
+                details: detail
+            }, { status });
         }
-
-        return NextResponse.json({
-            url: targetUrl,
-            rawMetrics: analysisContext,
-            aiAnalysis
-        });
-
-    } catch (error: unknown) {
-        const errorMessage = error instanceof Error ? error.message : "Unknown error";
-        console.error("SEO Audit Error:", errorMessage);
-
-        const status = (error as { response?: { status?: number } })?.response?.status || 500;
-        const detail = (error as { code?: string })?.code === 'ECONNABORTED'
-            ? "Request timed out during website scan."
-            : errorMessage;
-
-        return NextResponse.json({
-            error: "Failed to scan website.",
-            details: detail
-        }, { status });
-    }
+    });
 }

@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -44,10 +44,35 @@ next-env.d.ts
 
 # build and lint artifacts
 build_log*.txt
+build-log*.txt
 build_output.txt
 lint-results*.json
 lint-results*.txt
 lint_errors.txt
 lint_results_final.txt
+lint-report*.txt
 tsc_output*.txt
 lighthouse-report.json
+design-output*.txt
+
+# AI tool configs and agent artifacts
+.serena/
+.codex/
+.omx/
+.openclaw/
+.playwright-mcp/
+antigravity-kit/
+claude-code-router-main/
+claude-code-router-main.zip
+digital-helper-nextjs/
+tmpclaude-5971-cwd
+heartbeat-state.json
+dashboard.html
+
+# Python cache
+__pycache__/
+*.pyc
+
+# creative scratch / Remotion 3D workspace (kept outside the app source)
+creative/digital-helper-3d-assets/remotion/
+

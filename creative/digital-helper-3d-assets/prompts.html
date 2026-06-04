@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Digital Helper 3D Asset Prompts</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0a0a0f;
+        --panel: rgba(255, 255, 255, 0.04);
+        --border: rgba(255, 255, 255, 0.1);
+        --text: #ffffff;
+        --muted: #a1a1aa;
+        --teal: #00d4aa;
+        --sky: #0ea5e9;
+        --cyan: #06b6d4;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 20% 10%, rgba(0, 212, 170, 0.16), transparent 30%),
+          radial-gradient(circle at 80% 80%, rgba(14, 165, 233, 0.16), transparent 32%),
+          linear-gradient(135deg, #0a0a0f 0%, #101720 58%, #0a0a0f 100%);
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .grid {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+        background-size: 72px 72px;
+        mask-image: radial-gradient(circle at center, black 20%, transparent 78%);
+      }
+
+      main {
+        position: relative;
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 56px 0;
+      }
+
+      header {
+        margin-bottom: 28px;
+      }
+
+      .eyebrow {
+        color: var(--teal);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 880px;
+        margin: 12px 0 12px;
+        font-size: clamp(42px, 7vw, 82px);
+        line-height: 0.92;
+        letter-spacing: 0;
+      }
+
+      .gradient {
+        background: linear-gradient(135deg, var(--teal), var(--sky), var(--cyan));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .intro {
+        max-width: 720px;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.6;
+      }
+
+      .tabs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin: 28px 0 14px;
+      }
+
+      button {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--panel);
+        color: var(--text);
+        cursor: pointer;
+        font: inherit;
+      }
+
+      .tab {
+        padding: 14px 16px;
+        color: var(--muted);
+        font-weight: 800;
+      }
+
+      .tab.active {
+        color: #06110f;
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--teal), var(--sky), var(--cyan));
+      }
+
+      .panel {
+        display: none;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: rgba(10, 10, 15, 0.72);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(16px);
+      }
+
+      .panel.active {
+        display: block;
+      }
+
+      .panel-head {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .panel-head h2 {
+        margin: 0;
+        font-size: 22px;
+      }
+
+      .copy {
+        min-width: 112px;
+        padding: 10px 14px;
+        color: #06110f;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--teal), var(--sky), var(--cyan));
+      }
+
+      pre {
+        margin: 0;
+        max-height: 58vh;
+        overflow: auto;
+        padding: 22px;
+        white-space: pre-wrap;
+        color: #e4e4e7;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .note {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      @media (max-width: 720px) {
+        main {
+          padding: 32px 0;
+        }
+
+        .tabs {
+          grid-template-columns: 1fr;
+        }
+
+        .panel-head {
+          align-items: stretch;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid"></div>
+    <main>
+      <header>
+        <div class="eyebrow">Digital Helper Asset Pack</div>
+        <h1><span class="gradient">3D website assets</span> for the agency site</h1>
+        <p class="intro">
+          Copy-ready prompt sets for image/video generators, shaped around Digital Helper's web design,
+          local SEO, and AI automation services.
+        </p>
+      </header>
+
+      <nav class="tabs" aria-label="Prompt sets">
+        <button class="tab active" data-target="website">AI Website Engine</button>
+        <button class="tab" data-target="seo">Local SEO Signal Map</button>
+        <button class="tab" data-target="automation">Automation Workflow Core</button>
+      </nav>
+
+      <section class="panel active" id="website">
+        <div class="panel-head">
+          <h2>AI Website Engine</h2>
+          <button class="copy" data-copy="websiteText">Copy Set</button>
+        </div>
+        <pre id="websiteText">PROMPT A - ASSEMBLED SHOT
+
+Professional 3D product-style render of a futuristic AI-powered website engine for a web design agency, centered in frame on a clean dark premium background (#0a0a0f). The object is a sleek floating laptop/browser dashboard hybrid with layered glass panels, a luminous website preview, conversion cards, analytics widgets, and subtle circuit-like AI accents. Materials include smoked glass, satin black metal, polished edges, and teal-cyan-sky luminous gradients (#00d4aa, #0ea5e9, #06b6d4). The system feels complete, pristine, and ready to deploy.
+
+Photorealistic 3D rendering, 16:9 aspect ratio, premium SaaS product visualization. Soft studio lighting, cyan rim light, subtle reflections, delicate shadows beneath floating panels, no text, no logos, no extra objects. High-end website hero asset, sharp focus, clean composition, rich dark contrast.
+
+PROMPT B - DECONSTRUCTED / EXPLODED VIEW
+
+Professional exploded-view 3D render of the same AI-powered website engine, deconstructed into elegant floating components against a clean dark premium background (#0a0a0f). Every component is visible and separated while maintaining the silhouette of the original dashboard system: browser shell, hero section layer, mobile responsive preview, analytics graph panel, SEO metadata card, lead capture form module, AI automation node, chat assistant orb, performance speed gauge, local map card, code layer, database capsule, conversion CTA tile, security shield, and glowing connector rails.
+
+Each piece floats with even spacing along a diagonal explosion axis, preserving where it belongs in the assembled product. Materials match the assembled shot: smoked glass, satin black metal, teal-cyan-sky glow, polished beveled edges. Soft studio lighting with subtle shadows on each floating piece. Technical illustration meets premium product photography, 16:9 aspect ratio, ultra-clean, no text, no logos.
+
+PROMPT C - VIDEO TRANSITION
+
+START FRAME: The fully assembled AI-powered website engine floats centered on a dark premium background, product visualization style, soft teal-cyan rim lighting.
+
+END FRAME: The same website engine elegantly deconstructed into an exploded view with every website, AI, SEO, lead capture, and automation component floating in space along a diagonal axis.
+
+TRANSITION: Smooth, satisfying mechanical deconstruction animation. The object begins whole and still. After a brief 0.5 second pause, panels separate in a cascading sequence: outer browser shell first, then website sections, analytics widgets, AI automation nodes, SEO/local map cards, and connector rails. Each element follows a precise eased path with subtle rotation to reveal 3D form. The motion feels premium, clean, and intentional, like an Apple product reveal mixed with an engineering visualization. Final floating arrangement holds for 1 second.
+
+STYLE: Photorealistic 3D, dark Digital Helper brand background, teal/cyan/sky lighting, locked-off camera, no text, no logos, no artifacts.
+
+DURATION: 5 seconds. ASPECT RATIO: 16:9. QUALITY: High fidelity, smooth 24fps or higher.</pre>
+      </section>
+
+      <section class="panel" id="seo">
+        <div class="panel-head">
+          <h2>Local SEO Signal Map</h2>
+          <button class="copy" data-copy="seoText">Copy Set</button>
+        </div>
+        <pre id="seoText">PROMPT A - ASSEMBLED SHOT
+
+Professional 3D product-style render of a local SEO visibility system for Richland and the Tri-Cities, centered in frame on a dark premium background (#0a0a0f). The object is a floating glass map tile with raised city nodes, glowing search rings, ranking cards, review stars, and a Google Business Profile-style information panel without any real Google branding. Use teal, cyan, and sky-blue lighting accents. The system looks complete, polished, and precise.
+
+Photorealistic 3D rendering, 16:9 aspect ratio, premium marketing site asset. Soft studio lighting, subtle shadows, luminous data trails, clean composition, no text, no logos, no real map labels.
+
+PROMPT B - DECONSTRUCTED / EXPLODED VIEW
+
+Professional exploded-view 3D render of the same local SEO visibility system, deconstructed into floating components on a dark premium background. Components include the base map tile, Richland node, Kennewick node, Pasco node, West Richland node, search radius rings, map pack ranking cards, review star tiles, citation blocks, analytics graph layer, local keyword cards, phone/contact chip, direction arrow marker, and glowing connection lines.
+
+Each component floats with measured spacing on a vertical-to-diagonal explosion axis while keeping the overall map silhouette. Materials are smoked glass, matte black, luminous teal/cyan edges, and subtle sky-blue highlights. Technical but approachable, 16:9 aspect ratio, no text, no logos.
+
+PROMPT C - VIDEO TRANSITION
+
+START FRAME: A fully assembled 3D local SEO signal map floats centered on a dark premium background with glowing city nodes and ranking cards.
+
+END FRAME: The map separates into an exploded view showing city nodes, search rings, ranking cards, citation blocks, review tiles, and analytics layers floating in organized space.
+
+TRANSITION: Smooth deconstruction over 5 seconds. Search rings lift first, then city nodes rise, ranking cards fan outward, citation blocks and review tiles separate into neat rows, and glowing connection lines stretch between layers. Movement is deliberate and eased, with a locked camera and consistent lighting. Final layout holds for 1 second.
+
+STYLE: Premium 3D product visualization, Digital Helper dark background, teal-cyan-sky glow, no text, no logos.
+
+DURATION: 5 seconds. ASPECT RATIO: 16:9. QUALITY: High fidelity, smooth 24fps or higher.</pre>
+      </section>
+
+      <section class="panel" id="automation">
+        <div class="panel-head">
+          <h2>Automation Workflow Core</h2>
+          <button class="copy" data-copy="automationText">Copy Set</button>
+        </div>
+        <pre id="automationText">PROMPT A - ASSEMBLED SHOT
+
+Professional 3D render of an AI automation workflow core for a small business, centered on a dark premium background (#0a0a0f). The object is a compact floating system of glass workflow nodes orbiting a luminous core: website lead, form capture, AI qualification, CRM handoff, email follow-up, appointment booking, review request, and reporting dashboard. Nodes are connected by glowing teal/cyan rails with subtle data particles. The full system feels assembled, balanced, and quietly powerful.
+
+Photorealistic 3D rendering, 16:9 aspect ratio, premium agency website asset. Soft studio lighting, subtle depth of field, satin black and smoked glass materials, teal-cyan-sky accent glow, no text, no logos.
+
+PROMPT B - DECONSTRUCTED / EXPLODED VIEW
+
+Professional exploded-view 3D render of the same AI automation workflow core, separated into individual floating modules against a dark premium background. Components include central AI core, inbound lead module, website form tile, chat assistant capsule, qualification logic chip, CRM database block, email sequence cards, calendar booking ring, review request tile, reporting dashboard panel, notification beacon, and connector rails.
+
+Each module floats along a radial explosion pattern around the central core, maintaining the original workflow relationship. Materials match the assembled shot: smoked glass, matte black, luminous teal/cyan rails, polished edges, subtle reflections. Technical illustration meets premium product photography, 16:9 aspect ratio, no text, no logos.
+
+PROMPT C - VIDEO TRANSITION
+
+START FRAME: A fully assembled AI automation workflow core floats centered on a dark Digital Helper background, connected nodes orbiting a luminous center.
+
+END FRAME: The workflow separates into an exploded radial system with each automation module floating independently around the central AI core.
+
+TRANSITION: Smooth radial deconstruction animation. After a short still moment, connector rails glow, the central core pulses once, and each workflow module separates outward in a cascading order: lead capture, AI qualification, CRM handoff, email follow-up, booking, review request, reporting. Each module rotates gently to reveal depth. Final arrangement holds for 1 second.
+
+STYLE: Premium photorealistic 3D, dark agency website background, teal/cyan/sky glow, locked-off camera, no text, no logos.
+
+DURATION: 5 seconds. ASPECT RATIO: 16:9. QUALITY: High fidelity, smooth 24fps or higher.</pre>
+      </section>
+
+      <p class="note">Use Prompt A for the assembled image, Prompt B with the assembled image as reference, then Prompt C with both frames in your video model.</p>
+    </main>
+    <script>
+      const tabs = document.querySelectorAll(".tab");
+      const panels = document.querySelectorAll(".panel");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((item) => item.classList.remove("active"));
+          panels.forEach((item) => item.classList.remove("active"));
+          tab.classList.add("active");
+          document.getElementById(tab.dataset.target).classList.add("active");
+        });
+      });
+
+      document.querySelectorAll(".copy").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const target = document.getElementById(button.dataset.copy);
+          await navigator.clipboard.writeText(target.textContent);
+          const original = button.textContent;
+          button.textContent = "Copied";
+          setTimeout(() => {
+            button.textContent = original;
+          }, 900);
+        });
+      });
+    </script>
+  </body>
+</html>

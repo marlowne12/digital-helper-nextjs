@@ -14,7 +14,7 @@
 | **Service Area** | Richland, Kennewick, Pasco, West Richland |
 | **Owner** | Mars |
 | **Website** | https://digital-helper.com |
-| **Phone** | (509) 876-8454 |
+| **Phone** | (509) 987-5060|*DO NOT CHANGE THIS NUMBER EVER 5060 IS THE ONLY NUMBER*
 | **Type** | Web design, SEO, and AI automation agency |
 
 ---

@@ -1,0 +1,1 @@
+[main/sessions/b7a01a70-513a-4508-9dc4-29add9a86037.jsonl#L5] User: [cron:d8bd22cd-e9e9-4b1a-98e3-7158c4dd827b morning-prep] MORNING PREP: Review yesterday's work in prospects/, outreach/, and second-brain/documents/. Create a brief daily summary in daily-briefs/YYYY-MM-DD.md: what was accomplished, what's ready for review, suggested next s

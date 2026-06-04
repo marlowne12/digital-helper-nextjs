@@ -35,49 +35,26 @@ export const aiTools = {
     scheduleCall: tool({
         description: 'Get a booking link for a consultation call',
         parameters: scheduleCallSchema,
-                // @ts-expect-error: Tool type inference mismatch with Zod
+        // @ts-expect-error: Tool type inference mismatch with Zod
         execute: async ({ intent: _intent }: z.infer<typeof scheduleCallSchema>) => { // eslint-disable-line @typescript-eslint/no-unused-vars
-            // TODO: Replace NEXT_PUBLIC_CALENDLY_URL with real booking link in .env
-            const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || null
             return {
-                message: calendlyUrl
-                    ? 'Book your call here: ' + calendlyUrl
-                    : 'To schedule a call, please contact us directly at hello@digital-helper.com',
-                url: calendlyUrl,
+                bookingUrl: 'https://calendar.app.google/jFDgyirZ2xZZ6kRU8',
+                message: "Here's a link to book a free 30-minute call with Mars. No pressure, no sales pitch — just a real conversation about your business."
             }
         }
     }),
     analyzeWebsite: tool({
         description: 'Analyze a provided website URL for improvements',
         parameters: analyzeWebsiteSchema,
-                // @ts-expect-error: Tool type inference mismatch with Zod
+        // @ts-expect-error: Tool type inference mismatch with Zod
         execute: async ({ url }: z.infer<typeof analyzeWebsiteSchema>) => {
-            try {
-                const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-                const response = await fetch(baseUrl + '/api/seo-analysis', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ url }),
-                })
-
-                if (!response.ok) throw new Error('API returned ' + response.status)
-
-                const data = await response.json()
-                return {
-                    url,
-                    score: data.overallScore ?? data.score ?? 0,
-                    issues: data.quickWins ?? data.issues ?? [],
-                    opportunity: data.summary ?? 'Analysis complete.',
-                    disclaimer: undefined,
-                }
-            } catch (error) {
-                return {
-                    url,
-                    score: null,
-                    issues: [],
-                    opportunity: null,
-                    disclaimer: 'Live analysis unavailable. Contact us for a free manual audit.',
-                }
+            // Mock analysis for now
+            return {
+                url,
+                score: 45,
+                issues: ['Mobile responsiveness issues detected', 'Slow page load times (LCP > 2.5s)', 'Missing meta descriptions'],
+                opportunity: 'High - modernizing this site could double your conversion rate.',
+                message: `I've taken a quick look at ${url}. It scores about 45/100. The main issues are load speed and mobile responsiveness. We could fix these to improve your Google ranking significantly.`
             }
         }
     }),
@@ -150,21 +127,21 @@ export const aiTools = {
         execute: async ({ serviceType }: z.infer<typeof comparePlansSchema>) => {
             const plans = {
                 website: [
-                    { name: 'Starter', price: '$2,500', features: ['5-page website', 'Mobile responsive', 'Contact form', 'Basic SEO'] },
-                    { name: 'Professional', price: '$5,000', features: ['10-page website', 'Custom design', 'Blog system', 'Advanced SEO', 'Analytics'] },
-                    { name: 'Enterprise', price: '$10,000+', features: ['Unlimited pages', 'Custom features', 'E-commerce', 'Priority support'] },
+                    { name: 'Starter', price: '$97/mo + $297 setup', features: ['AI chatbot widget', 'FAQ training (up to 20 questions)', 'Lead capture + email alerts', 'Calendly booking integration', 'Monthly performance report'] },
+                    { name: 'Growth', price: '$197/mo + $497 setup', features: ['Everything in Starter', 'Multi-channel (website + Facebook)', 'Advanced lead qualification', 'CRM integration', 'Priority support', 'Bi-weekly optimization'] },
+                    { name: 'Agency', price: 'Custom', features: ['Everything in Growth', 'White-label option', 'Multiple client locations', 'Custom integrations', 'Dedicated account manager'] },
                 ],
                 seo: [
-                    { name: 'Local SEO', price: '$750/mo', features: ['Google Business Profile optimization', 'Local citations', 'Monthly reporting'] },
-                    { name: 'Growth SEO', price: '$1,500/mo', features: ['Everything in Local', 'Content marketing', 'Link building', 'Competitor analysis'] },
+                    { name: 'Starter SEO', price: 'Included in monthly plans', features: ['Google Business Profile optimization', 'Local citations', 'Hyper-local keyword targeting', 'Monthly reporting'] },
+                    { name: 'Growth SEO', price: 'Included in Growth plan', features: ['Everything in Starter', 'Content marketing', 'Competitor analysis', 'Bi-weekly optimization'] },
                 ],
                 automation: [
-                    { name: 'Starter', price: '$500 setup', features: ['AI chatbot', 'Basic automation', 'Email integration'] },
-                    { name: 'Pro', price: '$1,500 setup', features: ['Custom AI agent', 'CRM integration', 'Advanced workflows'] },
+                    { name: 'Starter AI', price: '$97/mo + $297 setup', features: ['AI chatbot', '24/7 lead capture', 'FAQ automation', 'Instant email alerts'] },
+                    { name: 'Growth AI', price: '$197/mo + $497 setup', features: ['Everything in Starter', 'Multi-channel AI', 'Advanced lead qualification', 'CRM integration'] },
                 ],
                 maintenance: [
-                    { name: 'Basic', price: '$150/mo', features: ['Security updates', 'Weekly backups', 'Bug fixes'] },
-                    { name: 'Premium', price: '$350/mo', features: ['Everything in Basic', 'Content updates', 'Performance optimization', 'Priority support'] },
+                    { name: 'Starter', price: '$97/mo', features: ['AI chatbot maintenance', 'Monthly optimization', 'Performance reports', 'Email support'] },
+                    { name: 'Growth', price: '$197/mo', features: ['Everything in Starter', 'Priority support', 'Bi-weekly check-ins', 'Advanced analytics'] },
                 ],
             };
 

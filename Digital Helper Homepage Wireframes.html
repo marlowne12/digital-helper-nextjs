@@ -1,0 +1,1130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Digital Helper — Homepage Wireframes</title>
+<meta name="viewport" content="width=1280" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Architects+Daughter&family=JetBrains+Mono:wght@400;600&family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a;
+    --paper:#fafaf7;
+    --pencil:#555;
+    --muted:#8c8c88;
+    --accent:#ff5a1f;    /* sketchy marker orange */
+    --accent-2:#2c6bff;  /* blue note */
+    --line:#222;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Architects Daughter',system-ui,sans-serif;}
+  body{
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(0,0,0,0.025), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(0,0,0,0.03), transparent 50%);
+  }
+
+  /* ----- Shell ----- */
+  .shell{max-width:1240px;margin:0 auto;padding:28px 36px 120px}
+  .masthead{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;border-bottom:2px dashed var(--ink);padding-bottom:16px;margin-bottom:14px;}
+  .masthead h1{font-family:'Caveat',cursive;font-weight:700;font-size:42px;margin:0;line-height:1}
+  .masthead h1 .stamp{display:inline-block;border:2px solid var(--accent);color:var(--accent);padding:2px 10px;transform:rotate(-3deg);font-size:18px;margin-left:10px;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;vertical-align:middle}
+  .masthead .meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--pencil);text-align:right;line-height:1.5}
+
+  .toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:14px 0 22px;padding:10px 14px;border:1.5px solid var(--ink);background:#fff;border-radius:4px;position:relative}
+  .toolbar::before{content:"";position:absolute;inset:-4px;border:1px dashed var(--pencil);border-radius:6px;pointer-events:none;opacity:.35}
+  .tb-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--pencil);margin-right:4px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px}
+  .tab{font-family:'Caveat',cursive;font-size:20px;padding:4px 12px;border:1.5px solid var(--ink);background:#fff;cursor:pointer;border-radius:22px 6px 22px 8px;transition:transform .1s}
+  .tab:hover{transform:translateY(-1px) rotate(-.5deg)}
+  .tab.active{background:var(--ink);color:var(--paper)}
+  .tab .num{font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.6;margin-right:6px}
+  .tab.active .num{opacity:.7}
+  .sep{width:1px;height:22px;background:var(--ink);opacity:.3;margin:0 6px}
+  .chk{display:flex;align-items:center;gap:6px;font-family:'Architects Daughter',sans-serif;font-size:15px;cursor:pointer;user-select:none}
+  .chk input{accent-color:var(--ink)}
+  .view-toggle{display:flex;gap:4px;border:1.5px solid var(--ink);border-radius:4px;overflow:hidden}
+  .view-toggle button{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border:0;background:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:.08em}
+  .view-toggle button.on{background:var(--ink);color:var(--paper)}
+
+  /* --- The sketchy "browser" frame --- */
+  .frame{border:2px solid var(--ink);background:#fff;border-radius:6px;position:relative;box-shadow:6px 6px 0 rgba(0,0,0,0.08)}
+  .frame::after{content:"";position:absolute;inset:-6px;border:1px dashed var(--pencil);border-radius:8px;opacity:.25;pointer-events:none}
+  .browser-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1.5px solid var(--ink);background:#f3f1ea;border-radius:4px 4px 0 0}
+  .dots{display:flex;gap:5px}
+  .dots i{display:inline-block;width:10px;height:10px;border:1.2px solid var(--ink);border-radius:50%}
+  .urlbar{flex:1;font-family:'JetBrains Mono',monospace;font-size:11.5px;border:1.2px solid var(--ink);background:#fff;padding:3px 10px;border-radius:20px;color:var(--pencil)}
+  .browser-chrome .note{font-family:'Caveat',cursive;font-size:17px;color:var(--accent);transform:rotate(-2deg)}
+
+  .sheet{padding:0}
+  .annotations-on .anno{display:block}
+  .anno{display:none;position:absolute;font-family:'Caveat',cursive;color:var(--accent);font-size:17px;line-height:1.1;pointer-events:none;z-index:5}
+  .anno .arrow{display:block;width:40px;height:24px}
+
+  /* ----- Generic sketch primitives ----- */
+  .sk-h1{font-family:'Caveat',cursive;font-weight:700;font-size:44px;line-height:1.05;margin:0}
+  .sk-h2{font-family:'Caveat',cursive;font-weight:700;font-size:28px;line-height:1.1;margin:0 0 8px}
+  .sk-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.18em;color:var(--pencil);margin-bottom:8px}
+  .sk-p{font-family:'Architects Daughter',sans-serif;font-size:14.5px;line-height:1.45;color:#3a3a3a;margin:4px 0}
+  .sk-small{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted)}
+  .sk-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Caveat',cursive;font-size:20px;padding:6px 14px;border:1.8px solid var(--ink);background:#fff;border-radius:24px 4px 26px 6px;cursor:pointer}
+  .sk-btn.primary{background:var(--ink);color:var(--paper)}
+  .sk-btn.primary.accent{background:var(--accent);border-color:var(--accent);color:#fff}
+  .sk-btn .arr{font-family:'JetBrains Mono',monospace;font-size:13px}
+  .sk-btn-ghost{font-family:'Caveat',cursive;font-size:20px;text-decoration:underline;cursor:pointer}
+
+  .box{border:1.6px solid var(--ink);border-radius:6px;background:#fff;position:relative}
+  .box.dash{border-style:dashed}
+  .box.tilt{transform:rotate(-.4deg)}
+  .box.tilt-r{transform:rotate(.3deg)}
+  .placeholder{background-image:repeating-linear-gradient(135deg, rgba(0,0,0,.06) 0 6px, transparent 6px 12px);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--pencil);text-transform:uppercase;letter-spacing:.12em}
+
+  .line{height:10px;background:#eceae3;border-radius:3px;margin:6px 0}
+  .line.short{width:55%}
+  .line.xs{width:30%}
+
+  .chip{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border:1.2px solid var(--ink);border-radius:20px;background:#fff;letter-spacing:.08em;text-transform:uppercase}
+  .chip.ink{background:var(--ink);color:var(--paper)}
+  .chip.accent{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+  .navbar{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;border-bottom:1.5px dashed var(--ink)}
+  .navbar .brand{display:flex;align-items:center;gap:8px;font-family:'Caveat',cursive;font-weight:700;font-size:24px}
+  .navbar .brand .logomark{width:30px;height:30px;border:1.8px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600}
+  .navbar .links{display:flex;gap:18px;font-family:'Architects Daughter',sans-serif;font-size:15px}
+  .navbar .links span{cursor:default}
+  .navbar .cta{font-family:'Caveat',cursive;font-size:19px;padding:4px 14px;border:1.8px solid var(--ink);border-radius:22px 4px 22px 4px;background:#fff}
+
+  /* ===== Shared footer / misc ===== */
+  .footer-sk{border-top:1.5px dashed var(--ink);padding:22px 28px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:22px;font-size:13px;color:var(--pencil)}
+  .footer-sk h4{font-family:'Caveat',cursive;font-size:18px;margin:0 0 6px;color:var(--ink)}
+  .footer-sk .col p{margin:2px 0}
+
+  /* ===== Density toggle ===== */
+  .dense-off .hide-dense{display:none !important}
+  .dense-on .show-dense{display:block}
+  .show-dense{display:none}
+
+  /* ===== Tone toggle ===== */
+  .tone-direct [data-tone]{display:none}
+  .tone-direct [data-tone="direct"]{display:inline}
+  .tone-punchy [data-tone]{display:none}
+  .tone-punchy [data-tone="punchy"]{display:inline}
+  .tone-warm [data-tone]{display:none}
+  .tone-warm [data-tone="warm"]{display:inline}
+
+  /* ===== Side-by-side view ===== */
+  .side-by-side .variant{display:block !important}
+  .side-by-side .frame-wrap{margin-bottom:40px}
+  .side-by-side .variant-label{display:block}
+  .variant-label{display:none;font-family:'Caveat',cursive;font-size:24px;margin:24px 0 10px;color:var(--accent)}
+  .variant-label .num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--pencil);margin-right:8px}
+
+  .variant{display:none}
+  .variant.active{display:block}
+
+  /* =====================================================
+     DIRECTION 1: CLASSIC AGENCY
+     ===================================================== */
+  .v1 .hero{display:grid;grid-template-columns:1.25fr 1fr;gap:36px;padding:56px 48px 40px;align-items:center;position:relative}
+  .v1 .hero .stamp{position:absolute;top:24px;right:40px;transform:rotate(8deg);border:1.8px solid var(--accent);color:var(--accent);padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em}
+  .v1 .hero h1{font-size:56px;margin:0}
+  .v1 .hero h1 u{text-decoration:underline wavy var(--accent);text-underline-offset:8px;text-decoration-thickness:2px}
+  .v1 .hero-art{aspect-ratio:1/.9;border:1.8px solid var(--ink);border-radius:6px;background:#fff;position:relative;display:grid;place-items:center;overflow:hidden}
+  .v1 .hero-art::before{content:"";position:absolute;inset:12px;border:1.2px dashed var(--pencil);border-radius:3px}
+  .v1 .hero-art span{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--pencil);letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:0 16px;line-height:1.6}
+
+  .trust-bar{display:flex;align-items:center;gap:22px;padding:14px 48px;border-top:1px dashed var(--ink);border-bottom:1px dashed var(--ink);background:#f8f6ef}
+  .trust-bar .stars{font-family:'Caveat',cursive;font-size:22px;letter-spacing:2px;color:var(--accent)}
+  .trust-bar .pill{padding:4px 12px;border:1.3px solid var(--ink);border-radius:22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:#fff}
+
+  .v1 .problem{padding:40px 48px;border-bottom:1px dashed var(--ink);display:grid;grid-template-columns:.8fr 1.2fr;gap:32px;align-items:start}
+  .v1 .problem h2{font-size:36px}
+  .v1 .quotes{display:grid;gap:10px}
+  .v1 .quote{border-left:3px solid var(--accent);padding:4px 14px;font-family:'Caveat',cursive;font-size:20px;line-height:1.2;color:#333}
+
+  .v1 .services{padding:40px 48px;border-bottom:1px dashed var(--ink)}
+  .v1 .services h2{font-size:32px;margin-bottom:18px}
+  .svc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .svc{border:1.6px solid var(--ink);border-radius:6px;padding:14px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;background:#fff;position:relative}
+  .svc:nth-child(2){transform:rotate(-.5deg)}
+  .svc:nth-child(4){transform:rotate(.5deg)}
+  .svc .icon{width:42px;height:42px;border:1.6px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:14px;margin-bottom:10px}
+  .svc h3{font-family:'Caveat',cursive;font-size:22px;margin:0 0 4px}
+  .svc p{font-size:13px;color:var(--pencil);margin:0 0 8px;line-height:1.3}
+  .svc .link{font-family:'Caveat',cursive;font-size:16px;text-decoration:underline}
+
+  .v1 .how{padding:40px 48px;border-bottom:1px dashed var(--ink);background:#fdfbf3}
+  .v1 .how h2{font-size:30px;margin-bottom:18px}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative}
+  .step .num{font-family:'Caveat',cursive;font-size:46px;color:var(--accent);line-height:.9}
+  .step h3{font-family:'Caveat',cursive;font-size:22px;margin:2px 0 6px}
+  .step p{font-size:13.5px;color:#444;line-height:1.4}
+
+  .v1 .stats{padding:40px 48px;border-bottom:1px dashed var(--ink);display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+  .stat .big{font-family:'Caveat',cursive;font-size:46px;color:var(--ink);line-height:1}
+  .stat .big .u{text-decoration:underline wavy var(--accent);text-decoration-thickness:2px;text-underline-offset:4px}
+  .stat .label{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--pencil);margin-top:2px}
+
+  .v1 .work{padding:40px 48px;border-bottom:1px dashed var(--ink)}
+  .v1 .work h2{font-size:30px;margin-bottom:18px}
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .case{border:1.6px solid var(--ink);border-radius:6px;overflow:hidden;background:#fff}
+  .case .thumb{aspect-ratio:4/3}
+  .case .body{padding:12px 14px}
+  .case h4{font-family:'Caveat',cursive;font-size:20px;margin:0}
+  .case p{font-size:12.5px;margin:2px 0 6px;color:var(--pencil)}
+
+  .v1 .cta-final{padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;background:var(--ink);color:var(--paper);border-radius:0 0 4px 4px}
+  .v1 .cta-final h2{font-family:'Caveat',cursive;font-size:40px;margin:0;color:var(--paper)}
+  .v1 .cta-final .form{border:1.6px dashed var(--paper);border-radius:6px;padding:18px;display:grid;gap:10px}
+  .v1 .cta-final .field{border:1.3px solid var(--paper);border-radius:4px;padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#ccc}
+
+  /* --- merged audit hero block (direction 1) --- */
+  .v1 .audit-hero{padding:40px 48px 32px;border-bottom:1px dashed var(--ink);background:#fcfaf2;position:relative}
+  .v1 .ah-inner{max-width:860px;margin:0 auto;position:relative}
+  .v1 .ah-title{font-family:'Caveat',cursive;font-weight:700;font-size:48px;line-height:1.05;margin:6px 0 14px;max-width:720px}
+  .v1 .ah-title .hl{background:var(--accent);color:#fff;padding:0 6px}
+  .v1 .ah-sub{font-family:'Architects Daughter',sans-serif;font-size:16px;color:#333;margin:0 0 18px;max-width:640px;line-height:1.5}
+  .v1 .audit-hero .hint{display:block;font-family:'Caveat',cursive;font-size:18px;color:var(--accent);position:absolute;top:-22px;left:0;transform:rotate(-1deg)}
+  .v1 .audit-form{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;border:2px solid var(--ink);border-radius:10px;padding:12px 14px;background:#fff;box-shadow:4px 4px 0 var(--accent);position:relative}
+  .v1 .audit-form .prefix{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--pencil);border-right:1.2px dashed var(--ink);padding-right:10px}
+  .v1 .audit-form .url{font-family:'JetBrains Mono',monospace;font-size:15px;border:0;outline:0;background:transparent;padding:4px 0;width:100%}
+  .v1 .audit-form .scan{font-family:'Caveat',cursive;font-size:20px;padding:6px 16px;background:var(--accent);color:#fff;border:0;border-radius:24px 6px 24px 6px;cursor:pointer;white-space:nowrap}
+  .v1 .audit-note{font-family:'Caveat',cursive;color:var(--pencil);margin-top:10px;font-size:16px}
+
+  /* --- why-new grid (replaces stats) --- */
+  .v1 .why-new{padding:36px 48px;border-bottom:1px dashed var(--ink)}
+  .v1 .wn-head{max-width:760px;margin-bottom:20px}
+  .v1 .wn-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .v1 .wn-card{border:1.6px solid var(--ink);border-radius:6px;padding:14px;background:#fff;min-height:170px;display:flex;flex-direction:column;gap:4px}
+  .v1 .wn-card:nth-child(odd){transform:rotate(-.3deg)}
+  .v1 .wn-card:nth-child(even){transform:rotate(.3deg)}
+  .v1 .wn-num{font-family:'Caveat',cursive;font-size:34px;color:var(--accent);line-height:.9}
+  .v1 .wn-card h3{font-family:'Caveat',cursive;font-size:20px;margin:2px 0 8px;line-height:1.15}
+  .v1 .wn-card p{font-size:13.5px;color:#333;margin:0;line-height:1.4}
+
+  /* --- demo strip (replaces fake case studies) --- */
+  .v1 .demo-strip{padding:36px 48px;border-bottom:1px dashed var(--ink);background:#fdfbf3;position:relative}
+  .v1 .demo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px}
+  .v1 .demo-card{border:1.6px solid var(--ink);border-radius:6px;background:#fff;overflow:hidden}
+  .v1 .demo-card .thumb{aspect-ratio:4/3}
+  .v1 .demo-card .body{padding:12px 14px}
+  .v1 .demo-card h4{font-family:'Caveat',cursive;font-size:20px;margin:0}
+  .v1 .demo-card p{font-size:12.5px;color:var(--pencil);margin:2px 0 6px}
+  .v1 .demo-card .link{font-family:'Caveat',cursive;font-size:16px;text-decoration:underline}
+
+  /* =====================================================
+     DIRECTION 2: AUDIT-FIRST
+     ===================================================== */
+  .v2 .hero{padding:44px 48px 20px;position:relative}
+  .v2 .hero h1{font-size:58px;max-width:820px;margin:0}
+  .v2 .hero h1 .hl{background:var(--accent);color:#fff;padding:0 6px}
+  .v2 .hero .sub{font-size:18px;color:#333;margin:14px 0 18px;max-width:680px}
+  .v2 .audit{border:2px solid var(--ink);border-radius:10px;padding:18px;display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;background:#fff;max-width:820px;position:relative;box-shadow:4px 4px 0 var(--accent)}
+  .v2 .audit .prefix{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--pencil);border-right:1.3px dashed var(--ink);padding-right:12px}
+  .v2 .audit .url{font-family:'JetBrains Mono',monospace;font-size:15px;color:#222;border:0;outline:0;flex:1;padding:4px 0;background:transparent;width:100%}
+  .v2 .audit .scan{font-family:'Caveat',cursive;font-size:22px;padding:8px 18px;background:var(--accent);color:#fff;border:0;border-radius:26px 6px 26px 6px;cursor:pointer}
+  .v2 .audit .hint{position:absolute;left:0;top:-24px;font-family:'Caveat',cursive;font-size:18px;color:var(--accent)}
+  .v2 .audit-note{font-family:'Caveat',cursive;color:var(--pencil);margin-top:10px;font-size:16px}
+
+  .v2 .report{margin:32px 48px;border:1.8px solid var(--ink);border-radius:6px;padding:20px;background:#fff;position:relative}
+  .v2 .report::before{content:"SAMPLE";position:absolute;top:14px;right:14px;transform:rotate(14deg);border:2px solid var(--accent);color:var(--accent);padding:2px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em}
+  .v2 .report h3{font-family:'Caveat',cursive;font-size:26px;margin:0 0 14px}
+  .scorecard{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}
+  .score{border:1.5px solid var(--ink);border-radius:6px;padding:12px;text-align:left;background:#fcfbf5}
+  .score .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--pencil)}
+  .score .val{font-family:'Caveat',cursive;font-size:36px;line-height:1}
+  .score .bar{height:8px;border:1.3px solid var(--ink);border-radius:8px;overflow:hidden;margin-top:6px;background:#fff}
+  .score .bar i{display:block;height:100%;background:var(--accent)}
+  .score.good .val{color:#2a7f3e}
+  .score.bad .val{color:#c22}
+
+  .findings{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .finding{display:flex;gap:10px;align-items:flex-start}
+  .finding .mark{font-family:'Caveat',cursive;font-size:26px;line-height:1}
+  .finding.warn .mark{color:var(--accent)}
+  .finding.ok .mark{color:#2a7f3e}
+  .finding p{margin:0;font-size:14px;line-height:1.35}
+
+  .v2 .services{padding:30px 48px}
+  .v2 .services h2{font-family:'Caveat',cursive;font-size:28px;margin:0 0 14px}
+  .v2 .svcs-tabs{display:flex;gap:6px;margin-bottom:12px;border-bottom:1.5px dashed var(--ink);padding-bottom:10px}
+  .v2 .svcs-tabs .t{font-family:'Caveat',cursive;font-size:18px;padding:4px 12px;border:1.4px solid var(--ink);border-radius:22px 6px 22px 6px;background:#fff}
+  .v2 .svcs-tabs .t.on{background:var(--ink);color:var(--paper)}
+  .v2 .svc-detail{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;padding:10px 0}
+  .v2 .svc-detail ul{margin:0;padding-left:18px;font-size:14.5px;line-height:1.6}
+
+  .v2 .proof{padding:30px 48px;border-top:1.5px dashed var(--ink);border-bottom:1.5px dashed var(--ink);background:#f8f6ef;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+
+  .v2 .cta-final{padding:38px 48px;text-align:center}
+  .v2 .cta-final h2{font-family:'Caveat',cursive;font-size:40px;margin:0 0 14px}
+
+  /* =====================================================
+     DIRECTION 3: RESULTS / BENTO
+     ===================================================== */
+  .v3 .hero{padding:40px 40px 10px}
+  .v3 .hero .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--pencil);letter-spacing:.15em;text-transform:uppercase}
+  .v3 .hero h1{font-size:80px;line-height:.98;margin:8px 0 14px}
+  .v3 .hero h1 .x{color:var(--accent)}
+
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:130px;gap:12px;padding:10px 40px 30px}
+  .b{border:1.6px solid var(--ink);border-radius:6px;padding:16px;background:#fff;position:relative;overflow:hidden}
+  .b.ink{background:var(--ink);color:var(--paper)}
+  .b.accent{background:var(--accent);color:#fff}
+  .b .huge{font-family:'Caveat',cursive;font-size:72px;line-height:.9;letter-spacing:-1px}
+  .b .mid{font-family:'Caveat',cursive;font-size:42px;line-height:.95}
+  .b .tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+  .b .copy{font-size:13.5px;line-height:1.35;margin-top:6px}
+  .b1{grid-column:span 3;grid-row:span 2}
+  .b2{grid-column:span 2;grid-row:span 1}
+  .b3{grid-column:span 1;grid-row:span 1}
+  .b4{grid-column:span 2;grid-row:span 1}
+  .b5{grid-column:span 1;grid-row:span 1}
+  .b6{grid-column:span 2;grid-row:span 2}
+  .b7{grid-column:span 2;grid-row:span 1}
+  .b8{grid-column:span 2;grid-row:span 1}
+  .b9{grid-column:span 3;grid-row:span 1}
+  .b10{grid-column:span 3;grid-row:span 1}
+
+  .spark{position:absolute;bottom:8px;right:10px;width:80px;height:30px;opacity:.7}
+
+  .v3 .manifesto{padding:40px;border-top:1.5px dashed var(--ink);border-bottom:1.5px dashed var(--ink)}
+  .v3 .manifesto h2{font-family:'Caveat',cursive;font-size:42px;max-width:900px;margin:0}
+
+  .v3 .roadmap{padding:30px 40px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .tick{border:1.5px solid var(--ink);border-radius:6px;padding:12px;background:#fff}
+  .tick .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--pencil)}
+  .tick h4{font-family:'Caveat',cursive;font-size:22px;margin:2px 0 4px}
+  .tick p{font-size:12.5px;margin:0;color:#444;line-height:1.35}
+
+  /* =====================================================
+     DIRECTION 4: AI-NATIVE
+     ===================================================== */
+  .v4 .hero{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;padding:40px 40px;align-items:stretch}
+  .v4 .hero-left h1{font-family:'Caveat',cursive;font-size:62px;line-height:1;margin:0}
+  .v4 .hero-left .sub{font-size:16px;color:#333;margin:12px 0}
+  .v4 .hero-left .tags{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}
+  .v4 .hero-left .ctas{display:flex;gap:12px;margin-top:12px}
+
+  .chat-demo{border:2px solid var(--ink);border-radius:12px;background:#fff;display:flex;flex-direction:column;min-height:380px;box-shadow:4px 4px 0 var(--ink)}
+  .chat-head{padding:10px 14px;border-bottom:1.5px dashed var(--ink);display:flex;align-items:center;gap:10px;background:#f3f1ea;border-radius:10px 10px 0 0}
+  .chat-head .avatar{width:26px;height:26px;border:1.5px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--accent);color:#fff}
+  .chat-head .name{font-family:'Caveat',cursive;font-size:20px}
+  .chat-head .dot{width:8px;height:8px;border-radius:50%;background:#2a7f3e;margin-left:auto}
+  .chat-head .status{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--pencil)}
+  .chat-body{padding:14px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .msg{max-width:78%;padding:8px 12px;border-radius:12px;font-size:14px;line-height:1.4}
+  .msg.bot{background:#f3f1ea;border:1.3px solid var(--ink);border-radius:4px 14px 14px 14px;align-self:flex-start}
+  .msg.me{background:var(--ink);color:var(--paper);align-self:flex-end;border-radius:14px 4px 14px 14px}
+  .msg.tool{background:#fff;border:1.5px dashed var(--accent);border-radius:6px;align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:12px;padding:10px 12px;color:#333;max-width:92%}
+  .msg.tool b{color:var(--accent)}
+  .chat-input{border-top:1.5px dashed var(--ink);padding:10px 14px;display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--pencil);background:#fbf9f3;border-radius:0 0 10px 10px}
+  .chat-input i{flex:1;border:1.3px solid var(--ink);background:#fff;border-radius:20px;padding:6px 12px}
+  .chat-input button{font-family:'Caveat',cursive;font-size:18px;border:1.5px solid var(--ink);background:var(--accent);color:#fff;padding:4px 14px;border-radius:20px}
+
+  .v4 .workflow{padding:30px 40px;border-top:1.5px dashed var(--ink);border-bottom:1.5px dashed var(--ink);background:#fdfbf3}
+  .v4 .workflow h2{font-family:'Caveat',cursive;font-size:32px;margin:0 0 18px}
+  .nodes{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:center}
+  .node{border:1.8px solid var(--ink);border-radius:10px;padding:10px 12px;background:#fff;text-align:center;position:relative}
+  .node .i{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--pencil);letter-spacing:.1em}
+  .node .n{font-family:'Caveat',cursive;font-size:18px;margin-top:2px}
+  .arrow-node{font-family:'JetBrains Mono',monospace;font-size:24px;text-align:center;color:var(--accent)}
+
+  .v4 .capabilities{padding:30px 40px}
+  .cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .cap{border:1.6px solid var(--ink);border-radius:6px;padding:16px;background:#fff}
+  .cap h3{font-family:'Caveat',cursive;font-size:22px;margin:4px 0 6px}
+  .cap p{font-size:13.5px;line-height:1.4;margin:0 0 6px;color:#333}
+  .cap .roi{font-family:'JetBrains Mono',monospace;font-size:11px;background:#fcefe6;color:var(--accent);padding:3px 8px;border-radius:20px;display:inline-block}
+
+  .v4 .stack{padding:20px 40px;border-top:1.5px dashed var(--ink);display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#f8f6ef}
+  .v4 .stack .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--pencil);letter-spacing:.12em;text-transform:uppercase;margin-right:6px}
+
+  /* =====================================================
+     DIRECTION 5: EDITORIAL / MANIFESTO
+     ===================================================== */
+  .v5 .hero{padding:48px 56px 20px;border-bottom:1.5px dashed var(--ink);position:relative}
+  .v5 .hero .issue{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--pencil);display:flex;justify-content:space-between;margin-bottom:20px}
+  .v5 .hero h1{font-family:'Gloria Hallelujah',cursive;font-weight:700;font-size:96px;line-height:.95;margin:0}
+  .v5 .hero h1 em{font-style:normal;color:var(--accent);text-decoration:underline wavy var(--accent);text-decoration-thickness:3px;text-underline-offset:10px}
+  .v5 .deck{font-family:'Architects Daughter',sans-serif;font-size:20px;margin:18px 0 0;max-width:740px;line-height:1.4;color:#222}
+
+  .v5 .columns{padding:32px 56px;border-bottom:1.5px dashed var(--ink);display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px}
+  .v5 .columns p{font-size:15px;line-height:1.55;margin:0 0 10px;column-rule: 1px dashed var(--ink)}
+  .v5 .columns h3{font-family:'Caveat',cursive;font-size:24px;margin:0 0 6px}
+  .v5 .dropcap::first-letter{font-family:'Caveat',cursive;font-size:66px;line-height:.8;float:left;margin:4px 8px 0 0;color:var(--accent)}
+
+  .v5 .ledger{padding:28px 56px;border-bottom:1.5px dashed var(--ink);background:#f8f6ef;display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .v5 .ledger .item{text-align:left;border-left:2px solid var(--ink);padding-left:10px}
+  .v5 .ledger .big{font-family:'Caveat',cursive;font-size:36px;line-height:1}
+  .v5 .ledger .sm{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--pencil);margin-top:4px}
+
+  .v5 .services{padding:32px 56px;border-bottom:1.5px dashed var(--ink)}
+  .v5 .services h2{font-family:'Caveat',cursive;font-size:32px;margin:0 0 14px}
+  .v5 .svc-row{display:grid;grid-template-columns:50px 1fr auto;gap:20px;padding:14px 0;border-bottom:1px dashed var(--ink);align-items:center;transition:background .15s;cursor:default}
+  .v5 .svc-row:hover{background:#fcefe6}
+  .v5 .svc-row .n{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--pencil)}
+  .v5 .svc-row h3{font-family:'Caveat',cursive;font-size:28px;margin:0;line-height:1}
+  .v5 .svc-row p{font-size:14px;color:#333;margin:2px 0 0}
+  .v5 .svc-row .price{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--pencil)}
+
+  .v5 .marquee-bar{overflow:hidden;padding:14px 0;border-bottom:1.5px dashed var(--ink);background:var(--ink);color:var(--paper)}
+  .v5 .marquee-bar .line{font-family:'Caveat',cursive;font-size:28px;white-space:nowrap;background:transparent;height:auto;margin:0;letter-spacing:1px}
+  .v5 .marquee-bar span{margin:0 24px}
+  .v5 .marquee-bar span.dot{color:var(--accent)}
+
+  .v5 .cta-final{padding:40px 56px;display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:center}
+  .v5 .cta-final h2{font-family:'Gloria Hallelujah',cursive;font-size:56px;line-height:1;margin:0}
+  .v5 .cta-final h2 em{font-style:normal;color:var(--accent)}
+  .v5 .cta-final .block{border:1.8px solid var(--ink);border-radius:6px;padding:18px;background:#fff}
+
+  /* ===== annotations ===== */
+  .anno.a1{top:26px;left:-10px;transform:rotate(-6deg)}
+  .anno.a2{top:6px;right:14px;transform:rotate(3deg)}
+
+  /* responsive */
+  @media (max-width:1100px){
+    .shell{padding:20px}
+    .v1 .hero, .v4 .hero, .v5 .cta-final{grid-template-columns:1fr}
+    .svc-grid{grid-template-columns:repeat(2,1fr)}
+    .v3 .bento{grid-template-columns:repeat(3,1fr)}
+    .v5 .columns{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body class="dense-on tone-direct">
+
+<div class="shell">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <h1>Digital Helper — Homepage Wireframes <span class="stamp">v0 · rough</span></h1>
+    <div class="meta">
+      richland, wa · tri-cities<br>
+      5 directions · low-fi · click to compare
+    </div>
+  </header>
+
+  <!-- Toolbar -->
+  <div class="toolbar" role="toolbar" aria-label="Wireframe controls">
+    <span class="tb-label">Direction</span>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-v="1"><span class="num">01</span>Classic Agency</button>
+      <button class="tab" data-v="2"><span class="num">02</span>Audit-First</button>
+      <button class="tab" data-v="3"><span class="num">03</span>Results Wall</button>
+      <button class="tab" data-v="4"><span class="num">04</span>AI-Native</button>
+      <button class="tab" data-v="5"><span class="num">05</span>Editorial</button>
+    </div>
+    <div class="sep"></div>
+    <span class="tb-label">Tone</span>
+    <div class="view-toggle" id="toneToggle">
+      <button class="on" data-tone="direct">Direct</button>
+      <button data-tone="punchy">Punchy</button>
+      <button data-tone="warm">Warm</button>
+    </div>
+    <div class="sep"></div>
+    <span class="tb-label">View</span>
+    <div class="view-toggle" id="viewToggle">
+      <button class="on" data-view="single">Single</button>
+      <button data-view="side">Side-by-side</button>
+    </div>
+    <div class="sep"></div>
+    <label class="chk"><input type="checkbox" id="annoToggle" checked> Notes</label>
+    <label class="chk"><input type="checkbox" id="densityToggle" checked> Dense</label>
+  </div>
+
+<!-- =========================================================
+     DIRECTION 1 — CLASSIC AGENCY
+     ========================================================= -->
+<div class="frame-wrap">
+<div class="variant-label"><span class="num">01</span>Classic Agency — conservative trust build</div>
+<section class="variant active v1 annotations-on" data-v="1">
+  <div class="frame">
+    <div class="browser-chrome">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span class="urlbar">https://digital-helper.com</span>
+      <span class="note">safe bet</span>
+    </div>
+    <div class="sheet">
+      <!-- nav -->
+      <div class="navbar">
+        <div class="brand"><span class="logomark">DH</span>Digital Helper</div>
+        <nav class="links"><span>Services ▾</span><span>Keyword Research</span><span>Work</span><span>Blog</span><span>Pricing</span><span>About</span></nav>
+        <span class="cta">Book a Call</span>
+      </div>
+
+      <!-- hero -->
+      <div class="hero" style="position:relative">
+        <span class="stamp">RICHLAND · WA</span>
+        <div>
+          <div class="sk-eyebrow">Web · SEO · AI Automation</div>
+          <h1 class="sk-h1" style="font-size:64px;line-height:1.05">
+            <span data-tone="direct">We build systems that work <u>while you sleep.</u></span>
+            <span data-tone="punchy">Your site is losing customers. <u>Let's fix it.</u></span>
+            <span data-tone="warm">Hey neighbor — let's grow your business <u>the smart way.</u></span>
+          </h1>
+          <p class="sk-p" style="font-size:17px;max-width:520px;margin-top:24px">
+            <span data-tone="direct">Modern Next.js sites, local SEO that ranks, and AI automations that do the boring stuff. For Tri-Cities businesses.</span>
+            <span data-tone="punchy">Slow site? No leads? Drowning in DMs and voicemails? We automate the mess.</span>
+            <span data-tone="warm">We're a small local team that builds modern sites and quietly automates the stuff that's eating your week.</span>
+          </p>
+          <div style="display:flex;gap:12px;margin-top:20px;align-items:center">
+            <button class="sk-btn primary accent">Book a free consult <span class="arr">→</span></button>
+            <button class="sk-btn-ghost">See how we work</button>
+          </div>
+          <div class="sk-small" style="margin-top:16px">NEW · Richland-based · first 5 clients get founder pricing</div>
+        </div>
+        <div class="hero-art">
+          <span>[ hero image placeholder ]<br><br>founder photo (Mars)<br>or abstract "system" diagram</span>
+        </div>
+        <!-- annos -->
+        <span class="anno" style="top:20px;left:40%;transform:rotate(-4deg)">← primary value prop, ONE sentence</span>
+        <span class="anno" style="top:200px;right:40px;transform:rotate(4deg)">founder portrait preferred over stock</span>
+      </div>
+
+      <!-- full audit hero block (merged from direction 2) -->
+      <div class="audit-hero">
+        <div class="ah-inner">
+          <div class="sk-eyebrow">Free · 30 seconds · no email required</div>
+          <h2 class="ah-title">
+            <span data-tone="direct">See exactly what's <span class="hl">broken</span> on your site.</span>
+            <span data-tone="punchy">Your site is losing you $<span class="hl">thousands</span>. We'll prove it.</span>
+            <span data-tone="warm">Curious how your site is <span class="hl">really</span> doing? Let's peek.</span>
+          </h2>
+          <p class="ah-sub">Paste your URL. Our AI audits speed, SEO, mobile UX, and Google Business Profile in 30 seconds. Keep the report whether you hire us or not.</p>
+          <form class="audit-form" onsubmit="event.preventDefault()">
+            <span class="hint">↓ start here</span>
+            <span class="prefix">https://</span>
+            <input class="url" type="text" value="yourbusiness.com" />
+            <button class="scan" type="button">Scan my site →</button>
+          </form>
+          <div class="audit-note">or paste a competitor's URL and we'll compare.</div>
+        </div>
+        <span class="anno" style="top:-18px;right:48px;transform:rotate(4deg)">full audit block as a second hero — proof-by-doing</span>
+      </div>
+
+      <!-- honest-new-agency strip -->
+      <div class="trust-bar">
+        <span class="pill ink">NEW · 2026</span>
+        <span class="sk-small" style="font-size:13px">Built by Mars in Richland. Open about being new — see how that helps you ↓</span>
+      </div>
+
+      <!-- problem -->
+      <div class="problem">
+        <h2 class="sk-h2" style="font-size:40px">Is your website <br>helping — or <u>hurting</u>?</h2>
+        <div class="quotes">
+          <div class="quote">"My website looks like it's from 2015."</div>
+          <div class="quote">"My competitors show up before me on Google."</div>
+          <div class="quote">"We miss calls and leads slip through the cracks."</div>
+          <div class="quote">"I spend hours on tasks that should be automatic."</div>
+        </div>
+      </div>
+
+      <!-- services -->
+      <div class="services">
+        <h2 class="sk-h2" style="font-size:32px">Five services. <span style="color:var(--accent)">One partner.</span></h2>
+        <div class="svc-grid">
+          <div class="svc"><div><div class="icon">WD</div><h3>Web Design</h3><p>Modern Next.js sites. 90+ PageSpeed. No WordPress clutter.</p></div><span class="link">Learn more →</span></div>
+          <div class="svc"><div><div class="icon">SEO</div><h3>Local SEO</h3><p>Get found when Tri-Cities customers search.</p></div><span class="link">Learn more →</span></div>
+          <div class="svc"><div><div class="icon">AI</div><h3>AI Automation</h3><p>Chatbots, voice AI, workflows. 24/7.</p></div><span class="link">Learn more →</span></div>
+          <div class="svc"><div><div class="icon">LG</div><h3>Lead Gen</h3><p>Pay-per-lead. You only pay for results.</p></div><span class="link">Learn more →</span></div>
+          <div class="svc"><div><div class="icon">RM</div><h3>Reputation</h3><p>5-star reviews, on auto-pilot.</p></div><span class="link">Learn more →</span></div>
+        </div>
+        <span class="anno" style="left:50%;top:-8px;transform:rotate(-2deg)">← consistent card sizes, icon + title + 1-line + link</span>
+      </div>
+
+      <!-- how it works -->
+      <div class="how">
+        <h2 class="sk-h2" style="font-size:30px">How we work — 3 steps, 2 weeks.</h2>
+        <div class="steps">
+          <div class="step"><div class="num">01</div><h3>Free audit call</h3><p>We tear apart your site, rankings, and lead flow. You get a report even if you don't hire us.</p></div>
+          <div class="step"><div class="num">02</div><h3>We build</h3><p>2-4 weeks. You see progress weekly. No black boxes.</p></div>
+          <div class="step"><div class="num">03</div><h3>You sleep</h3><p>Systems run. Leads come in. We monitor and iterate.</p></div>
+        </div>
+      </div>
+
+      <!-- why-new-is-a-feature (replaces fake stats + case studies) -->
+      <div class="why-new">
+        <div class="wn-head">
+          <span class="sk-eyebrow">We're new. Here's why that's good for you.</span>
+          <h2 class="sk-h2" style="font-size:34px">Founder pricing. Founder attention. <br>Both go away once we're booked.</h2>
+        </div>
+        <div class="wn-grid">
+          <div class="wn-card"><div class="wn-num">01</div><h3>You talk to Mars directly.</h3><p>No account manager layer. The person building your site is the person picking up the phone.</p></div>
+          <div class="wn-card"><div class="wn-num">02</div><h3>Founder pricing for our first 5.</h3><p>Modern Next.js sites from $2,500. SEO retainers from $750. We'd rather earn testimonials than margin.</p></div>
+          <div class="wn-card"><div class="wn-num">03</div><h3>Money-back if it's not faster.</h3><p>If your new site doesn't hit 90+ PageSpeed, we refund. In writing.</p></div>
+          <div class="wn-card"><div class="wn-num">04</div><h3>We build in public.</h3><p>Every client we sign becomes a live case study — with their permission. Transparency is the product.</p></div>
+        </div>
+      </div>
+
+      <!-- live demo strip (replaces fake "recent work" section) -->
+      <div class="demo-strip hide-dense">
+        <h2 class="sk-h2" style="font-size:30px">No case studies yet? Here's what we actually do.</h2>
+        <p class="sk-p" style="max-width:640px">Instead of borrowed logos, we show the work — live demos you can click, built on our own stack.</p>
+        <div class="demo-grid">
+          <div class="demo-card"><div class="thumb placeholder">[ live demo · AI chatbot for an HVAC site ]</div><div class="body"><h4>Try the chatbot</h4><p>Interactive demo. Same code we'd deploy for you.</p><span class="link">Open demo →</span></div></div>
+          <div class="demo-card"><div class="thumb placeholder">[ live demo · Next.js site teardown ]</div><div class="body"><h4>Speed comparison</h4><p>Side-by-side with a typical WordPress template.</p><span class="link">Open demo →</span></div></div>
+          <div class="demo-card"><div class="thumb placeholder">[ live tool · free keyword research ]</div><div class="body"><h4>Keyword research tool</h4><p>Built it ourselves. Use it free, forever.</p><span class="link">Open tool →</span></div></div>
+        </div>
+        <span class="anno" style="right:30px;top:-8px;transform:rotate(-3deg)">show the work, not fabricated logos</span>
+      </div>
+
+      <!-- final cta -->
+      <div class="cta-final">
+        <div>
+          <h2>Be one of our first 5.</h2>
+          <p class="sk-p" style="color:#d8d4c6;margin-top:10px">Founder pricing. Direct access. Free 30-min consult — no pitch unless we see a fit.</p>
+        </div>
+        <div class="form">
+          <div class="field">name@yourbiz.com</div>
+          <div class="field">your website (optional)</div>
+          <div class="field">what's eating your time?</div>
+          <button class="sk-btn primary accent" style="justify-self:start">Book the call →</button>
+        </div>
+      </div>
+
+      <div class="footer-sk">
+        <div class="col"><h4>Digital Helper</h4><p>We build systems that work while you sleep.</p><p>(509) 987-5060</p><p>Richland, WA</p></div>
+        <div class="col"><h4>Services</h4><p>Web Design</p><p>SEO</p><p>AI Automation</p><p>Lead Gen</p><p>Reputation</p></div>
+        <div class="col"><h4>Locations</h4><p>Richland</p><p>Kennewick</p><p>Pasco</p><p>West Richland</p></div>
+        <div class="col"><h4>Industries</h4><p>Healthcare</p><p>Manufacturing</p><p>Wineries</p><p>Retail</p></div>
+        <div class="col"><h4>Company</h4><p>About</p><p>Work</p><p>Blog</p><p>Pricing</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- =========================================================
+     DIRECTION 2 — AUDIT-FIRST
+     ========================================================= -->
+<div class="frame-wrap">
+<div class="variant-label"><span class="num">02</span>Audit-First — interactive lead magnet</div>
+<section class="variant v2 annotations-on" data-v="2">
+  <div class="frame">
+    <div class="browser-chrome">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span class="urlbar">https://digital-helper.com</span>
+      <span class="note">a tool, not a pitch</span>
+    </div>
+    <div class="sheet">
+      <div class="navbar">
+        <div class="brand"><span class="logomark">DH</span>Digital Helper</div>
+        <nav class="links"><span>Free Audit</span><span>Services ▾</span><span>Work</span><span>Pricing</span><span>About</span></nav>
+        <span class="cta">Book a Call</span>
+      </div>
+
+      <div class="hero" style="position:relative">
+        <div class="sk-eyebrow">Free · 30 seconds · no email required</div>
+        <h1 class="sk-h1">
+          <span data-tone="direct">See exactly what's <span class="hl">broken</span> on your site.</span>
+          <span data-tone="punchy">Your site is losing you $<span class="hl">thousands</span>. We'll prove it.</span>
+          <span data-tone="warm">Curious how your site is <span class="hl">really</span> doing? Let's peek.</span>
+        </h1>
+        <p class="sub">Paste your URL. Our AI audits speed, SEO, mobile UX, and Google Business Profile in 30 seconds. Keep the report whether you hire us or not.</p>
+
+        <form class="audit" onsubmit="event.preventDefault()">
+          <span class="hint">↓ start here</span>
+          <span class="prefix">https://</span>
+          <input class="url" type="text" value="yourbusiness.com" />
+          <button class="scan" type="submit">Scan my site →</button>
+        </form>
+        <div class="audit-note">or paste a competitor's URL and we'll compare.</div>
+
+        <span class="anno" style="top:20px;right:40px;transform:rotate(5deg)">hero IS the product — no hero image needed</span>
+      </div>
+
+      <!-- sample report -->
+      <div class="report">
+        <h3>Sample report — how your results will look</h3>
+        <div class="scorecard">
+          <div class="score bad"><div class="lbl">PageSpeed</div><div class="val">42</div><div class="bar"><i style="width:42%"></i></div></div>
+          <div class="score bad"><div class="lbl">Mobile UX</div><div class="val">58</div><div class="bar"><i style="width:58%"></i></div></div>
+          <div class="score good"><div class="lbl">Local SEO</div><div class="val">71</div><div class="bar"><i style="width:71%"></i></div></div>
+          <div class="score bad"><div class="lbl">GBP Setup</div><div class="val">30</div><div class="bar"><i style="width:30%"></i></div></div>
+        </div>
+        <div class="findings">
+          <div class="finding warn"><span class="mark">!</span><p><b>Your homepage takes 6.2s to load.</b> Industry benchmark is 2.1s. Every extra second drops conversions ~7%.</p></div>
+          <div class="finding warn"><span class="mark">!</span><p><b>Missing meta descriptions on 14 pages.</b> Google is guessing what to show — and guessing wrong.</p></div>
+          <div class="finding ok"><span class="mark">✓</span><p><b>Your Google Business Profile is verified.</b> Good — but 6 primary categories are missing.</p></div>
+          <div class="finding warn"><span class="mark">!</span><p><b>No schema markup detected.</b> Competitors with schema show rich snippets. You don't.</p></div>
+        </div>
+        <span class="anno" style="bottom:-16px;right:24px;transform:rotate(-2deg)">this drives conversion — make the report feel LIVE</span>
+      </div>
+
+      <!-- services, but as tabs -->
+      <div class="services">
+        <h2>Once we find the leak, we fix it.</h2>
+        <div class="svcs-tabs">
+          <span class="t on">Web Design</span><span class="t">Local SEO</span><span class="t">AI Automation</span><span class="t">Lead Gen</span><span class="t">Reputation</span>
+        </div>
+        <div class="svc-detail">
+          <div>
+            <h3 class="sk-h2">Modern Next.js rebuilds.</h3>
+            <p class="sk-p">Your current site is the problem. We rebuild in Next.js — loads in under 2s, ranks better, converts more. Most projects in 2–4 weeks.</p>
+            <ul>
+              <li>Mobile-first, 90+ PageSpeed guaranteed</li>
+              <li>On-page SEO built in from day 1</li>
+              <li>You can edit content yourself (no WordPress mess)</li>
+              <li>Chatbot + automation ready</li>
+            </ul>
+            <div style="margin-top:12px;display:flex;gap:10px"><button class="sk-btn primary">See web design →</button><button class="sk-btn">From $2,500</button></div>
+          </div>
+          <div class="box placeholder" style="min-height:260px">[ before / after screenshot ]</div>
+        </div>
+      </div>
+
+      <!-- proof -->
+      <div class="proof">
+        <div class="stat"><div class="big" style="font-family:'Caveat';font-size:44px">+156%</div><div class="label sk-small" style="font-size:11px">Avg. organic traffic after rebuild</div></div>
+        <div class="stat"><div class="big" style="font-family:'Caveat';font-size:44px">2.3s → 0.9s</div><div class="label sk-small" style="font-size:11px">Avg. load time reduction</div></div>
+        <div class="stat"><div class="big" style="font-family:'Caveat';font-size:44px">40+</div><div class="label sk-small" style="font-size:11px">Tri-Cities businesses helped</div></div>
+        <div class="stat"><div class="big" style="font-family:'Caveat';font-size:44px">4.9★</div><div class="label sk-small" style="font-size:11px">Google rating (42 reviews)</div></div>
+      </div>
+
+      <div class="cta-final">
+        <h2>Still reading? Let's scan your site already.</h2>
+        <button class="sk-btn primary accent">Run my free audit →</button>
+      </div>
+
+      <div class="footer-sk">
+        <div class="col"><h4>Digital Helper</h4><p>(509) 987-5060 · Richland, WA</p></div>
+        <div class="col"><h4>Services</h4><p>Web · SEO · AI · Leads</p></div>
+        <div class="col"><h4>Locations</h4><p>Tri-Cities, WA</p></div>
+        <div class="col"><h4>Resources</h4><p>Keyword tool · Blog</p></div>
+        <div class="col"><h4>Legal</h4><p>Privacy · Terms</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- =========================================================
+     DIRECTION 3 — RESULTS WALL (BENTO)
+     ========================================================= -->
+<div class="frame-wrap">
+<div class="variant-label"><span class="num">03</span>Results Wall — numbers-first bento</div>
+<section class="variant v3 annotations-on" data-v="3">
+  <div class="frame">
+    <div class="browser-chrome">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span class="urlbar">https://digital-helper.com</span>
+      <span class="note">data speaks</span>
+    </div>
+    <div class="sheet">
+      <div class="navbar">
+        <div class="brand"><span class="logomark">DH</span>Digital Helper</div>
+        <nav class="links"><span>Results</span><span>Services ▾</span><span>Work</span><span>Pricing</span><span>About</span></nav>
+        <span class="cta">Book a Call</span>
+      </div>
+
+      <div class="hero">
+        <span class="eyebrow">Digital Helper · Richland, WA · Since 2023</span>
+        <h1>
+          <span data-tone="direct">We don't do vibes. <span class="x">We do numbers.</span></span>
+          <span data-tone="punchy">Results or refund. <span class="x">Pick one.</span></span>
+          <span data-tone="warm">Real outcomes for <span class="x">real neighbors.</span></span>
+        </h1>
+      </div>
+
+      <div class="bento">
+        <div class="b b1 ink">
+          <div class="tag">Avg. across 40 clients</div>
+          <div style="margin-top:6px"><div class="huge">+156%</div><div class="mid" style="margin-top:-6px">organic traffic</div></div>
+          <div class="copy" style="margin-top:14px">In the first 6 months after a Next.js rebuild + local SEO program. Measured in Google Search Console.</div>
+          <svg class="spark" viewBox="0 0 100 30" style="opacity:.5"><path d="M0,25 L15,20 L30,22 L45,14 L60,10 L75,5 L100,2" stroke="#fff" stroke-width="1.5" fill="none"/></svg>
+        </div>
+        <div class="b b2"><div class="tag">Lead response</div><div class="mid">2 min</div><div class="copy">vs. 47-min industry avg.</div></div>
+        <div class="b b3 accent"><div class="tag" style="opacity:.9">Reviews</div><div class="mid">4.9★</div></div>
+        <div class="b b4"><div class="tag">Hours saved / week</div><div class="mid">10+</div><div class="copy">Per business on our AI stack</div></div>
+        <div class="b b5"><div class="tag">PageSpeed</div><div class="mid">96</div></div>
+        <div class="b b6">
+          <div class="tag">Case study · HVAC</div>
+          <div style="margin-top:4px"><div class="mid">Tri-City HVAC</div></div>
+          <div class="copy" style="margin-top:6px"><b>Before:</b> 3 leads/mo, $180 CPA<br><b>After:</b> 47 leads/mo, $42 CPA</div>
+          <div style="margin-top:10px" class="box placeholder" data-h="70" ><span class="sk-small">[ before/after chart ]</span></div>
+        </div>
+        <div class="b b7 ink"><div class="tag">Booked calls / mo</div><div class="mid">120+</div><div class="copy">Handled by chatbot, zero staff</div></div>
+        <div class="b b8"><div class="tag">Pay-per-lead floor</div><div class="mid">$25</div><div class="copy">You only pay for qualified.</div></div>
+        <div class="b b9 accent"><div class="tag" style="opacity:.9">Build time</div><div class="mid">2–4 weeks to launch.</div></div>
+        <div class="b b10"><div class="tag">Local presence</div><div class="mid">Tri-Cities only.</div><div class="copy">Richland · Kennewick · Pasco · West Richland</div></div>
+      </div>
+
+      <span class="anno" style="top:250px;left:50%;transform:translateX(-50%) rotate(-2deg)">← mix tile sizes · 1–2 anchor tiles · alternate accent/ink/white</span>
+
+      <div class="manifesto">
+        <h2>
+          <span data-tone="direct">Every number above is from a real Tri-Cities business. Names on request — we don't parade clients for traffic.</span>
+          <span data-tone="punchy">If a number on this page isn't on yours in 6 months, we work free until it is.</span>
+          <span data-tone="warm">We've tracked every client's numbers since 2023. We'd love to add yours to this wall.</span>
+        </h2>
+      </div>
+
+      <div class="roadmap">
+        <div class="tick"><div class="n">01 · WEEK 1</div><h4>Audit</h4><p>Free teardown of site, rankings, lead flow.</p></div>
+        <div class="tick"><div class="n">02 · WEEK 2</div><h4>Plan</h4><p>One-page scope. Fixed price or pay-per-lead.</p></div>
+        <div class="tick"><div class="n">03 · WEEK 2-4</div><h4>Build</h4><p>Weekly demos. No black boxes.</p></div>
+        <div class="tick"><div class="n">04 · WEEK 4-5</div><h4>Launch</h4><p>Site + SEO + automations go live.</p></div>
+        <div class="tick"><div class="n">05 · ONGOING</div><h4>Scale</h4><p>Monthly report. You see every dial.</p></div>
+      </div>
+
+      <div class="cta-final" style="padding:40px 40px;border-top:1.5px dashed var(--ink);text-align:center">
+        <h2 class="sk-h2" style="font-size:36px">Want your numbers on this wall?</h2>
+        <div style="display:flex;gap:12px;justify-content:center;margin-top:12px">
+          <button class="sk-btn primary accent">Book a free consult →</button>
+          <button class="sk-btn">See full case studies</button>
+        </div>
+      </div>
+
+      <div class="footer-sk">
+        <div class="col"><h4>Digital Helper</h4><p>Results over rhetoric · Richland, WA</p><p>(509) 987-5060</p></div>
+        <div class="col"><h4>Services</h4><p>Web · SEO · AI</p></div>
+        <div class="col"><h4>Locations</h4><p>Tri-Cities, WA</p></div>
+        <div class="col"><h4>Industries</h4><p>Healthcare · Wineries · B2B</p></div>
+        <div class="col"><h4>Legal</h4><p>Privacy · Terms</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- =========================================================
+     DIRECTION 4 — AI-NATIVE
+     ========================================================= -->
+<div class="frame-wrap">
+<div class="variant-label"><span class="num">04</span>AI-Native — eat your own dog food</div>
+<section class="variant v4 annotations-on" data-v="4">
+  <div class="frame">
+    <div class="browser-chrome">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span class="urlbar">https://digital-helper.com</span>
+      <span class="note">be the product</span>
+    </div>
+    <div class="sheet">
+      <div class="navbar">
+        <div class="brand"><span class="logomark">DH</span>Digital Helper</div>
+        <nav class="links"><span>Chat with Helper</span><span>Services ▾</span><span>Work</span><span>Pricing</span><span>About</span></nav>
+        <span class="cta">Book a Call</span>
+      </div>
+
+      <div class="hero">
+        <div class="hero-left">
+          <span class="sk-eyebrow">AI automation · built for Tri-Cities</span>
+          <h1>
+            <span data-tone="direct">Talk to our AI.<br>Watch it do your job.</span>
+            <span data-tone="punchy">This chatbot could be<br>yours by Friday.</span>
+            <span data-tone="warm">Meet Helper — our AI.<br>Say hi.</span>
+          </h1>
+          <p class="sub">We use AI internally before we sell it. This chatbot qualifies leads, audits sites, and books calls — right here, no signup. If you like what it does, we build one for your business.</p>
+          <div class="tags">
+            <span class="chip ink">live chat</span>
+            <span class="chip">site audits</span>
+            <span class="chip">workflow automation</span>
+            <span class="chip">voice AI</span>
+            <span class="chip accent">n8n + gemini</span>
+          </div>
+          <div class="ctas">
+            <button class="sk-btn primary accent">Book AI assessment →</button>
+            <button class="sk-btn">See what we automate</button>
+          </div>
+        </div>
+
+        <!-- Chat demo -->
+        <div class="chat-demo">
+          <div class="chat-head">
+            <span class="avatar">AI</span>
+            <span class="name">Helper</span>
+            <span class="dot"></span>
+            <span class="status">online · n8n · gemini</span>
+          </div>
+          <div class="chat-body">
+            <div class="msg bot">Hey — I'm Helper. I can audit your site, explain pricing, or book you a call with Mars. What's up?</div>
+            <div class="msg me">my HVAC site gets no calls. can you check it?</div>
+            <div class="msg bot">Sure — drop the URL?</div>
+            <div class="msg me">tricityhvac.com</div>
+            <div class="msg tool">
+              ⚡ <b>running tool:</b> analyzeWebsite(url)<br>
+              ↳ scraping homepage...<br>
+              ↳ running Gemini analysis...<br>
+              ↳ <b>done in 8.2s</b>
+            </div>
+            <div class="msg bot">Found 3 big issues: (1) 6.2s load time, (2) no schema markup, (3) GBP missing 4 categories. Want me to email the full report and schedule a 15-min call?</div>
+          </div>
+          <div class="chat-input"><i>type a message...</i><button>Send ↵</button></div>
+          <span class="anno" style="top:-24px;right:10px;transform:rotate(3deg)">← real AI, streams live, callable tools</span>
+        </div>
+      </div>
+
+      <!-- Workflow diagram -->
+      <div class="workflow">
+        <h2>A day in the life of your automation stack.</h2>
+        <div class="nodes">
+          <div class="node"><div class="i">01 · TRIGGER</div><div class="n">Form submit</div></div>
+          <div class="arrow-node">→</div>
+          <div class="node"><div class="i">02 · ENRICH</div><div class="n">Company lookup</div></div>
+          <div class="arrow-node">→</div>
+          <div class="node"><div class="i">03 · SCORE</div><div class="n">AI qualification</div></div>
+          <div class="arrow-node">→</div>
+        </div>
+        <div class="nodes" style="margin-top:12px">
+          <div class="node"><div class="i">04 · ROUTE</div><div class="n">Hot → Slack</div></div>
+          <div class="arrow-node">→</div>
+          <div class="node"><div class="i">05 · NURTURE</div><div class="n">Email sequence</div></div>
+          <div class="arrow-node">→</div>
+          <div class="node"><div class="i">06 · BOOK</div><div class="n">Calendar invite</div></div>
+          <div class="arrow-node">→</div>
+        </div>
+        <span class="anno" style="top:20px;right:40px;transform:rotate(4deg)">animated: nodes light up in sequence on scroll</span>
+      </div>
+
+      <!-- capabilities -->
+      <div class="capabilities">
+        <h2 class="sk-h2" style="font-size:28px;margin-bottom:16px">What we can automate (today).</h2>
+        <div class="cap-grid">
+          <div class="cap">
+            <span class="chip accent">chatbots</span>
+            <h3>24/7 intake &amp; qualification</h3>
+            <p>Replaces your missed voicemails with a bot that asks the right questions and books the call.</p>
+            <span class="roi">→ avg 40% fewer support calls</span>
+          </div>
+          <div class="cap">
+            <span class="chip accent">voice AI</span>
+            <h3>AI phone receptionist</h3>
+            <p>Picks up after-hours, answers common questions, transfers hot leads.</p>
+            <span class="roi">→ 120+ calls handled / mo</span>
+          </div>
+          <div class="cap">
+            <span class="chip accent">workflows</span>
+            <h3>n8n / Zapier pipelines</h3>
+            <p>From Jotform to HubSpot to Slack to Gmail — we wire it up once, it runs forever.</p>
+            <span class="roi">→ 10+ hours saved / week</span>
+          </div>
+          <div class="cap">
+            <span class="chip">reviews</span>
+            <h3>Review responses</h3>
+            <p>AI drafts responses to every Google/Yelp review in your voice. You approve or edit.</p>
+            <span class="roi">→ reply time 4hr → 4 min</span>
+          </div>
+          <div class="cap">
+            <span class="chip">lead gen</span>
+            <h3>Prospecting bot</h3>
+            <p>Finds, enriches, and qualifies leads from your ICP — delivered to your CRM.</p>
+            <span class="roi">→ pay-per-lead, $25+</span>
+          </div>
+          <div class="cap">
+            <span class="chip">content</span>
+            <h3>Blog + local SEO</h3>
+            <p>AI drafts Tri-Cities-targeted posts. You (or we) edit and publish.</p>
+            <span class="roi">→ 8 posts / mo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- stack strip -->
+      <div class="stack">
+        <span class="lbl">Our stack</span>
+        <span class="chip">Next.js 16</span>
+        <span class="chip">React 19</span>
+        <span class="chip">Gemini</span>
+        <span class="chip">n8n</span>
+        <span class="chip">Supabase</span>
+        <span class="chip">HubSpot</span>
+        <span class="chip">Resend</span>
+        <span class="chip">Slack</span>
+        <span class="chip">Vercel</span>
+      </div>
+
+      <div class="cta-final" style="padding:38px 40px;display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center;border-top:1.5px dashed var(--ink)">
+        <div><h2 class="sk-h2" style="font-size:36px">Want an AI that works for your business?</h2><p class="sk-p">Free 30-min AI assessment. We find 3 things to automate or we walk.</p></div>
+        <div style="display:flex;gap:10px;justify-content:flex-end"><button class="sk-btn primary accent">Book AI assessment →</button></div>
+      </div>
+
+      <div class="footer-sk">
+        <div class="col"><h4>Digital Helper</h4><p>AI-native agency · Richland, WA</p><p>(509) 987-5060</p></div>
+        <div class="col"><h4>Services</h4><p>AI Automation</p><p>Chatbots · Voice AI</p></div>
+        <div class="col"><h4>Locations</h4><p>Tri-Cities, WA</p></div>
+        <div class="col"><h4>Industries</h4><p>All local service biz</p></div>
+        <div class="col"><h4>Legal</h4><p>Privacy · Terms</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- =========================================================
+     DIRECTION 5 — EDITORIAL / MANIFESTO
+     ========================================================= -->
+<div class="frame-wrap">
+<div class="variant-label"><span class="num">05</span>Editorial — opinionated zine</div>
+<section class="variant v5 annotations-on" data-v="5">
+  <div class="frame">
+    <div class="browser-chrome">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span class="urlbar">https://digital-helper.com</span>
+      <span class="note">have a point of view</span>
+    </div>
+    <div class="sheet">
+      <div class="navbar">
+        <div class="brand"><span class="logomark">DH</span>Digital Helper</div>
+        <nav class="links"><span>Manifesto</span><span>Services ▾</span><span>Work</span><span>Pricing</span><span>About</span></nav>
+        <span class="cta">Book a Call</span>
+      </div>
+
+      <div class="hero">
+        <div class="issue">
+          <span>ISSUE № 037 · APR 2026</span>
+          <span>DIGITAL HELPER · RICHLAND, WA</span>
+          <span>"WE BUILD SYSTEMS THAT WORK WHILE YOU SLEEP"</span>
+        </div>
+        <h1>
+          <span data-tone="direct">WordPress isn't <em>bad.</em><br>It's just <em>slow.</em></span>
+          <span data-tone="punchy">If your website is <em>from 2015,</em> you're <em>donating</em> to your competitors.</span>
+          <span data-tone="warm">A small love letter to <em>every Tri-Cities business</em> still on a Wix template.</span>
+        </h1>
+        <p class="deck">Tri-Cities has more scientists per capita than anywhere in America. Your website should reflect that. We build Next.js sites, local SEO that ranks in 90 days, and AI automation that quietly does the boring parts. <b>No retainers until you see the work.</b></p>
+        <div style="margin-top:18px;display:flex;gap:12px"><button class="sk-btn primary accent">Read the manifesto</button><button class="sk-btn-ghost">Book a call →</button></div>
+        <span class="anno" style="top:40px;right:60px;transform:rotate(6deg)">hand-script headline · editorial rhythm</span>
+      </div>
+
+      <div class="columns">
+        <div>
+          <h3>The Problem</h3>
+          <p class="dropcap">Most local agencies sell you a WordPress template, a "social media package," and a retainer. You get 40 PageSpeed, "we'll get back to you" Mondays, and a dashboard nobody checks. Meanwhile customers search, can't find you, click the competitor.</p>
+          <p>This is a solved problem. We just refuse to solve it the lazy way.</p>
+        </div>
+        <div>
+          <h3>Our Approach</h3>
+          <p>We build in Next.js because sites should load in under a second. We do SEO with Google Business Profile + schema + content, not tricks. We automate with n8n because Zapier breaks. We charge pay-per-lead because retainers reward laziness.</p>
+          <p>It is not complicated. It's just rarely done.</p>
+        </div>
+        <div>
+          <h3>The Bet</h3>
+          <p>Give us 4 weeks. We'll rebuild your site, fix your Google Business Profile, and automate one task that's eating you alive. If the numbers aren't up in 90 days, you stop paying.</p>
+          <p>No seat at the table. No synergy. Just fewer voicemails and a faster site.</p>
+        </div>
+      </div>
+
+      <div class="ledger">
+        <div class="item"><div class="big">40+</div><div class="sm">Tri-Cities clients</div></div>
+        <div class="item"><div class="big">2-4 wk</div><div class="sm">Avg. rebuild time</div></div>
+        <div class="item"><div class="big">90+</div><div class="sm">Pagespeed target</div></div>
+        <div class="item"><div class="big">$25-150</div><div class="sm">Pay per lead</div></div>
+        <div class="item"><div class="big">4.9★</div><div class="sm">On Google</div></div>
+      </div>
+
+      <div class="services">
+        <h2>The five things we do.</h2>
+        <div class="svc-row"><div class="n">01</div><div><h3>Web Design</h3><p>Modern Next.js sites that load in under a second and actually convert.</p></div><div class="price">from $2,500 · 2-4 wks</div></div>
+        <div class="svc-row"><div class="n">02</div><div><h3>Local SEO</h3><p>GBP optimization, citations, on-page SEO. Rank in 90 days or keep going free.</p></div><div class="price">$750-3,000 / mo</div></div>
+        <div class="svc-row"><div class="n">03</div><div><h3>AI Automation</h3><p>Chatbots, voice AI, n8n workflows. Your business works while you sleep.</p></div><div class="price">$497-997 / mo</div></div>
+        <div class="svc-row"><div class="n">04</div><div><h3>Lead Generation</h3><p>Qualified leads in your inbox. Pay only for verified prospects.</p></div><div class="price">$25-150 / lead</div></div>
+        <div class="svc-row"><div class="n">05</div><div><h3>Reputation Management</h3><p>More 5-star reviews. AI drafts replies. You approve.</p></div><div class="price">included</div></div>
+        <span class="anno" style="right:20px;top:-8px;transform:rotate(-2deg)">table-of-contents feel · hover reveals sub-services</span>
+      </div>
+
+      <div class="marquee-bar">
+        <div class="line">
+          <span>MODERN TECH</span><span class="dot">·</span>
+          <span>NOT WORDPRESS TEMPLATES</span><span class="dot">·</span>
+          <span>PAY PER LEAD</span><span class="dot">·</span>
+          <span>LOCAL AGENCY</span><span class="dot">·</span>
+          <span>AI-NATIVE</span><span class="dot">·</span>
+          <span>NO SYNERGY</span><span class="dot">·</span>
+          <span>FEWER VOICEMAILS</span><span class="dot">·</span>
+          <span>FASTER SITES</span><span class="dot">·</span>
+        </div>
+      </div>
+
+      <div class="cta-final">
+        <h2>So — <em>are we building,</em><br>or are you still on<br>that Wix site?</h2>
+        <div class="block">
+          <div class="sk-eyebrow">30-min audit · no pitch unless we fit</div>
+          <div class="box" style="padding:8px 12px;margin:8px 0;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--pencil)">your@email.com</div>
+          <div class="box" style="padding:8px 12px;margin:8px 0;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--pencil)">yourwebsite.com</div>
+          <button class="sk-btn primary accent" style="width:100%;justify-content:center">Let's talk →</button>
+        </div>
+      </div>
+
+      <div class="footer-sk">
+        <div class="col"><h4>Digital Helper</h4><p>(509) 987-5060 · Richland, WA</p><p>We build systems that work while you sleep.</p></div>
+        <div class="col"><h4>Services</h4><p>Web · SEO · AI · Leads · Reputation</p></div>
+        <div class="col"><h4>Locations</h4><p>Richland · Kennewick · Pasco · West Richland</p></div>
+        <div class="col"><h4>Industries</h4><p>Healthcare · Wineries · Mfg · Retail · Ag</p></div>
+        <div class="col"><h4>© 2026</h4><p>Privacy · Terms</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+  <!-- margin note about methodology -->
+  <div style="margin-top:40px;padding:18px 22px;border:1.5px dashed var(--ink);border-radius:6px;background:#fff;font-family:'Architects Daughter',sans-serif;font-size:14px;line-height:1.5;color:#333;position:relative">
+    <div style="font-family:'Caveat',cursive;font-size:22px;color:var(--accent);margin-bottom:6px">A note on these wireframes</div>
+    These are <b>low-fidelity structural sketches</b>, not visual design. Boxes with hash-fills are image placeholders. Handwritten type is narrative only — real build would use a clean sans (e.g., Inter-free alternative) + a confident display face for headlines. The goal is to compare <b>information architecture + emotional tone</b> across five distinct homepage strategies before committing to one (or a remix).
+    <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--pencil)">
+      Direction shortcuts: <b>1</b> Classic · <b>2</b> Audit · <b>3</b> Results · <b>4</b> AI · <b>5</b> Editorial &nbsp;·&nbsp; <b>S</b> toggle side-by-side · <b>N</b> toggle notes
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  const body = document.body;
+  const variants = document.querySelectorAll('.variant');
+  const tabs = document.querySelectorAll('.tab');
+  const annoToggle = document.getElementById('annoToggle');
+  const densityToggle = document.getElementById('densityToggle');
+  const viewButtons = document.querySelectorAll('#viewToggle button');
+  const toneButtons = document.querySelectorAll('#toneToggle button');
+
+  // ---- persistence
+  const state = Object.assign({
+    v: '1', view: 'single', tone: 'direct', notes: true, dense: true
+  }, JSON.parse(localStorage.getItem('dh_wire') || '{}'));
+  const save = ()=>localStorage.setItem('dh_wire', JSON.stringify(state));
+
+  function applyVariant(){
+    tabs.forEach(t=>t.classList.toggle('active', t.dataset.v===state.v));
+    variants.forEach(v=>v.classList.toggle('active', v.dataset.v===state.v));
+  }
+  function applyNotes(){
+    variants.forEach(v=>v.classList.toggle('annotations-on', state.notes));
+    annoToggle.checked = state.notes;
+  }
+  function applyDensity(){
+    body.classList.toggle('dense-on', state.dense);
+    body.classList.toggle('dense-off', !state.dense);
+    densityToggle.checked = state.dense;
+  }
+  function applyView(){
+    body.classList.toggle('side-by-side', state.view==='side');
+    viewButtons.forEach(b=>b.classList.toggle('on', b.dataset.view===state.view));
+  }
+  function applyTone(){
+    body.classList.remove('tone-direct','tone-punchy','tone-warm');
+    body.classList.add('tone-'+state.tone);
+    toneButtons.forEach(b=>b.classList.toggle('on', b.dataset.tone===state.tone));
+  }
+
+  tabs.forEach(t=>t.addEventListener('click', ()=>{state.v=t.dataset.v; save(); applyVariant();}));
+  annoToggle.addEventListener('change', ()=>{state.notes=annoToggle.checked; save(); applyNotes();});
+  densityToggle.addEventListener('change', ()=>{state.dense=densityToggle.checked; save(); applyDensity();});
+  viewButtons.forEach(b=>b.addEventListener('click', ()=>{state.view=b.dataset.view; save(); applyView();}));
+  toneButtons.forEach(b=>b.addEventListener('click', ()=>{state.tone=b.dataset.tone; save(); applyTone();}));
+
+  document.addEventListener('keydown', e=>{
+    if(e.target.matches('input,textarea')) return;
+    if('12345'.includes(e.key)){ state.v=e.key; save(); applyVariant(); }
+    if(e.key.toLowerCase()==='s'){ state.view = state.view==='single' ? 'side' : 'single'; save(); applyView(); }
+    if(e.key.toLowerCase()==='n'){ state.notes=!state.notes; save(); applyNotes(); }
+  });
+
+  applyVariant(); applyNotes(); applyDensity(); applyView(); applyTone();
+})();
+</script>
+</body>
+</html>

@@ -4,7 +4,24 @@
       "mcp__plugin_serena_serena__list_dir",
       "mcp__plugin_serena_serena__activate_project",
       "Bash(find:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm start)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(cmd //c \"taskkill /F /PID 71476\")",
+      "Bash(cmd:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npx eslint:*)",
+      "Skill(n8n-mcp-tools-expert)",
+      "Skill(n8n-mcp-tools-expert:*)",
+      "Skill(n8n-node-configuration)",
+      "Skill(n8n-node-configuration:*)",
+      "WebSearch",
+      "WebFetch(domain:n8n.io)",
+      "WebFetch(domain:api.n8n.io)"
     ]
   }
 }

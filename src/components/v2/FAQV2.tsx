@@ -1,135 +1,164 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Phone } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { ArrowRight, FileText, Bookmark, History, Share2 } from "lucide-react";
 
 const FAQ_ITEMS = [
   {
-    question: "How quickly can you get the AI chatbot live?",
-    answer:
-      "Most clients are live within 5–7 business days. We handle the setup, training, and integration — you just answer a few questions about your business.",
+    id: "launch",
+    question: "AI Chatbot deployment speed",
+    answer: "Most clients are live within 5–7 business days. We handle the entire system design, data ingestion, testing, and CRM integration — you just provide context about your business operations.",
   },
   {
-    question: "Does the AI actually book appointments or just collect info?",
-    answer:
-      "Both. It captures lead info and can drop a Calendly booking link directly in the chat so customers schedule on the spot — no back and forth.",
+    id: "booking",
+    question: "Direct booking capabilities",
+    answer: "Our AI systems do both. They capture customer information (name, address, telephone, scope) and can drop scheduling links dynamically in-chat so prospects book directly into your calendar without back-and-forth email delays.",
   },
   {
-    question: "What happens when the AI doesn't know the answer?",
-    answer:
-      "It gracefully says it will connect the customer with your team and sends you an immediate email alert with the full conversation.",
+    id: "unresolved",
+    question: "Handling unresolved questions",
+    answer: "When the AI agent encounters an inquiry outside of its trained knowledge base, it gracefully explains that it will connect the client with a human specialist, then instantly forwards the full conversation transcript to your email or CRM.",
   },
   {
-    question: "Can I use this if I already have a website?",
-    answer:
-      "Yes — the chatbot is a single script tag that installs on any website in under 5 minutes, whether it's WordPress, Wix, Squarespace, or custom built.",
+    id: "install",
+    question: "Installation on existing sites",
+    answer: "Completely seamless. The chatbot runs as a lightweight, optimized script tag that works with any modern web stack, CMS, or website builder (including WordPress, Webflow, Squarespace, and custom Next.js apps) in under 5 minutes.",
   },
   {
-    question: "How much does it cost?",
-    answer:
-      "The AI chatbot service starts at $97/month with a one-time setup fee. We also offer web design, SEO, and full-service packages. Book a call and we'll find the right fit.",
+    id: "pricing",
+    question: "Licensing and support costs",
+    answer: "AI chatbot management starts at $97/month with a one-time onboarding setup. We offer scalable packages that bundle premium web design, SEO management, and custom automations with zero long-term contract lock-ins.",
   },
   {
-    question: "Do you only work with HVAC businesses?",
-    answer:
-      "We specialize in local service businesses — HVAC, plumbers, electricians, landscapers, law firms, and more. If you book appointments and take calls, we can automate your lead flow.",
+    id: "niches",
+    question: "Supported industries & niches",
+    answer: "We specialize in service businesses (HVAC, plumbing, electrical, landscaping, law firms, dental offices) that rely on appointments and phone calls. If your business depends on capturing and scheduling leads, we can automate it.",
   },
 ];
 
 export function FAQV2() {
+  const [activeId, setActiveId] = useState(FAQ_ITEMS[0].id);
+  const activeFaq = FAQ_ITEMS.find((item) => item.id === activeId) || FAQ_ITEMS[0];
+
   return (
-    <section className="py-24 bg-[#0a0a0f] border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="overflow-hidden bg-[#090a0c] text-white py-24 md:py-32 border-t border-white/10 relative">
+      {/* Ambient background glows */}
+      <div className="absolute inset-0 pointer-events-none opacity-40">
+        <div className="absolute top-[20%] left-[-10%] w-[400px] h-[400px] rounded-full bg-[#ff8964]/5 blur-[100px]" />
+      </div>
 
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12"
-        >
-          <p className="text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-3">FAQ</p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>
-            Everything you need to know.
-            <br />
-            <span className="text-zinc-500">Common questions.</span>
-          </h2>
-        </motion.div>
+      <div className="max-w-[80rem] mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left Column - 40% Width - Brand Context */}
+          <div className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-24">
+            <div className="agency-eyebrow inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-[#ff8964] mb-6 border border-[#ff8964]/20 bg-[#ff8964]/5">
+              Knowledge Hub
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-normal leading-tight text-white tracking-tighter mb-6 text-balance">
+              Knowledge that
+              <br />
+              <span className="text-[#95979e]">powers every system.</span>
+            </h2>
+            
+            <p className="text-[#95979e] leading-relaxed font-light text-base mb-8">
+              We compile, document, and structure every system FAQ, brief, and project delivery requirement. Explore our interactive knowledge base to find answers to common questions about our build pipeline.
+            </p>
 
-        {/* Two-column layout */}
-        <div className="grid lg:grid-cols-3 gap-12 lg:gap-16 items-start">
+            <Link 
+              href="/contact" 
+              className="group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white hover:text-[#ff8964] transition-colors"
+            >
+              Book a live consultation
+              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </div>
 
-          {/* Left — Accordion (2/3 width) */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="lg:col-span-2"
-          >
-            <Accordion type="single" collapsible className="w-full">
-              {FAQ_ITEMS.map((item, i) => (
-                <AccordionItem
-                  key={i}
-                  value={`item-${i}`}
-                  className="border-b border-white/[0.08] last:border-b-0"
-                >
-                  <AccordionTrigger className="py-5 text-base font-medium text-white hover:no-underline hover:text-indigo-300 transition-colors text-left [&[data-state=open]]:text-indigo-300">
-                    {item.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="pb-5">
-                    <p className="text-zinc-400 leading-relaxed text-sm">{item.answer}</p>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </motion.div>
-
-          {/* Right — CTA Card (1/3 width) */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="lg:col-span-1"
-          >
-            <div className="relative p-7 rounded-2xl border border-indigo-500/30 bg-gradient-to-br from-indigo-500/10 via-violet-500/5 to-transparent sticky top-8">
-              {/* Subtle glow */}
-              <div className="absolute inset-0 rounded-2xl bg-indigo-600/5 blur-xl" />
-
-              <div className="relative">
-                {/* Icon */}
-                <div className="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center mb-5">
-                  <Phone className="w-5 h-5 text-indigo-400" />
-                </div>
-
-                <h3 className="text-xl font-bold text-white mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-                  Still have questions?
-                </h3>
-                <p className="text-sm text-zinc-400 leading-relaxed mb-6">
-                  We&apos;re happy to walk you through exactly how it works for your type of business — no pressure, no sales pitch.
-                </p>
-
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 min-h-[44px] rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 group"
-                >
-                  Book a free 30-min call
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-
-                <p className="text-xs text-zinc-600 text-center mt-4">No commitment required</p>
+          {/* Right Column - 60% Width - Interactive Document Reader Mockup */}
+          <div className="lg:col-span-7 flex flex-col sm:flex-row bg-[#0d0e12] border border-white/10 rounded-[20px] overflow-hidden min-h-[420px] shadow-[0_24px_48px_rgba(0,0,0,0.5)]">
+            
+            {/* Mock Sidebar (Doc Index) */}
+            <div className="w-full sm:w-64 bg-[#090a0d] border-b sm:border-b-0 sm:border-r border-white/5 p-4 flex flex-col shrink-0">
+              <div className="flex items-center gap-2 text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-4 px-2">
+                <FileText className="w-3.5 h-3.5" />
+                <span>Documents</span>
+              </div>
+              
+              <div className="space-y-1 flex-1">
+                {FAQ_ITEMS.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveId(item.id)}
+                    className={`w-full text-left px-3 py-2 rounded-lg text-xs transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+                      activeId === item.id
+                        ? "bg-white/5 text-white font-medium border border-white/10"
+                        : "text-zinc-500 hover:text-white hover:bg-white/[0.02] border border-transparent"
+                    }`}
+                  >
+                    <Bookmark className={`w-3 h-3 ${activeId === item.id ? "text-[#ff8964] fill-current" : "text-zinc-600"}`} />
+                    <span className="truncate">{item.question}</span>
+                  </button>
+                ))}
               </div>
             </div>
-          </motion.div>
+
+            {/* Mock Editor Workspace */}
+            <div className="flex-grow p-6 flex flex-col bg-[#111112]">
+              
+              {/* Editor Header Bar */}
+              <div className="flex items-center justify-between border-b border-white/5 pb-4 mb-6">
+                <div className="flex items-center gap-2 text-[10px] text-zinc-500 font-semibold uppercase tracking-wider">
+                  <span className="text-[#ff8964]">FAQ</span>
+                  <span>/</span>
+                  <span className="truncate text-white/80">{activeFaq.question}</span>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                  <button className="text-zinc-500 hover:text-white transition-colors">
+                    <History className="w-3.5 h-3.5" />
+                  </button>
+                  <button className="text-zinc-500 hover:text-white transition-colors">
+                    <Share2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Dynamic Answer Block */}
+              <div className="flex-1 relative">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeId}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.2 }}
+                    className="space-y-4"
+                  >
+                    <h3 className="text-lg font-medium text-white tracking-tight">
+                      {activeFaq.question}
+                    </h3>
+                    <p className="text-[#95979e] text-sm leading-relaxed font-light">
+                      {activeFaq.answer}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Editor bottom status bar */}
+              <div className="mt-8 border-t border-white/5 pt-4 flex justify-between items-center text-[10px] text-zinc-500">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                  Auto-saved to Cloud
+                </span>
+                <span>UTF-8 • Markdown</span>
+              </div>
+
+            </div>
+
+          </div>
 
         </div>
       </div>

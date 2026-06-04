@@ -3,52 +3,63 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Bot, Globe, Search, Users, Star, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const SERVICES = [
   {
     icon: Bot,
-    tag: "Featured",
+    tag: "AI Systems",
     title: "AI Chatbot System",
     description:
-      "A trained AI employee that answers leads, qualifies prospects, books appointments, and follows up — around the clock.",
-    features: ["24/7 lead capture", "Calendly booking", "FAQ automation", "Instant email alerts"],
-    href: "/services/ai-automation",
+      "A trained digital employee that handles leads, qualifies inquiries, schedules jobs, and automates follow-ups around the clock.",
+    features: ["24/7 autonomous engagement", "Integrated calendar sync", "FAQ & support automation", "Instant CRM integrations"],
+    href: "/ai-agency",
+    colorClass: "from-[#ff8964]/20 via-[#ff8964]/5 to-transparent border-[#ff8964]/30 hover:border-[#ff8964]/50 shadow-[0_0_50px_rgba(255,137,100,0.05)]",
+    iconBg: "bg-[#ff8964]/10 border-[#ff8964]/20 text-[#ff8964]",
     featured: true,
   },
   {
     icon: Globe,
-    tag: "Web",
+    tag: "Development",
     title: "Next.js Web Design",
-    description: "Lightning-fast websites built for conversion. We ditch WordPress and build on Next.js for real performance.",
-    features: ["95+ Lighthouse score", "Mobile-first", "Conversion-optimized", "SEO-ready"],
-    href: "/services/web-design",
+    description: "Lightning-fast, search-optimized web applications built for optimal conversion. We bypass legacy templates for absolute performance.",
+    features: ["Lighthouse scores (95+)", "Dynamic layouts", "Conversion triggers"],
+    href: "/web-design",
+    colorClass: "bg-white/[0.02] border-white/5 hover:border-[#ff8964]/20 hover:bg-white/[0.04]",
+    iconBg: "bg-white/[0.04] border-white/10 text-white/70 group-hover/link:text-[#ff8964]",
     featured: false,
   },
   {
     icon: Search,
-    tag: "SEO",
+    tag: "Search",
     title: "Hyper-Local SEO",
-    description: "Dominate Tri-Cities search results. Be the first business people find when they search in Richland.",
-    features: ["Google Maps ranking", "Local citations", "Review strategy", "Monthly reporting"],
-    href: "/services/seo",
+    description: "Dominate search results in the Tri-Cities area. Be the first local provider clients see when they search in Richland and Kennewick.",
+    features: ["Google Maps optimization", "Structured citation audits", "Review campaign setup"],
+    href: "/seo",
+    colorClass: "bg-white/[0.02] border-white/5 hover:border-[#ff8964]/20 hover:bg-white/[0.04]",
+    iconBg: "bg-white/[0.04] border-white/10 text-white/70 group-hover/link:text-[#ff8964]",
     featured: false,
   },
   {
     icon: Users,
-    tag: "Leads",
+    tag: "Growth",
     title: "Lead Generation",
-    description: "Conversion-optimized funnels that turn strangers into booked calls. We build the pipeline, you close the jobs.",
-    features: ["Landing pages", "Ad management", "Lead nurture", "CRM setup"],
+    description: "High-performance funnel systems designed to capture customer interest and convert clicks into booked business calls.",
+    features: ["Landing page funnels", "Custom outreach flows", "Pipeline integrations"],
     href: "/services/lead-generation",
+    colorClass: "bg-white/[0.02] border-white/5 hover:border-[#ff8964]/20 hover:bg-white/[0.04]",
+    iconBg: "bg-white/[0.04] border-white/10 text-white/70 group-hover/link:text-[#ff8964]",
     featured: false,
   },
   {
     icon: Star,
-    tag: "Reputation",
-    title: "Reputation Management",
-    description: "More 5-star reviews, automated. We make getting Google reviews effortless so your reputation sells for you.",
-    features: ["Review automation", "Response templates", "GBP optimization", "Competitor tracking"],
+    tag: "Authority",
+    title: "Reputation Manager",
+    description: "Build digital trust automatically. Effortlessly gather 5-star Google reviews from customers using automated sms/email triggers.",
+    features: ["Feedback workflows", "Review acquisition metrics", "Competitor indexing"],
     href: "/services/reputation-management",
+    colorClass: "bg-white/[0.02] border-white/5 hover:border-[#ff8964]/20 hover:bg-white/[0.04]",
+    iconBg: "bg-white/[0.04] border-white/10 text-white/70 group-hover/link:text-[#ff8964]",
     featured: false,
   },
 ];
@@ -58,61 +69,87 @@ export function ServicesV2() {
   const FeaturedIcon = featured.icon;
 
   return (
-    <section className="py-24 bg-[#0a0a0f]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-
+    <section className="overflow-hidden bg-[#090a0c] text-white py-24 md:py-32 border-t border-white/10 relative">
+      <div className="max-w-[80rem] mx-auto px-6 relative z-10">
+        
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12"
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16"
         >
           <div>
-            <p className="text-indigo-400 text-sm font-semibold uppercase tracking-widest mb-3">Services</p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>
-              Everything your business needs.<br />
-              <span className="text-zinc-500">Nothing you don&apos;t.</span>
+            <div className="agency-eyebrow inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-[#ff8964] mb-6 border border-[#ff8964]/20 bg-[#ff8964]/5">
+              Service Ecosystem
+            </div>
+            <h2 className="text-4xl md:text-5xl font-normal leading-tight tracking-tighter text-white text-balance">
+              Engineered for conversion.
+              <br />
+              <span className="text-[#95979e]">Free from complexity.</span>
             </h2>
           </div>
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors flex-shrink-0"
+            className="group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white hover:text-[#ff8964] transition-colors"
           >
-            View all services <ArrowRight className="w-4 h-4" />
+            Explore all capabilities
+            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </motion.div>
 
-        {/* Featured card — full width */}
+        {/* Featured full-width Card */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-6"
+          transition={{ duration: 0.6 }}
+          className="mb-4"
         >
-          <Link href={featured.href} className="group block relative p-6 sm:p-8 rounded-2xl border border-indigo-500/30 bg-gradient-to-br from-indigo-500/10 via-violet-500/5 to-transparent hover:border-indigo-500/50 transition-all duration-300">
-            <div className="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-indigo-600 text-white text-xs font-semibold">
-              Featured
+          <Link 
+            href={featured.href} 
+            className={cn(
+              "group/link block relative p-6 sm:p-8 rounded-[20px] border transition-all duration-500",
+              featured.colorClass
+            )}
+          >
+            {/* Top border sweep highlight */}
+            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#ff8964]/40 to-transparent"></div>
+            
+            <div className="absolute top-6 right-6 px-3 py-1 rounded-full bg-[#ff8964]/10 border border-[#ff8964]/20 text-[#ff8964] text-[10px] uppercase font-bold tracking-wider">
+              {featured.tag}
             </div>
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center mb-4">
-                  <FeaturedIcon className="w-6 h-6 text-indigo-400" />
+
+            <div className="grid md:grid-cols-12 gap-8 items-center">
+              <div className="md:col-span-7">
+                <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center mb-6 border", featured.iconBg)}>
+                  <FeaturedIcon className="w-6 h-6" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+                
+                <h3 className="text-2xl sm:text-3xl font-medium text-white mb-4 tracking-tight leading-none">
                   {featured.title}
                 </h3>
-                <p className="text-zinc-400 leading-relaxed mb-4">{featured.description}</p>
-                <span className="inline-flex items-center gap-1.5 text-indigo-400 text-sm font-medium group-hover:gap-2.5 transition-all">
-                  Learn more <ArrowRight className="w-4 h-4" />
+                
+                <p className="text-[#95979e] leading-relaxed font-light text-base mb-6">
+                  {featured.description}
+                </p>
+                
+                <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white group-hover/link:text-[#ff8964] transition-colors">
+                  Learn more about AI agents
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                 </span>
               </div>
-              <div className="grid grid-cols-2 gap-3">
-                {featured.features.map((f) => (
-                  <div key={f} className="flex items-center gap-2 px-3 py-2 rounded-xl bg-indigo-500/10 border border-indigo-500/20">
-                    <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0" />
-                    <span className="text-sm text-zinc-300">{f}</span>
+
+              {/* Staggered Features list inside card */}
+              <div className="md:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {featured.features.map((feat) => (
+                  <div 
+                    key={feat} 
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/[0.02] border border-white/5 group-hover/link:border-white/10 transition-colors duration-500"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#ff8964] flex-shrink-0" />
+                    <span className="text-xs text-zinc-300 font-medium">{feat}</span>
                   </div>
                 ))}
               </div>
@@ -120,32 +157,52 @@ export function ServicesV2() {
           </Link>
         </motion.div>
 
-        {/* Other services — 2×2 grid */}
+        {/* Staggered 4-Column Row Layout (No Bento Bento Grid) */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {rest.map((service, i) => {
-            const Icon = service.icon;
+          {rest.map((srv, i) => {
+            const Icon = srv.icon;
             return (
               <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 24 }}
+                key={srv.title}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="h-full"
               >
-                <Link href={service.href} className="group flex flex-col h-full p-6 rounded-2xl border border-white/8 bg-white/3 hover:border-indigo-500/25 hover:bg-indigo-500/5 transition-all duration-300">
-                  <div className="w-9 h-9 rounded-lg bg-white/8 flex items-center justify-center mb-4">
-                    <Icon className="w-4 h-4 text-zinc-300" />
+                <Link 
+                  href={srv.href} 
+                  className={cn(
+                    "group/link flex flex-col h-full p-6 rounded-[20px] border transition-all duration-300",
+                    srv.colorClass
+                  )}
+                >
+                  <div className={cn("w-9 h-9 rounded-lg flex items-center justify-center mb-6 border transition-colors duration-300", srv.iconBg)}>
+                    <Icon className="w-4 h-4" />
                   </div>
-                  <h3 className="font-semibold text-white mb-2">{service.title}</h3>
-                  <p className="text-sm text-zinc-500 leading-relaxed flex-1">{service.description}</p>
-                  <span className="inline-flex items-center gap-1 text-xs text-zinc-500 group-hover:text-indigo-400 mt-4 transition-colors">
-                    Learn more <ArrowRight className="w-3 h-3" />
+                  
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2">
+                    {srv.tag}
+                  </span>
+                  
+                  <h3 className="font-semibold text-white text-base mb-2 tracking-tight">
+                    {srv.title}
+                  </h3>
+                  
+                  <p className="text-sm text-[#95979e] leading-relaxed font-light flex-grow">
+                    {srv.description}
+                  </p>
+                  
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-zinc-400 group-hover/link:text-[#ff8964] mt-6 transition-colors duration-300">
+                    Learn more
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
                   </span>
                 </Link>
               </motion.div>
             );
           })}
         </div>
+
       </div>
     </section>
   );

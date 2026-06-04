@@ -4,9 +4,9 @@ import Link from "next/link";
 import { Phone, Mail, MapPin, Facebook, Linkedin, Instagram } from "lucide-react";
 
 const SERVICES_LINKS = [
-  { label: "AI Chatbot", href: "/services/ai-automation" },
-  { label: "Web Design", href: "/services/web-design" },
-  { label: "Local SEO", href: "/services/seo" },
+  { label: "AI Chatbots", href: "/ai-agency" },
+  { label: "Web Design", href: "/web-design" },
+  { label: "Local SEO", href: "/seo" },
   { label: "Lead Generation", href: "/services/lead-generation" },
   { label: "Reputation Management", href: "/services/reputation-management" },
 ];
@@ -41,28 +41,35 @@ const CONTACT_INFO = [
 
 export function FooterV2() {
   return (
-    <footer className="bg-[#0a0a0f] border-t border-white/[0.08]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-8">
+    <footer className="bg-[#090a0c] border-t border-white/10 relative z-10">
+      
+      {/* Top border sweep highlight */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
 
+      <div className="max-w-[80rem] mx-auto px-6 pt-16 pb-8">
+        
         {/* 4-column grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-12">
-
-          {/* Column 1 — Logo + tagline + social */}
+          
+          {/* Column 1 — Logo + Tagline + Social */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center flex-shrink-0">
-                <span className="text-white text-xs font-bold tracking-tight">DH</span>
-              </div>
-              <span className="text-white font-bold text-sm tracking-widest uppercase">
+            <Link href="/" className="group inline-flex items-center gap-2 mb-6">
+              <span className="agency-logo-mark flex items-center justify-center shadow-orange-500/20 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(255,137,100,0.4)] transition-all duration-300 text-[10px] font-bold text-white bg-gradient-to-br from-[#ff8964] via-orange-400 to-blue-500 w-7 h-7 rounded-lg relative shadow-lg">
+                DH
+              </span>
+              <span className="agency-wordmark group-hover:text-white/90 transition-colors duration-300 text-base font-semibold text-white tracking-tight">
                 Digital Helper
+              </span>
+              <span className="text-[9px] uppercase tracking-[0.28em] text-[#797d86] ml-0.5">
+                Studio
               </span>
             </Link>
 
-            <p className="text-sm text-zinc-500 leading-relaxed mb-6 max-w-xs">
-              AI automation for service businesses.
+            <p className="text-xs text-[#95979e] leading-relaxed mb-6 max-w-xs font-light">
+              Premium systems engineering and conversion design for modern service businesses.
             </p>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
                 <a
                   key={label}
@@ -70,7 +77,7 @@ export function FooterV2() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-zinc-500 hover:text-white hover:border-white/20 hover:bg-white/5 transition-all duration-200"
+                  className="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-zinc-500 hover:text-white hover:border-[#ff8964]/20 hover:bg-white/5 transition-all duration-300"
                 >
                   <Icon className="w-4 h-4" />
                 </a>
@@ -80,7 +87,7 @@ export function FooterV2() {
 
           {/* Column 2 — Services */}
           <div>
-            <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-4">
+            <p className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-4">
               Services
             </p>
             <ul className="space-y-2.5">
@@ -88,7 +95,7 @@ export function FooterV2() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-sm text-zinc-500 hover:text-zinc-200 transition-colors duration-150"
+                    className="text-xs text-[#95979e] hover:text-white transition-colors duration-200 font-light"
                   >
                     {label}
                   </Link>
@@ -97,24 +104,25 @@ export function FooterV2() {
             </ul>
           </div>
 
-          {/* Column 3 — Company */}
+          {/* Column 3 — Company & Locations */}
           <div>
-            <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-4">
+            <p className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-4">
               Company
             </p>
-            <ul className="space-y-2.5">
+            <ul className="space-y-2.5 mb-6">
               {COMPANY_LINKS.map(({ label, href }) => (
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-sm text-zinc-500 hover:text-zinc-200 transition-colors duration-150"
+                    className="text-xs text-[#95979e] hover:text-white transition-colors duration-200 font-light"
                   >
                     {label}
                   </Link>
                 </li>
               ))}
             </ul>
-            <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-4 mt-6">
+            
+            <p className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-4">
               Areas Served
             </p>
             <ul className="space-y-2.5">
@@ -122,7 +130,7 @@ export function FooterV2() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-sm text-zinc-500 hover:text-zinc-200 transition-colors duration-150"
+                    className="text-xs text-[#95979e] hover:text-white transition-colors duration-200 font-light"
                   >
                     {label}
                   </Link>
@@ -133,7 +141,7 @@ export function FooterV2() {
 
           {/* Column 4 — Contact */}
           <div>
-            <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-4">
+            <p className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-4">
               Contact
             </p>
             <ul className="space-y-3">
@@ -142,13 +150,13 @@ export function FooterV2() {
                   {href ? (
                     <a
                       href={href}
-                      className="flex items-start gap-2.5 text-sm text-zinc-500 hover:text-zinc-200 transition-colors duration-150 group"
+                      className="flex items-start gap-2.5 text-xs text-[#95979e] hover:text-white transition-colors duration-200 group font-light"
                     >
-                      <Icon className="w-4 h-4 mt-0.5 flex-shrink-0 text-zinc-600 group-hover:text-indigo-400 transition-colors duration-150" />
+                      <Icon className="w-4 h-4 mt-0.5 flex-shrink-0 text-zinc-600 group-hover:text-[#ff8964] transition-colors duration-200" />
                       <span>{label}</span>
                     </a>
                   ) : (
-                    <div className="flex items-start gap-2.5 text-sm text-zinc-500">
+                    <div className="flex items-start gap-2.5 text-xs text-[#95979e] font-light">
                       <Icon className="w-4 h-4 mt-0.5 flex-shrink-0 text-zinc-600" />
                       <span>{label}</span>
                     </div>
@@ -159,23 +167,24 @@ export function FooterV2() {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-white/[0.08] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-zinc-600">
-            &copy; 2026 Digital Helper Agency
+        {/* Bottom Bar */}
+        <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-[10px] text-[#797d86] font-light">
+            &copy; 2026 Digital Helper Studio. All rights reserved.
           </p>
+          
           <div className="flex items-center gap-5">
             <Link
               href="/privacy"
-              className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors duration-150"
+              className="text-[10px] text-[#797d86] hover:text-white transition-colors duration-200 font-light"
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms"
-              className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors duration-150"
+              className="text-[10px] text-[#797d86] hover:text-white transition-colors duration-200 font-light"
             >
-              Terms
+              Terms of Service
             </Link>
           </div>
         </div>
