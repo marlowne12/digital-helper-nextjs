@@ -2,53 +2,35 @@
 
 import * as React from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { motion, AnimatePresence } from "framer-motion"
-import {
-    Menu,
-    ChevronDown,
-    Globe,
-    Search,
-    Bot,
-    Users,
-    X,
-    Star
-} from "lucide-react"
-
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+import { Menu, X, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { DigitalHelperLogo } from "@/brand"
 
 const services = [
     {
-        title: "Web Design & Development",
+        title: "Web Design and Development",
         href: "/services/web-design",
-        icon: <Globe className="w-5 h-5 text-accent-primary" />,
         description: "Modern, fast sites that convert"
     },
     {
-        title: "SEO & Local Search",
+        title: "SEO and Local Search",
         href: "/services/seo",
-        icon: <Search className="w-5 h-5 text-accent-secondary" />,
         description: "Rank higher in Tri-Cities"
     },
     {
         title: "AI Automation",
         href: "/services/ai-automation",
-        icon: <Bot className="w-5 h-5 text-accent-tertiary" />,
         description: "Chatbots, workflows, voice AI"
     },
     {
         title: "Lead Generation",
         href: "/services/lead-generation",
-        icon: <Users className="w-5 h-5 text-sky-400" />,
         description: "Pay only for qualified leads"
     },
     {
         title: "Reputation Management",
         href: "/services/reputation-management",
-        icon: <Star className="w-5 h-5 text-amber-400" />,
         description: "More 5-star reviews on auto-pilot"
     }
 ]
@@ -63,104 +45,140 @@ const mainLinks = [
 
 export function Navbar() {
     const pathname = usePathname()
-    const [isOpen, setIsOpen] = React.useState(false)
-    const [isServicesOpen, setIsServicesOpen] = React.useState(false)
-    const [scrolled, setScrolled] = React.useState(false)
+    const [mobileOpen, setMobileOpen] = React.useState(false)
+    const [servicesOpen, setServicesOpen] = React.useState(false)
+    const servicesRef = React.useRef<HTMLDivElement>(null)
+    const servicesBtnRef = React.useRef<HTMLButtonElement>(null)
 
+    // Close services dropdown on outside click
     React.useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 20)
-        window.addEventListener("scroll", handleScroll)
-        return () => window.removeEventListener("scroll", handleScroll)
+        function handleClickOutside(e: MouseEvent) {
+            if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) {
+                setServicesOpen(false)
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside)
+        return () => document.removeEventListener("mousedown", handleClickOutside)
     }, [])
+
+    // Close mobile menu on route change
+    React.useEffect(() => {
+        setMobileOpen(false)
+        setServicesOpen(false)
+    }, [pathname])
+
+    // Close services on Escape
+    React.useEffect(() => {
+        function handleKeyDown(e: KeyboardEvent) {
+            if (e.key === "Escape") {
+                if (servicesOpen) {
+                    setServicesOpen(false)
+                    servicesBtnRef.current?.focus()
+                }
+                if (mobileOpen) {
+                    setMobileOpen(false)
+                }
+            }
+        }
+        document.addEventListener("keydown", handleKeyDown)
+        return () => document.removeEventListener("keydown", handleKeyDown)
+    }, [servicesOpen, mobileOpen])
 
     const isActive = (path: string) => pathname === path
 
     return (
-        <motion.nav
-            initial={{ y: -100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed top-0 left-0 right-0 z-50 flex justify-center py-6 pointer-events-none"
+        <header
+            className="fixed top-0 left-0 right-0 z-50 border-b"
+            style={{
+                backgroundColor: "var(--background)",
+                borderColor: "var(--border)",
+            }}
         >
-            <motion.div
-                className={cn(
-                    "flex items-center justify-between px-2 transition-all duration-500 ease-out pointer-events-auto",
-                    scrolled
-                        ? "w-[90%] md:w-[700px] h-16 bg-background-secondary/95 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.7)]"
-                        : "w-full container h-20 bg-transparent"
-                )}
+            <nav
+                className="container mx-auto px-4 flex items-center justify-between"
+                style={{ height: "72px" }}
+                aria-label="Main navigation"
             >
-                <Link
-                    href="/"
-                    className={cn(
-                        "group flex items-center gap-3 hover:opacity-90 transition-opacity pl-2",
-                        scrolled ? "pl-4" : ""
-                    )}
-                >
-                    <Image
-                        src="/logo.svg"
-                        alt="Digital Helper"
-                        width={144}
-                        height={32}
-                        className={cn(
-                            "transition-all duration-300",
-                            scrolled ? "w-28" : "w-36"
-                        )}
-                        priority
+                {/* Brand lockup */}
+                <Link href="/" aria-label="Digital Helper home">
+                    <DigitalHelperLogo
+                        variant="dark"
+                        markSize={36}
+                        wordmarkFontSize={16}
+                        gap={12}
+                        showRule={false}
                     />
                 </Link>
 
-                {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center gap-1 bg-black/20 p-1.5 rounded-full border border-white/5 backdrop-blur-md">
-                    {/* Services Dropdown */}
-                    <div
-                        className="relative"
-                        onMouseEnter={() => setIsServicesOpen(true)}
-                        onMouseLeave={() => setIsServicesOpen(false)}
-                    >
-                        <button className={cn(
-                            "flex items-center gap-1.5 px-4 py-2 rounded-full transition-all text-sm font-medium hover:bg-white/10",
-                            pathname.startsWith("/services") ? "text-white bg-white/10" : "text-zinc-300 hover:text-white"
-                        )}>
+                {/* Desktop nav */}
+                <div className="hidden md:flex items-center gap-1">
+                    {/* Services disclosure */}
+                    <div className="relative" ref={servicesRef}>
+                        <button
+                            ref={servicesBtnRef}
+                            aria-expanded={servicesOpen}
+                            aria-haspopup="true"
+                            onClick={() => setServicesOpen((v) => !v)}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter" || e.key === " ") {
+                                    e.preventDefault()
+                                    setServicesOpen((v) => !v)
+                                }
+                            }}
+                            className={cn(
+                                "flex items-center gap-1 px-3 py-2 text-sm transition-colors",
+                                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] rounded",
+                                pathname.startsWith("/services")
+                                    ? "text-[var(--foreground)]"
+                                    : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                            )}
+                            style={{ fontFamily: "var(--font-geist-mono)" }}
+                        >
                             Services
-                            <ChevronDown className={cn(
-                                "w-3 h-3 transition-transform duration-300",
-                                isServicesOpen && "rotate-180"
-                            )} />
+                            <ChevronDown
+                                className={cn(
+                                    "w-3 h-3 transition-transform duration-200",
+                                    servicesOpen && "rotate-180"
+                                )}
+                                aria-hidden="true"
+                            />
                         </button>
 
-                        <AnimatePresence>
-                            {isServicesOpen && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 15, scale: 0.95 }}
-                                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                                    exit={{ opacity: 0, y: 15, scale: 0.95 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-80"
-                                >
-                                    <div className="glass border border-white/10 rounded-2xl p-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] backdrop-blur-2xl overflow-hidden">
-                                        <div className="flex flex-col gap-1">
-                                            {services.map((service) => (
-                                                <Link
-                                                    key={service.href}
-                                                    href={service.href}
-                                                    className="group flex items-center gap-3 p-3 rounded-xl hover:bg-white/[0.08] transition-all"
-                                                >
-                                                    <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner">
-                                                        {service.icon}
-                                                    </div>
-                                                    <div>
-                                                        <div className="text-white font-semibold text-xs group-hover:text-accent-primary transition-colors">
-                                                            {service.title}
-                                                        </div>
-                                                    </div>
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
+                        {servicesOpen && (
+                            <div
+                                role="menu"
+                                className="absolute top-full left-0 mt-1 w-72 rounded border py-1 z-50"
+                                style={{
+                                    backgroundColor: "var(--card)",
+                                    borderColor: "var(--border)",
+                                }}
+                            >
+                                {services.map((service) => (
+                                    <Link
+                                        key={service.href}
+                                        href={service.href}
+                                        role="menuitem"
+                                        onClick={() => setServicesOpen(false)}
+                                        className={cn(
+                                            "block px-4 py-3 text-sm transition-colors",
+                                            "hover:bg-[var(--muted)] focus-visible:outline-none focus-visible:bg-[var(--muted)]",
+                                            pathname === service.href
+                                                ? "text-[var(--foreground)]"
+                                                : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                                        )}
+                                        style={{ fontFamily: "var(--font-geist-mono)" }}
+                                    >
+                                        <span className="block">{service.title}</span>
+                                        <span
+                                            className="block text-xs mt-0.5"
+                                            style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-geist-sans)" }}
+                                        >
+                                            {service.description}
+                                        </span>
+                                    </Link>
+                                ))}
+                            </div>
+                        )}
                     </div>
 
                     {mainLinks.map((link) => (
@@ -168,75 +186,121 @@ export function Navbar() {
                             key={link.href}
                             href={link.href}
                             className={cn(
-                                "px-4 py-2 rounded-full transition-all text-sm font-medium relative hover:bg-white/10",
-                                isActive(link.href) ? "text-white bg-white/10" : "text-zinc-300 hover:text-white"
+                                "px-3 py-2 text-sm transition-colors rounded",
+                                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]",
+                                isActive(link.href)
+                                    ? "text-[var(--foreground)]"
+                                    : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
                             )}
+                            style={{ fontFamily: "var(--font-geist-mono)" }}
                         >
                             {link.label}
                         </Link>
                     ))}
                 </div>
 
-                {/* CTA */}
-                <div className={cn("flex items-center gap-3", scrolled ? "pr-2" : "")}>
-                    <Button asChild size="sm" className="hidden md:flex h-10 px-6 font-bold bg-white text-black hover:bg-zinc-200 transition-all rounded-full shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                        <Link href="/contact">Book Call</Link>
-                    </Button>
+                {/* CTA + mobile toggle */}
+                <div className="flex items-center gap-3">
+                    <Link
+                        href="/booking"
+                        className="btn-primary hidden md:inline-flex"
+                    >
+                        Book a Strategy Call
+                    </Link>
 
-                    {/* Mobile Toggle */}
-                    <span className="md:hidden">
-                        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                            <SheetTrigger asChild>
-                                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-full h-10 w-10">
-                                    {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-                                </Button>
-                            </SheetTrigger>
-                            <SheetContent side="top" className="h-screen bg-background-primary/98 backdrop-blur-xl border-none w-full">
-                                <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
-                                <div className="flex flex-col items-center justify-center h-full gap-8">
-                                    <div className="flex flex-col items-center gap-6 w-full max-w-xs">
-                                        <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Services</div>
-                                        {services.map((service, i) => (
-                                            <motion.div
-                                                key={service.href}
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: i * 0.05 }}
-                                                className="w-full"
-                                            >
-                                                <Link
-                                                    href={service.href}
-                                                    onClick={() => setIsOpen(false)}
-                                                    className="flex items-center gap-4 p-4 rounded-xl bg-white/[0.03] border border-white/5 w-full"
-                                                >
-                                                    {service.icon}
-                                                    <span className="text-lg font-bold text-white">{service.title}</span>
-                                                </Link>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-                                    <div className="flex gap-4">
-                                        {mainLinks.map((link) => (
-                                            <Link
-                                                key={link.href}
-                                                href={link.href}
-                                                onClick={() => setIsOpen(false)}
-                                                className="text-2xl font-bold text-zinc-400 hover:text-white"
-                                            >
-                                                {link.label}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                    <Button asChild className="w-full max-w-xs h-14 text-lg font-bold rounded-full bg-white text-black">
-                                        <Link href="/contact" onClick={() => setIsOpen(false)}>Book a Call</Link>
-                                    </Button>
-                                </div>
-                            </SheetContent>
-                        </Sheet>
-                    </span>
+                    <button
+                        className={cn(
+                            "md:hidden flex items-center justify-center w-10 h-10 rounded transition-colors",
+                            "text-[var(--muted-foreground)] hover:text-[var(--foreground)]",
+                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
+                        )}
+                        aria-label={mobileOpen ? "Close menu" : "Open menu"}
+                        aria-expanded={mobileOpen}
+                        onClick={() => setMobileOpen((v) => !v)}
+                    >
+                        {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                    </button>
                 </div>
-            </motion.div>
-        </motion.nav>
+            </nav>
+
+            {/* Mobile menu */}
+            {mobileOpen && (
+                <div
+                    className="md:hidden flex flex-col overflow-y-auto"
+                    style={{
+                        minHeight: "100dvh",
+                        backgroundColor: "var(--background)",
+                        borderTop: "1px solid var(--border)",
+                    }}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Mobile navigation"
+                >
+                    <div className="container mx-auto px-4 py-8 flex flex-col gap-1">
+                        {/* Services section */}
+                        <div
+                            className="text-xs uppercase tracking-widest mb-2 mt-2"
+                            style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-geist-mono)" }}
+                        >
+                            Services
+                        </div>
+                        {services.map((service) => (
+                            <Link
+                                key={service.href}
+                                href={service.href}
+                                onClick={() => setMobileOpen(false)}
+                                className={cn(
+                                    "block px-3 py-3 rounded text-sm transition-colors",
+                                    "hover:bg-[var(--muted)]",
+                                    pathname === service.href
+                                        ? "text-[var(--foreground)]"
+                                        : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                                )}
+                                style={{ fontFamily: "var(--font-geist-mono)" }}
+                            >
+                                {service.title}
+                            </Link>
+                        ))}
+
+                        {/* Hairline */}
+                        <div
+                            className="my-4"
+                            style={{ height: "1px", backgroundColor: "var(--border)" }}
+                            aria-hidden="true"
+                        />
+
+                        {/* Main links */}
+                        {mainLinks.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                onClick={() => setMobileOpen(false)}
+                                className={cn(
+                                    "block px-3 py-3 rounded text-sm transition-colors",
+                                    "hover:bg-[var(--muted)]",
+                                    isActive(link.href)
+                                        ? "text-[var(--foreground)]"
+                                        : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                                )}
+                                style={{ fontFamily: "var(--font-geist-mono)" }}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+
+                        {/* CTA */}
+                        <div className="mt-6">
+                            <Link
+                                href="/booking"
+                                onClick={() => setMobileOpen(false)}
+                                className="btn-primary w-full flex justify-center"
+                            >
+                                Book a Strategy Call
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </header>
     )
 }
-

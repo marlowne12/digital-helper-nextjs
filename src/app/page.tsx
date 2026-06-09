@@ -1,15 +1,11 @@
 import Script from "next/script";
-import { Hero } from "@/components/Hero";
-import { Services } from "@/components/Services";
-import { WebsiteAudit } from "@/components/WebsiteAudit";
-import { ProblemAgitation } from "@/components/ProblemAgitation";
-import { HowItWorks } from "@/components/HowItWorks";
-import { Stats } from "@/components/Stats";
-import { FAQ } from "@/components/FAQ";
-import { RecentWork } from "@/components/RecentWork";
+import { Hero } from "@/components/landing/Hero";
+import { Services } from "@/components/landing/Services";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { Proof } from "@/components/landing/Proof";
+import { CTA } from "@/components/landing/CTA";
 import { FounderSection } from "@/components/FounderSection";
 
-// FAQ Schema for rich results
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -35,7 +31,7 @@ const faqSchema = {
       "name": "Do you only work with Tri-Cities businesses?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "While we specialize in Richland, Kennewick, and Pasco, we help service-based businesses across Pacific Northwest who want to modernize their operations."
+        "text": "While we specialize in Richland, Kennewick, and Pasco, we help service-based businesses across the Pacific Northwest who want to modernize their operations."
       }
     },
     {
@@ -43,7 +39,7 @@ const faqSchema = {
       "name": "What is 'Pay Per Lead' generation?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Instead of paying for ads and hoping they work, we build systems yourself and you only pay for verified, qualified leads that land in your inbox."
+        "text": "Instead of paying for ads and hoping they work, we build a lead-capture system and you only pay for verified, qualified leads that land in your inbox."
       }
     }
   ]
@@ -51,21 +47,18 @@ const faqSchema = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background-primary">
+    <main className="min-h-screen" style={{ backgroundColor: "var(--background)" }}>
       <Script
         id="faq-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <Hero />
-      <ProblemAgitation />
-      <WebsiteAudit />
       <Services />
       <HowItWorks />
-      <Stats />
-      <RecentWork />
+      <Proof />
       <FounderSection />
-      <FAQ />
+      <CTA />
     </main>
   );
 }

@@ -3,8 +3,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-dm-sans);
-  --font-display: var(--font-syne);
+  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-geist-mono);
+  --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -29,15 +30,28 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  
-  /* Axiom Core Brand Tokens */
-  --color-brand-background: #090a0c;
-  --color-brand-surface: #111112;
-  --color-brand-surface-lighter: #18191b;
-  --color-brand-primary: #ff8964;
-  --color-brand-text-secondary: #95979e;
-  --color-brand-text-muted: #797d86;
-  --color-brand-border: #303236;
+
+  /* Digital Helper — operator-grade brand tokens */
+  --color-operator-black: #0E0F11;
+  --color-warm-bone: #F2EFE9;
+  --color-signal-amber: #E89A3C;
+  --color-arterial-red: #B83A2C;
+  --color-charcoal: #2A2C30;
+  --color-steel: #5C6066;
+  --color-mist: #A4A8AE;
+
+  /* Legacy `bg-background-primary` / `bg-accent-purple` / `text-accent-*` utilities
+     used by other routes (About, Contact, location pages, admin, error/loading).
+     Mapped to operator tokens so those surfaces don't render unstyled while
+     per-route rewrites are pending. Strip this block once those routes are themed. */
+  --color-background-primary: #0E0F11;
+  --color-background-secondary: #18191b;
+  --color-accent-primary: #E89A3C;
+  --color-accent-secondary: #B83A2C;
+  --color-accent-tertiary: #A4A8AE;
+  --color-accent-purple: #E89A3C;
+  --color-accent-blue: #5C6066;
+  --color-accent-indigo: #2A2C30;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -47,92 +61,103 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  --shadow-glow-sm: 0 0 20px rgba(255, 137, 100, 0.12);
-  --shadow-glow-md: 0 0 40px rgba(255, 137, 100, 0.18);
-  --shadow-glow-lg: 0 0 60px rgba(255, 137, 100, 0.24);
-
-  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animate-float: float 6s ease-in-out infinite;
-  --animate-shimmer: shimmer 2s linear infinite;
   --animate-spin-slow: spin 12s linear infinite;
 }
 
-/* Base Variables (Root & Dark Mode Overrides) */
+/* Base Variables — operator-grade dark-by-default */
 :root {
-  --radius: 0.625rem;
-  --background: #ffffff;
-  --foreground: #090a0c;
-  --card: #f9f9fb;
-  --card-foreground: #090a0c;
-  --popover: #ffffff;
-  --popover-foreground: #090a0c;
-  --primary: #ff8964;
-  --primary-foreground: #ffffff;
-  --secondary: #f4f5f8;
-  --secondary-foreground: #090a0c;
-  --muted: #f4f5f8;
-  --muted-foreground: #797d86;
-  --accent: #f4f5f8;
-  --accent-foreground: #090a0c;
-  --border: #e4e5e7;
-  --input: #e4e5e7;
-  --ring: #ff8964;
+  --radius: 0.5rem;
+  --background: #0E0F11;
+  --foreground: #F2EFE9;
+  --card: #18191b;
+  --card-foreground: #F2EFE9;
+  --popover: #18191b;
+  --popover-foreground: #F2EFE9;
+  --primary: #E89A3C;
+  --primary-foreground: #0E0F11;
+  --secondary: #2A2C30;
+  --secondary-foreground: #F2EFE9;
+  --muted: #2A2C30;
+  --muted-foreground: #A4A8AE;
+  --accent: #2A2C30;
+  --accent-foreground: #F2EFE9;
+  --border: #2A2C30;
+  --input: #2A2C30;
+  --ring: #E89A3C;
+  --destructive: #B83A2C;
+  --sidebar: #0E0F11;
+  --sidebar-foreground: #F2EFE9;
+  --sidebar-primary: #E89A3C;
+  --sidebar-primary-foreground: #0E0F11;
+  --sidebar-accent: #18191b;
+  --sidebar-accent-foreground: #F2EFE9;
+  --sidebar-border: #2A2C30;
+  --sidebar-ring: #E89A3C;
+}
+
+/* Light mode — reserved for invoices/print surfaces. Bone base, red accent (amber on bone reads weak). */
+.light {
+  --background: #F2EFE9;
+  --foreground: #0E0F11;
+  --card: #FFFFFF;
+  --card-foreground: #0E0F11;
+  --popover: #FFFFFF;
+  --popover-foreground: #0E0F11;
+  --primary: #0E0F11;
+  --primary-foreground: #F2EFE9;
+  --secondary: #E4E1D9;
+  --secondary-foreground: #0E0F11;
+  --muted: #E4E1D9;
+  --muted-foreground: #5C6066;
+  --accent: #B83A2C;
+  --accent-foreground: #F2EFE9;
+  --border: #D5D1C7;
+  --input: #D5D1C7;
+  --ring: #B83A2C;
+  --destructive: #B83A2C;
 }
 
 .dark {
-  --background: #090a0c;
-  --foreground: #f4f5f8;
-  --card: #111112;
-  --card-foreground: #f4f5f8;
-  --popover: #111112;
-  --popover-foreground: #f4f5f8;
-  --primary: #ff8964;
-  --primary-foreground: #090a0c;
-  --secondary: #18191b;
-  --secondary-foreground: #f4f5f8;
-  --muted: #18191b;
-  --muted-foreground: #95979e;
-  --accent: #18191b;
-  --accent-foreground: #f4f5f8;
-  --border: #303236;
-  --input: #303236;
-  --ring: #ff8964;
-  --sidebar: #090a0c;
-  --sidebar-foreground: #f4f5f8;
-  --sidebar-primary: #ff8964;
-  --sidebar-primary-foreground: #090a0c;
-  --sidebar-accent: #18191b;
-  --sidebar-accent-foreground: #f4f5f8;
-  --sidebar-border: #303236;
-  --sidebar-ring: #ff8964;
+  /* :root is already dark by default — .dark class is a no-op alias for compatibility */
 }
 
 @layer base {
   body {
-    background-color: #090a0c;
-    @apply text-zinc-400;
-    font-family: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv11";
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-syne), system-ui, -apple-system, sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-family: var(--font-geist-mono), ui-monospace, "Geist Mono", "JetBrains Mono", monospace;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-transform: none;
   }
 
   h1 {
-    @apply text-5xl md:text-7xl lg:text-8xl;
-    line-height: 1.1;
+    @apply text-4xl md:text-5xl lg:text-6xl;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
   }
 
   h2 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
-    line-height: 1.15;
+    @apply text-3xl md:text-4xl lg:text-5xl;
+    line-height: 1.1;
   }
 
   h3 {
-    @apply text-3xl md:text-4xl lg:text-5xl;
-    line-height: 1.2;
+    @apply text-2xl md:text-3xl;
+    line-height: 1.15;
+  }
+
+  /* Operator-grade hairline used as section divider */
+  .hairline {
+    height: 1px;
+    background-color: var(--border);
+    width: 100%;
   }
 }
 
@@ -153,43 +178,48 @@
               radial-gradient(circle at 50% 0, rgba(255,255,255,0.03), transparent 36%);
 }
 
-.glass-panel {
-  background-color: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
-}
-
-.glass-panel-hover {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-panel-hover:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-}
-
+/* Legacy gradient class — neutralized to solid foreground.
+   The operator brand uses one accent (Signal Amber) sparingly, never as headline color. */
 .text-gradient {
-  background: linear-gradient(135deg, #ff8964 0%, #f97316 50%, #3b82f6 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--foreground);
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
 }
 
+/* Operator-grade primary button — solid Signal Amber, no glow, no gradient.
+   Hover state: dim by 8% (no scale, no shadow grow). */
 .btn-primary {
-  @apply px-6 py-3 text-white font-medium rounded-lg hover:opacity-90 transition-all duration-200;
-  background: linear-gradient(135deg, #ff8964 0%, #f97316 100%);
-  box-shadow: 0 0 20px rgba(255, 137, 100, 0.25);
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-medium transition-colors duration-200;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-radius: var(--radius);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  letter-spacing: 0.02em;
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 30px rgba(255, 137, 100, 0.4);
+  background-color: #D08827;
 }
 
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+/* Secondary: ghost button with hairline border. Used for the one non-primary CTA per surface. */
 .btn-secondary {
-  @apply px-6 py-3 bg-white/5 text-white font-medium rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-200;
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-medium transition-colors duration-200;
+  background-color: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  letter-spacing: 0.02em;
+}
+
+.btn-secondary:hover {
+  background-color: var(--card);
+  border-color: var(--mist);
 }
 
 /* Animations */
@@ -213,39 +243,6 @@
   }
 }
 
-@keyframes agencyLogoSweep {
-  0%, 55% {
-    transform: translateX(-130%) rotate(18deg);
-  }
-  75%, 100% {
-    transform: translateX(130%) rotate(18deg);
-  }
-}
-
-@keyframes agencySectionReveal {
-  from {
-    opacity: 0.35;
-    transform: translateY(34px) scale(0.985);
-    filter: blur(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-@keyframes agencyChildLift {
-  from {
-    opacity: 0.55;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes todo-bar {
   0% { width: 0%; }
   100% { width: 56%; }
@@ -257,19 +254,4 @@
 
 .text-balance {
   text-wrap: balance;
-}
-
-.noise-texture {
-  position: relative;
-}
-
-.noise-texture::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.015;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 128px 128px;
-  pointer-events: none;
 }

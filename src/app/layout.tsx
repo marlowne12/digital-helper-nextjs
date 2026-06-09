@@ -1,29 +1,28 @@
 import type { Metadata } from "next";
-import { Syne, DM_Sans } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { Contact } from "@/components/Contact";
-import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { Toaster } from "@/components/ui/toaster";
 import { ChatWidget } from "@/components/ChatWidget";
 import { ExitIntentPopup } from "@/components/ExitIntentPopup";
-import { SocialProofTicker } from "@/components/SocialProofTicker";
 import Script from "next/script";
 
 
-const syne = Syne({
+const geistSans = Geist({
   subsets: ["latin"],
-  variable: "--font-syne",
-  weight: ["400", "500", "600", "700", "800"]
+  variable: "--font-geist-sans",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
-const dmSans = DM_Sans({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
-  weight: ["400", "500", "700"]
+  variable: "--font-geist-mono",
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -31,7 +30,7 @@ export const metadata: Metadata = {
     default: "AI Automation & Web Design for Tri-Cities Service Businesses | Digital Helper",
     template: "%s | Digital Helper"
   },
-  description: "AI chatbots, local SEO, and Next.js web design for HVAC, plumbing, and service businesses in Richland, Kennewick & Pasco WA. Your business on autopilot — 24/7.",
+  description: "AI chatbots, local SEO, and Next.js web design for HVAC, plumbing, and service businesses in Richland, Kennewick & Pasco WA. Your business on autopilot, 24/7.",
   keywords: ["ai automation tri-cities", "ai chatbot kennewick", "tri cities web design", "tri cities seo", "web design richland wa", "seo kennewick", "web designer pasco", "local seo tri-cities", "ai for hvac businesses", "ai for plumbers tri-cities"],
   authors: [{ name: "Mars" }],
   creator: "Digital Helper",
@@ -186,7 +185,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
-      <body className={`${dmSans.variable} ${syne.variable} font-sans`} suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`} suppressHydrationWarning>
         <Script
           id="json-ld"
           type="application/ld+json"
@@ -194,13 +193,9 @@ export default function RootLayout({
         />
         <Navbar />
         {children}
-        <RevealOnScroll>
-          <Contact />
-        </RevealOnScroll>
         <Footer />
         <ChatWidget />
         <ExitIntentPopup />
-        <SocialProofTicker />
         <Analytics />
         <SpeedInsights />
         <Toaster />
