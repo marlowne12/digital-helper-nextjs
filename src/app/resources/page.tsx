@@ -161,7 +161,7 @@ export default function ResourcesPage() {
           </p>
           <Link
             href="/contact?utm_source=resources&utm_medium=cta"
-            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:shadow-cyan-500/25"
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 font-semibold text-white shadow-lg transition-all hover:shadow-xl"
           >
             Book Free Strategy Call
             <ArrowRight className="h-5 w-5" />

@@ -11,8 +11,9 @@ export const BUSINESS_INFO = {
   // Contact
   phone: "(509) 987-5060",
   phoneHref: "tel:+15099875060",
-  email: "digitalhelperwebsite@gmail.com",
-  emailHref: "mailto:digitalhelperwebsite@gmail.com",
+  // Canonical site-facing email (NAP). Must be a monitored mailbox — see launch checklist.
+  email: "business@digital-helper.com",
+  emailHref: "mailto:business@digital-helper.com",
 
   // Address
   address: {

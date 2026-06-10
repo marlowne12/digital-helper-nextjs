@@ -144,7 +144,7 @@ export default async function BlogPostPage({ params }: Props) {
                 </header>
 
                 {/* Featured Image */}
-                <div className="aspect-video bg-gradient-to-br from-accent-purple/10 to-accent-blue/10 rounded-2xl mb-12 relative overflow-hidden border border-white/[0.05]">
+                <div className="aspect-video rounded-2xl mb-12 relative overflow-hidden border" style={{ backgroundColor: "var(--secondary)", borderColor: "var(--border)" }}>
                     {post.image ? (
                         <Image
                             src={post.image}
@@ -181,7 +181,7 @@ export default async function BlogPostPage({ params }: Props) {
 
                 {/* Author */}
                 <div className="mt-12 bg-white/[0.03] border border-white/[0.08] p-6 rounded-2xl flex items-center gap-6">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 flex items-center justify-center text-white font-bold text-xl">
+                    <div className="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl" style={{ backgroundColor: "var(--secondary)", border: "1px solid var(--border)" }}>
                         DH
                     </div>
                     <div>

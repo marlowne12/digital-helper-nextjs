@@ -386,7 +386,7 @@ export default function AuditPage() {
                   Want us to fix these issues?
                 </h3>
                 <p className="text-zinc-400 text-sm mb-5">
-                  Book a free strategy call — we'll walk through your report and show you exactly what to fix first.
+                  Book a free strategy call — we&apos;ll walk through your report and show you exactly what to fix first.
                 </p>
                 <Link
                   href="/booking"

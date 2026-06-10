@@ -135,7 +135,7 @@ export function GEOAuditPageContent() {
                         We audit how often ChatGPT, Perplexity, and Gemini mention your brand, which sources they trust, and what to fix so your company shows up more often in buyer-facing AI responses.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <Button asChild className="btn-primary h-14 px-8 text-lg border-none bg-accent-primary shadow-[0_0_20px_rgba(0,212,170,0.3)] hover:bg-accent-primary/90">
+                        <Button asChild className="btn-primary h-14 px-8 text-lg border-none bg-accent-primary hover:bg-accent-primary/90">
                             <Link href="/contact">Book a GEO Audit</Link>
                         </Button>
                         <Button asChild variant="outline" className="btn-secondary h-14 px-8 text-lg border-white/10 hover:bg-white/5">
@@ -243,8 +243,7 @@ export function GEOAuditPageContent() {
             </section>
 
             <section className="mb-32">
-                <div className="glass p-12 rounded-[2rem] border-white/5 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-accent-primary/5 blur-[80px] -mr-32 -mt-32" />
+                <div className="bg-charcoal p-12 rounded-[2rem] border border-steel/30 relative overflow-hidden">
                     <h2 className="text-3xl font-bold text-white mb-10">What the Audit Covers</h2>
                     <div className="grid md:grid-cols-2 gap-y-6 gap-x-12 mb-12">
                         {framework.map((item, i) => (

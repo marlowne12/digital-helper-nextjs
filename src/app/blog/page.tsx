@@ -9,6 +9,9 @@ import { BreadcrumbV2 } from '@/components/v2/BreadcrumbV2';
 export const metadata: Metadata = {
     title: 'Blog | Digital Helper',
     description: 'Insights on web design, SEO, AI automation, and growing your local business in the Tri-Cities area.',
+    alternates: {
+        canonical: '/blog',
+    },
 };
 
 interface Props {
@@ -24,21 +27,7 @@ export default async function BlogPage({ searchParams }: Props) {
     const isSearching = !!q;
 
     return (
-        <main className="min-h-screen bg-[#0a0a0f] overflow-hidden">
-            {/* Background glows */}
-            <div className="fixed inset-0 pointer-events-none">
-                <div className="absolute top-[-10%] left-[15%] w-[600px] h-[600px] rounded-full bg-indigo-600/8 blur-[120px]" />
-                <div className="absolute bottom-[10%] right-[5%] w-[400px] h-[400px] rounded-full bg-violet-600/6 blur-[100px]" />
-                <div
-                    className="absolute inset-0 opacity-[0.025]"
-                    style={{
-                        backgroundImage:
-                            "linear-gradient(rgba(99,102,241,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.4) 1px, transparent 1px)",
-                        backgroundSize: "60px 60px",
-                    }}
-                />
-            </div>
-
+        <main className="min-h-screen overflow-hidden" style={{ backgroundColor: "var(--background)" }}>
             <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-20">
 
                 {/* Breadcrumb */}
@@ -50,10 +39,7 @@ export default async function BlogPage({ searchParams }: Props) {
                         Insights &amp; Resources
                     </div>
                     <h1 className="text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight text-white mb-5">
-                        The Digital Helper{" "}
-                        <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-indigo-300 bg-clip-text text-transparent">
-                            Blog
-                        </span>
+                        The Digital Helper Blog
                     </h1>
                     <p className="text-xl text-zinc-400 leading-relaxed max-w-2xl">
                         Actionable tips on web design, local SEO, AI automation, and growing
@@ -116,9 +102,10 @@ export default async function BlogPage({ searchParams }: Props) {
                                 <Link
                                     key={post.slug}
                                     href={`/blog/${post.slug}`}
-                                    className="group rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden hover:border-indigo-500/30 hover:bg-white/8 transition-all duration-300"
+                                    className="group rounded-2xl border overflow-hidden transition-colors duration-300"
+                                    style={{ backgroundColor: "var(--card)", borderColor: "var(--border)" }}
                                 >
-                                    <div className="aspect-video bg-gradient-to-br from-indigo-600/20 to-violet-600/20 relative overflow-hidden">
+                                    <div className="aspect-video relative overflow-hidden" style={{ backgroundColor: "var(--secondary)" }}>
                                         {post.image ? (
                                             <Image
                                                 src={post.image}
@@ -171,7 +158,8 @@ export default async function BlogPage({ searchParams }: Props) {
                                 <Link
                                     key={post.slug}
                                     href={`/blog/${post.slug}`}
-                                    className="group rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 hover:border-indigo-500/30 hover:bg-white/8 transition-all duration-300"
+                                    className="group rounded-2xl border p-6 transition-colors duration-300"
+                                    style={{ backgroundColor: "var(--card)", borderColor: "var(--border)" }}
                                 >
                                     <div className="flex items-center gap-3 text-xs text-zinc-500 mb-4">
                                         <span className="px-2 py-1 rounded-full bg-white/5 border border-white/8">

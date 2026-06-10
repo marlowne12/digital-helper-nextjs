@@ -24,7 +24,7 @@ export function PayForResultsBlock({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="relative rounded-3xl border border-indigo-500/20 bg-white/5 backdrop-blur-sm overflow-hidden p-6 sm:p-10 lg:p-14"
+        className="relative rounded-3xl border border-charcoal bg-charcoal/40 overflow-hidden p-6 sm:p-10 lg:p-14"
       >
         {/* Background glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-indigo-600/15 blur-3xl rounded-full pointer-events-none" />
@@ -58,7 +58,7 @@ export function PayForResultsBlock({
               {TRUST_PILLS.map((pill) => (
                 <div
                   key={pill}
-                  className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl px-4 py-2"
+                  className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-2xl px-4 py-2"
                 >
                   <BadgeCheck className="w-4 h-4 text-indigo-400 flex-shrink-0" />
                   <span className="text-sm text-zinc-300 font-medium">

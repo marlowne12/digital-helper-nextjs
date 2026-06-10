@@ -93,7 +93,7 @@ export default function WorkPageContent() {
                                             fill
                                             className="object-cover opacity-60 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
                                         />
-                                        <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest text-white">
+                                        <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1 bg-operator-black rounded-full border border-steel/40 text-[10px] font-bold uppercase tracking-widest text-white">
                                             {work.type}
                                         </div>
                                     </div>

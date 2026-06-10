@@ -116,7 +116,7 @@ export function LocationPageContent({ city, description, marketStats, neighborho
                     </div>
                     <div className="grid md:grid-cols-3 gap-8">
                         {services.map((svc, i) => (
-                            <div key={i} className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
+                            <div key={i} className="bg-charcoal p-8 rounded-2xl border border-steel/40 hover:border-indigo-500/30 transition-colors">
                                 <div className="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center mb-6">
                                     {svc.icon}
                                 </div>
@@ -129,8 +129,7 @@ export function LocationPageContent({ city, description, marketStats, neighborho
 
                 {/* 4. Neighborhoods */}
                 <section className="mb-32">
-                    <div className="bg-white/5 backdrop-blur-sm p-12 rounded-[2rem] border border-white/10 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/10 blur-[80px] -mr-32 -mt-32" />
+                    <div className="bg-charcoal p-12 rounded-[2rem] border border-steel/40">
                         <h2
                             className="text-3xl font-bold text-white mb-10"
                             style={{ fontFamily: 'var(--font-heading)' }}
@@ -153,19 +152,18 @@ export function LocationPageContent({ city, description, marketStats, neighborho
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="text-center bg-indigo-600/5 border border-indigo-500/10 p-16 rounded-[3rem] relative overflow-hidden"
+                    className="text-center bg-charcoal border border-steel/40 p-16 rounded-[3rem]"
                 >
-                    <div className="absolute inset-0 bg-indigo-600/10 blur-[80px]" />
                     <h2
-                        className="text-4xl md:text-5xl font-bold text-white mb-6 relative z-10"
+                        className="text-4xl md:text-5xl font-bold text-white mb-6"
                         style={{ fontFamily: 'var(--font-heading)' }}
                     >
                         Ready to Dominate {city}?
                     </h2>
-                    <p className="text-zinc-400 mb-12 max-w-2xl mx-auto text-xl relative z-10 leading-relaxed">
+                    <p className="text-zinc-400 mb-12 max-w-2xl mx-auto text-xl leading-relaxed">
                         We&apos;re a local Richland agency that understands the {city} market better than anyone. Let&apos;s build your advantage.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-6 justify-center relative z-10">
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <Link
                             href="/contact"
                             className="inline-flex items-center justify-center gap-3 h-16 px-12 text-xl font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white transition-colors"

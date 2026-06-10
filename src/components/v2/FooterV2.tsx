@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Phone, Mail, MapPin, Facebook, Linkedin, Instagram } from "lucide-react";
+import { BUSINESS_INFO } from "@/lib/business-info";
 
 const SERVICES_LINKS = [
   { label: "AI Chatbots", href: "/ai-agency" },
@@ -34,9 +35,9 @@ const SOCIAL_LINKS = [
 ];
 
 const CONTACT_INFO = [
-  { icon: Phone, label: "(509) 987-5060", href: "tel:+15099875060" },
-  { icon: Mail, label: "business@digital-helper.com", href: "mailto:business@digital-helper.com" },
-  { icon: MapPin, label: "Richland, WA", href: null },
+  { icon: Phone, label: BUSINESS_INFO.phone, href: BUSINESS_INFO.phoneHref },
+  { icon: Mail, label: BUSINESS_INFO.email, href: BUSINESS_INFO.emailHref },
+  { icon: MapPin, label: BUSINESS_INFO.address.display, href: null },
 ];
 
 export function FooterV2() {
@@ -54,7 +55,7 @@ export function FooterV2() {
           {/* Column 1 — Logo + Tagline + Social */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="group inline-flex items-center gap-2 mb-6">
-              <span className="agency-logo-mark flex items-center justify-center shadow-orange-500/20 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(255,137,100,0.4)] transition-all duration-300 text-[10px] font-bold text-white bg-gradient-to-br from-[#ff8964] via-orange-400 to-blue-500 w-7 h-7 rounded-lg relative shadow-lg">
+              <span className="agency-logo-mark flex items-center justify-center group-hover:scale-110 transition-all duration-300 text-[10px] font-bold text-white bg-gradient-to-br from-[#ff8964] via-orange-400 to-blue-500 w-7 h-7 rounded-lg relative">
                 DH
               </span>
               <span className="agency-wordmark group-hover:text-white/90 transition-colors duration-300 text-base font-semibold text-white tracking-tight">

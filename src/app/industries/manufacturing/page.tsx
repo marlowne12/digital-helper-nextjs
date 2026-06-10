@@ -7,6 +7,9 @@ export const metadata: Metadata = {
     title: "Web Design & Lead Gen for Manufacturing | Digital Helper",
     description: "Modernizing manufacturing and industrial brands in the Tri-Cities. We build high-performance sites that showcase capability and generate high-value B2B leads.",
     keywords: ["manufacturing web design", "industrial marketing", "b2b lead gen richland", "manufacturing seo"],
+    alternates: {
+        canonical: "/industries/manufacturing",
+    },
 }
 
 export default function ManufacturingPage() {

@@ -7,6 +7,9 @@ export const metadata: Metadata = {
     title: "Web Design & SEO for Agriculture | Digital Helper",
     description: "Empowering Tri-Cities agriculture and agribusiness with modern digital solutions. Specialized web design and SEO for farms, suppliers, and processing facilities.",
     keywords: ["agriculture web design", "agribusiness marketing tri-cities", "farm website development", "ag-tech seo"],
+    alternates: {
+        canonical: "/industries/agriculture",
+    },
 }
 
 export default function AgriculturePage() {

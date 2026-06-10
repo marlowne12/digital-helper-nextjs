@@ -71,7 +71,7 @@ export default function ToolsPage() {
                             <Link
                                 key={tool.name}
                                 href={tool.href}
-                                className="group bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10 hover:border-purple-500/50 hover:bg-white/10 transition-all"
+                                className="group bg-charcoal rounded-xl p-6 border border-steel hover:border-signal-amber/50 transition-all"
                             >
                                 <div className="flex items-start gap-4">
                                     <div className="p-3 bg-purple-500/20 rounded-lg">

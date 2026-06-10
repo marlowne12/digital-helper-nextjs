@@ -35,7 +35,7 @@ export function HeroV2() {
           transition={{ duration: 0.5 }}
           className="agency-eyebrow inline-flex items-center gap-2 rounded-full px-4 py-2 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-white/70 mb-6 border border-white/5 bg-white/[0.02]"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-[#ff8964] shadow-[0_0_18px_rgba(255,137,100,.9)]"></span>
+          <span className="h-1.5 w-1.5 rounded-full bg-[#ff8964]"></span>
           Strategy • Automation • Engineering
         </motion.div>
 
@@ -120,7 +120,7 @@ export function HeroV2() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="overflow-hidden min-h-[580px] flex flex-col md:flex-row bg-[#0d0e12]/90 w-full max-w-6xl border-white/10 border rounded-[20px] mx-auto relative shadow-[0_0_80px_rgba(0,0,0,0.7)] backdrop-blur-2xl"
+          className="overflow-hidden min-h-[580px] flex flex-col md:flex-row bg-[#0d0e12] w-full max-w-6xl border-charcoal border rounded-[20px] mx-auto relative shadow-[0_0_80px_rgba(0,0,0,0.7)]"
         >
           {/* Top highlight bar */}
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
@@ -133,7 +133,7 @@ export function HeroV2() {
             </div>
 
             {/* Indicator Circular Percentage Dial */}
-            <div className="overflow-hidden cursor-pointer group bg-[#07080a] w-12 h-24 border-orange-500/25 border rounded-xl relative shadow-[0_0_24px_rgba(249,115,22,0.12)]">
+            <div className="overflow-hidden cursor-pointer group bg-[#07080a] w-12 h-24 border-orange-500/25 border rounded-xl relative">
               <div className="absolute inset-0 bg-gradient-to-b from-orange-500/20 via-orange-500/5 to-transparent opacity-70"></div>
               <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle,rgba(249,115,22,0.4)_1px,transparent_1px)] bg-[size:4px_4px]"></div>
               
@@ -142,7 +142,7 @@ export function HeroV2() {
                   56<span className="text-[8px] text-white/70">%</span>
                 </div>
                 <div className="mt-1.5 h-[2px] w-full rounded-full bg-white/10 overflow-hidden">
-                  <div className="h-full rounded-full bg-[#ff8964] shadow-[0_0_10px_rgba(255,137,100,0.9)] animate-todo-bar"></div>
+                  <div className="h-full rounded-full bg-[#ff8964] animate-todo-bar"></div>
                 </div>
               </div>
               <div className="absolute left-1/2 top-[48%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-orange-500/10 blur-sm"></div>
@@ -346,7 +346,7 @@ export function HeroV2() {
                   </div>
 
                   {/* Card 1 */}
-                  <div className="group/card relative p-3.5 rounded-xl bg-white/[0.03] border border-[#ff8964]/20 hover:border-[#ff8964]/40 hover:bg-white/[0.04] transition-all duration-300 cursor-pointer shadow-[0_0_20px_rgba(255,137,100,0.05)]">
+                  <div className="group/card relative p-3.5 rounded-xl bg-white/[0.03] border border-[#ff8964]/20 hover:border-[#ff8964]/40 hover:bg-white/[0.04] transition-all duration-300 cursor-pointer">
                     <span className="inline-flex items-center px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-[#ff8964]/10 text-[#ff8964] border border-[#ff8964]/20 mb-2.5">
                       Local SEO
                     </span>

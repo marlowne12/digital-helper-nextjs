@@ -110,7 +110,7 @@ export async function scheduleFollowUp(
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                from: 'Digital Helper <hello@digital-helper.com>',
+                from: 'Digital Helper <business@digital-helper.com>',
                 to: email,
                 subject: `Quick question about ${businessName}`,
                 html: `

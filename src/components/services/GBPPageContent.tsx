@@ -55,11 +55,6 @@ const fundamentals = [
 export function GBPPageContent() {
     return (
         <main className="min-h-screen bg-[#0a0a0f] overflow-hidden">
-            {/* Background glows */}
-            <div className="fixed inset-0 pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[120px]" />
-                <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-violet-600/8 rounded-full blur-[100px]" />
-            </div>
 
             <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-24 relative">
 
@@ -139,21 +134,21 @@ export function GBPPageContent() {
                         <p className="text-zinc-500">Total profile ownership so you can focus on running your business.</p>
                     </div>
                     <div className="grid md:grid-cols-3 gap-8 mb-16">
-                        <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
+                        <div className="bg-charcoal p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
                             <div className="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center mb-6">
                                 <Star className="w-6 h-6 text-indigo-300" />
                             </div>
                             <h3 className="text-xl font-bold text-white mb-3">Review Management</h3>
                             <p className="text-zinc-500 text-sm leading-relaxed">Automated systems to capture 5-star reviews and craft professional, SEO-rich responses to every review.</p>
                         </div>
-                        <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
+                        <div className="bg-charcoal p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
                             <div className="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center mb-6">
                                 <Map className="w-6 h-6 text-indigo-300" />
                             </div>
                             <h3 className="text-xl font-bold text-white mb-3">Map Pack Ranking</h3>
                             <p className="text-zinc-500 text-sm leading-relaxed">Strategic category and attribute selection to bypass competition and land your business in the top 3 results.</p>
                         </div>
-                        <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
+                        <div className="bg-charcoal p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
                             <div className="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center mb-6">
                                 <Camera className="w-6 h-6 text-indigo-300" />
                             </div>
@@ -165,8 +160,7 @@ export function GBPPageContent() {
 
                 {/* 4. GBP Fundamentals */}
                 <section className="mb-32">
-                    <div className="bg-white/5 backdrop-blur-sm p-12 rounded-[2rem] border border-white/10 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/10 blur-[80px] -mr-32 -mt-32" />
+                    <div className="bg-charcoal p-12 rounded-[2rem] border border-white/10 relative overflow-hidden">
                         <h2
                             className="text-3xl font-bold text-white mb-10"
                             style={{ fontFamily: 'var(--font-heading)' }}
@@ -213,9 +207,8 @@ export function GBPPageContent() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="text-center bg-indigo-600/5 border border-indigo-500/10 p-16 rounded-[3rem] relative overflow-hidden"
+                    className="text-center bg-charcoal border border-steel/30 p-16 rounded-[3rem] relative overflow-hidden"
                 >
-                    <div className="absolute inset-0 bg-indigo-600/10 blur-[80px]" />
                     <h2
                         className="text-4xl md:text-5xl font-bold text-white mb-6 relative z-10"
                         style={{ fontFamily: 'var(--font-heading)' }}

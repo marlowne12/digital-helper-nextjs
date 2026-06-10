@@ -12,6 +12,7 @@ import {
     MessageSquare
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { BUSINESS_INFO } from "@/lib/business-info";
 
 export default function ContactPageContent() {
     const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -72,8 +73,8 @@ export default function ContactPageContent() {
 
                         <div className="grid sm:grid-cols-2 gap-6">
                             {[
-                                { icon: <Mail className="w-5 h-5" />, label: "Email", value: "digitalhelperwebsite@gmail.com" },
-                                { icon: <Phone className="w-5 h-5" />, label: "Phone", value: "(509) 987-5060" },
+                                { icon: <Mail className="w-5 h-5" />, label: "Email", value: BUSINESS_INFO.email },
+                                { icon: <Phone className="w-5 h-5" />, label: "Phone", value: BUSINESS_INFO.phone },
                                 { icon: <MapPin className="w-5 h-5" />, label: "Location", value: "Richland, WA" },
                                 { icon: <Clock className="w-5 h-5" />, label: "Hours", value: "Mon-Fri: 9AM - 6PM" }
                             ].map((item, i) => (

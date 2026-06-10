@@ -126,17 +126,16 @@ export default function RichlandWAPage() {
           </div>
 
           {/* CTA */}
-          <div className="glass rounded-3xl p-12 border border-white/5 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-accent-gradient opacity-5" />
-            <h2 className="text-3xl font-bold mb-4 relative z-10">
+          <div className="bg-charcoal rounded-3xl p-12 border border-steel/40 text-center">
+            <h2 className="text-3xl font-bold mb-4">
               Let&apos;s Talk About Your Richland Business
             </h2>
-            <p className="text-zinc-400 mb-8 max-w-lg mx-auto relative z-10">
+            <p className="text-zinc-400 mb-8 max-w-lg mx-auto">
               Book a free strategy call with a Richland-based team that knows your market. We&apos;ll look at your current site, map out what&apos;s holding you back, and show you what we&apos;d build.
             </p>
             <Link
               href="/booking"
-              className="btn-primary inline-flex items-center gap-2 h-14 px-10 text-lg rounded-full relative z-10"
+              className="btn-primary inline-flex items-center gap-2 h-14 px-10 text-lg rounded-full"
             >
               Book a Free Strategy Call
             </Link>

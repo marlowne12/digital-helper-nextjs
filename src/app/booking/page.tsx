@@ -8,6 +8,9 @@ const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.c
 export const metadata: Metadata = {
     title: 'Book a Free Consultation | Digital Helper',
     description: 'Schedule a free 30-minute consultation with Digital Helper to discuss your web design, SEO, and automation goals.',
+    alternates: {
+        canonical: 'https://digital-helper.com/booking',
+    },
 };
 
 export default function BookingPage() {
@@ -30,7 +33,7 @@ export default function BookingPage() {
                             Back to Home
                         </Link>
                         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                            Let&apos;s Build Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Digital System</span>
+                            Let&apos;s Build Your <span className="text-signal-amber">Digital System</span>
                         </h1>
                         <p className="text-xl text-slate-400 max-w-2xl">
                             Schedule a free 30-minute consultation to discuss your project. No hype, no jargon—just a clear plan for your business growth.
@@ -40,7 +43,7 @@ export default function BookingPage() {
                     <div className="grid lg:grid-cols-3 gap-12">
                         {/* Left Info Panel */}
                         <div className="lg:col-span-1 space-y-8">
-                            <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-2xl backdrop-blur-md">
+                            <div className="bg-charcoal border border-steel/30 p-8 rounded-2xl">
                                 <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
                                     <Clock size={20} className="text-cyan-400" /> What to expect
                                 </h3>
@@ -59,7 +62,7 @@ export default function BookingPage() {
                                 </ul>
                             </div>
 
-                            <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-2xl backdrop-blur-md">
+                            <div className="bg-charcoal border border-steel/30 p-8 rounded-2xl">
                                 <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
                                     <Video size={20} className="text-purple-400" /> Call Details
                                 </h3>
@@ -82,7 +85,7 @@ export default function BookingPage() {
 
                         {/* Right Booking Widget */}
                         <div className="lg:col-span-2">
-                            <div className="bg-white rounded-3xl overflow-hidden shadow-2xl shadow-cyan-500/10">
+                            <div className="bg-white rounded-3xl overflow-hidden border border-charcoal">
                                 <CalendlyWidget url={CALENDLY_URL} height={700} />
                             </div>
                             <p className="text-center text-slate-500 text-xs mt-6">

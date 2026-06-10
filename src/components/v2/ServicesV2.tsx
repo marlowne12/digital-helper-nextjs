@@ -14,7 +14,7 @@ const SERVICES = [
       "A trained digital employee that handles leads, qualifies inquiries, schedules jobs, and automates follow-ups around the clock.",
     features: ["24/7 autonomous engagement", "Integrated calendar sync", "FAQ & support automation", "Instant CRM integrations"],
     href: "/ai-agency",
-    colorClass: "from-[#ff8964]/20 via-[#ff8964]/5 to-transparent border-[#ff8964]/30 hover:border-[#ff8964]/50 shadow-[0_0_50px_rgba(255,137,100,0.05)]",
+    colorClass: "from-[#ff8964]/20 via-[#ff8964]/5 to-transparent border-[#ff8964]/30 hover:border-[#ff8964]/50",
     iconBg: "bg-[#ff8964]/10 border-[#ff8964]/20 text-[#ff8964]",
     featured: true,
   },

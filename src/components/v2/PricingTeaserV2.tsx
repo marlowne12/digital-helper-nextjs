@@ -167,7 +167,7 @@ export function PricingTeaserV2() {
                   href={tier.href}
                   className={`inline-flex items-center justify-center gap-2 w-full px-5 py-3 min-h-[44px] rounded-xl font-semibold text-xs uppercase tracking-wider transition-all duration-300 ${
                     tier.featured
-                      ? "bg-gradient-to-r from-[#ff8964] to-orange-400 text-white hover:opacity-90 shadow-md hover:shadow-[0_0_20px_rgba(255,137,100,0.25)]"
+                      ? "bg-gradient-to-r from-[#ff8964] to-orange-400 text-white hover:opacity-90 shadow-md"
                       : "border border-gray-300 hover:border-gray-400 bg-transparent text-gray-800 hover:bg-gray-50"
                   }`}
                 >

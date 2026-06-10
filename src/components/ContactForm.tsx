@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { contactFormSchema, type ContactFormData } from '@/lib/validators';
+import { BUSINESS_INFO } from '@/lib/business-info';
 import { z } from 'zod';
 
 const SERVICE_OPTIONS = [
@@ -171,8 +172,8 @@ export function ContactForm() {
                             <br />
                             Our team will review your inquiry and prepare a personalized response. 
                             For urgent matters, call us at{' '}
-                            <a href="tel:+15098768454" className="text-indigo-400 hover:underline">
-                                (509) 876-8454
+                            <a href={BUSINESS_INFO.phoneHref} className="text-indigo-400 hover:underline">
+                                {BUSINESS_INFO.phone}
                             </a>
                         </p>
                     </div>
@@ -426,7 +427,7 @@ export function ContactForm() {
                     <AlertCircle className="w-5 h-5 text-red-400 shrink-0" />
                     <p className="text-sm text-red-300">
                         Something went wrong. Please try again or call us directly at{' '}
-                        <a href="tel:+15098768454" className="underline">(509) 876-8454</a>
+                        <a href={BUSINESS_INFO.phoneHref} className="underline">{BUSINESS_INFO.phone}</a>
                     </p>
                 </motion.div>
             )}

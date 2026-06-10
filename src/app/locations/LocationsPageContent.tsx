@@ -34,7 +34,7 @@ export default function LocationsPageContent() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
-                            className="glass p-10 rounded-3xl border-white/5 group hover:border-accent-primary/20 transition-all"
+                            className="bg-charcoal p-10 rounded-3xl border border-steel/40 group hover:border-accent-primary/40 transition-colors"
                         >
                             <MapPin className="w-12 h-12 text-accent-primary mb-6" />
                             <h2 className="text-3xl font-bold text-white mb-4">{loc.name}</h2>

@@ -6,6 +6,9 @@ export const metadata: Metadata = {
     title: "Local SEO Richland | Rank #1 in the Tri-Cities",
     description: "Expert local SEO for Richland, Kennewick, and Pasco businesses. We optimize for local intent and geographical search domination.",
     keywords: ["local seo richland", "seo tri-cities", "local search marketing", "rank in richland"],
+    alternates: {
+        canonical: "/services/seo/local-seo",
+    },
 }
 
 export default function LocalSEOPage() {

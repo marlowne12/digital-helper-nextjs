@@ -130,7 +130,7 @@ export default function TermsPage() {
             <div className="bg-white/[0.03] border border-white/[0.08] p-6 rounded-xl mt-4">
               <p className="text-white font-semibold">Digital Helper</p>
               <p className="text-zinc-400">Richland, WA</p>
-              <p className="text-zinc-400">hello@digital-helper.com</p>
+              <p className="text-zinc-400">business@digital-helper.com</p>
             </div>
           </section>
 

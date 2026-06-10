@@ -3,7 +3,7 @@ import { createGoogleGenerativeAI } from '@ai-sdk/google';
 const google = createGoogleGenerativeAI({
     apiKey: process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY,
 });
-import { streamText } from 'ai';
+import { streamText, convertToModelMessages, type UIMessage } from 'ai';
 import { aiTools } from '@/services/aiTools';
 import { z } from 'zod';
 import { withRateLimit } from '@/lib/api-middleware';
@@ -12,21 +12,20 @@ import { type NextRequest } from 'next/server';
 
 export const maxDuration = 30;
 
-const ChatMessageSchema = z.object({
-    role: z.enum(['user', 'assistant', 'system']),
-    content: z.string().min(1).max(5000)
-});
-
+// The client uses @ai-sdk/react useChat, which sends UIMessages ({ role, parts }).
+// Validate the envelope (role + message count) without over-constraining parts.
 const ChatRequestSchema = z.object({
-    messages: z.array(ChatMessageSchema).min(1).max(50)
+    messages: z
+        .array(z.object({ role: z.enum(['user', 'assistant', 'system']) }).passthrough())
+        .min(1)
+        .max(50),
 });
 
 export async function POST(req: NextRequest) {
     return withRateLimit(req, rateLimits.chat, async () => {
         try {
             const body = await req.json();
-            const validatedData = ChatRequestSchema.parse(body);
-            const { messages } = validatedData;
+            const { messages } = ChatRequestSchema.parse(body);
 
             const result = streamText({
                 model: google('gemini-2.0-flash'),
@@ -35,7 +34,7 @@ export async function POST(req: NextRequest) {
     About Digital Helper:
     - Owner: Mars, based in Richland, WA
     - Phone: (509) 987-5060
-    - Email: digitalhelperwebsite@gmail.com
+    - Email: business@digital-helper.com
     - Website: https://digital-helper.com
     - Serving: Richland, Kennewick, Pasco, West Richland, and surrounding Tri-Cities area
 
@@ -53,11 +52,11 @@ export async function POST(req: NextRequest) {
     - No long-term contracts, 14-day money-back guarantee
 
     Your job: Help visitors understand how AI and web design can get them more booked jobs. Be friendly, direct, and Tri-Cities-local in tone. When someone asks about pricing, use the comparePlans or generateQuote tools. When someone wants to book a call, use the scheduleCall tool. When someone gives you their website URL, use analyzeWebsite.`,
-                messages,
+                messages: await convertToModelMessages(messages as unknown as UIMessage[]),
                 tools: aiTools,
             });
 
-            return result.toDataStreamResponse();
+            return result.toUIMessageStreamResponse();
         } catch (error) {
             console.error('[Chat API Error]', error);
 

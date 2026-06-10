@@ -33,7 +33,7 @@ export default function GbpSearch({ onSearch, isLoading }: GbpSearchProps) {
           AI Intelligence Suite
         </motion.div>
         <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-          Audit Your <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-indigo-300 bg-clip-text text-transparent">Reputation</span>
+          Audit Your <span className="text-signal-amber">Reputation</span>
         </h1>
         <p className="text-zinc-400 text-lg max-w-xl mx-auto">
           Enter your business name to unlock a comprehensive AI analysis of your Google Business Profile.
@@ -41,8 +41,7 @@ export default function GbpSearch({ onSearch, isLoading }: GbpSearchProps) {
       </div>
 
       <form onSubmit={handleSubmit} className="relative group max-w-2xl mx-auto">
-        <div className={`absolute inset-0 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-full blur-xl transition-opacity duration-500 ${isFocused ?'opacity-30':'opacity-10 group-hover:opacity-20'}`} />
-        <div className="relative flex items-center p-2 bg-background-secondary/80 backdrop-blur-xl border border-white/10 rounded-full transition-all focus-within:border-accent-purple/50 focus-within:ring-1 focus-within:ring-accent-purple/50 ring-offset-2 ring-offset-background-primary">
+        <div className="relative flex items-center p-2 bg-charcoal border border-steel/40 rounded-full transition-colors focus-within:border-accent-purple/50">
           <Search className={`w-6 h-6 ml-4 transition-colors ${isFocused ?'text-accent-purple':'text-zinc-500'}`} />
           <input
             className="flex-1 bg-transparent border-none text-white placeholder:text-zinc-600 focus:outline-none focus:ring-0 px-4 h-12 text-lg"
@@ -72,9 +71,9 @@ export default function GbpSearch({ onSearch, isLoading }: GbpSearchProps) {
       </form>
 
       <div className="flex justify-center gap-8 text-xs text-zinc-500 font-medium">
-        <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-green-500"/> Sentiment Analysis</span>
-        <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-blue-500"/> Keyword Gaps</span>
-        <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-purple-500"/> Auto-Replies</span>
+        <span>Sentiment Analysis</span>
+        <span>Keyword Gaps</span>
+        <span>Auto-Replies</span>
       </div>
     </div>
   );

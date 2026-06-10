@@ -74,6 +74,23 @@ const nextConfig: NextConfig = {
         destination: '/ai-agency',
         permanent: true,
       },
+      // Thin /locations/{city} pages 301 to the richer keyword-targeted *-wa pages.
+      // West Richland has no *-wa twin, so /locations/west-richland stays canonical.
+      {
+        source: '/locations/richland',
+        destination: '/richland-wa',
+        permanent: true,
+      },
+      {
+        source: '/locations/kennewick',
+        destination: '/kennewick-wa',
+        permanent: true,
+      },
+      {
+        source: '/locations/pasco',
+        destination: '/pasco-wa',
+        permanent: true,
+      },
     ];
   },
 

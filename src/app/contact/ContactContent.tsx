@@ -14,12 +14,13 @@ import {
 } from 'lucide-react';
 import { ContactForm } from "@/components/ContactForm";
 import { CalendlyWidget } from "@/components/CalendlyWidget";
+import { BUSINESS_INFO } from "@/lib/business-info";
 
 export const CONTACT_INFO = {
-    email: 'business@digital-helper.com',
-    phone: '(509) 876-8454',
-    phoneRaw: '+15098768454',
-    location: 'Richland, WA 99354',
+    email: BUSINESS_INFO.email,
+    phone: BUSINESS_INFO.phone,
+    phoneRaw: BUSINESS_INFO.phoneHref.replace('tel:', ''),
+    location: BUSINESS_INFO.address.full,
     serviceArea: 'Serving Kennewick, Pasco, West Richland & the Tri-Cities',
     hours: 'Mon-Fri: 9AM - 6PM PST',
     calendlyUrl: process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/marlowne12/30min',

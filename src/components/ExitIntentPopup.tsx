@@ -8,8 +8,7 @@ import { Input } from '@/components/ui/input'
 import { useExitIntent } from '@/hooks/useExitIntent'
 import { storeExitIntentLead } from '@/app/actions/leads'
 import { trackExitIntent } from '@/lib/analytics'
-
-const PHONE_NUMBER = '(509) 876-8454'
+import { BUSINESS_INFO } from '@/lib/business-info'
 
 export function ExitIntentPopup() {
   const { isTriggered, reset } = useExitIntent({
@@ -231,11 +230,11 @@ export function ExitIntentPopup() {
                     Prefer to talk? Get answers in 2 minutes:
                   </p>
                   <a
-                    href={`tel:${PHONE_NUMBER.replace(/[^\d]/g, '')}`}
+                    href={BUSINESS_INFO.phoneHref}
                     className="flex items-center justify-center gap-2 text-cyan-400 hover:text-cyan-300 font-semibold transition-colors"
                   >
                     <Phone className="w-4 h-4" />
-                    {PHONE_NUMBER}
+                    {BUSINESS_INFO.phone}
                   </a>
                 </div>
 

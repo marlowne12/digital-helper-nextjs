@@ -80,11 +80,6 @@ const faqs = [
 export function LeadGenerationPageContent() {
     return (
         <main className="min-h-screen bg-[#0a0a0f] overflow-hidden">
-            {/* Background glows */}
-            <div className="fixed inset-0 pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[120px]" />
-                <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-violet-600/8 rounded-full blur-[100px]" />
-            </div>
 
             <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-24 relative">
 
@@ -175,7 +170,7 @@ export function LeadGenerationPageContent() {
                                 </div>
                             </div>
                         </div>
-                        <div className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-indigo-500/20">
+                        <div className="bg-charcoal p-8 rounded-3xl border border-indigo-500/20">
                             <div className="space-y-6">
                                 <div className="flex items-center gap-4">
                                     <div className="w-10 h-10 rounded-full bg-indigo-600/20 flex items-center justify-center">
@@ -241,8 +236,7 @@ export function LeadGenerationPageContent() {
 
                 {/* 5. Deliverables Section */}
                 <section className="mb-32">
-                    <div className="bg-white/5 backdrop-blur-sm p-12 rounded-[2rem] border border-white/10 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/10 blur-[80px] -mr-32 -mt-32" />
+                    <div className="bg-charcoal p-12 rounded-[2rem] border border-white/10 relative overflow-hidden">
                         <h2
                             className="text-3xl font-bold text-white mb-10"
                             style={{ fontFamily: 'var(--font-heading)' }}
@@ -271,7 +265,7 @@ export function LeadGenerationPageContent() {
                         </h2>
                         <p className="text-zinc-400">Scalable lead pricing based on your specific niche.</p>
                     </div>
-                    <div className="bg-white/5 backdrop-blur-sm overflow-hidden max-w-2xl mx-auto rounded-3xl border border-white/10">
+                    <div className="bg-charcoal overflow-hidden max-w-2xl mx-auto rounded-3xl border border-white/10">
                         <table className="w-full text-left">
                             <thead>
                                 <tr className="border-b border-white/[0.08] bg-white/[0.02]">
@@ -328,9 +322,8 @@ export function LeadGenerationPageContent() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="text-center bg-indigo-600/5 border border-indigo-500/10 p-16 rounded-[3rem] relative overflow-hidden"
+                    className="text-center bg-charcoal border border-steel/30 p-16 rounded-[3rem] relative overflow-hidden"
                 >
-                    <div className="absolute inset-0 bg-indigo-600/10 blur-[80px]" />
                     <h2
                         className="text-4xl md:text-5xl font-bold text-white mb-6 relative z-10"
                         style={{ fontFamily: 'var(--font-heading)' }}

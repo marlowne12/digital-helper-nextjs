@@ -13,8 +13,7 @@ import { getQuickCompetitorInsight } from '@/app/actions/competitor';
 export const aiTools = {
     generateQuote: tool({
         description: 'Generate a price estimate based on required features',
-        parameters: generateQuoteSchema,
-        // @ts-expect-error: Tool type inference mismatch with Zod
+        inputSchema: generateQuoteSchema,
         execute: async ({ serviceType, features }: z.infer<typeof generateQuoteSchema>) => {
             let basePrice = 3000;
             if (serviceType === 'seo') basePrice = 1000;
@@ -34,8 +33,7 @@ export const aiTools = {
     }),
     scheduleCall: tool({
         description: 'Get a booking link for a consultation call',
-        parameters: scheduleCallSchema,
-        // @ts-expect-error: Tool type inference mismatch with Zod
+        inputSchema: scheduleCallSchema,
         execute: async ({ intent: _intent }: z.infer<typeof scheduleCallSchema>) => { // eslint-disable-line @typescript-eslint/no-unused-vars
             return {
                 bookingUrl: 'https://calendar.app.google/jFDgyirZ2xZZ6kRU8',
@@ -45,8 +43,7 @@ export const aiTools = {
     }),
     analyzeWebsite: tool({
         description: 'Analyze a provided website URL for improvements',
-        parameters: analyzeWebsiteSchema,
-        // @ts-expect-error: Tool type inference mismatch with Zod
+        inputSchema: analyzeWebsiteSchema,
         execute: async ({ url }: z.infer<typeof analyzeWebsiteSchema>) => {
             // Mock analysis for now
             return {
@@ -61,8 +58,7 @@ export const aiTools = {
 
     analyzeCompetitors: tool({
         description: 'Analyze competitors for a business in a specific location and industry',
-        parameters: analyzeCompetitorsSchema,
-        // @ts-expect-error: Tool type inference mismatch with Zod
+        inputSchema: analyzeCompetitorsSchema,
         execute: async ({ businessName, industry, location }: z.infer<typeof analyzeCompetitorsSchema>) => {
             try {
                 const insight = await getQuickCompetitorInsight(businessName, industry, location);
@@ -91,8 +87,7 @@ export const aiTools = {
 
     getPortfolio: tool({
         description: 'Get relevant case studies and portfolio examples',
-        parameters: getPortfolioSchema,
-        // @ts-expect-error: Tool type inference mismatch with Zod
+        inputSchema: getPortfolioSchema,
         execute: async ({ industry }: z.infer<typeof getPortfolioSchema>) => {
             // Return relevant case studies
             const caseStudies = [
@@ -122,8 +117,7 @@ export const aiTools = {
 
     comparePlans: tool({
         description: 'Compare pricing plans for different service types',
-        parameters: comparePlansSchema,
-        // @ts-expect-error: Tool type inference mismatch with Zod
+        inputSchema: comparePlansSchema,
         execute: async ({ serviceType }: z.infer<typeof comparePlansSchema>) => {
             const plans = {
                 website: [

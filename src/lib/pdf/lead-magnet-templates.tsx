@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Link,
 } from '@react-pdf/renderer'
+import { BUSINESS_INFO } from '@/lib/business-info'
 
 // Brand colors
 const colors = {
@@ -609,7 +610,7 @@ export function LeadMachineGuidePDF() {
         </View>
 
         <View style={baseStyles.footer}>
-          <Text style={baseStyles.footerText}>Digital Helper • digital-helper.com • (509) 876-8454</Text>
+          <Text style={baseStyles.footerText}>Digital Helper • digital-helper.com • {BUSINESS_INFO.phone}</Text>
           <Text style={baseStyles.pageNumber}>Page 4</Text>
         </View>
       </Page>
@@ -719,7 +720,7 @@ export function AIReadinessChecklistPDF() {
         </View>
 
         <View style={baseStyles.footer}>
-          <Text style={baseStyles.footerText}>Digital Helper • digital-helper.com • (509) 876-8454</Text>
+          <Text style={baseStyles.footerText}>Digital Helper • digital-helper.com • {BUSINESS_INFO.phone}</Text>
           <Text style={baseStyles.pageNumber}>Page 1</Text>
         </View>
       </Page>
@@ -928,7 +929,7 @@ export function ResponseTimeAuditPDF() {
         </View>
 
         <View style={baseStyles.footer}>
-          <Text style={baseStyles.footerText}>Digital Helper • digital-helper.com • (509) 876-8454</Text>
+          <Text style={baseStyles.footerText}>Digital Helper • digital-helper.com • {BUSINESS_INFO.phone}</Text>
           <Text style={baseStyles.pageNumber}>Page 2</Text>
         </View>
       </Page>

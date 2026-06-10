@@ -3,6 +3,7 @@
 import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Phone } from 'lucide-react'
+import { BUSINESS_INFO } from '@/lib/business-info'
 
 interface MobileCallButtonProps {
     /** Phone number to call */
@@ -26,7 +27,7 @@ interface MobileCallButtonProps {
  * - Positioned to not conflict with bottom nav
  */
 export function MobileCallButton({
-    phone = "(509) 876-8454",
+    phone = BUSINESS_INFO.phone,
     showAfter = 500
 }: MobileCallButtonProps) {
     const [isVisible, setIsVisible] = React.useState(false)

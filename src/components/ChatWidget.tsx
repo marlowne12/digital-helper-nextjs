@@ -9,6 +9,26 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { storeChatLead } from '@/app/actions/leads';
 import { trackChatInteraction } from '@/lib/analytics';
 
+// AI SDK v6 UIMessages carry content in a typed `parts` array, not a `content`
+// string. Join text parts for display (falls back to legacy `content`).
+function getMessageText(msg: any): string { // eslint-disable-line @typescript-eslint/no-explicit-any
+    if (Array.isArray(msg?.parts)) {
+        return msg.parts
+            .filter((p: any) => p?.type === 'text') // eslint-disable-line @typescript-eslint/no-explicit-any
+            .map((p: any) => p.text) // eslint-disable-line @typescript-eslint/no-explicit-any
+            .join('');
+    }
+    return msg?.content ?? '';
+}
+
+// Map v6 tool parts ({ type: 'tool-<name>', state, output }) to the legacy
+// { toolName, result } shape renderToolResult expects.
+function getToolParts(msg: any): any[] { // eslint-disable-line @typescript-eslint/no-explicit-any
+    if (!Array.isArray(msg?.parts)) return [];
+    return msg.parts
+        .filter((p: any) => typeof p?.type === 'string' && p.type.startsWith('tool-') && p.state === 'output-available') // eslint-disable-line @typescript-eslint/no-explicit-any
+        .map((p: any) => ({ toolName: p.type.slice('tool-'.length), result: p.output })); // eslint-disable-line @typescript-eslint/no-explicit-any
+}
 
 export const ChatWidget: React.FC = () => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -39,7 +59,7 @@ export const ChatWidget: React.FC = () => {
                 {
                     id: 'welcome',
                     role: 'assistant',
-                    content: "👋 **Hi! I'm your AI Digital Partner.**\n\nI'm equipped with real-time tools to help you grow:\n\n🚀 **Instant Project Quotes** (Get a price in seconds)\n🔍 **Live Website Audits** (I'll analyze your site's SEO & speed)\n📅 **Priority Scheduling** (Book a meeting instantly)\n\nTry asking: *'Audit google.com'* or *'I need a quote for a new store'*"
+                    parts: [{ type: 'text', text: "👋 **Hi! I'm your AI Digital Partner.**\n\nI'm equipped with real-time tools to help you grow:\n\n🚀 **Instant Project Quotes** (Get a price in seconds)\n🔍 **Live Website Audits** (I'll analyze your site's SEO & speed)\n📅 **Priority Scheduling** (Book a meeting instantly)\n\nTry asking: *'Audit google.com'* or *'I need a quote for a new store'*" }],
                 } as any // eslint-disable-line @typescript-eslint/no-explicit-any
             ]);
         }
@@ -55,11 +75,11 @@ export const ChatWidget: React.FC = () => {
         e.preventDefault();
         if (!input.trim()) return;
 
-        const userMessage = { role: 'user' as const, content: input };
+        const text = input;
         setInput('');
         setUserMessageCount(prev => prev + 1);
         trackChatInteraction('message_sent', userMessageCount + 1);
-        await sendMessage(userMessage as any); // eslint-disable-line @typescript-eslint/no-explicit-any
+        await sendMessage({ text }); // v6: sendMessage builds the user UIMessage from { text }
     };
 
     const handleEmailSubmit = async (e: React.FormEvent) => {
@@ -75,7 +95,7 @@ export const ChatWidget: React.FC = () => {
         try {
             const conversationSummary = messages
                 .filter((m: any) => m.role === 'user') // eslint-disable-line @typescript-eslint/no-explicit-any
-                .map((m: any) => m.content) // eslint-disable-line @typescript-eslint/no-explicit-any
+                .map((m: any) => getMessageText(m)) // eslint-disable-line @typescript-eslint/no-explicit-any
                 .slice(-3)
                 .join(' | ');
 
@@ -138,7 +158,7 @@ export const ChatWidget: React.FC = () => {
                             </a>
                         ) : (
                             <p className="mt-1 text-zinc-400 text-xs">
-                                {tool.result.message || 'Contact us at hello@digital-helper.com to schedule a call.'}
+                                {tool.result.message || 'Contact us at business@digital-helper.com to schedule a call.'}
                             </p>
                         )}
                     </div>
@@ -222,8 +242,8 @@ export const ChatWidget: React.FC = () => {
                                             <Bot size={12} /> Assistant
                                         </div>
                                     )}
-                                    {msg.content}
-                                    {msg.toolInvocations && renderToolResult(msg.toolInvocations)}
+                                    {getMessageText(msg)}
+                                    {renderToolResult(getToolParts(msg))}
                                 </div>
                             </div>
                         ))}

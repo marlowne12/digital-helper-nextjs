@@ -6,6 +6,9 @@ export const metadata: Metadata = {
     title: "Google Business Profile Optimization | Digital Helper",
     description: "Dominate the Google Map Pack in Richland. We manage and optimize your GMB profile for maximum local visibility.",
     keywords: ["google business profile optimization", "gmb richland", "map pack ranking", "google maps seo"],
+    alternates: {
+        canonical: "/services/seo/google-business-profile",
+    },
 }
 
 export default function GBPPage() {

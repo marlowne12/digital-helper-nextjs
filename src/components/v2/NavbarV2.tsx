@@ -19,7 +19,7 @@ const SERVICES = [
     desc: "Intelligent systems trained on your company data.",
     href: "/ai-agency",
     icon: Bot,
-    colorClass: "group-hover/item:border-orange-500/40 group-hover/item:bg-orange-500/10 group-hover/item:shadow-[0_0_20px_rgba(255,137,100,0.25)]",
+    colorClass: "group-hover/item:border-orange-500/40 group-hover/item:bg-orange-500/10",
     iconColor: "text-[#ff8964]",
   },
   {
@@ -27,7 +27,7 @@ const SERVICES = [
     desc: "Modern Next.js web applications that convert.",
     href: "/web-design",
     icon: Globe,
-    colorClass: "group-hover/item:border-blue-500/40 group-hover/item:bg-blue-500/10 group-hover/item:shadow-[0_0_20px_rgba(59,130,246,0.25)]",
+    colorClass: "group-hover/item:border-blue-500/40 group-hover/item:bg-blue-500/10",
     iconColor: "text-blue-400",
   },
   {
@@ -35,7 +35,7 @@ const SERVICES = [
     desc: "Rank at the top of local searches in Richland/Kennewick.",
     href: "/seo",
     icon: Search,
-    colorClass: "group-hover/item:border-green-500/40 group-hover/item:bg-green-500/10 group-hover/item:shadow-[0_0_20px_rgba(34,197,94,0.25)]",
+    colorClass: "group-hover/item:border-green-500/40 group-hover/item:bg-green-500/10",
     iconColor: "text-green-400",
   },
   {
@@ -43,7 +43,7 @@ const SERVICES = [
     desc: "Custom landing pages and automated email outreach.",
     href: "/services/lead-generation",
     icon: Users,
-    colorClass: "group-hover/item:border-purple-500/40 group-hover/item:bg-purple-500/10 group-hover/item:shadow-[0_0_20px_rgba(168,85,247,0.25)]",
+    colorClass: "group-hover/item:border-purple-500/40 group-hover/item:bg-purple-500/10",
     iconColor: "text-purple-400",
   },
   {
@@ -51,7 +51,7 @@ const SERVICES = [
     desc: "Automate reviews acquisition and manage client feedback.",
     href: "/services/reputation-management",
     icon: ShieldAlert,
-    colorClass: "group-hover/item:border-cyan-500/40 group-hover/item:bg-cyan-500/10 group-hover/item:shadow-[0_0_20px_rgba(6,182,212,0.25)]",
+    colorClass: "group-hover/item:border-cyan-500/40 group-hover/item:bg-cyan-500/10",
     iconColor: "text-cyan-400",
   },
 ];
@@ -79,7 +79,7 @@ export function NavbarV2() {
         {/* Brand/Logo Section */}
         <div className="flex items-center gap-6 lg:gap-10">
           <Link href="/" className="group flex items-center gap-2">
-            <span className="agency-logo-mark flex items-center justify-center shadow-orange-500/20 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(255,137,100,0.4)] transition-all duration-300 text-xs font-bold text-white bg-gradient-to-br from-[#ff8964] via-orange-400 to-blue-500 w-8 h-8 rounded-xl relative shadow-lg">
+            <span className="agency-logo-mark flex items-center justify-center group-hover:scale-110 transition-all duration-300 text-xs font-bold text-white bg-gradient-to-br from-[#ff8964] via-orange-400 to-blue-500 w-8 h-8 rounded-xl relative">
               DH
             </span>
             <span className="agency-wordmark group-hover:text-white/90 transition-colors duration-300 text-lg font-semibold text-white tracking-tight">
@@ -126,7 +126,7 @@ export function NavbarV2() {
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     className="absolute top-full left-1/2 -translate-x-1/2 pt-4 z-50"
                   >
-                    <div className="w-[500px] bg-[#090a0d]/95 backdrop-blur-2xl border border-white/10 rounded-3xl p-3 shadow-[0_24px_48px_rgba(0,0,0,0.5)] grid grid-cols-2 gap-2 text-left relative overflow-hidden">
+                    <div className="w-[500px] bg-[#090a0d] border border-charcoal rounded-3xl p-3 shadow-[0_24px_48px_rgba(0,0,0,0.5)] grid grid-cols-2 gap-2 text-left relative overflow-hidden">
                       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
                       
                       {SERVICES.map((srv) => {
@@ -175,7 +175,7 @@ export function NavbarV2() {
         <div className="flex items-center gap-2 sm:gap-3">
           <Link
             href="/contact"
-            className="group relative font-medium text-black bg-white rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] ml-2 border border-white/50 px-4 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm shrink-0"
+            className="group relative font-medium text-black bg-white rounded-full transition-all duration-300 hover:-translate-y-0.5 ml-2 border border-white/50 px-4 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm shrink-0"
           >
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-gray-100 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <span className="relative z-10 flex items-center gap-1.5">

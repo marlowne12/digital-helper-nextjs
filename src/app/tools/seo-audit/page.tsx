@@ -143,7 +143,7 @@ export default function SEOAuditPage() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="max-w-2xl mx-auto"
                     >
-                        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+                        <div className="bg-charcoal rounded-2xl p-6 border border-steel">
                             <div className="flex flex-col md:flex-row gap-4">
                                 <div className="flex-1 relative">
                                     <Globe className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -218,7 +218,7 @@ export default function SEOAuditPage() {
                                     <CheckCircle className="w-4 h-4 text-green-400" /> Analyzing content
                                 </span>
                                 <span className="flex items-center gap-1">
-                                    <Clock className="w-4 h-4 text-yellow-400 animate-pulse" /> Evaluating UX
+                                    <Clock className="w-4 h-4 text-yellow-400" /> Evaluating UX
                                 </span>
                             </div>
                         </motion.div>
@@ -416,7 +416,7 @@ export default function SEOAuditPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 + i * 0.1 }}
-                                className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10"
+                                className="bg-charcoal rounded-xl p-6 border border-steel"
                             >
                                 <feature.icon className="w-10 h-10 text-purple-400 mb-4" />
                                 <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>

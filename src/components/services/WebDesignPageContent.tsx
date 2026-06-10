@@ -71,12 +71,6 @@ const faqs = [
 export function WebDesignPageContent() {
     return (
         <main className="min-h-screen bg-[#0a0a0f] overflow-hidden">
-            {/* Background glows */}
-            <div className="fixed inset-0 pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[120px]" />
-                <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-violet-600/8 rounded-full blur-[100px]" />
-            </div>
-
             <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-24 relative">
 
                 {/* Breadcrumb */}
@@ -167,7 +161,7 @@ export function WebDesignPageContent() {
                                 </div>
                             </div>
                         </div>
-                        <div className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-indigo-500/20">
+                        <div className="bg-charcoal p-8 rounded-3xl border border-steel/30">
                             <div className="space-y-6">
                                 <div className="flex items-center gap-4">
                                     <div className="w-10 h-10 rounded-full bg-indigo-600/20 flex items-center justify-center">
@@ -233,8 +227,7 @@ export function WebDesignPageContent() {
 
                 {/* 5. Deliverables Section */}
                 <section className="mb-32">
-                    <div className="bg-white/5 backdrop-blur-sm p-12 rounded-[2rem] border border-white/10 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/10 blur-[80px] -mr-32 -mt-32" />
+                    <div className="bg-charcoal p-12 rounded-[2rem] border border-steel/30 relative overflow-hidden">
                         <h2
                             className="text-3xl font-bold text-white mb-10"
                             style={{ fontFamily: 'var(--font-heading)' }}
@@ -264,7 +257,7 @@ export function WebDesignPageContent() {
                         <p className="text-zinc-500">Professional foundations for any stage of growth.</p>
                     </div>
                     <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                        <div className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-all flex flex-col">
+                        <div className="bg-charcoal p-8 rounded-3xl border border-steel/30 hover:border-steel/50 transition-all flex flex-col">
                             <h3 className="text-xl font-bold text-white mb-2">The Launchpad</h3>
                             <div className="mb-6">
                                 <span className="text-3xl font-bold text-white">$2,500</span>
@@ -282,8 +275,8 @@ export function WebDesignPageContent() {
                                 Get Started
                             </Link>
                         </div>
-                        <div className="bg-indigo-600/5 backdrop-blur-sm p-8 rounded-3xl border border-indigo-500/30 relative flex flex-col">
-                            <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-indigo-600 text-white font-bold text-xs rounded-full uppercase tracking-tighter">Recommended</div>
+                        <div className="bg-charcoal p-8 rounded-3xl border border-signal-amber/40 relative flex flex-col">
+                            <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-signal-amber text-operator-black font-bold text-xs rounded-full uppercase tracking-tighter">Recommended</div>
                             <h3 className="text-xl font-bold text-white mb-2">The Scale-Up</h3>
                             <div className="mb-6">
                                 <span className="text-3xl font-bold text-white">$5,000+</span>
@@ -336,9 +329,8 @@ export function WebDesignPageContent() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="text-center bg-indigo-600/5 border border-indigo-500/10 p-16 rounded-[3rem] relative overflow-hidden"
+                    className="text-center bg-charcoal border border-steel/30 p-16 rounded-[3rem] relative overflow-hidden"
                 >
-                    <div className="absolute inset-0 bg-indigo-600/10 blur-[80px]" />
                     <h2
                         className="text-4xl md:text-5xl font-bold text-white mb-6 relative z-10"
                         style={{ fontFamily: 'var(--font-heading)' }}

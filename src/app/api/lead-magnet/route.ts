@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { writeFile, mkdir } from 'fs/promises'
 import path from 'path'
+import { BUSINESS_INFO } from '@/lib/business-info'
 
 // Lazy initialization of Resend to avoid build-time errors
 let resend: Resend | null = null
@@ -156,9 +157,9 @@ function generateLeadMagnetEmail(data: {
           AI-Powered Marketing for Local Service Businesses
         </p>
         <p>
-          <a href="https://digital-helper.com">Website</a> • 
-          <a href="mailto:business@digital-helper.com">Email Us</a> • 
-          (509) 876-8454
+          <a href="https://digital-helper.com">Website</a> •
+          <a href="${BUSINESS_INFO.emailHref}">Email Us</a> •
+          ${BUSINESS_INFO.phone}
         </p>
         <p style="font-size: 12px; color: #94a3b8; margin-top: 20px;">
           You're receiving this because you downloaded ${content.title}.<br>
@@ -226,7 +227,7 @@ export async function POST(request: Request) {
     if (resendClient) {
       try {
         await resendClient.emails.send({
-          from: 'Digital Helper <hello@digital-helper.com>',
+          from: 'Digital Helper <business@digital-helper.com>',
           to: body.email,
           subject: content.subject,
           html: generateLeadMagnetEmail({

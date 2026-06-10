@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { DigitalHelperMonogram } from '@/brand'
+import { BUSINESS_INFO } from '@/lib/business-info'
 
 export function FounderSection() {
   return (
@@ -48,19 +49,19 @@ export function FounderSection() {
           {/* Contact line */}
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <Link
-              href="tel:+15099875060"
+              href={BUSINESS_INFO.phoneHref}
               className="text-sm underline underline-offset-4 decoration-1 transition-opacity hover:opacity-70"
               style={{ fontFamily: 'var(--font-geist-mono)', color: 'var(--foreground)' }}
             >
-              (509) 987-5060
+              {BUSINESS_INFO.phone}
             </Link>
             <span style={{ color: 'var(--border)' }} aria-hidden="true">|</span>
             <Link
-              href="mailto:digitalhelperwebsite@gmail.com"
+              href={BUSINESS_INFO.emailHref}
               className="text-sm underline underline-offset-4 decoration-1 transition-opacity hover:opacity-70"
               style={{ fontFamily: 'var(--font-geist-mono)', color: 'var(--muted-foreground)' }}
             >
-              digitalhelperwebsite@gmail.com
+              {BUSINESS_INFO.email}
             </Link>
             <span style={{ color: 'var(--border)' }} aria-hidden="true">|</span>
             <span

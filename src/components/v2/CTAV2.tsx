@@ -4,14 +4,13 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, CheckCircle2, Phone } from "lucide-react";
 import { storeExitIntentLead } from "@/app/actions/leads";
+import { BUSINESS_INFO } from "@/lib/business-info";
 
 const BULLETS = [
   "Free 30-min strategy call",
   "No obligation, zero pressure",
   "Custom AI workflow demo",
 ];
-
-const PHONE_NUMBER = "(509) 876-8454";
 
 export function CTAV2() {
   const [email, setEmail] = useState("");
@@ -72,7 +71,7 @@ export function CTAV2() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative rounded-[30px] border border-white/10 bg-[#0d0e12]/80 backdrop-blur-2xl p-8 sm:p-12 lg:p-20 overflow-hidden text-center shadow-[0_24px_64px_rgba(0,0,0,0.6)]"
+          className="relative rounded-[30px] border border-charcoal bg-[#0d0e12] p-8 sm:p-12 lg:p-20 overflow-hidden text-center shadow-[0_24px_64px_rgba(0,0,0,0.6)]"
         >
           {/* Top highlight bar */}
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
@@ -164,11 +163,11 @@ export function CTAV2() {
                   <p className="text-[#95979e] text-xs font-light">
                     Want immediate booking? Call us:{" "}
                     <a
-                      href={`tel:${PHONE_NUMBER.replace(/\D/g, "")}`}
+                      href={BUSINESS_INFO.phoneHref}
                       className="text-white hover:text-[#ff8964] font-semibold transition-colors flex inline-flex items-center gap-1.5 ml-1"
                     >
                       <Phone className="w-3.5 h-3.5" />
-                      {PHONE_NUMBER}
+                      {BUSINESS_INFO.phone}
                     </a>
                   </p>
                 </motion.div>

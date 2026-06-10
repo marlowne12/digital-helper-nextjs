@@ -7,6 +7,9 @@ export const metadata: Metadata = {
     title: "E-commerce & Retail Web Design | Digital Helper",
     description: "High-converting online stores and retail websites for Tri-Cities businesses. We build fast, mobile-first shopping experiences that drive sales.",
     keywords: ["retail web design richland", "ecommerce development tri-cities", "shopify alternative nextjs", "online store design"],
+    alternates: {
+        canonical: "/industries/retail-ecommerce",
+    },
 }
 
 export default function RetailEcommercePage() {

@@ -14,13 +14,7 @@ const industries = [
 
 export function IndustriesContent() {
     return (
-        <main className="min-h-screen bg-[#0a0a0f] overflow-hidden">
-            {/* Background glows */}
-            <div className="fixed inset-0 pointer-events-none">
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[120px]" />
-                <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-violet-600/8 rounded-full blur-[100px]" />
-            </div>
-
+        <main className="min-h-screen bg-operator-black overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-24 relative">
 
                 {/* Hero */}
@@ -30,14 +24,14 @@ export function IndustriesContent() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-indigo-600/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium mb-6 uppercase tracking-wider">
+                        <span className="inline-block px-4 py-1.5 rounded-full bg-charcoal border border-steel/40 text-signal-amber text-sm font-medium mb-6 uppercase tracking-wider">
                             Industry Specialists
                         </span>
                         <h1
                             className="text-5xl md:text-7xl font-bold text-white mb-6"
                             style={{ fontFamily: 'var(--font-heading)' }}
                         >
-                            Industries We <span className="text-indigo-300">Elevate.</span>
+                            Industries We <span className="text-signal-amber">Elevate.</span>
                         </h1>
                         <p className="text-xl text-zinc-400 leading-relaxed">
                             We don&apos;t do generic. We build specialized digital systems tailored to the unique economic landscape of the Tri-Cities.
@@ -56,10 +50,10 @@ export function IndustriesContent() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
-                                className="bg-white/5 backdrop-blur-sm p-10 rounded-3xl border border-white/10 hover:border-indigo-500/30 transition-all group flex flex-col"
+                                className="bg-charcoal p-10 rounded-3xl border border-steel/30 hover:border-signal-amber/40 transition-colors group flex flex-col"
                             >
-                                <div className="w-14 h-14 rounded-2xl bg-indigo-600/20 flex items-center justify-center mb-6 group-hover:bg-indigo-600/30 transition-colors">
-                                    <Icon className="w-7 h-7 text-indigo-300" />
+                                <div className="w-14 h-14 rounded-2xl bg-operator-black border border-steel/30 flex items-center justify-center mb-6 transition-colors">
+                                    <Icon className="w-7 h-7 text-signal-amber" />
                                 </div>
                                 <h2
                                     className="text-2xl font-bold text-white mb-4"

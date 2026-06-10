@@ -6,6 +6,7 @@ export const metadata: Metadata = {
     title: "Web Design & SEO West Richland, WA | Digital Helper",
     description: "West Richland businesses deserve high-performance websites. Specialized web design and local SEO for businesses in the fastest-growing residential area.",
     keywords: ["web design west richland wa", "seo west richland", "west richland marketing", "local seo 99353"],
+    alternates: { canonical: "https://digital-helper.com/locations/west-richland" },
 }
 
 export default function WestRichlandPage() {

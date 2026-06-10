@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Script from "next/script";
 import { Hero } from "@/components/landing/Hero";
 import { Services } from "@/components/landing/Services";
@@ -5,6 +6,15 @@ import { HowItWorks } from "@/components/landing/HowItWorks";
 import { Proof } from "@/components/landing/Proof";
 import { CTA } from "@/components/landing/CTA";
 import { FounderSection } from "@/components/FounderSection";
+
+export const metadata: Metadata = {
+  title: "Digital Helper | Web Design, SEO & AI Automation for Tri-Cities Businesses",
+  description:
+    "Operator-grade web design, local SEO, and AI automation for service businesses in Richland, Kennewick, and Pasco. We build the websites and workflows that route your digital signal end to end.",
+  alternates: {
+    canonical: "/",
+  },
+};
 
 const faqSchema = {
   "@context": "https://schema.org",

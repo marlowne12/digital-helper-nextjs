@@ -163,7 +163,7 @@ export default function SEOResearchPage() {
               style={{ fontFamily: "var(--font-heading)" }}
             >
               Tri-Cities{" "}
-              <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-indigo-300 bg-clip-text text-transparent">Keyword Research</span>
+              <span className="text-signal-amber">Keyword Research</span>
             </motion.h1>
             <p className="text-zinc-300 text-lg max-w-3xl mx-auto">
               Comprehensive keyword research and SEO strategy for Richland, Kennewick, and Pasco businesses.
@@ -300,9 +300,9 @@ export default function SEOResearchPage() {
         </motion.div>
 
         {copiedKeyword && (
-          <div className="fixed bottom-4 right-4 z-50 bg-white/[0.03] border border-white/[0.08] backdrop-blur-md px-4 py-2 rounded-lg text-white flex items-center gap-2">
+          <div className="fixed bottom-4 right-4 z-50 bg-charcoal border border-steel px-4 py-2 rounded-lg text-white flex items-center gap-2">
             <CheckCircle className="w-5 h-5 text-green-400" />
-            <span className="text-sm">Copied: <span className="font-mono text-indigo-400">{copiedKeyword}</span></span>
+            <span className="text-sm">Copied: <span className="font-mono text-signal-amber">{copiedKeyword}</span></span>
           </div>
         )}
       </div>

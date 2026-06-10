@@ -53,7 +53,7 @@ export function LocationsContent() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
-                            className="bg-white/5 backdrop-blur-sm p-10 rounded-3xl border border-white/10 hover:border-indigo-500/30 transition-all group"
+                            className="bg-charcoal p-10 rounded-3xl border border-steel/40 hover:border-indigo-500/30 transition-colors group"
                         >
                             <div className="w-14 h-14 rounded-2xl bg-indigo-600/20 flex items-center justify-center mb-6 group-hover:bg-indigo-600/30 transition-colors">
                                 <MapPin className="w-7 h-7 text-indigo-300" />

@@ -45,7 +45,7 @@ export function IndustryNavSidebar() {
 
   return (
     <aside className="hidden lg:block w-full sticky top-32 self-start space-y-8">
-      <div className="bg-white/[0.03] border border-white/[0.08] p-6 rounded-2xl border border-white/5">
+      <div className="bg-charcoal border border-steel/30 p-6 rounded-2xl">
         <h3 className="text-lg font-bold text-white mb-6 px-2">Industries</h3>
         <nav className="space-y-2">
           {industries.map((industry) => {
@@ -60,14 +60,14 @@ export function IndustryNavSidebar() {
                 <div className={`
                   relative flex items-center justify-between p-3 rounded-xl transition-all duration-300
                   ${isActive
-                    ?'bg-accent-secondary/10 text-white border border-accent-secondary/20'
-                    :'text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent'
+                    ?'bg-charcoal text-white border border-signal-amber/30'
+                    :'text-zinc-400 hover:text-white hover:bg-charcoal border border-transparent'
                   }
                 `}>
                   <div className="flex items-center gap-3">
                     <span className={`
                       p-2 rounded-lg transition-colors
-                      ${isActive ?'bg-accent-secondary/20 text-cyan-400':'bg-white/5 text-zinc-500 group-hover:text-white'}
+                      ${isActive ?'bg-operator-black text-signal-amber':'bg-charcoal text-zinc-500 group-hover:text-white'}
                     `}>
                       {industry.icon}
                     </span>
@@ -77,7 +77,7 @@ export function IndustryNavSidebar() {
                   {isActive && (
                     <motion.div
                       layoutId="activeIndustryIndicator"
-                      className="absolute left-0 w-1 h-6 bg-accent-secondary rounded-r-full"
+                      className="absolute left-0 w-1 h-6 bg-signal-amber rounded-r-full"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                     />
@@ -89,8 +89,7 @@ export function IndustryNavSidebar() {
         </nav>
       </div>
 
-      <div className="bg-white/[0.03] border border-white/[0.08] p-6 rounded-2xl border border-accent-secondary/20 bg-accent-secondary/5 relative overflow-hidden group">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-violet-600 opacity-10 group-hover:opacity-20 transition-opacity duration-500"/>
+      <div className="bg-charcoal border border-steel/30 p-6 rounded-2xl relative overflow-hidden group">
         <div className="relative z-10">
           <h4 className="text-xl font-bold text-white mb-2">Industry Solutions</h4>
           <p className="text-sm text-zinc-400 mb-6">

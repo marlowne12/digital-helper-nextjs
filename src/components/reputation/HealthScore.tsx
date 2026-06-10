@@ -13,14 +13,14 @@ export default function HealthScore({ score }: HealthScoreProps) {
   const circumference = normalizedRadius * 2 * Math.PI;
   const strokeDashoffset = circumference - (score / 100) * circumference;
 
-  let color ='text-red-500 drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]';
+  let color ='text-red-500';
   let trackColor ='text-red-900/30';
   if (score >= 50) {
-    color ='text-yellow-500 drop-shadow-[0_0_10px_rgba(234,179,8,0.5)]';
+    color ='text-yellow-500';
     trackColor ='text-yellow-900/30';
   }
   if (score >= 80) {
-    color ='text-green-500 drop-shadow-[0_0_15px_rgba(34,197,94,0.6)]';
+    color ='text-green-500';
     trackColor ='text-green-900/30';
   }
 

@@ -16,12 +16,10 @@ const industries = [
 
 export default function IndustriesPageContent() {
     return (
-        <main className="min-h-screen pt-32 pb-20 bg-background-primary relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-full h-[500px] bg-accent-secondary/5 blur-[120px] pointer-events-none" />
-
+        <main className="min-h-screen pt-32 pb-20 bg-operator-black relative overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
                 <div className="max-w-3xl mb-16 text-center mx-auto">
-                    <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">Industries We <span className="text-gradient">Elevate.</span></h1>
+                    <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">Industries We <span className="text-signal-amber">Elevate.</span></h1>
                     <p className="text-xl text-zinc-400">
                         We don&apos;t do generic. We build specialized digital systems tailored to the unique economic landscape of the Tri-Cities.
                     </p>
@@ -35,9 +33,9 @@ export default function IndustriesPageContent() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
-                            className="glass p-10 rounded-3xl border-white/5 group hover:border-accent-secondary/20 transition-all flex flex-col"
+                            className="bg-charcoal p-10 rounded-3xl border border-steel/30 group hover:border-signal-amber/40 transition-colors flex flex-col"
                         >
-                            <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-accent-secondary mb-6 group-hover:scale-110 transition-transform">
+                            <div className="w-14 h-14 rounded-2xl bg-operator-black border border-steel/30 flex items-center justify-center text-signal-amber mb-6 transition-colors">
                                 {industry.icon}
                             </div>
                             <h2 className="text-2xl font-bold text-white mb-4">{industry.name}</h2>

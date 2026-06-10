@@ -1,3 +1,8 @@
+import { BUSINESS_INFO } from '@/lib/business-info'
+
+// E.164 phone for schema.org telephone fields, derived from the single NAP source.
+const PHONE_E164 = BUSINESS_INFO.phoneHref.replace('tel:', '')
+
 export function LocalBusinessSchema() {
   const schema = {
     '@context': 'https://schema.org',
@@ -7,8 +12,8 @@ export function LocalBusinessSchema() {
     description:
       'Digital Helper transforms outdated local business websites into modern, high-converting sites. Web design, SEO, and AI automation for Tri-Cities businesses.',
     url: 'https://digital-helper.com',
-    telephone: '+15098768454',
-    email: 'digitalhelperwebsite@gmail.com',
+    telephone: PHONE_E164,
+    email: BUSINESS_INFO.email,
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Richland',
@@ -18,8 +23,8 @@ export function LocalBusinessSchema() {
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 46.2856,
-      longitude: -119.2845,
+      latitude: BUSINESS_INFO.geo.latitude,
+      longitude: BUSINESS_INFO.geo.longitude,
     },
     areaServed: [
       { '@type': 'City', name: 'Richland, WA' },
@@ -226,8 +231,8 @@ export function LocalBusinessCitySchema({
     name: 'Digital Helper',
     description,
     url,
-    telephone: '+15098768454',
-    email: 'business@digital-helper.com',
+    telephone: PHONE_E164,
+    email: BUSINESS_INFO.email,
     address: {
       '@type': 'PostalAddress',
       addressLocality: city,
@@ -277,8 +282,8 @@ export function IndustryServiceSchema({
       '@type': 'ProfessionalService',
       name: 'Digital Helper',
       url: 'https://digital-helper.com',
-      telephone: '+15098768454',
-      email: 'business@digital-helper.com',
+      telephone: PHONE_E164,
+      email: BUSINESS_INFO.email,
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Richland',

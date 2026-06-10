@@ -79,7 +79,7 @@ export function QuickLeadCaptureV2() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="relative rounded-3xl border border-indigo-500/20 bg-white/[0.03] backdrop-blur-sm overflow-hidden"
+          className="relative rounded-3xl border border-charcoal bg-charcoal/40 overflow-hidden"
         >
           {/* Background glow */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-indigo-600/12 blur-3xl rounded-full pointer-events-none" />

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { BUSINESS_INFO } from "@/lib/business-info";
 import {
   Globe,
   Search,
@@ -167,9 +168,6 @@ export function ServicesContent() {
 function HeroSection() {
   return (
     <section className="relative pt-28 pb-16 overflow-hidden">
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-600/10 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute top-20 right-1/4 w-[400px] h-[400px] bg-violet-600/8 blur-[100px] rounded-full pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -187,7 +185,7 @@ function HeroSection() {
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Services that{" "}
-            <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-indigo-300 bg-clip-text text-transparent">
+            <span className="text-signal-amber">
               actually work.
             </span>
           </h1>
@@ -460,11 +458,11 @@ function CTASection() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <Link
-                href="tel:5098768454"
+                href={BUSINESS_INFO.phoneHref}
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/[0.08] text-white font-semibold transition-all duration-200"
               >
                 <Phone className="w-4 h-4" />
-                (509) 876-8454
+                {BUSINESS_INFO.phone}
               </Link>
             </div>
             <p className="mt-6 text-xs text-zinc-600">15-minute call. No commitment.</p>

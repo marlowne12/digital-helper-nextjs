@@ -37,11 +37,6 @@ const features = [
 export function VoiceAIPageContent() {
     return (
         <main className="min-h-screen bg-[#0a0a0f] overflow-hidden">
-            {/* Background glows */}
-            <div className="fixed inset-0 pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[120px]" />
-                <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-violet-600/8 rounded-full blur-[100px]" />
-            </div>
 
             <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-24 relative">
 
@@ -121,21 +116,21 @@ export function VoiceAIPageContent() {
                         <p className="text-zinc-500">Two core systems that keep your pipeline moving 24/7.</p>
                     </div>
                     <div className="grid md:grid-cols-3 gap-8">
-                        <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
+                        <div className="bg-charcoal p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
                             <div className="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center mb-6">
                                 <PhoneCall className="w-6 h-6 text-indigo-300" />
                             </div>
                             <h3 className="text-xl font-bold text-white mb-3">Missed Call Text-Back</h3>
                             <p className="text-zinc-500 text-sm leading-relaxed">If you don&apos;t answer, our AI instantly texts the lead to start the conversation and keep them engaged.</p>
                         </div>
-                        <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
+                        <div className="bg-charcoal p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
                             <div className="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center mb-6">
                                 <Mic className="w-6 h-6 text-indigo-300" />
                             </div>
                             <h3 className="text-xl font-bold text-white mb-3">Automated Booking</h3>
                             <p className="text-zinc-500 text-sm leading-relaxed">Customers can book service calls or appointments entirely by voice, directly synced to your calendar.</p>
                         </div>
-                        <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
+                        <div className="bg-charcoal p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
                             <div className="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center mb-6">
                                 <Clock className="w-6 h-6 text-indigo-300" />
                             </div>
@@ -147,8 +142,7 @@ export function VoiceAIPageContent() {
 
                 {/* 4. Features List */}
                 <section className="mb-32">
-                    <div className="bg-white/5 backdrop-blur-sm p-12 rounded-[2rem] border border-white/10 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/10 blur-[80px] -mr-32 -mt-32" />
+                    <div className="bg-charcoal p-12 rounded-[2rem] border border-white/10 relative overflow-hidden">
                         <div className="grid lg:grid-cols-2 gap-12 items-center">
                             <div>
                                 <h2
@@ -200,9 +194,8 @@ export function VoiceAIPageContent() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="text-center bg-indigo-600/5 border border-indigo-500/10 p-16 rounded-[3rem] relative overflow-hidden"
+                    className="text-center bg-charcoal border border-steel/30 p-16 rounded-[3rem] relative overflow-hidden"
                 >
-                    <div className="absolute inset-0 bg-indigo-600/10 blur-[80px]" />
                     <h2
                         className="text-4xl md:text-5xl font-bold text-white mb-6 relative z-10"
                         style={{ fontFamily: 'var(--font-heading)' }}

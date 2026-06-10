@@ -200,7 +200,7 @@ function HeroSection() {
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Invest once.{" "}
-            <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-indigo-300 bg-clip-text text-transparent">
+            <span className="text-signal-amber">
               Grow forever.
             </span>
           </h1>
@@ -234,7 +234,7 @@ function PayForResultsSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="relative rounded-2xl border border-indigo-500/20 bg-white/5 backdrop-blur-sm p-8 lg:p-10 text-center overflow-hidden"
+          className="relative rounded-2xl border border-charcoal bg-charcoal/40 p-8 lg:p-10 text-center overflow-hidden"
         >
           {/* glow */}
           <div className="absolute inset-0 bg-indigo-600/5 blur-3xl pointer-events-none" />
@@ -252,7 +252,7 @@ function PayForResultsSection() {
               {PAY_FOR_RESULTS_PILLS.map((pill) => (
                 <div
                   key={pill}
-                  className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl px-4 py-2"
+                  className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-2xl px-4 py-2"
                 >
                   <BadgeCheck className="w-4 h-4 text-indigo-400 flex-shrink-0" />
                   <span className="text-sm text-zinc-300 font-medium">{pill}</span>

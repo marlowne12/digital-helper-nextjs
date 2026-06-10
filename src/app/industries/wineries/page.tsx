@@ -7,6 +7,9 @@ export const metadata: Metadata = {
     title: "Web Design & SEO for Wineries | Digital Helper",
     description: "Elevating Tri-Cities and Red Mountain wineries with premium web design and local tourism SEO. Build your brand and book more tasting room visits.",
     keywords: ["winery web design", "wine marketing tri-cities", "seo for wineries", "red mountain wine marketing"],
+    alternates: {
+        canonical: "/industries/wineries",
+    },
 }
 
 export default function WineriesPage() {

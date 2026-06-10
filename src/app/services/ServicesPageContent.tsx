@@ -55,10 +55,6 @@ const services = [
 export default function ServicesPageContent() {
     return (
         <main className="min-h-screen pt-32 pb-20 overflow-hidden bg-background-primary relative">
-            {/* Background Orbs */}
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-primary/10 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-secondary/10 rounded-full blur-[120px] pointer-events-none" />
-
             <div className="container mx-auto px-6 relative z-10">
                 {/* Hero Section */}
                 <div className="text-center max-w-3xl mx-auto mb-20">

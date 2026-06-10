@@ -7,6 +7,9 @@ export const metadata: Metadata = {
     title: "Web Design & SEO for Healthcare | Digital Helper",
     description: "Specialized digital marketing and web design for dental practices, clinics, and healthcare providers in the Tri-Cities. Build trust and attract more patients.",
     keywords: ["healthcare web design", "dental marketing richland", "seo for doctors", "medical website design"],
+    alternates: {
+        canonical: "/industries/healthcare",
+    },
 }
 
 export default function HealthcarePage() {

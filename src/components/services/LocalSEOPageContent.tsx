@@ -43,12 +43,6 @@ const deliverables = [
 export function LocalSEOPageContent() {
     return (
         <main className="min-h-screen bg-[#0a0a0f] overflow-hidden">
-            {/* Background glows */}
-            <div className="fixed inset-0 pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[120px]" />
-                <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-violet-600/8 rounded-full blur-[100px]" />
-            </div>
-
             <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-24 relative">
 
                 {/* Breadcrumb */}
@@ -127,21 +121,21 @@ export function LocalSEOPageContent() {
                         <p className="text-zinc-500">Three pillars that push you to the top of local results.</p>
                     </div>
                     <div className="grid md:grid-cols-3 gap-8">
-                        <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
+                        <div className="bg-charcoal p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
                             <div className="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center mb-6">
                                 <MapPin className="w-6 h-6 text-indigo-300" />
                             </div>
                             <h3 className="text-xl font-bold text-white mb-3">Geofenced Optimization</h3>
                             <p className="text-zinc-500 text-sm leading-relaxed">Targeting neighborhood-specific keywords like &quot;web design north richland&quot; or &quot;plumber kennewick wa&quot; for maximum local relevance.</p>
                         </div>
-                        <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
+                        <div className="bg-charcoal p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
                             <div className="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center mb-6">
                                 <LinkIcon className="w-6 h-6 text-indigo-300" />
                             </div>
                             <h3 className="text-xl font-bold text-white mb-3">Citation Building</h3>
                             <p className="text-zinc-500 text-sm leading-relaxed">Ensuring your NAP (Name, Address, Phone) is consistent across 100+ local directories to signal authority to Google.</p>
                         </div>
-                        <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
+                        <div className="bg-charcoal p-8 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all">
                             <div className="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center mb-6">
                                 <TrendingUp className="w-6 h-6 text-indigo-300" />
                             </div>
@@ -154,7 +148,7 @@ export function LocalSEOPageContent() {
                 {/* 4. Stats + Deliverables */}
                 <section className="mb-32">
                     <div className="grid lg:grid-cols-2 gap-12">
-                        <div className="bg-white/5 backdrop-blur-sm p-10 rounded-[2rem] border border-white/10">
+                        <div className="bg-charcoal p-10 rounded-[2rem] border border-white/10">
                             <h2
                                 className="text-2xl font-bold text-white mb-8"
                                 style={{ fontFamily: 'var(--font-heading)' }}
@@ -170,8 +164,7 @@ export function LocalSEOPageContent() {
                                 ))}
                             </div>
                         </div>
-                        <div className="bg-white/5 backdrop-blur-sm p-10 rounded-[2rem] border border-white/10 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-48 h-48 bg-indigo-600/10 blur-[60px]" />
+                        <div className="bg-charcoal p-10 rounded-[2rem] border border-white/10 relative overflow-hidden">
                             <h2
                                 className="text-2xl font-bold text-white mb-8"
                                 style={{ fontFamily: 'var(--font-heading)' }}
@@ -198,9 +191,8 @@ export function LocalSEOPageContent() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="text-center bg-indigo-600/5 border border-indigo-500/10 p-16 rounded-[3rem] relative overflow-hidden"
+                    className="text-center bg-charcoal border border-steel/30 p-16 rounded-[3rem] relative overflow-hidden"
                 >
-                    <div className="absolute inset-0 bg-indigo-600/10 blur-[80px]" />
                     <h2
                         className="text-4xl md:text-5xl font-bold text-white mb-6 relative z-10"
                         style={{ fontFamily: 'var(--font-heading)' }}

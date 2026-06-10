@@ -8,6 +8,7 @@ import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { ChatWidget } from "@/components/ChatWidget";
 import { ExitIntentPopup } from "@/components/ExitIntentPopup";
+import { BUSINESS_INFO } from "@/lib/business-info";
 import Script from "next/script";
 
 
@@ -76,19 +77,19 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": "https://digital-helper.com",
-    "name": "Digital Helper",
+    "name": BUSINESS_INFO.name,
     "image": "https://digital-helper.com/logo.png",
-    "url": "https://digital-helper.com",
+    "url": BUSINESS_INFO.urls.website,
     "logo": "https://digital-helper.com/logo.png",
-    "telephone": "(509) 987-5060",
-    "email": "digitalhelperwebsite@gmail.com",
-    "priceRange": "$$",
+    "telephone": BUSINESS_INFO.phone,
+    "email": BUSINESS_INFO.email,
+    "priceRange": BUSINESS_INFO.priceRange,
     "description": "Professional web design and local SEO agency serving the Tri-Cities WA. Modern Next.js websites, local SEO, and AI automation for local businesses.",
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "50",
-      "bestRating": "5"
+      "ratingValue": BUSINESS_INFO.rating.value,
+      "reviewCount": BUSINESS_INFO.rating.count,
+      "bestRating": BUSINESS_INFO.rating.bestRating
     },
     "areaServed": [
       {
@@ -160,26 +161,26 @@ export default function RootLayout({
     },
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Richland",
-      "addressRegion": "WA",
-      "postalCode": "99352",
-      "addressCountry": "US"
+      "addressLocality": BUSINESS_INFO.address.locality,
+      "addressRegion": BUSINESS_INFO.address.region,
+      "postalCode": BUSINESS_INFO.address.postalCode,
+      "addressCountry": BUSINESS_INFO.address.country
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 46.2857,
-      "longitude": -119.2845
+      "latitude": BUSINESS_INFO.geo.latitude,
+      "longitude": BUSINESS_INFO.geo.longitude
     },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "opens": "09:00",
-      "closes": "18:00"
+      "dayOfWeek": BUSINESS_INFO.hours.days,
+      "opens": BUSINESS_INFO.hours.opens,
+      "closes": BUSINESS_INFO.hours.closes
     },
     "sameAs": [
-      "https://github.com/marlowne12",
-      "https://calendar.app.google/jFDgyirZ2xZZ6kRU8",
-      "https://maps.app.goo.gl/zqStKbjf2iUg21Lg8"
+      BUSINESS_INFO.urls.github,
+      BUSINESS_INFO.urls.calendar,
+      BUSINESS_INFO.urls.googleMaps
     ]
   };
 

@@ -24,7 +24,7 @@ export function StatisticCard({ value, label, description, source, delay = 0 }: 
       </div>
 
       <div className="relative z-10">
-        <div className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-zinc-400 mb-2 font-mono">
+        <div className="text-4xl md:text-5xl font-bold text-white mb-2 font-mono">
           {value}
         </div>
         <h3 className="text-lg font-semibold text-white mb-2">{label}</h3>

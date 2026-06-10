@@ -99,7 +99,7 @@ export default function LeadFinder({ onDeepAudit }: LeadFinderProps) {
                 transition={{ delay: i * 0.05 }}
                 className="bg-white/[0.03] border border-white/[0.08] p-6 rounded-xl hover:bg-white/[0.04] transition-colors group relative overflow-hidden"
               >
-                <div className={`absolute left-0 top-0 bottom-0 w-1 ${lead.tier ==='hot'?'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]':
+                <div className={`absolute left-0 top-0 bottom-0 w-1 ${lead.tier ==='hot'?'bg-red-500':
                   lead.tier ==='warm'?'bg-yellow-500':'bg-blue-500'
                   }`} />
 
