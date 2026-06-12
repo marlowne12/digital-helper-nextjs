@@ -38,7 +38,7 @@ export function BreadcrumbV2({ items }: BreadcrumbV2Props) {
             {/* Breadcrumb JSON-LD — content is static prop data, not user input */}
             <script
                 type="application/ld+json"
-                // eslint-disable-next-line react/no-danger
+                 
                 dangerouslySetInnerHTML={{ __html: jsonLd }}
             />
 
