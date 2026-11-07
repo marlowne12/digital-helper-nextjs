@@ -389,3 +389,4 @@ html { scroll-padding-top: 96px; }
 .dh .field-err { font-size: 14px; color: #8a2a17; }
 .dh .svc-more { margin-top: 18px; }
 .dh .svc-more .link { font-size: 15px; }
+.dh .shot .frame { display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--line-paper); box-shadow: 0 34px 60px -40px rgba(17, 22, 19, .55); }

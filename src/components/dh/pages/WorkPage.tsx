@@ -7,53 +7,50 @@ export function WorkPage() {
     <div className="dh dh-page" id="main">
         <section className="page-hero">
           <div className="wrap">
-            <h1>Work you can <em>click.</em></h1>
-            <p className="hero-lede">digital Helper is new, so instead of borrowed logos, here are working concept sites built for real Tri-Cities trades. Open them on your phone. That&apos;s the test that matters.</p>
+            <h1>Built for the <em>first five seconds.</em></h1>
+            <p className="hero-lede">digital Helper is new, so instead of borrowed logos, here are sample sites I designed for the kinds of Tri-Cities trades I work with. The business names are made up. The design decisions are exactly what your site would get.</p>
           </div>
         </section>
 
         <section className="paper band">
           <div className="wrap work">
               <article className="work-row">
-                <figure className="shot"><a href="https://delta-heating.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open the Delta Heating &amp; Cooling concept site"><Image src="/work-shots/delta.webp" width="960" height="600" alt="Homepage of the Delta Heating &amp; Cooling concept site" loading="lazy" /></a></figure>
+                <figure className="shot"><div className="frame"><Image src="/work-shots/ridgeline.webp" width="960" height="600" alt="Homepage of the Ridgeline Heating &amp; Air sample site" loading="lazy" /></div></figure>
                 <div className="work-copy">
-                  <h2>Delta Heating &amp; Cooling</h2>
-                  <p className="meta">HVAC · Richland · <b>Concept, not a client</b></p>
+                  <h2>Ridgeline Heating &amp; Air</h2>
+                  <p className="meta">HVAC · Tri-Cities · <b>Sample design, fictional business</b></p>
                   <p>A call-first homepage for a company whose customers usually find it with no heat or no AC. The emergency line, years in business and credentials are all visible before the first scroll.</p>
                   <ul>
                 <li><svg className="check-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="m3 8.5 3 3 7-7"/></svg><span>24/7 emergency number in the hero and the header</span></li>
-                <li><svg className="check-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="m3 8.5 3 3 7-7"/></svg><span>Trust proof up front: years serving the area, BBB rating, license</span></li>
+                <li><svg className="check-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="m3 8.5 3 3 7-7"/></svg><span>Trust proof up front: years serving the area, licensing, local reviews</span></li>
                 <li><svg className="check-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="m3 8.5 3 3 7-7"/></svg><span>Call and quote buttons side by side</span></li>
                   </ul>
-                  <a className="link" href="https://delta-heating.vercel.app/" target="_blank" rel="noopener noreferrer">Visit the concept site <span aria-hidden="true">↗</span></a>
                 </div>
               </article>
               <article className="work-row">
-                <figure className="shot"><a href="https://greenworks-landscaping.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open the Greenworks Landscaping concept site"><Image src="/work-shots/greenworks.webp" width="960" height="600" alt="Homepage of the Greenworks Landscaping concept site" loading="lazy" /></a></figure>
+                <figure className="shot"><div className="frame"><Image src="/work-shots/sagebrush.webp" width="960" height="600" alt="Homepage of the Sagebrush Landscaping sample site" loading="lazy" /></div></figure>
                 <div className="work-copy">
-                  <h2>Greenworks Landscaping</h2>
-                  <p className="meta">Landscaping · Pasco · <b>Concept, not a client</b></p>
+                  <h2>Sagebrush Landscaping</h2>
+                  <p className="meta">Landscaping · Tri-Cities · <b>Sample design, fictional business</b></p>
                   <p>Two clear paths for two very different buyers, homeowners and commercial properties, with a free estimate one tap away and room for real before-and-after project photos.</p>
                   <ul>
                 <li><svg className="check-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="m3 8.5 3 3 7-7"/></svg><span>Residential and commercial paths from the first screen</span></li>
                 <li><svg className="check-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="m3 8.5 3 3 7-7"/></svg><span>Phone number and free estimate on every page</span></li>
                 <li><svg className="check-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="m3 8.5 3 3 7-7"/></svg><span>Gallery built for before-and-after photos</span></li>
                   </ul>
-                  <a className="link" href="https://greenworks-landscaping.vercel.app/" target="_blank" rel="noopener noreferrer">Visit the concept site <span aria-hidden="true">↗</span></a>
                 </div>
               </article>
               <article className="work-row">
-                <figure className="shot"><a href="https://onyx-pest.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open the Onyx Pest Control concept site"><Image src="/work-shots/onyx.webp" width="960" height="600" alt="Homepage of the Onyx Pest Control concept site" loading="lazy" /></a></figure>
+                <figure className="shot"><div className="frame"><Image src="/work-shots/ironwood.webp" width="960" height="600" alt="Homepage of the Ironwood Pest Control sample site" loading="lazy" /></div></figure>
                 <div className="work-copy">
-                  <h2>Onyx Pest Control</h2>
-                  <p className="meta">Pest control · Richland · <b>Concept, not a client</b></p>
+                  <h2>Ironwood Pest Control</h2>
+                  <p className="meta">Pest control · Tri-Cities · <b>Sample design, fictional business</b></p>
                   <p>Family-owned, pet-safe positioning for homeowners who worry about what&apos;s being sprayed around their kids and pets, with a first-treatment offer above the fold.</p>
                   <ul>
                 <li><svg className="check-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="m3 8.5 3 3 7-7"/></svg><span>Pet-safe, family-owned message in the headline area</span></li>
                 <li><svg className="check-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="m3 8.5 3 3 7-7"/></svg><span>First-treatment offer visible without scrolling</span></li>
                 <li><svg className="check-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="m3 8.5 3 3 7-7"/></svg><span>Call button in the brand color, quote form one tap away</span></li>
                   </ul>
-                  <a className="link" href="https://onyx-pest.vercel.app/" target="_blank" rel="noopener noreferrer">Visit the concept site <span aria-hidden="true">↗</span></a>
                 </div>
               </article>
           </div>

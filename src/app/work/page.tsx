@@ -4,7 +4,7 @@ import { WorkPage as WorkView } from "@/components/dh/pages/WorkPage";
 export const metadata: Metadata = {
   title: "Portfolio | Tri-Cities Web Design Projects",
   description:
-    "View our web design and SEO case studies from Tri-Cities businesses. See real results: increased calls, leads, and conversions for Richland, Kennewick, and Pasco clients.",
+    "Sample websites designed for Tri-Cities trades: HVAC, landscaping and pest control. See how digital Helper builds call-first sites for Richland, Kennewick and Pasco businesses.",
   keywords: [
     "web design portfolio tri-cities",
     "richland web design examples",
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     canonical: "/work",
   },
   openGraph: {
-    title: "Portfolio | Tri-Cities Web Design & SEO Case Studies",
+    title: "Sample Work | Tri-Cities Web Design",
     description:
-      "Real results from Tri-Cities businesses. Web design and SEO projects that drive leads and growth.",
+      "Sample websites designed for Tri-Cities trades, built call-first for phones.",
     url: "https://digital-helper.com/work",
   },
 };
