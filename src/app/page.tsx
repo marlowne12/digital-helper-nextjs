@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Hero } from "@/components/landing/Hero";
-import { Services } from "@/components/landing/Services";
-import { HowItWorks } from "@/components/landing/HowItWorks";
-import { Proof } from "@/components/landing/Proof";
-import { CTA } from "@/components/landing/CTA";
-import { FounderSection } from "@/components/FounderSection";
+import { HomePage } from "@/components/dh/pages/HomePage";
 
 export const metadata: Metadata = {
-  title: "Digital Helper | Web Design, SEO & AI Automation for Tri-Cities Businesses",
+  title: { absolute: "Web Design & Lead Generation for Tri-Cities Trades | digital Helper" },
   description:
-    "Operator-grade web design, local SEO, and AI automation for service businesses in Richland, Kennewick, and Pasco. We build the websites and workflows that route your digital signal end to end.",
+    "Websites, Google profiles and follow-up systems that turn more calls into booked jobs for Richland, Kennewick and Pasco trades. Book a free 30-minute diagnostic.",
   alternates: {
     canonical: "/",
   },
@@ -22,34 +17,50 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Why Next.js instead of WordPress?",
+      "name": "What happens on the free diagnostic call?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "WordPress sites are often bloated and slow. Next.js is a modern framework that generates lightning-fast static pages, resulting in better user experience and higher Google rankings."
+        "text": "Thirty minutes on how customers find you, what happens after they inquire, and where time gets lost. You leave with a clear first step, whether or not you work with us."
       }
     },
     {
       "@type": "Question",
-      "name": "How does AI automation work?",
+      "name": "I already have a website and some tools. Do I start over?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We build custom systems (chatbots, internal workflows) that handle repetitive tasks like lead qualification, scheduling, and customer support, saving you hours every week."
+        "text": "No. We start from what you have, keep what works, and connect or replace only the parts that are holding you back."
       }
     },
     {
       "@type": "Question",
-      "name": "Do you only work with Tri-Cities businesses?",
+      "name": "Can I start with just one service?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "While we specialize in Richland, Kennewick, and Pasco, we help service-based businesses across the Pacific Northwest who want to modernize their operations."
+        "text": "Yes. Start with your website, lead generation or one automation. Each piece is built to connect to the others later, so the first one stays useful as you grow."
       }
     },
     {
       "@type": "Question",
-      "name": "What is 'Pay Per Lead' generation?",
+      "name": "Who owns the website and systems?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Instead of paying for ads and hoping they work, we build a lead-capture system and you only pay for verified, qualified leads that land in your inbox."
+        "text": "You do. The site, code, lists, accounts and automations are set up in your name."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does it cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Website Sprint starts at $2,500, and the first 3 Tri-Cities founding clients get it for $1,500. Growth System starts at $1,500 per month and Full-Stack Partner at $3,500 per month. Your quote depends on the scope we agree together."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to know how to code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Bring the business problem. We handle the technical work and explain decisions, progress and results in plain English."
       }
     }
   ]
@@ -57,18 +68,13 @@ const faqSchema = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen" style={{ backgroundColor: "var(--background)" }}>
+    <>
       <Script
         id="faq-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <Hero />
-      <Services />
-      <HowItWorks />
-      <Proof />
-      <FounderSection />
-      <CTA />
-    </main>
+      <HomePage />
+    </>
   );
 }

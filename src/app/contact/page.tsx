@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ContactPageContent from "./ContactPageContent";
+import { ContactPage as ContactView } from "@/components/dh/pages/ContactPage";
 
 export const metadata: Metadata = {
   title: "Contact | Free Web Design Consultation Tri-Cities",
@@ -23,5 +23,5 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  return <ContactPageContent />;
+  return <ContactView />;
 }

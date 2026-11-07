@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ServicesPageContent from "./ServicesPageContent";
+import { ServicesPage as ServicesView } from "@/components/dh/pages/ServicesPage";
 
 export const metadata: Metadata = {
   title: "Services | Web Design & SEO Tri-Cities WA",
@@ -24,5 +24,5 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
-  return <ServicesPageContent />;
+  return <ServicesView />;
 }

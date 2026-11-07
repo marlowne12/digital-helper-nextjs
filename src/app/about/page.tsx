@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import AboutPageContent from "./AboutPageContent";
+import { AboutPage as AboutView } from "@/components/dh/pages/AboutPage";
 
 export const metadata: Metadata = {
   title: "About Digital Helper | Tri-Cities Web Design Agency",
@@ -24,5 +24,5 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return <AboutPageContent />;
+  return <AboutView />;
 }

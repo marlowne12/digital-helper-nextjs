@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import WorkPageContent from "./WorkPageContent";
+import { WorkPage as WorkView } from "@/components/dh/pages/WorkPage";
 
 export const metadata: Metadata = {
   title: "Portfolio | Tri-Cities Web Design Projects",
@@ -23,5 +23,5 @@ export const metadata: Metadata = {
 };
 
 export default function WorkPage() {
-  return <WorkPageContent />;
+  return <WorkView />;
 }

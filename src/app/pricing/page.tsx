@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
-import { PricingV2 } from '@/components/v2/PricingV2';
+import { PricingPage as PricingView } from '@/components/dh/pages/PricingPage';
 import { BreadcrumbSchema } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
-    title: "Pricing Packages | Digital Helper Agency",
-    description: "Transparent pricing for web design, local SEO, and AI automation. Choose the package that fits your business needs and budget.",
+    title: "Web Design & SEO Pricing Tri-Cities WA",
+    description: "Clear starting prices for web design, local SEO and automation in the Tri-Cities. Website Sprint from $2,500, Growth System from $1,500/mo. Free 30-minute diagnostic.",
     keywords: "web design pricing, SEO packages, AI automation costs, digital marketing pricing Tri-Cities",
     alternates: {
         canonical: "https://digital-helper.com/pricing"
@@ -20,7 +20,7 @@ export default function PricingPage() {
                     { name: "Pricing", url: "https://digital-helper.com/pricing" },
                 ]}
             />
-            <PricingV2 />
+            <PricingView />
         </>
     );
 }

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Bricolage_Grotesque, Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import "@/styles/dh.css";
+import { SiteHeader } from "@/components/dh/SiteHeader";
+import { SiteFooter } from "@/components/dh/SiteFooter";
 import { Toaster } from "@/components/ui/toaster";
 import { ChatWidget } from "@/components/ChatWidget";
 import { ExitIntentPopup } from "@/components/ExitIntentPopup";
@@ -22,6 +23,27 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
   weight: ["400", "500", "600"],
+  display: "swap",
+});
+
+const dhDisplay = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-dh-display",
+  weight: ["500", "600", "700"],
+  display: "swap",
+});
+
+const dhBody = Instrument_Sans({
+  subsets: ["latin"],
+  variable: "--font-dh-body",
+  weight: ["400", "500", "600"],
+  display: "swap",
+});
+
+const dhMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-dh-mono",
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -203,7 +225,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${dhDisplay.variable} ${dhBody.variable} ${dhMono.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
         <Script
@@ -211,9 +233,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Navbar />
+        <SiteHeader />
         {children}
-        <Footer />
+        <SiteFooter />
         <ChatWidget />
         <ExitIntentPopup />
         <Analytics />
