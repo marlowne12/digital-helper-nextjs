@@ -36,7 +36,7 @@ export const aiTools = {
         inputSchema: scheduleCallSchema,
         execute: async ({ intent: _intent }: z.infer<typeof scheduleCallSchema>) => { // eslint-disable-line @typescript-eslint/no-unused-vars
             return {
-                bookingUrl: 'https://calendar.app.google/jFDgyirZ2xZZ6kRU8',
+                bookingUrl: 'https://calendar.app.google/jauLpVwSWX16vYhi8',
                 message: "Here's a link to book a free 30-minute call with Mars. No pressure, no sales pitch — just a real conversation about your business."
             }
         }

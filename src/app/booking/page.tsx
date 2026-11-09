@@ -1,100 +1,45 @@
-import { Metadata } from 'next';
-import { Clock, Video, CheckCircle, ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
-import { CalendlyWidget } from '@/components/CalendlyWidget';
-
-const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/marlowne12/30min';
+import type { Metadata } from "next";
+import { BUSINESS_INFO } from "@/lib/business-info";
 
 export const metadata: Metadata = {
-    title: 'Book a Free Consultation | Digital Helper',
-    description: 'Schedule a free 30-minute consultation with Digital Helper to discuss your web design, SEO, and automation goals.',
-    alternates: {
-        canonical: 'https://digital-helper.com/booking',
-    },
+  title: "Book a Free 30-Minute Diagnostic",
+  description:
+    "Pick a time for a free 30-minute diagnostic with digital Helper. We look at how customers find you and where jobs slip away, and you leave with one clear next step.",
+  alternates: { canonical: "https://digital-helper.com/booking" },
 };
 
 export default function BookingPage() {
-    return (
-        <main className="min-h-screen bg-slate-950 pt-32 pb-24">
-            {/* Background Decor */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden">
-                <div className="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[120px]"></div>
-                <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px]"></div>
-            </div>
-
-            <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-6xl mx-auto">
-                    <div className="mb-12">
-                        <Link
-                            href="/"
-                            className="inline-flex items-center text-slate-400 hover:text-white transition-colors mb-8 group"
-                        >
-                            <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform" />
-                            Back to Home
-                        </Link>
-                        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                            Let&apos;s Build Your <span className="text-signal-amber">Digital System</span>
-                        </h1>
-                        <p className="text-xl text-slate-400 max-w-2xl">
-                            Schedule a free 30-minute consultation to discuss your project. No hype, no jargon—just a clear plan for your business growth.
-                        </p>
-                    </div>
-
-                    <div className="grid lg:grid-cols-3 gap-12">
-                        {/* Left Info Panel */}
-                        <div className="lg:col-span-1 space-y-8">
-                            <div className="bg-charcoal border border-steel/30 p-8 rounded-2xl">
-                                <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                                    <Clock size={20} className="text-cyan-400" /> What to expect
-                                </h3>
-                                <ul className="space-y-4">
-                                    {[
-                                        "Current system audit",
-                                        "Goal alignment check",
-                                        "Custom automation ideas",
-                                        "Pricing & timeline chat"
-                                    ].map((item, i) => (
-                                        <li key={i} className="flex gap-3 text-slate-400 text-sm">
-                                            <CheckCircle size={16} className="text-green-500 shrink-0 mt-0.5" />
-                                            <span>{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            <div className="bg-charcoal border border-steel/30 p-8 rounded-2xl">
-                                <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
-                                    <Video size={20} className="text-purple-400" /> Call Details
-                                </h3>
-                                <div className="space-y-4 text-sm">
-                                    <div className="flex justify-between">
-                                        <span className="text-slate-500">Duration</span>
-                                        <span className="text-white font-medium">30 Minutes</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-slate-500">Location</span>
-                                        <span className="text-white font-medium">Google Meet / Zoom</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-slate-500">Cost</span>
-                                        <span className="text-green-400 font-bold">$0 (Free)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Right Booking Widget */}
-                        <div className="lg:col-span-2">
-                            <div className="bg-white rounded-3xl overflow-hidden border border-charcoal">
-                                <CalendlyWidget url={CALENDLY_URL} height={700} />
-                            </div>
-                            <p className="text-center text-slate-500 text-xs mt-6">
-                                Not a fan of video calls? <Link href="/contact" className="underline hover:text-white">Email us instead.</Link>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    );
+  return (
+    <div className="dh dh-page" id="main">
+      <section className="page-hero">
+        <div className="wrap">
+          <h1>
+            Pick a time for your <em className="nw">free diagnostic.</em>
+          </h1>
+          <p className="hero-lede">
+            Thirty minutes on how customers find you, what happens after they reach out, and where jobs slip away. You
+            leave with one clear first step, whether or not we work together.
+          </p>
+        </div>
+      </section>
+      <section className="paper band booking-band">
+        <div className="wrap">
+          <div className="booking-frame">
+            <iframe
+              src={BUSINESS_INFO.bookingEmbedUrl}
+              title="Book a free 30-minute diagnostic with digital Helper"
+              loading="lazy"
+            />
+          </div>
+          <p className="booking-alt">
+            Calendar not loading?{" "}
+            <a className="link" href={BUSINESS_INFO.bookingUrl} target="_blank" rel="noopener noreferrer">
+              Open it in Google Calendar <span aria-hidden="true">↗</span>
+            </a>{" "}
+            or call <a href={BUSINESS_INFO.phoneHref}>{BUSINESS_INFO.phone}</a>.
+          </p>
+        </div>
+      </section>
+    </div>
+  );
 }

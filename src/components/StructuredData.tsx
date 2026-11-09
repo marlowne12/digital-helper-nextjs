@@ -44,7 +44,7 @@ export function LocalBusinessSchema() {
     // (fabricated review schema risks a Google manual action).
     sameAs: [
       "https://maps.app.goo.gl/oywZxxYt9w3m1oCK9",
-      "https://calendar.app.google/jFDgyirZ2xZZ6kRU8",
+      "https://calendar.app.google/jauLpVwSWX16vYhi8",
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",

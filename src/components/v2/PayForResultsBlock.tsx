@@ -79,9 +79,7 @@ export function PayForResultsBlock({
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
             <Link
-              href="https://calendly.com/marlowne12/30min"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/booking"
               className="inline-flex items-center justify-center gap-2 px-6 py-4 min-h-[44px] rounded-xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/[0.08] text-white font-semibold text-sm transition-all duration-200"
             >
               Book a Call &mdash; Zero Risk

@@ -14,6 +14,10 @@ export const BUSINESS_INFO = {
   // Canonical site-facing email (NAP). Must be a monitored mailbox — see launch checklist.
   email: "business@digital-helper.com",
   emailHref: "mailto:business@digital-helper.com",
+  // Google Calendar appointment schedule (replaced Calendly, Nov 2026)
+  bookingUrl: "https://calendar.app.google/jauLpVwSWX16vYhi8",
+  bookingEmbedUrl:
+    "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1Zmyn43Jq0Hrds7APdOXP61IgrrlEQzvHeX965hSm4Qqpwg_LXLVLj8yhYlZjUyyvgIqi-98mj?gv=true",
 
   // Address
   address: {
@@ -34,7 +38,7 @@ export const BUSINESS_INFO = {
   // URLs
   urls: {
     website: "https://digital-helper.com",
-    calendar: "https://calendar.app.google/jFDgyirZ2xZZ6kRU8",
+    calendar: "https://calendar.app.google/jauLpVwSWX16vYhi8",
     googleMaps: "https://maps.app.goo.gl/zqStKbjf2iUg21Lg8",
     github: "https://github.com/marlowne12",
   },

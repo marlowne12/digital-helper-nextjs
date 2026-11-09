@@ -23,7 +23,7 @@ export const CONTACT_INFO = {
     location: BUSINESS_INFO.address.full,
     serviceArea: 'Serving Kennewick, Pasco, West Richland & the Tri-Cities',
     hours: 'Mon-Fri: 9AM - 6PM PST',
-    calendlyUrl: process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/marlowne12/30min',
+    calendlyUrl: 'https://calendar.app.google/jauLpVwSWX16vYhi8',
 } as const;
 
 const TRUST_SIGNALS = [

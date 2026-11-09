@@ -191,7 +191,7 @@ export default function RootLayout({
     },
     potentialAction: {
       "@type": "ReserveAction",
-      target: "https://calendar.app.google/jFDgyirZ2xZZ6kRU8",
+      target: "https://calendar.app.google/jauLpVwSWX16vYhi8",
       result: {
         "@type": "Reservation",
         name: "Free Strategy Call",
